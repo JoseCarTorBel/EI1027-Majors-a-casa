@@ -9,7 +9,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 @SpringBootApplication
 public class MajorsACasaApplication implements CommandLineRunner {
 
-	private static final Logger log = Logger.getLogger(MajorsACasaApplication .class.getName());
+	private static final Logger log = Logger.getLogger(MajorsACasaApplication.class.getName());
 
 	public static void main(String[] args) {
 		// Auto-configura l'aplicació
