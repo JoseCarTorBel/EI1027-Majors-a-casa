@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>es.uji.ei1027</groupId>
-	<artifactId>clubesportiu</artifactId>
+	<artifactId>majorsacasa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>clubesportiu</name>
+	<name>majorsacasa</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
