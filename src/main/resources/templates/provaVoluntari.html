@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> Prova voluntari </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <h1> Prova del voluntari </h1>
+    <p><b>Dni:</b> <span th:text="${volunteer.dni}"> </span></p>
+    <p><b>Name:</b> <span th:text="${volunteer.name}"> </span></p>
+    <p><b>SecondName:</b> <span th:text="${volunteer.secondname}"> </span></p>
+    <p><b>phone:</b> <span th:text="${volunteer.phone}"> </span></p>
+    <p><b>dateOfBirth:</b> <span th:text="${volunteer.dateofbrith}"> </span></p>
+    <p><b>postaddress:</b> <span th:text="${volunteer.postaddress}"> </span></p>
+    <p><b>state:</b> <span th:text="${volunteer.state}"> </span></p>
+    <p><b>email:</b> <span th:text="${volunteer.mail}"> </span></p>
+    <p><b>username:</b> <span th:text="${volunteer.username}"> </span></p>
+    <p><b>Password:</b> <span th:text="${volunteer.passwd}"> </span></p>
+
+    <a href="/">Tornar</a>
+
+
+
+
+
+
+</body>
+</html>
