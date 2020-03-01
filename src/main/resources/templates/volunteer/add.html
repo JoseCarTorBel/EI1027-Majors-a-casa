@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear nou voluntari</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Nou voluntari</h2>
+<form action="#" th:action="@{/volunteer/add}"
+      th:object="${volunteer}" method="post">
+    <table>
+        <tr>
+            <td><label>Dni</label></td>
+            <td><input type="text" th:field="*{dni}" /></td>
+        </tr>
+        <tr>
+            <td><label>Name</label></td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td><label>Second Name</label></td>
+            <td><input type="text" th:field="*{secondName}" /></td>
+        </tr>
+        <tr>
+            <td><label>Phone</label></td>
+            <td><input type="text" th:field="*{phone}" /></td>
+        </tr>
+        <tr>
+            <td><label>dateOfBirith</label></td>
+            <td><input type="text" th:field="*{dateOfBirith}" /></td>
+        </tr>
+        <tr>
+            <td><label>postaddress</label></td>
+            <td><input type="text" th:field="*{postaddress}" /></td>
+        </tr>
+        <tr>
+            <td><label>state</label></td>
+            <td><input type="text" th:field="*{state}" /></td>
+        </tr>
+        <tr>
+            <td><label>mail</label></td>
+            <td><input type="text" th:field="*{mail}" /></td>
+        </tr>
+        <tr>
+            <td><label>username</label></td>
+            <td><input type="text" th:field="*{username}" /></td>
+        </tr>
+        <tr>
+            <td><label>password</label></td>
+            <td><input type="text" th:field="*{password}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Afegeix voluntari" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -23,6 +23,17 @@ public class VolunteerController {
         this.volunteerDao=volunteerDao;
     }
 
+    @RequestMapping("/provaVoluntari")
+    public String provaUnNadador(Model model) {
+        Volunteer volunteer = volunteerDao.getVolunteer("2091");
+
+        model.addAttribute("message", volunteer.toString());
+        return "prova_voluntari";
+    }
+
+
+
+
     @RequestMapping("/list")
     public String getVolunteerList(Model model){
         model.addAttribute("volunteers",volunteerDao.getVolunteerList());
@@ -35,7 +46,7 @@ public class VolunteerController {
         return "volunteer/add";
     }
 
-    @RequestMapping(value="value=/update/{dni}", method= RequestMethod.POST)
+    @RequestMapping(value="/update/{dni}", method= RequestMethod.POST)
     public String updatePassword(Model model, @PathVariable String dni){
         model.addAttribute("volunteer",volunteerDao.getVolunteer(dni));
         return "volunteer/update";

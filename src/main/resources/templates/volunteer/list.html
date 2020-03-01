@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Nadadors</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Llista de Voluntaris</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Dni</th>
+        <th>Nom</th>
+        <th>Cognom</th>
+        <th>Phone</th>
+        <th>Fecha nacimiento</th>
+        <th>Direccion</th>
+        <th>Estado</th>
+        <th>mail</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="voluntari: ${voluntaris}">
+        <td th:text="${voluntari.dni}"></td>
+        <td th:text="${voluntari.name}"></td>
+        <td th:text="${voluntari.secondName}"></td>
+        <td th:text="${voluntari.phone}"></td>
+        <td th:text="${voluntari.dateOfBirith}"></td>
+        <td th:text="${voluntari.postaddress}"></td>
+        <td th:text="${voluntari.state}"></td>
+        <td th:text="${voluntari.mail}"></td>
+        <td><a th:href="@{/nadador/update/{nom}(nom=${nadador.nom})}">Edita(POR IMPLEMENTAR)</a>
+        </td>
+        <td><a th:href="@{/nadador/delete/{nom}(nom=${nadador.nom})}">Esborra(POR IMPLEMENTAR)</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="add">Afegeix Voluntari</a>
+</body>
+</html>
