@@ -56,13 +56,13 @@ public class VolunteerController {
     }
 
 
-    @RequestMapping(value="/update/{dni}", method= RequestMethod.POST)
+    @RequestMapping(value="/update/{dni}", method= {RequestMethod.GET, RequestMethod.POST})
     public String updatePassword(Model model, @PathVariable String dni){
         model.addAttribute("volunteer",volunteerDao.getVolunteer(dni));
         return "volunteer/update";
     }
 
-    @RequestMapping(value="/update", method = RequestMethod.POST)
+    @RequestMapping(value="/update", method = {RequestMethod.GET, RequestMethod.POST})
     public String processUpdateSubmit(
             @ModelAttribute("volunteer") Volunteer volunteer,
             BindingResult bindingResult) {
@@ -74,7 +74,7 @@ public class VolunteerController {
         return "redirect:list";
     }
 
-    @RequestMapping(value="/delete/{dni}", method=RequestMethod.DELETE)
+    @RequestMapping(value="/delete/{dni}", method = {RequestMethod.GET, RequestMethod.DELETE})
     public String removeVolunteer(@PathVariable String dni){
         volunteerDao.removeVolunteer(dni);
         return "redirect:../list";
