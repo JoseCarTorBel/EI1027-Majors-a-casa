@@ -42,7 +42,6 @@ public class VolunteerController {
 
     @RequestMapping(value="/add")
     public String addVolunteer(Model model){
-        System.out.println("si");
         model.addAttribute("volunteer",new Volunteer());
         return "volunteer/add";
     }
@@ -50,11 +49,10 @@ public class VolunteerController {
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                    BindingResult bindingResult) {
-        System.out.println(bindingResult.getAllErrors().toString());
         if (bindingResult.hasErrors())
             return "volunteer/add";
         volunteerDao.addVolunteer(volunteer);
-        return "redirect:list.html";
+        return "redirect:list";
     }
 
 
