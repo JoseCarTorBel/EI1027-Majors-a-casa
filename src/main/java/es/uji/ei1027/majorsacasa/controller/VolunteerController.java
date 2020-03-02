@@ -27,8 +27,8 @@ public class VolunteerController {
     public String provaUnNadador(Model model) {
         Volunteer volunteer = volunteerDao.getVolunteer("2091");
 
-        model.addAttribute("message", volunteer.toString());
-        return "prova_voluntari";
+        model.addAttribute("volunteer", volunteer);
+        return "volunteer/prova_voluntari";
     }
 
 
