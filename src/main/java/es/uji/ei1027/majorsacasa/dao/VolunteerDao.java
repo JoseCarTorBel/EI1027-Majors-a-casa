@@ -44,7 +44,7 @@ public class VolunteerDao {
     public void addVolunteer(Volunteer volunteer){
         jdbcTemplate.update("INSERT INTO volunteer VALUES(?,?,?,?,?,?,?,?,?)",
                             volunteer.getDni(),volunteer.getName(),volunteer.getSecondName(),volunteer.getPhone(),volunteer.getDateOfBirith(),
-                            volunteer.getPostaddress(),volunteer.getState(),volunteer.getState(),volunteer.getMail(),volunteer.getPassword());
+                            volunteer.getPostaddress(),volunteer.getState(),volunteer.getMail(),volunteer.getPassword());
 
     }
 

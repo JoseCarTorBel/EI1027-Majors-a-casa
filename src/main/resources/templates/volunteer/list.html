@@ -23,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="voluntari: ${voluntaris}">
+    <tr th:each="voluntari: ${volunteers}">
         <td th:text="${voluntari.dni}"></td>
         <td th:text="${voluntari.name}"></td>
         <td th:text="${voluntari.secondName}"></td>
@@ -32,9 +32,9 @@
         <td th:text="${voluntari.postaddress}"></td>
         <td th:text="${voluntari.state}"></td>
         <td th:text="${voluntari.mail}"></td>
-        <td><a th:href="@{/nadador/update/{nom}(nom=${nadador.nom})}">Edita(POR IMPLEMENTAR)</a>
+        <td><a th:href="@{/nadador/update/{nom}(nom=${voluntari.dni})}">Edita(POR IMPLEMENTAR)</a>
         </td>
-        <td><a th:href="@{/nadador/delete/{nom}(nom=${nadador.nom})}">Esborra(POR IMPLEMENTAR)</a>
+        <td><a th:href="@{/nadador/delete/{nom}(nom=${voluntari.dni})}">Esborra(POR IMPLEMENTAR)</a>
         </td>
     </tr>
     </tbody>
