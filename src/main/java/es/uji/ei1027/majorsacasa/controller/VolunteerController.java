@@ -66,11 +66,10 @@ public class VolunteerController {
     public String processUpdateSubmit(
             @ModelAttribute("volunteer") Volunteer volunteer,
             BindingResult bindingResult) {
-    //TODO este update deberia ser de todo y no solo del passwd
         if (bindingResult.hasErrors())
             return "nadador/update";
 
-        volunteerDao.updatePasswd(volunteer.getDni(), volunteer.getPassword());
+        volunteerDao.updateVolunteer(volunteer);
         return "redirect:list";
     }
 

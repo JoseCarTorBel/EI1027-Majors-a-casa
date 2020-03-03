@@ -59,4 +59,10 @@ public class VolunteerDao {
     public void updateState(String dni, String newState) {
         jdbcTemplate.update("UPDATE volunteer SET state=? WHERE dni=?",newState,dni);
     }
+    public void updateVolunteer(Volunteer volunteer) {
+        jdbcTemplate.update("UPDATE volunteer SET name=?, secondname=?, phone=?, dateofbrith=?, postaddress=?, state=?, email=?, username=?, passwd=? WHERE dni=?",
+                volunteer.getName(),volunteer.getSecondName(),volunteer.getPhone(),volunteer.getDateOfBirith(),
+                volunteer.getPostaddress(),volunteer.getState(),volunteer.getMail(),volunteer.getUsername(),volunteer.getPassword(),volunteer.getDni());
+    }
+
 }
