@@ -78,4 +78,9 @@ public class VolunteerController {
         volunteerDao.removeVolunteer(dni);
         return "redirect:../list";
     }
+
+    //TODO Crear una vista nueva para añadir hobbies y desponibilities
+
+    //TODO Arreglar codigo (TODO EN INGLES)
+
 }
