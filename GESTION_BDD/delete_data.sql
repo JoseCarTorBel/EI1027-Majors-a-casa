@@ -1,0 +1,10 @@
+delete from line;
+delete from invoice;
+delete from contract;
+delete from request;
+delete from company;
+delete from book;
+delete from elderlypeople;
+delete from hobbies;
+delete from volunteer;
+delete from socialworker;
