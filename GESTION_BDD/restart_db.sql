@@ -52,6 +52,7 @@ CREATE TABLE elderlypeople (
         name      VARCHAR(50),
         secondname      VARCHAR(20),
         email     VARCHAR(20),
+	phone 		VARCHAR(20),
         postaddress     VARCHAR(50),
         justification      VARCHAR(50),
         dateofbrith     DATE,

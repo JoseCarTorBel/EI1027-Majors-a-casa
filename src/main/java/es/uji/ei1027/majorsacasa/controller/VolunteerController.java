@@ -26,7 +26,7 @@ public class VolunteerController {
 
     // Probar a mostrar la informacion de 1 voluntario
     @RequestMapping("/provaVoluntari")
-    public String provaUnNadador(Model model) {
+    public String provaUnVoluntari(Model model) {
 
         Volunteer volunteer = volunteerDao.getVolunteer("20904567S");
 
