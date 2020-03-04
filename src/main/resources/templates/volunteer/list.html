@@ -29,9 +29,9 @@
         <td th:text="${volunteer.secondName}"></td>
         <td th:text="${volunteer.phone}"></td>
         <td th:text="${volunteer.dateOfBirith}"></td>
-        <td th:text="${volunteer.postaddress}"></td>
+        <td th:text="${volunteer.postAddress}"></td>
         <td th:text="${volunteer.state}"></td>
-        <td th:text="${volunteer.mail}"></td>
+        <td th:text="${volunteer.email}"></td>
         <td><a th:href="@{/volunteer/update/{dni}(dni=${volunteer.dni})}">Edita</a>
         </td>
         <td><a th:href="@{/volunteer/delete/{dni}(dni=${volunteer.dni})}">Borra</a>

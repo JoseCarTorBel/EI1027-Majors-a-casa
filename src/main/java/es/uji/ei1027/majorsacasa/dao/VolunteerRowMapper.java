@@ -17,11 +17,11 @@ public class VolunteerRowMapper implements RowMapper<Volunteer> {
         volunteer.setSecondName(rs.getString("secondname"));
         volunteer.setPhone(rs.getString("phone"));
         volunteer.setDateOfBirith(rs.getDate("dateofbrith"));
-        volunteer.setPostaddress(rs.getString("postaddress"));
+        volunteer.setPostAddress(rs.getString("postaddress"));
         volunteer.setState(rs.getString("state").charAt(0));
-        volunteer.setMail(rs.getString("email"));
+        volunteer.setEmail(rs.getString("email"));
         volunteer.setUsername(rs.getString("username"));
-        volunteer.setPassword(rs.getString("passwd"));
+        volunteer.setPasswd(rs.getString("passwd"));
         return volunteer;
     }
 }

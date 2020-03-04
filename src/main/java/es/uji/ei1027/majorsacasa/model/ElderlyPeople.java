@@ -6,8 +6,8 @@ public class ElderlyPeople extends Person {
 
     private String justification;
 
-    public ElderlyPeople(String dni, String name, String secondName, String phone, Date dateOfBirith, String postaddress, char state, String mail, String username, String password,String justification) {
-        super(dni, name, secondName, phone, dateOfBirith, postaddress, state, mail, username, password);
+    public ElderlyPeople(String dni, String name, String secondName, String phone, Date dateOfBirith, String postaddress, String email, String username, String passwd,String justification) {
+        super(dni, name, secondName, phone, dateOfBirith, postaddress, email, username, passwd);
         this.justification=justification;
     }
 

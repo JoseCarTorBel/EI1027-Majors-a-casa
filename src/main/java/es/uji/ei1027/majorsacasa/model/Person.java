@@ -9,26 +9,23 @@ public class Person {
     private String secondName;
     private String phone;
     private Date dateOfBirith;
-    private String postaddress;
-    private char state;
-    private String mail;
+    private String postAddress;
+    private String email;
     private String username;
-    private String password;
+    private String passwd;
 
     public Person(){}
 
-    public Person(String dni, String name, String secondName, String phone, Date dateOfBirith, String postaddress,
-                  char state,String mail, String username, String password) {
+    public Person(String dni, String name, String secondName, String phone, Date dateOfBirith, String postAddress,String email, String username, String passwd) {
         this.dni = dni;
-        this.mail=mail;
+        this.email=email;
         this.name = name;
         this.secondName = secondName;
         this.phone = phone;
         this.dateOfBirith = dateOfBirith;
-        this.postaddress = postaddress;
-        this.state = state;
+        this.postAddress = postAddress;
         this.username = username;
-        this.password = password;
+        this.passwd = passwd;
     }
 
     public void setDni(String dni) {
@@ -51,20 +48,16 @@ public class Person {
         this.dateOfBirith = dateOfBirith;
     }
 
-    public void setPostaddress(String postaddress) {
-        this.postaddress = postaddress;
-    }
-
-    public void setState(char state) {
-        this.state = state;
+    public void setPostAddress(String postAddress) {
+        this.postAddress = postAddress;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
     }
 
     public String getDni() {
@@ -87,28 +80,23 @@ public class Person {
         return dateOfBirith;
     }
 
-    public String getPostaddress() {
-        return postaddress;
-    }
-
-    public char getState() {
-        return state;
+    public String getPostAddress() {
+        return postAddress;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswd() {
+        return passwd;
     }
 
-
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String mail) {
+        this.email = email;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 }

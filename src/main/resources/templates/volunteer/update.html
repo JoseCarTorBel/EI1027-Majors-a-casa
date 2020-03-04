@@ -13,27 +13,27 @@
     <table>
         <tr>
             <td><label>Dni </label></td>
-            <td><input type="text" th:field="*{dni}" /></td>
+            <td><input required type="text" th:field="*{dni}" /></td>
         </tr>
         <tr>
             <td><label>Name </label></td>
-            <td><input type="text" th:field="*{name}" /></td>
+            <td><input required type="text" th:field="*{name}" /></td>
         </tr>
         <tr>
             <td><label>Second Name </label></td>
-            <td><input type="text" th:field="*{secondName}" /></td>
+            <td><input required type="text" th:field="*{secondName}" /></td>
         </tr>
         <tr>
             <td><label>Phone </label></td>
             <td><input type="text" th:field="*{phone}" /></td>
         </tr>
         <tr>
-            <td><label>dateOfBirith </label></td>
-            <td><input type="text" th:field="*{dateOfBirith}" /></td>
+            <td><label>dateOfBirith (YEAR-MONTH-DAY)</label></td>
+            <td><input type="date"  th:field="*{dateOfBirith}" /></td>
         </tr>
         <tr>
             <td><label>Post Address </label></td>
-            <td><input type="text" th:field="*{postaddress}" /></td>
+            <td><input type="text" th:field="*{postAddress}" /></td>
         </tr>
         <tr>
             <td><label>State </label></td>
@@ -41,15 +41,15 @@
         </tr>
         <tr>
             <td><label>Mail </label></td>
-            <td><input type="text" th:field="*{mail}" /></td>
+            <td><input type="email" th:field="*{email}" /></td>
         </tr>
         <tr>
             <td><label>Username </label></td>
-            <td><input type="text" th:field="*{username}" /></td>
+            <td><input required type="text" th:field="*{username}" /></td>
         </tr>
         <tr>
             <td><label>Pasword </label></td>
-            <td><input type="text" th:field="*{password}" /></td>
+            <td><input required type="text" th:field="*{passwd}" /></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Actualiza voluntari" /></td>
