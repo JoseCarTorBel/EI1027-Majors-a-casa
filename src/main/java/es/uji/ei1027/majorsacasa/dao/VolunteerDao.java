@@ -22,7 +22,7 @@ public class VolunteerDao {
     }
 
 
-    //*Selects */
+    // Obtiene la lista de todos los voluntarios de la tabla volunteer
     public List<Volunteer> getVolunteerList() {
         try{
             return jdbcTemplate.query("SELECT * FROM volunteer",new VolunteerRowMapper());
@@ -32,6 +32,7 @@ public class VolunteerDao {
         }
     }
 
+    // Obtiene el voluntario cuya clave es dni
     public Volunteer getVolunteer(String dni) {
         try{
             return jdbcTemplate.queryForObject("SELECT * FROM volunteer WHERE dni=?",
@@ -42,9 +43,9 @@ public class VolunteerDao {
     }
 
     public void addVolunteer(Volunteer volunteer){
-        jdbcTemplate.update("INSERT INTO volunteer VALUES(?,?,?,?,?,?,?,?,?)",
-                            volunteer.getDni(),volunteer.getName(),volunteer.getSecondName(),volunteer.getPhone(),volunteer.getDateOfBirith(),
-                            volunteer.getPostaddress(),volunteer.getState(),volunteer.getMail(),volunteer.getPassword());
+        jdbcTemplate.update("INSERT INTO volunteer VALUES(?,?,?,?,?,?,?,?,?,?)",
+                            volunteer.getDni(),volunteer.getName(),volunteer.getSecondName(),volunteer.getPhone(),volunteer.getDateOfBirith(),volunteer.getEndDate(),
+                            volunteer.getPostAddress(),volunteer.getState(),volunteer.getEmail(),volunteer.getPasswd());
 
     }
 
@@ -59,4 +60,10 @@ public class VolunteerDao {
     public void updateState(String dni, String newState) {
         jdbcTemplate.update("UPDATE volunteer SET state=? WHERE dni=?",newState,dni);
     }
+    public void updateVolunteer(Volunteer volunteer) {
+        jdbcTemplate.update("UPDATE volunteer SET name=?, secondname=?, phone=?, dateofbrith=?, postaddress=?, state=?, email=?, username=?, passwd=? WHERE dni=?",
+                volunteer.getName(),volunteer.getSecondName(),volunteer.getPhone(),volunteer.getDateOfBirith(),
+                volunteer.getPostAddress(),volunteer.getState(),volunteer.getEmail(),volunteer.getUsername(),volunteer.getPasswd(),volunteer.getDni());
+    }
+
 }

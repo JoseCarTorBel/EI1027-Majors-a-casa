@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar elderlyPeople</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Llista de elderlyPeople</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Dni</th>
+        <th>Nom</th>
+        <th>Cognom</th>
+        <th>Phone</th>
+        <th>Fecha nacimiento</th>
+        <th>Direccion</th>
+        <th>Justifaction</th>
+        <th>Email</th>
+        <th>DniSocialWorker</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="elderlyPeople: ${elderlys}">
+        <td th:text="${elderlyPeople.dni}"></td>
+        <td th:text="${elderlyPeople.name}"></td>
+        <td th:text="${elderlyPeople.secondName}"></td>
+        <td th:text="${elderlyPeople.phone}"></td>
+        <td th:text="${elderlyPeople.dateOfBirith}"></td>
+        <td th:text="${elderlyPeople.postAddress}"></td>
+        <td th:text="${elderlyPeople.justification}"></td>
+        <td th:text="${elderlyPeople.email}"></td>
+        <td th:text="${elderlyPeople.dniSocialWorker}"></td>
+        <td><a th:href="@{/elderlyPeople/update/{dni}(dni=${elderlyPeople.dni})}">Edita</a>
+        </td>
+        <td><a th:href="@{/elderlyPeople/delete/{dni}(dni=${elderlyPeople.dni})}">Borra</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="add">Afegeix elderly people</a>
+</body>
+</html>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Crear nou voluntari</title>
+    <title>Crear nou elderly people</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2>Nou voluntari</h2>
-<form action="#" th:action="@{/volunteer/add}"
-      th:object="${volunteer}" method="post">
+<h2>Nou elderly people</h2>
+<form action="#" th:action="@{/elderlyPeople/add}"
+      th:object="${elderlyPeople}" method="post">
     <table>
         <tr>
             <td><label>Dni </label></td>
@@ -36,8 +36,8 @@
             <td><input type="text" th:field="*{postAddress}" /></td>
         </tr>
         <tr>
-            <td><label>State </label></td>
-            <td><input type="text" th:field="*{state}" /></td>
+            <td><label>Justification </label></td>
+            <td><input type="text" th:field="*{justification}" /></td>
         </tr>
         <tr>
             <td><label>Mail </label></td>
@@ -52,7 +52,11 @@
             <td><input required type="text" th:field="*{passwd}" /></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Afegeix voluntari" /></td>
+            <td><label>dnisocialworker </label></td>
+            <td><input value="%00" type="text" th:field="*{dniSocialWorker}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Afegeix elderly people" /></td>
         </tr>
     </table>
 </form>
