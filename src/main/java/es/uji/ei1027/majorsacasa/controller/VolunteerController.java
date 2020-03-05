@@ -31,9 +31,6 @@ public class VolunteerController {
         return "volunteer/prova_voluntari";
     }
 
-
-
-
     @RequestMapping("/list")
     public String getVolunteerList(Model model){
         model.addAttribute("volunteers",volunteerDao.getVolunteerList());

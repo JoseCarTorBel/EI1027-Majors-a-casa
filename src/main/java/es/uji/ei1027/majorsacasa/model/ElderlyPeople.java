@@ -1,6 +1,7 @@
 package es.uji.ei1027.majorsacasa.model;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ElderlyPeople extends Person {
 
