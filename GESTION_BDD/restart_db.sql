@@ -8,14 +8,13 @@ DROP TABLE elderlypeople;
 DROP TABLE hobbies;
 DROP TABLE volunteer;
 DROP TABLE socialworker;
-
 CREATE TABLE socialworker (
         dni      VARCHAR(15),
         name      VARCHAR(50),
         phone     VARCHAR(20),
         username     VARCHAR(20),
         passwd   VARCHAR (20),
-        
+
         CONSTRAINT cp_socialworker PRIMARY KEY (dni),      -- clau primària
         CONSTRAINT calt_socialworker UNIQUE (username)    -- clau alternativa
 );
@@ -23,17 +22,17 @@ CREATE TABLE socialworker (
 CREATE TABLE volunteer (
         dni      VARCHAR(15),
         name      VARCHAR(50),
-        secondname      VARCHAR(20),
+        secondname      VARCHAR(50),
         phone     VARCHAR(20),
         dateofbrith     DATE,
 	endDate		DATE,
         postaddress     VARCHAR(50),
         state   VARCHAR (1),
-        email     VARCHAR(20),
+        email     VARCHAR(30),
         username     VARCHAR(20),
         passwd   VARCHAR (20),
-        
-        
+
+
         CONSTRAINT cp_volunteer PRIMARY KEY (dni),      -- clau primària
         CONSTRAINT calt_volunteer1 UNIQUE (email), -- clau alternativa
         CONSTRAINT calt_volunteer2 UNIQUE (username) -- clau alternativa
@@ -50,17 +49,17 @@ CREATE TABLE hobbies (
 CREATE TABLE elderlypeople (
         dni      VARCHAR(15),
         name      VARCHAR(50),
-        secondname      VARCHAR(20),
-        email     VARCHAR(20),
-	phone 		VARCHAR(20),
+        secondname      VARCHAR(50),
+        email     VARCHAR(30),
+	    phone 		VARCHAR(20),
         postaddress     VARCHAR(50),
         justification      VARCHAR(50),
         dateofbrith     DATE,
         dnisocialworker     VARCHAR(20),
         username     VARCHAR(20),
         passwd   VARCHAR (20),
-        
-        
+
+
         CONSTRAINT cp_elderlypeople PRIMARY KEY (dni),      -- clau primària
         CONSTRAINT calt_elderlypeople1 UNIQUE (email), -- clau alternativa
         CONSTRAINT calt_elderlypeople2 UNIQUE (username), -- clau alternativa
@@ -76,7 +75,7 @@ CREATE TABLE book (
         initialtime     DATE,
         finaltime     DATE,
         open      boolean,
-        
+
         CONSTRAINT cp_book PRIMARY KEY (dnivolunteer, dnielderlypeople),  -- CP
         CONSTRAINT ca_book_vol FOREIGN KEY (dnivolunteer) REFERENCES volunteer(dni) ON DELETE RESTRICT ON UPDATE CASCADE, -- clau aliena a volunteer
         CONSTRAINT ca_book_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a elderlypeople
@@ -89,10 +88,10 @@ CREATE TABLE company (
         phonecontact     VARCHAR(20),
         email     VARCHAR(20),
         postaddress     VARCHAR(50),
-        
+
         CONSTRAINT cp_company PRIMARY KEY (cif),  -- CP
         CONSTRAINT calt_company UNIQUE (email) -- clau alternativa
-   
+
 );
 
 CREATE TABLE request (
@@ -104,7 +103,7 @@ CREATE TABLE request (
         rejected     BOOLEAN NULL,
         enddate     DATE,
         dnielderlypeople VARCHAR(15),
-        
+
         CONSTRAINT cp_request PRIMARY KEY (codrequest),  -- CP
         CONSTRAINT ca_request_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a elderlypeople
 );
@@ -116,7 +115,7 @@ CREATE TABLE contract (
         initialtime     DATE,
         finaltime     DATE NULL,
         price           INTEGER,
-        
+
         CONSTRAINT cp_contract PRIMARY KEY (codrequest, cifcompany),  -- CP
         CONSTRAINT ca_contract_request FOREIGN KEY (codrequest) REFERENCES request(codrequest) ON DELETE RESTRICT ON UPDATE CASCADE, -- clau aliena a request
         CONSTRAINT ca_contract_company FOREIGN KEY (cifcompany) REFERENCES company(cif) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a company
@@ -127,7 +126,7 @@ CREATE TABLE invoice (
         dnielderlypeople VARCHAR(15),
         price           INTEGER,
 	date		DATE,
-        
+
         CONSTRAINT cp_invoice PRIMARY KEY (codinvoice),  -- CP
         CONSTRAINT ca_invoice_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a elderlypeople
 );
@@ -137,10 +136,9 @@ CREATE TABLE line (
         codrequest VARCHAR(15),
 	concept VARCHAR(50),
         priceservice           INTEGER,
-        
+
         CONSTRAINT cp_line PRIMARY KEY (codinvoice,codrequest),  -- CP
         CONSTRAINT ca_line_inv FOREIGN KEY (codinvoice) REFERENCES invoice(codinvoice) ON DELETE RESTRICT ON UPDATE CASCADE, -- clau aliena a invoice
         CONSTRAINT ca_line_req FOREIGN KEY (codrequest) REFERENCES request(codrequest) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a request
 );
-
 

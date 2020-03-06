@@ -23,20 +23,6 @@
     </tr>
     </thead>
     <tbody>
-<<<<<<< HEAD
-    <tr th:each="voluntari: ${volunteers}">
-        <td th:text="${voluntari.dni}"></td>
-        <td th:text="${voluntari.name}"></td>
-        <td th:text="${voluntari.secondName}"></td>
-        <td th:text="${voluntari.phone}"></td>
-        <td th:text="${voluntari.dateOfBirith}"></td>
-        <td th:text="${voluntari.postaddress}"></td>
-        <td th:text="${voluntari.state}"></td>
-        <td th:text="${voluntari.mail}"></td>
-        <td><a th:href="@{/volunteer/update/{dni}(dni=${voluntari.dni})}">Edita</a>
-        </td>
-        <td><a th:href="@{/volunteer/delete/{dni}(dni=${voluntari.dni})}">Esborra</a>
-=======
     <tr th:each="volunteer: ${volunteers}">
         <td th:text="${volunteer.dni}"></td>
         <td th:text="${volunteer.name}"></td>
@@ -49,7 +35,6 @@
         <td><a th:href="@{/volunteer/update/{dni}(dni=${volunteer.dni})}">Edita</a>
         </td>
         <td><a th:href="@{/volunteer/delete/{dni}(dni=${volunteer.dni})}">Borra</a>
->>>>>>> 742ddcecb820d2537b3f88538fcca33933674901
         </td>
     </tr>
     </tbody>

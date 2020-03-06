@@ -12,13 +12,13 @@ CREATE TABLE socialworker (
 CREATE TABLE volunteer (
         dni      VARCHAR(15),
         name      VARCHAR(50),
-        secondname      VARCHAR(20),
+        secondname      VARCHAR(50),
         phone     VARCHAR(20),
         dateofbrith     DATE,
 	endDate		DATE,
         postaddress     VARCHAR(50),
         state   VARCHAR (1),
-        email     VARCHAR(20),
+        email     VARCHAR(30),
         username     VARCHAR(20),
         passwd   VARCHAR (20),
         
@@ -39,9 +39,9 @@ CREATE TABLE hobbies (
 CREATE TABLE elderlypeople (
         dni      VARCHAR(15),
         name      VARCHAR(50),
-        secondname      VARCHAR(20),
-        email     VARCHAR(20),
-	phone 		VARCHAR(20),
+        secondname      VARCHAR(50),
+        email     VARCHAR(30),
+	    phone 		VARCHAR(20),
         postaddress     VARCHAR(50),
         justification      VARCHAR(50),
         dateofbrith     DATE,
