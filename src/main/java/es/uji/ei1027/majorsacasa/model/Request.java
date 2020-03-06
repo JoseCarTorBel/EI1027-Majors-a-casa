@@ -6,7 +6,7 @@ public class Request {
     private char state;
     private ServiceType service;
     private Date date;
-    private Date aprovedDate;
+    private Date approvedDate;
 
     public Request(){}
 
@@ -14,7 +14,7 @@ public class Request {
         this.state = state;
         this.service = service;
         this.date = date;
-        this.aprovedDate = aprovedDate;
+        this.approvedDate = aprovedDate;
     }
 
     public char getState() {
@@ -30,7 +30,7 @@ public class Request {
     }
 
     public Date getAprovedDate() {
-        return aprovedDate;
+        return approvedDate;
     }
 
     public void setState(char state) {
@@ -46,7 +46,7 @@ public class Request {
     }
 
     public void setAprovedDate(Date aprovedDate) {
-        this.aprovedDate = aprovedDate;
+        this.approvedDate = aprovedDate;
     }
 
 }
