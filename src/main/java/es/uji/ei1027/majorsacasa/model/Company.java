@@ -8,20 +8,20 @@ public class Company {
     //private Person pesonalContact
 
     private String phoneContact;
-    private String address;
-    private String mail;
+    private String postAddress;
+    private String email;
     //TODO CREAR CLASE ADDRESS
     //private Address address;
 
     public Company(){}
 
-    public Company(String cif, String name, String personalContact, String phoneContact, String address, String mail) {
+    public Company(String cif, String name, String personalContact, String phoneContact, String postAddress,String email) {
         this.cif = cif;
         this.name = name;
         this.personalContact = personalContact;
         this.phoneContact = phoneContact;
-        this.address = address;
-        this.mail=mail;
+        this.postAddress = postAddress;
+        this.email=email;
     }
 
     // GETER
@@ -41,12 +41,12 @@ public class Company {
         return phoneContact;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPostAddress() {
+        return postAddress;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
     // SETTER
@@ -66,11 +66,11 @@ public class Company {
         this.phoneContact = phoneContact;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPostAddress(String address) {
+        this.postAddress = postAddress;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

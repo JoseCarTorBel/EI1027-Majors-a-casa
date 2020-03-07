@@ -16,14 +16,16 @@ public class CompanyDao {
     }
 
     public void addCompany(Company company){
-        jdbcTemplate.update("INSERT INTO company WHERE dni=?");
+        jdbcTemplate.update("INSERT INTO company VALUES (?,?,?,?,?,?)",
+                company.getCif(),company.getName(),company.getPersonalContact(),company.getPhoneContact(),company.getEmail(),company.getEmail()
+                );
     }
 
     public void removeCompany(String cif){
         jdbcTemplate.update("DELETE FROM company WHERE cif=?",cif);
     }
 
-    public void getComany(String cif){
+    public void getCompany(String cif){
         jdbcTemplate.queryForObject("SELECT * FROM company WHERE cif=?",
                                     new CompanyRowMapper(),cif);
     }
