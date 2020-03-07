@@ -32,8 +32,8 @@ public class Volunteer extends Person{
         return hobbies.add(hobbie);
     }
 
-    public boolean addDisponibility(Date dayOfWeek, Date initialTime, Date finalTime){
-        return disponibilities.add(new Disponibility(dayOfWeek,initialTime, finalTime));
+    public boolean addDisponibility(int dayOfWeek, Date initialTime, Date finalTime, boolean open){
+        return disponibilities.add(new Disponibility(dayOfWeek,initialTime, finalTime, open));
     }
 
     public Date getEndDate() {
