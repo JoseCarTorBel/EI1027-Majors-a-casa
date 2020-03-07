@@ -58,7 +58,7 @@ CREATE TABLE elderlypeople (
 
 
 
-CREATE TABLE book (
+CREATE TABLE disponibility (
         dnivolunteer      VARCHAR(15),
         dnielderlypeople      VARCHAR(15),
         dayofweek     VARCHAR(1),

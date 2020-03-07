@@ -3,7 +3,7 @@ DROP TABLE invoice;
 DROP TABLE contract;
 DROP TABLE request;
 DROP TABLE company;
-DROP TABLE book;
+DROP TABLE disponibility;
 DROP TABLE elderlypeople;
 DROP TABLE hobbies;
 DROP TABLE volunteer;
