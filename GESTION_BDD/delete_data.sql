@@ -8,3 +8,4 @@ delete from elderlypeople;
 delete from hobbies;
 delete from volunteer;
 delete from socialworker;
+delete from CASUSERS;

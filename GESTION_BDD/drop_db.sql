@@ -8,3 +8,4 @@ DROP TABLE elderlypeople;
 DROP TABLE hobbies;
 DROP TABLE volunteer;
 DROP TABLE socialworker;
+DROP TABLE CASUSERS;

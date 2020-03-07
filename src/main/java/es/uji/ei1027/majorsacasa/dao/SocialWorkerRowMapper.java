@@ -14,6 +14,8 @@ public class SocialWorkerRowMapper implements RowMapper<SocialWorker> {
         socialWorker.setDni(rs.getString("dni"));
         socialWorker.setName(rs.getString("name"));
         socialWorker.setPhone(rs.getInt("phone"));
+        socialWorker.setUserName(rs.getString("username"));
+        socialWorker.setUserName(rs.getString("passwd"));
         return socialWorker;
     }
 }

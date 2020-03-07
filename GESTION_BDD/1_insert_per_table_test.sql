@@ -20,3 +20,4 @@ INSERT INTO invoice VALUES ('F001','20987655T',240,'2010-02-02');
 
 INSERT INTO line VALUES ('F001','R001','Dar de comer al iaio',23);
 
+

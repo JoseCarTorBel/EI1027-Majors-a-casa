@@ -15,7 +15,7 @@ CREATE TABLE volunteer (
         secondname      VARCHAR(50),
         phone     VARCHAR(20),
         dateofbrith     DATE,
-	endDate		DATE,
+	    endDate		DATE,
         postaddress     VARCHAR(50),
         state   VARCHAR (1),
         email     VARCHAR(30),
@@ -124,7 +124,7 @@ CREATE TABLE invoice (
 CREATE TABLE line (
         codinvoice      VARCHAR(15),
         codrequest VARCHAR(15),
-	concept VARCHAR(50),
+	    concept VARCHAR(50),
         priceservice           INTEGER,
         
         CONSTRAINT cp_line PRIMARY KEY (codinvoice,codrequest),  -- CP
@@ -132,3 +132,12 @@ CREATE TABLE line (
         CONSTRAINT ca_line_req FOREIGN KEY (codrequest) REFERENCES request(codrequest) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a request
 );
 
+CREATE TABLE CASUSERS(
+        username VARCHAR(20),
+        passwd VARCHAR(20),
+        rol VARCHAR(20),
+
+        CONSTRAINT cp_cas_users PRIMARY KEY (username)  -- CP
+
+
+);

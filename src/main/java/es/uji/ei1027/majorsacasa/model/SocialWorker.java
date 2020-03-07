@@ -8,15 +8,21 @@ public class SocialWorker {
     private String name;
     private int phone;
     private String dni;
+    private String userName;
+    private String passwd;
 
     private List<ElderlyPeople> elderlyPeopleAssit;
 
     public SocialWorker(){}
 
-    public SocialWorker(String name, int phone, String dni) {
+
+
+    public SocialWorker(String name, int phone, String dni, String userName, String passwd) {
         this.name = name;
         this.phone = phone;
         this.dni = dni;
+        this.userName=userName;
+        this.passwd=passwd;
         this.elderlyPeopleAssit = new ArrayList<ElderlyPeople>();
     }
 
@@ -43,6 +49,14 @@ public class SocialWorker {
     public void setDni(String dni) {
         this.dni = dni;
     }
+
+    public String getUserName() { return userName; }
+
+    public void setUserName(String userName) { this.userName = userName; }
+
+    public String getPasswd() { return passwd; }
+
+    public void setPasswd(String passwd) { this.passwd = passwd; }
 
     // TODO mirar si tiene el control del día para asistir.
     /**

@@ -18,14 +18,13 @@ public class SocialWorkerDao {
         jdbcTemplate=new JdbcTemplate(dataSource);
     }
 
-    // TODO la bbdd tiene user y password
     /**
      * Add social worker to BBDD
      * @param socialWorker
      */
     public void addSocialWorker(SocialWorker socialWorker){
         jdbcTemplate.update("INSERT INTO socialworker VALUES(?,?,?,?,?)",
-                            socialWorker.getDni(),socialWorker.getName(),socialWorker.getPhone(),"user1","patata");
+                            socialWorker.getDni(),socialWorker.getName(),socialWorker.getPhone(),socialWorker.getUserName(),socialWorker.getPasswd());
 
     }
 
