@@ -2,6 +2,7 @@ package es.uji.ei1027.majorsacasa.dao;
 
 import es.uji.ei1027.majorsacasa.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -25,9 +26,13 @@ public class CompanyDao {
         jdbcTemplate.update("DELETE FROM company WHERE cif=?",cif);
     }
 
-    public void getCompany(String cif){
-        jdbcTemplate.queryForObject("SELECT * FROM company WHERE cif=?",
+    public Company getCompany(String cif){
+        try{
+            return jdbcTemplate.queryForObject("SELECT * FROM company WHERE cif=?",
                                     new CompanyRowMapper(),cif);
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 
 

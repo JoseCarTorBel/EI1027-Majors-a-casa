@@ -3,6 +3,7 @@ package es.uji.ei1027.majorsacasa.dao;
 
 import es.uji.ei1027.majorsacasa.model.SocialWorker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -39,10 +40,15 @@ public class SocialWorkerDao {
     /**
      * get a social worker
      * @param dni
+     * @return SocialWorker
      */
-    public void getSocialWorker(String dni){
-        jdbcTemplate.queryForObject("SELECT * FROM socialworker WHERE dni=?",
-                                    new SocialWorkerRowMapper(),dni);
+    public SocialWorker getSocialWorker(String dni){
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM socialworker WHERE dni=?",
+                    new SocialWorkerRowMapper(), dni);
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
 
     }
 
