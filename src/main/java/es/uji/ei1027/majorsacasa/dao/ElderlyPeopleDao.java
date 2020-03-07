@@ -23,7 +23,11 @@ public class ElderlyPeopleDao {
     }
 
 
-    // Obtiene la lista de todos los ancianos de la tabla elderlypeple
+
+    /**
+     * Obtiene la lista de todos los ancianos de la tabla elderlypeple
+     * @return List<ElderlyPeople>
+     */
     public List<ElderlyPeople> getElderlyPeopleList() {
         try{
             return jdbcTemplate.query("SELECT * FROM elderlypeople",new ElderlyPeopleRowMapper());
@@ -33,7 +37,12 @@ public class ElderlyPeopleDao {
         }
     }
 
-    // Obtiene el elderlypeople cuya clave es dni
+
+    /**
+     *  Obtiene el elderlypeople cuya clave es dni
+     * @param dni
+     * @return ElderlyPeople
+     */
     public ElderlyPeople getElderlyPeople(String dni) {
         try{
             return jdbcTemplate.queryForObject("SELECT * FROM elderlypeople WHERE dni=?",
@@ -43,6 +52,10 @@ public class ElderlyPeopleDao {
         }
     }
 
+    /**
+     *  add elderlyPeople
+     * @param elderlyPeople
+     */
     public void addElderlyPeople(ElderlyPeople elderlyPeople){
         jdbcTemplate.update("INSERT INTO elderlypeople VALUES(?,?,?,?,?,?,?,?,?,?,?)",
                 elderlyPeople.getDni(),elderlyPeople.getName(),elderlyPeople.getSecondName(),elderlyPeople.getEmail(),elderlyPeople.getPhone(),
@@ -51,14 +64,29 @@ public class ElderlyPeopleDao {
 
     }
 
+
+    /**
+     *  remove elderlyPeople
+     * @param dni
+     */
     public void removeElderyPeople(String dni){
         jdbcTemplate.update("DELETE FROM elderlypeople WHERE dni=?",dni);
     }
 
+
+    /**
+     *  update passwd
+     * @param dni, password
+     */
     public void updatePasswd(String dni, String password){
         jdbcTemplate.update("UPDATE elderlypeople SET passwd=? WHERE dni=?",password,dni);
     }
 
+
+    /**
+     *  update elderlyPeople
+     * @param elderlypeople
+     */
     public void updateElderlyPeople(ElderlyPeople elderlypeople) {
         jdbcTemplate.update("UPDATE elderlypeople SET name=?, secondname=?, phone=?, dateofbrith=?, postaddress=?, justification=?, email=?, username=?, passwd=?, dnisocialworker=? WHERE dni=?",
                 elderlypeople.getName(),elderlypeople.getSecondName(),elderlypeople.getPhone(),elderlypeople.getDateOfBirith(),
