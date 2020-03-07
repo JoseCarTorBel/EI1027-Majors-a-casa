@@ -23,7 +23,7 @@ public class DisponibilityDao {
      * @param disponibility, dniElderlyPeople, dniVolunteer
      */
     public void addDisponibility(Disponibility disponibility,String dniElderlyPeople, String dniVolunteer){
-        jdbcTemplate.update("INSERT INTO company VALUES (?,?,?,?,?,?)",
+        jdbcTemplate.update("INSERT INTO disponibility VALUES (?,?,?,?,?,?)",
                 dniVolunteer,dniElderlyPeople,disponibility.getDayOfWeek(),disponibility.getInitialTime(),disponibility.getFinalTime(),disponibility.isOpen()
                 );
     }
@@ -33,7 +33,7 @@ public class DisponibilityDao {
      * @param dniElderlyPeople, dniVolunteer
      */
     public void removeDisponibility(String dniElderlyPeople,String dniVolunteer){
-        jdbcTemplate.update("DELETE FROM company WHERE dnielderlypeople=?, dnivolunteer=?",dniElderlyPeople,dniVolunteer);
+        jdbcTemplate.update("DELETE FROM disponibility WHERE dnielderlypeople=?, dnivolunteer=?",dniElderlyPeople,dniVolunteer);
     }
 
     /**
@@ -43,7 +43,7 @@ public class DisponibilityDao {
      */
     public Disponibility getDisponibility(String dniElderlyPeople,String dniVolunteer){
         try{
-            return  jdbcTemplate.queryForObject("SELECT * FROM company WHERE dnielderlypeople=?, dnivolunteer=?",
+            return  jdbcTemplate.queryForObject("SELECT * FROM disponibility WHERE dnielderlypeople=?, dnivolunteer=?",
                                     new DisponibilityRowMapper(),dniElderlyPeople,dniVolunteer);
         }catch(EmptyResultDataAccessException e) {
          return null;
