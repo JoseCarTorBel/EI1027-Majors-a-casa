@@ -14,9 +14,7 @@ public class ElderlyPeople extends Person {
         this.dniSocialWorker=dniSocialWorker;
     }
 
-    public ElderlyPeople() {
-
-    }
+    public ElderlyPeople() { }
 
     public String getDniSocialWorker() {
         return dniSocialWorker;

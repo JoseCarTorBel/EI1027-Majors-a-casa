@@ -4,7 +4,7 @@ public class Company {
     private String cif;
     private String name;
     private String personalContact;
-    // TODO -> PERSONAL CONTACT PUEDE SER UNA PERSON
+    // TODO -> PERSONAL CONTACT PUEDE SER UNA PERSON ?????????
     //private Person pesonalContact
 
     private String phoneContact;

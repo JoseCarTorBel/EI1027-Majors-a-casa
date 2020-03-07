@@ -1,0 +1,52 @@
+package es.uji.ei1027.majorsacasa.dao;
+
+
+import es.uji.ei1027.majorsacasa.model.SocialWorker;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import javax.sql.DataSource;
+
+@Repository
+public class SocialWorkerDao {
+
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public void setDataSource(DataSource dataSource){
+        jdbcTemplate=new JdbcTemplate(dataSource);
+    }
+
+    // TODO la bbdd tiene user y password
+    /**
+     * Add social worker to BBDD
+     * @param socialWorker
+     */
+    public void addSocialWorker(SocialWorker socialWorker){
+        jdbcTemplate.update("INSERT INTO socialworker VALUES(?,?,?,?,?)",
+                            socialWorker.getDni(),socialWorker.getName(),socialWorker.getPhone(),"user1","patata");
+
+    }
+
+    /**
+     * Remove a socialWorker
+     * @param dni
+     */
+    public void removeSocialWorker(String dni){
+        jdbcTemplate.update("DELETE FROM socialworker WHERE dni=?",dni);
+    }
+
+    /**
+     * get a social worker
+     * @param dni
+     */
+    public void getSocialWorker(String dni){
+        jdbcTemplate.queryForObject("SELECT * FROM socialworker WHERE dni=?",
+                                    new SocialWorkerRowMapper(),dni);
+
+    }
+
+
+
+}

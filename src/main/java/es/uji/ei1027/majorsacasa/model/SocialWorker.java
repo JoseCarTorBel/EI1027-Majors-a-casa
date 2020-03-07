@@ -11,6 +11,8 @@ public class SocialWorker {
 
     private List<ElderlyPeople> elderlyPeopleAssit;
 
+    public SocialWorker(){}
+
     public SocialWorker(String name, int phone, String dni) {
         this.name = name;
         this.phone = phone;
@@ -35,7 +37,7 @@ public class SocialWorker {
     }
 
     public String getDni() {
-        return dni;
+        return this.dni;
     }
 
     public void setDni(String dni) {
