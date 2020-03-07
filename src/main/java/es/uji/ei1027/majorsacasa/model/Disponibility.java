@@ -3,23 +3,34 @@ package es.uji.ei1027.majorsacasa.model;
 import java.sql.Date;
 
 public class Disponibility {
-    private Date dayOfWeek;
+    private int dayOfWeek;
     private Date initialTime;
     private Date finalTime;
+    private boolean open;
 
     public Disponibility(){}
 
-    public Disponibility(Date dayOfWeek, Date initialTime, Date finalTime) {
+
+    public Disponibility(int dayOfWeek, Date initialTime, Date finalTime, boolean open) {
         this.dayOfWeek = dayOfWeek;
         this.initialTime = initialTime;
         this.finalTime = finalTime;
+        this.open=open;
     }
 
-    public Date getDayOfWeek() {
+    public boolean isOpen() {
+        return open;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
+    }
+
+    public int getDayOfWeek() {
         return dayOfWeek;
     }
 
-    public void setDayOfWeek(Date dayOfWeek) {
+    public void setDayOfWeek(int dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
 
