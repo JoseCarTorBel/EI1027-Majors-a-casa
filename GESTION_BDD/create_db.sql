@@ -111,7 +111,7 @@ CREATE TABLE contract (
         CONSTRAINT ca_contract_company FOREIGN KEY (cifcompany) REFERENCES company(cif) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a company
 );
 
-CREATE TABLE invoice (
+CREATE TABLE . (
         codinvoice      VARCHAR(15),
         dnielderlypeople VARCHAR(15),
         price           INTEGER,
