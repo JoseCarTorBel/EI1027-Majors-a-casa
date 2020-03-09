@@ -56,7 +56,7 @@ public class VolunteerDao {
      */
     public void addVolunteer(Volunteer volunteer){
         jdbcTemplate.update("INSERT INTO volunteer VALUES(?,?,?,?,?,?,?,?,?,?)",
-                            volunteer.getDni(),volunteer.getName(),volunteer.getSecondName(),volunteer.getPhone(),volunteer.getDateOfBirith(),volunteer.getEndDate(),
+                            volunteer.getDni(),volunteer.getName(),volunteer.getSecondName(),volunteer.getPhone(),volunteer.getDateOfBirth(),volunteer.getEndDate(),
                             volunteer.getPostAddress(),volunteer.getState(),volunteer.getEmail(),volunteer.getPasswd());
 
     }
@@ -94,7 +94,7 @@ public class VolunteerDao {
      */
     public void updateVolunteer(Volunteer volunteer) {
         jdbcTemplate.update("UPDATE volunteer SET name=?, secondname=?, phone=?, dateofbrith=?, postaddress=?, state=?, email=?, username=?, passwd=? WHERE dni=?",
-                volunteer.getName(),volunteer.getSecondName(),volunteer.getPhone(),volunteer.getDateOfBirith(),
+                volunteer.getName(),volunteer.getSecondName(),volunteer.getPhone(),volunteer.getDateOfBirth(),
                 volunteer.getPostAddress(),volunteer.getState(),volunteer.getEmail(),volunteer.getUsername(),volunteer.getPasswd(),volunteer.getDni());
     }
 

@@ -1,10 +1,9 @@
 package es.uji.ei1027.majorsacasa.dao;
 
 import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
-import es.uji.ei1027.majorsacasa.model.Volunteer;
 
 import org.springframework.jdbc.core.RowMapper;
-import javax.swing.tree.TreePath;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -17,7 +16,7 @@ public class ElderlyPeopleRowMapper implements RowMapper<ElderlyPeople> {
         elderlyPeople.setName(rs.getString("name"));
         elderlyPeople.setSecondName(rs.getString("secondname"));
         elderlyPeople.setPhone(rs.getString("phone"));
-        elderlyPeople.setDateOfBirith(rs.getDate("dateofbrith"));
+        elderlyPeople.setDateOfBirth(rs.getDate("dateofbrith"));
         elderlyPeople.setPostAddress(rs.getString("postaddress"));
         elderlyPeople.setJustification(rs.getString("justification"));
         elderlyPeople.setDniSocialWorker(rs.getString("dnisocialworker"));

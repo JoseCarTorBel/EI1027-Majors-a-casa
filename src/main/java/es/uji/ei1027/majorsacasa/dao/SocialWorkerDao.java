@@ -30,6 +30,16 @@ public class SocialWorkerDao {
     }
 
     /**
+     * Update social worker
+     * @param socialWorker
+     */
+    public void updateSocialWorker(SocialWorker socialWorker){
+        jdbcTemplate.update("UPDATE socialworker SET name=?, phone=?, username=?, passwd=? WHERE dni=?",
+                socialWorker.getName(),socialWorker.getPhone(),socialWorker.getUserName(),socialWorker.getPasswd(),socialWorker.getDni());
+
+    }
+
+    /**
      * Remove a socialWorker
      * @param dni
      */

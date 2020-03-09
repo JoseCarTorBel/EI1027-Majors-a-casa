@@ -2,7 +2,6 @@ package es.uji.ei1027.majorsacasa.dao;
 
 
 import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
-import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -59,7 +58,7 @@ public class ElderlyPeopleDao {
     public void addElderlyPeople(ElderlyPeople elderlyPeople){
         jdbcTemplate.update("INSERT INTO elderlypeople VALUES(?,?,?,?,?,?,?,?,?,?,?)",
                 elderlyPeople.getDni(),elderlyPeople.getName(),elderlyPeople.getSecondName(),elderlyPeople.getEmail(),elderlyPeople.getPhone(),
-                elderlyPeople.getPostAddress(),elderlyPeople.getJustification(),elderlyPeople.getDateOfBirith(),
+                elderlyPeople.getPostAddress(),elderlyPeople.getJustification(),elderlyPeople.getDateOfBirth(),
                 elderlyPeople.getDniSocialWorker(),elderlyPeople.getUsername(),elderlyPeople.getPasswd());
 
     }
@@ -89,7 +88,7 @@ public class ElderlyPeopleDao {
      */
     public void updateElderlyPeople(ElderlyPeople elderlypeople) {
         jdbcTemplate.update("UPDATE elderlypeople SET name=?, secondname=?, phone=?, dateofbrith=?, postaddress=?, justification=?, email=?, username=?, passwd=?, dnisocialworker=? WHERE dni=?",
-                elderlypeople.getName(),elderlypeople.getSecondName(),elderlypeople.getPhone(),elderlypeople.getDateOfBirith(),
+                elderlypeople.getName(),elderlypeople.getSecondName(),elderlypeople.getPhone(),elderlypeople.getDateOfBirth(),
                 elderlypeople.getPostAddress(),elderlypeople.getJustification(),elderlypeople.getEmail(),elderlypeople.getUsername(),elderlypeople.getPasswd(),elderlypeople.getDniSocialWorker(),elderlypeople.getDni());
     }
 

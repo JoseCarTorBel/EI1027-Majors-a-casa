@@ -28,6 +28,16 @@ public class ContractDao {
     }
 
     /**
+     * update a contract
+     * @param contract, codRequest, cifCompany
+     */
+    public void updateContract(Contract contract, String codRequest, String cifCompany){
+        jdbcTemplate.update("UPDATE contract SET service=?, initialtime=?, finaltime=?, price=? WHERE codrequest=? AND cifcompany=?",
+                contract.getService(), contract.getInitialDate(), contract.getFinalDate(), contract.getPrice(),codRequest, cifCompany
+                );
+    }
+
+    /**
      * remove a contract
      * @param codRequest, cifCompany
      */

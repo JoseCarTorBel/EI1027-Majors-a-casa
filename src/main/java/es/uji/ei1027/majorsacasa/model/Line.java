@@ -9,7 +9,10 @@ public class Line {
     public Line() {
     }
 
-    public Line(String codLine, String concept, Request request, float price) {
+
+
+    public Line(String concept, Request request, float price) {
+
         this.concept = concept;
         this.request = request;
         this.price = price;
@@ -38,4 +41,6 @@ public class Line {
     public void setPrice(float price) {
         this.price = price;
     }
+
+
 }

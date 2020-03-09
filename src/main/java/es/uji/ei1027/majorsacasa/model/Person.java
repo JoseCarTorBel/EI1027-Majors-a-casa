@@ -8,7 +8,7 @@ public class Person {
     private String name;
     private String secondName;
     private String phone;
-    private Date dateOfBirith;
+    private Date dateOfBirth;
     private String postAddress;
     private String email;
     private String username;
@@ -22,7 +22,7 @@ public class Person {
         this.name = name;
         this.secondName = secondName;
         this.phone = phone;
-        this.dateOfBirith = dateOfBirith;
+        this.dateOfBirth = dateOfBirith;
         this.postAddress = postAddress;
         this.username = username;
         this.passwd = passwd;
@@ -44,8 +44,8 @@ public class Person {
         this.phone = phone;
     }
 
-    public void setDateOfBirith(Date dateOfBirith) {
-        this.dateOfBirith = dateOfBirith;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public void setPostAddress(String postAddress) {
@@ -76,8 +76,8 @@ public class Person {
         return phone;
     }
 
-    public Date getDateOfBirith() {
-        return dateOfBirith;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
     public String getPostAddress() {

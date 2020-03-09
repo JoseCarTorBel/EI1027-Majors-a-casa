@@ -29,6 +29,16 @@ public class DisponibilityDao {
     }
 
     /**
+     * update a Disponibility
+     * @param disponibility, dniElderlyPeople, dniVolunteer
+     */
+    public void updateDisponibility(Disponibility disponibility,String dniElderlyPeople, String dniVolunteer){
+        jdbcTemplate.update("UPDATE disponibility SET dayofweek=?, initialtime=?, finaltime=?, open=? WHERE dnivolunteer=? AND dnielderlypeople=?",
+                disponibility.getDayOfWeek(),disponibility.getInitialTime(),disponibility.getFinalTime(),disponibility.isOpen(),dniVolunteer,dniElderlyPeople
+        );
+    }
+
+    /**
      * remove a Disponibility
      * @param dniElderlyPeople, dniVolunteer
      */

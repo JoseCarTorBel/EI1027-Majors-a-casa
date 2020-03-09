@@ -4,14 +4,10 @@ public class Company {
     private String cif;
     private String name;
     private String personalContact;
-    // TODO -> PERSONAL CONTACT PUEDE SER UNA PERSON ?????????
-    //private Person pesonalContact
-
     private String phoneContact;
     private String postAddress;
     private String email;
-    //TODO CREAR CLASE ADDRESS
-    //private Address address;
+
 
     public Company(){}
 

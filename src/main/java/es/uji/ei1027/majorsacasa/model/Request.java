@@ -5,10 +5,10 @@ import java.sql.Date;
 public class Request {
     private char state;
     private ServiceType service;
-    private Date date;
+    private Date initialDate;
     private Date approvedDate;
     private boolean rejected;
-    private Date enddate;
+    private Date endDate;
     private String dniElderlyPeople;
 
 
@@ -17,10 +17,10 @@ public class Request {
     public Request(char state, ServiceType service, Date date, Date aprovedDate,boolean rejected,Date enddate,String dniElderlyPeople) {
         this.state = state;
         this.service = service;
-        this.date = date;
+        this.initialDate = date;
         this.approvedDate = aprovedDate;
         this.rejected=rejected;
-        this.enddate=enddate;
+        this.endDate =enddate;
         this.dniElderlyPeople=dniElderlyPeople;
     }
 
@@ -32,8 +32,8 @@ public class Request {
         return service.toString();
     } //todo COMO GESTIONAR ESTO
 
-    public Date getDate() {
-        return date;
+    public Date getInitialDate() {
+        return initialDate;
     }
 
     public Date getAprovedDate() {
@@ -56,16 +56,16 @@ public class Request {
 
     public void setRejected(boolean rejected) { this.rejected = rejected; }
 
-    public Date getEnddate() { return enddate; }
+    public Date getEndDate() { return endDate; }
 
-    public void setEnddate(Date enddate) { this.enddate = enddate; }
+    public void setEndDate(Date endDate) { this.endDate = endDate; }
 
     public String getDniElderlyPeople() { return this.dniElderlyPeople; }
 
     public void setDniElderlyPeople(String dniElderlyPeople) { this.dniElderlyPeople = dniElderlyPeople; }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setInitialDate(Date initialDate) {
+        this.initialDate = initialDate;
     }
 
     public void setAprovedDate(Date aprovedDate) {

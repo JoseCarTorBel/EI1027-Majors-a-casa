@@ -11,7 +11,7 @@ public class SocialWorker {
     private String userName;
     private String passwd;
 
-    private List<ElderlyPeople> elderlyPeopleAssit;
+    private List<ElderlyPeople> elderlyPeopleAssisted;
 
     public SocialWorker(){}
 
@@ -23,7 +23,7 @@ public class SocialWorker {
         this.dni = dni;
         this.userName=userName;
         this.passwd=passwd;
-        this.elderlyPeopleAssit = new ArrayList<ElderlyPeople>();
+        this.elderlyPeopleAssisted = new ArrayList<ElderlyPeople>();
     }
 
     public String getName() {
@@ -64,8 +64,8 @@ public class SocialWorker {
      * @param elderly
      * @return boolean
      */
-    public boolean elderlyPeopleToAssisted(ElderlyPeople elderly){
-        return elderlyPeopleAssit.add(elderly);
+    public boolean elderlyPeopleToAssist(ElderlyPeople elderly){
+        return elderlyPeopleAssisted.add(elderly);
     }
 
 
@@ -85,8 +85,8 @@ public class SocialWorker {
      */
     public ElderlyPeople nextElderlyToAssist(){
 
-        ElderlyPeople nextElderly =  elderlyPeopleAssit.get(0);
-        if(elderlyPeopleAssit.remove(nextElderly)){
+        ElderlyPeople nextElderly =  elderlyPeopleAssisted.get(0);
+        if(elderlyPeopleAssisted.remove(nextElderly)){
             return nextElderly;
         }
         return null;

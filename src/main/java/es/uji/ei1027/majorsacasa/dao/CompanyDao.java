@@ -23,8 +23,18 @@ public class CompanyDao {
      */
     public void addCompany(Company company){
         jdbcTemplate.update("INSERT INTO company VALUES (?,?,?,?,?,?)",
-                company.getCif(),company.getName(),company.getPersonalContact(),company.getPhoneContact(),company.getEmail(),company.getEmail()
+                company.getCif(),company.getName(),company.getPersonalContact(),company.getPhoneContact(),company.getEmail(),company.getPostAddress()
                 );
+    }
+
+    /**
+     * update a company
+     * @param company
+     */
+    public void updateCompany(Company company){
+        jdbcTemplate.update("UPDATE company SET name=?, personalcontact=?, phonecontact=?, email=?, postaddress=? WHERE cif=?",
+                company.getName(),company.getPersonalContact(),company.getPhoneContact(),company.getEmail(),company.getPostAddress(), company.getCif()
+        );
     }
 
     /**

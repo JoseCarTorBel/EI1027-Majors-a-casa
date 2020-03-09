@@ -1,6 +1,5 @@
 package es.uji.ei1027.majorsacasa.dao;
 
-import es.uji.ei1027.majorsacasa.model.Company;
 import es.uji.ei1027.majorsacasa.model.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -24,8 +23,18 @@ public class RequestDao {
      */
     public void addRequest(Request request,String codrequest){
         jdbcTemplate.update("INSERT INTO request VALUES (?,?,?,?,?,?,?,?)",
-                codrequest,request.getState(),request.getService(),request.getDate(),request.getAprovedDate(),request.isRejected(),request.getEnddate(),request.getDniElderlyPeople()
+                codrequest,request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getDniElderlyPeople()
                 );
+    }
+
+    /**
+     * update a request
+     * @param request,codRequest
+     */
+    public void updateRequest(Request request,String codrequest){
+        jdbcTemplate.update("UPDATE request SET state=?, servicetype=?, requestdate=?, approveddate=?, rejected=?, enddate=?, dnielderlypeople=? WHERE codrequest=?",
+                request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getDniElderlyPeople(),codrequest
+        );
     }
 
     /**

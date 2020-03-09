@@ -28,6 +28,16 @@ public class InvoiceDao {
     }
 
     /**
+     * update a invoice
+     * @param invoice, dniElderlyPeople
+     */
+    public void updateInvoice(Invoice invoice, String dniElderlyPeople){
+        jdbcTemplate.update("UPDATE invoice SET dnielderlypeople=?, price=?, date=? WHERE codinvoice=?",
+                dniElderlyPeople, invoice.getPrice(), invoice.getDate(),invoice.getCodInvoice()
+        );
+    }
+
+    /**
      * remove a invoice
      * @param codInvoice
      */

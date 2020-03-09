@@ -28,6 +28,16 @@ public class LineDao {
     }
 
     /**
+     * update a line
+     * @param line, codInvoice, codRequest
+     */
+    public void updateLine(Line line, String codInvoice, String codRequest){
+        jdbcTemplate.update("UPDATE line SET concept=?, priceservice=? WHERE codinvoice=? AND codrequest=?",
+                line.getConcept(), line.getPrice(),codInvoice, codRequest
+        );
+    }
+
+    /**
      * remove a line
      * @param codInvoice, codRequest
      */
