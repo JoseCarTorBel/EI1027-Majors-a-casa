@@ -3,11 +3,18 @@
 
 INSERT INTO socialworker VALUES ('20914826Y','SW_Joaquin Gonzalez','603548721', 'al375824', 'patata');
 
-INSERT INTO volunteer VALUES ('20904567S','V_Pablo','Sanahuja Leira','675678765','1999-05-09',NULL,'AvenidaMilFlores#Alcora#Castellon','N','al375833@uji.es', 'al375833', 'michaeljackson');
+
+INSERT INTO person VALUES ('V_Pablo','Sanahuja Leira','20904567S','675678765','1999-05-09','AvenidaMilFlores, Alcora, Castellon','al375833@uji.es','al375833', 'michaeljackson');
+
+INSERT INTO volunteer VALUES ('20904567S','2023-01-01','N');
 
 INSERT INTO hobbies VALUES ('20904567S','Tocar la Trompeta');
 
-INSERT INTO elderlypeople VALUES ('20987655T','EP_Jose Carlos','Torro Belda','al375822@uji.es','60897676','RondaLaGicgueña#Ontinyete#Alicante','Necesito alguien que me alimente','1950-09-01','20914826Y', 'al375822', 'vivaelpouclar');
+
+INSERT INTO person VALUES ('EP_Jose Carlos','Torro Belda','20987655T','60897676','1950-09-01','RondaLaGicgueña, Ontinyete, Alicante','al375822@uji.es','al375822', 'michaeljackson2');
+
+
+INSERT INTO elderlypeople VALUES ('20987655T','Tengo hambre','20914826Y');
 
 INSERT INTO disponibility VALUES ('20904567S','20987655T','1','2020-01-01','2020-12-01',true);
 

@@ -9,23 +9,31 @@ CREATE TABLE socialworker (
         CONSTRAINT calt_socialworker UNIQUE (username)    -- clau alternativa
 );
 
+CREATE TABLE person(
+	name VARCHAR(50),
+	secondname VARCHAR(50),
+	dni VARCHAR(20),
+	phone VARCHAR(20),
+	dateofbrith DATE,
+	postaddress VARCHAR(50),
+	email 	VARCHAR(30),
+	username VARCHAR(20),
+	passwd VARCHAR(20),
+
+        CONSTRAINT cp_person PRIMARY KEY (dni)      -- clau primària
+
+);
+
 CREATE TABLE volunteer (
-        dni      VARCHAR(15),
-        name      VARCHAR(50),
-        secondname      VARCHAR(50),
-        phone     VARCHAR(20),
-        dateofbrith     DATE,
-	    endDate		DATE,
-        postaddress     VARCHAR(50),
+        dni 	VARCHAR(50),
+	endDate		DATE,
         state   VARCHAR (1),
-        email     VARCHAR(30),
-        username     VARCHAR(20),
-        passwd   VARCHAR (20),
+
         
         
         CONSTRAINT cp_volunteer PRIMARY KEY (dni),      -- clau primària
-        CONSTRAINT calt_volunteer1 UNIQUE (email), -- clau alternativa
-        CONSTRAINT calt_volunteer2 UNIQUE (username) -- clau alternativa
+ 	CONSTRAINT ca_volunteer_per FOREIGN KEY (dni) REFERENCES person(dni) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a volunteer
+
 );
 
 CREATE TABLE hobbies (
@@ -36,23 +44,19 @@ CREATE TABLE hobbies (
         CONSTRAINT ca_hobbies_vol FOREIGN KEY (dni) REFERENCES volunteer(dni) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a volunteer
 );
 
+
+
+
+
+
 CREATE TABLE elderlypeople (
         dni      VARCHAR(15),
-        name      VARCHAR(50),
-        secondname      VARCHAR(50),
-        email     VARCHAR(30),
-	    phone 		VARCHAR(20),
-        postaddress     VARCHAR(50),
         justification      VARCHAR(50),
-        dateofbrith     DATE,
         dnisocialworker     VARCHAR(20),
-        username     VARCHAR(20),
-        passwd   VARCHAR (20),
-        
         
         CONSTRAINT cp_elderlypeople PRIMARY KEY (dni),      -- clau primària
-        CONSTRAINT calt_elderlypeople1 UNIQUE (email), -- clau alternativa
-        CONSTRAINT calt_elderlypeople2 UNIQUE (username), -- clau alternativa
+        CONSTRAINT ca_elderlypeople_per FOREIGN KEY (dni) REFERENCES person(dni) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a elderlypeople
+
         CONSTRAINT ca_elderlypeople_soc FOREIGN KEY (dnisocialworker) REFERENCES socialworker(dni) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a socialworker
 );
 

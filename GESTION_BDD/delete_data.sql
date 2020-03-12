@@ -3,6 +3,7 @@ delete from invoice;
 delete from contract;
 delete from request;
 delete from company;
+delete from person;
 delete from disponibility;
 delete from elderlypeople;
 delete from hobbies;

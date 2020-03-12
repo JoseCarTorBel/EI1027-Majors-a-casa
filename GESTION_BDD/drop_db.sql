@@ -7,5 +7,6 @@ DROP TABLE disponibility;
 DROP TABLE elderlypeople;
 DROP TABLE hobbies;
 DROP TABLE volunteer;
+DROP TABLE person;
 DROP TABLE socialworker;
 DROP TABLE CASUSERS;
