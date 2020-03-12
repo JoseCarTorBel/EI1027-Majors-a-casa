@@ -29,7 +29,7 @@ public class ElderlyPeopleDao {
      */
     public List<ElderlyPeople> getElderlyPeopleList() {
         try{
-            return jdbcTemplate.query("SELECT * FROM elderlypeople",new ElderlyPeopleRowMapper());
+            return jdbcTemplate.query("SELECT * FROM elderlypeople JOIN person ON elderlypeople.dni=person.dni",new ElderlyPeopleRowMapper());
         } catch (
                 EmptyResultDataAccessException e) {
             return new ArrayList<ElderlyPeople>();
@@ -44,7 +44,7 @@ public class ElderlyPeopleDao {
      */
     public ElderlyPeople getElderlyPeople(String dni) {
         try{
-            return jdbcTemplate.queryForObject("SELECT * FROM elderlypeople WHERE dni=?",
+            return jdbcTemplate.queryForObject("SELECT * FROM elderlypeople JOIN person ON elderlypeople.dni=person.dni WHERE elderlypeople.dni=? ",
                     new ElderlyPeopleRowMapper(), dni);
         }catch(EmptyResultDataAccessException e) {
             return null;
@@ -56,10 +56,12 @@ public class ElderlyPeopleDao {
      * @param elderlyPeople
      */
     public void addElderlyPeople(ElderlyPeople elderlyPeople){
-        jdbcTemplate.update("INSERT INTO elderlypeople VALUES(?,?,?,?,?,?,?,?,?,?,?)",
-                elderlyPeople.getDni(),elderlyPeople.getName(),elderlyPeople.getSecondName(),elderlyPeople.getEmail(),elderlyPeople.getPhone(),
-                elderlyPeople.getPostAddress(),elderlyPeople.getJustification(),elderlyPeople.getDateOfBirth(),
-                elderlyPeople.getDniSocialWorker(),elderlyPeople.getUsername(),elderlyPeople.getPasswd());
+        jdbcTemplate.update("INSERT INTO person VALUES(?,?,?,?,?,?,?,?,?)",
+                elderlyPeople.getDni(),elderlyPeople.getSecondName(),elderlyPeople.getDni(),elderlyPeople.getPhone(),elderlyPeople.getDateOfBirth(),
+                elderlyPeople.getPostAddress(),elderlyPeople.getEmail(),elderlyPeople.getUsername(),elderlyPeople.getPasswd());
+
+        jdbcTemplate.update("INSERT INTO elderlypeople VALUES(?,?,?)",
+               elderlyPeople.getDni(),elderlyPeople.getJustification(),elderlyPeople.getDniSocialWorker());
 
     }
 
@@ -78,7 +80,7 @@ public class ElderlyPeopleDao {
      * @param dni, password
      */
     public void updatePasswd(String dni, String password){
-        jdbcTemplate.update("UPDATE elderlypeople SET passwd=? WHERE dni=?",password,dni);
+        jdbcTemplate.update("UPDATE person SET passwd=? WHERE dni=?",password,dni);
     }
 
 
@@ -87,9 +89,11 @@ public class ElderlyPeopleDao {
      * @param elderlypeople
      */
     public void updateElderlyPeople(ElderlyPeople elderlypeople) {
-        jdbcTemplate.update("UPDATE elderlypeople SET name=?, secondname=?, phone=?, dateofbrith=?, postaddress=?, justification=?, email=?, username=?, passwd=?, dnisocialworker=? WHERE dni=?",
+        jdbcTemplate.update("UPDATE person SET name=?, secondname=?, phone=?, dateofbrith=?, postaddress=?, email=?, username=?, passwd=? WHERE dni=?",
                 elderlypeople.getName(),elderlypeople.getSecondName(),elderlypeople.getPhone(),elderlypeople.getDateOfBirth(),
-                elderlypeople.getPostAddress(),elderlypeople.getJustification(),elderlypeople.getEmail(),elderlypeople.getUsername(),elderlypeople.getPasswd(),elderlypeople.getDniSocialWorker(),elderlypeople.getDni());
+                elderlypeople.getPostAddress(),elderlypeople.getEmail(),elderlypeople.getUsername(),elderlypeople.getPasswd(),elderlypeople.getDni());
+        jdbcTemplate.update("UPDATE elderlypeople SET  justification=?, dnisocialworker=? WHERE dni=?",
+                elderlypeople.getJustification(),elderlypeople.getDniSocialWorker(),elderlypeople.getDni());
     }
 
 }
