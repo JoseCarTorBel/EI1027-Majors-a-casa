@@ -28,7 +28,8 @@ public class VolunteerDao {
      */
     public List<Volunteer> getVolunteerList() {
         try{
-            return jdbcTemplate.query("SELECT * FROM volunteer",new VolunteerRowMapper());
+
+            return jdbcTemplate.query("SELECT * FROM volunteer JOIN person ON volunteer.dni=person.dni ",new VolunteerRowMapper());
         } catch (
         EmptyResultDataAccessException e) {
             return new ArrayList<Volunteer>();
