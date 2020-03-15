@@ -109,10 +109,11 @@ CREATE TABLE contract (
         initialtime     DATE,
         finaltime     DATE NULL,
         price           INTEGER,
-        
+
         CONSTRAINT cp_contract PRIMARY KEY (codrequest, cifcompany),  -- CP
         CONSTRAINT ca_contract_request FOREIGN KEY (codrequest) REFERENCES request(codrequest) ON DELETE RESTRICT ON UPDATE CASCADE, -- clau aliena a request
         CONSTRAINT ca_contract_company FOREIGN KEY (cifcompany) REFERENCES company(cif) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a company
+        CONSTRAINT serviceIntegrity CHECK (service>=0 AND service<=2)
 );
 
 CREATE TABLE invoice (
