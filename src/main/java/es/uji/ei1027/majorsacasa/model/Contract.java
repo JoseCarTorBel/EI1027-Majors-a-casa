@@ -11,8 +11,7 @@ public class Contract {
     private LocalDate finalDate;
     private float price;
 
-    public Contract() {
-    }
+    public Contract() {}
 
     public Contract(ServiceType service, LocalDate initialDate, LocalDate finalDate, float price) {
         this.service = service;

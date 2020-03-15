@@ -51,23 +51,27 @@ public class VolunteerDao {
     }
 
     /**
-     * add a volunteer
+     * Pimero se añade a Person y luego a Volunteer.
      * @param volunteer
      */
     public void addVolunteer(Volunteer volunteer){
-        jdbcTemplate.update("INSERT INTO volunteer VALUES(?,?,?,?,?,?,?,?,?,?)",
-                            volunteer.getDni(),volunteer.getName(),volunteer.getSecondName(),volunteer.getPhone(),volunteer.getDateOfBirth(),volunteer.getEndDate(),
-                            volunteer.getPostAddress(),volunteer.getState(),volunteer.getEmail(),volunteer.getPasswd());
+        jdbcTemplate.update("INSERT INTO person VALUES(?,?,?,?,?,?,?,?,?)",
+                                volunteer.getName(),volunteer.getSecondName(),volunteer.getDni(),volunteer.getPhone(),volunteer.getDateOfBirth(),
+                                volunteer.getPostAddress(), volunteer.getEmail(), volunteer.getUsername(),volunteer.getPasswd());
+        jdbcTemplate.update("INSERT INTO volunteer VALUES(?,?,?)",
+                                volunteer.getDni(), volunteer.getEndDate(),volunteer.getState());
 
     }
 
-
     /**
-     * remove a volunteer
+     * Borrar volunteer, primero se borra de hobies y disponibility, luego de voluntario, luego de personas.
      * @param dni
      */
     public void removeVolunteer(String dni){
+        jdbcTemplate.update("DELETE FROM hobbies WHERE dni=?",dni);
+        jdbcTemplate.update("DELETE FROM disponibility WHERE dnivolunteer=?",dni);
         jdbcTemplate.update("DELETE FROM volunteer WHERE dni=?",dni);
+        jdbcTemplate.update("DELETE FROM person WHERE dni=?",dni);
     }
 
 
