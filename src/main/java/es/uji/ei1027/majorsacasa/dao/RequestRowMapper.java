@@ -16,10 +16,10 @@ public class RequestRowMapper implements RowMapper<Request> {
 
         request.setState(rs.getString("state").charAt(0));
         request.setService((ServiceType) rs.getObject("servicetype")); //TODO esto no se si esta bien asi
-        request.setInitialDate(rs.getDate("requestdate"));
-        request.setAprovedDate(rs.getDate("approvedDate"));
+        request.setInitialDate(rs.getDate("requestdate").toLocalDate());
+        request.setAprovedDate(rs.getDate("approvedDate").toLocalDate());
         request.setRejected(rs.getBoolean("rejected"));
-        request.setEndDate(rs.getDate("enddate"));
+        request.setEndDate(rs.getDate("enddate").toLocalDate());
         request.setDniElderlyPeople(rs.getString("dnielderlypeople"));
 
         return request;

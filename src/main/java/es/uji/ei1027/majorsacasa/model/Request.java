@@ -1,20 +1,20 @@
 package es.uji.ei1027.majorsacasa.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Request {
     private char state;
     private ServiceType service;
-    private Date initialDate;
-    private Date approvedDate;
+    private LocalDate initialDate;
+    private LocalDate approvedDate;
     private boolean rejected;
-    private Date endDate;
+    private LocalDate endDate;
     private String dniElderlyPeople;
 
 
     public Request(){}
 
-    public Request(char state, ServiceType service, Date date, Date aprovedDate,boolean rejected,Date enddate,String dniElderlyPeople) {
+    public Request(char state, ServiceType service, LocalDate date, LocalDate aprovedDate,boolean rejected,LocalDate enddate,String dniElderlyPeople) {
         this.state = state;
         this.service = service;
         this.initialDate = date;
@@ -32,11 +32,11 @@ public class Request {
         return service.toString();
     } //todo COMO GESTIONAR ESTO
 
-    public Date getInitialDate() {
+    public LocalDate getInitialDate() {
         return initialDate;
     }
 
-    public Date getAprovedDate() {
+    public LocalDate getAprovedDate() {
         return approvedDate;
     }
 
@@ -48,27 +48,27 @@ public class Request {
         this.service = service;
     }
 
-    public Date getApprovedDate() { return approvedDate; }
+    public LocalDate getApprovedDate() { return approvedDate; }
 
-    public void setApprovedDate(Date approvedDate) { this.approvedDate = approvedDate; }
+    public void setApprovedDate(LocalDate approvedDate) { this.approvedDate = approvedDate; }
 
     public boolean isRejected() { return rejected; }
 
     public void setRejected(boolean rejected) { this.rejected = rejected; }
 
-    public Date getEndDate() { return endDate; }
+    public LocalDate getEndDate() { return endDate; }
 
-    public void setEndDate(Date endDate) { this.endDate = endDate; }
+    public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
 
     public String getDniElderlyPeople() { return this.dniElderlyPeople; }
 
     public void setDniElderlyPeople(String dniElderlyPeople) { this.dniElderlyPeople = dniElderlyPeople; }
 
-    public void setInitialDate(Date initialDate) {
+    public void setInitialDate(LocalDate initialDate) {
         this.initialDate = initialDate;
     }
 
-    public void setAprovedDate(Date aprovedDate) {
+    public void setAprovedDate(LocalDate aprovedDate) {
         this.approvedDate = aprovedDate;
     }
 

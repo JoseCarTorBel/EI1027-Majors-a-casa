@@ -1,18 +1,20 @@
 package es.uji.ei1027.majorsacasa.model;
 
-import java.sql.Date;
+import org.apache.tomcat.jni.Local;
+
+import java.time.LocalDate;
 
 public class Contract {
 
     private ServiceType service;
-    private Date initialDate;
-    private Date finalDate;
+    private LocalDate initialDate;
+    private LocalDate finalDate;
     private float price;
 
     public Contract() {
     }
 
-    public Contract(ServiceType service, Date initialDate, Date finalDate, float price) {
+    public Contract(ServiceType service, LocalDate initialDate, LocalDate finalDate, float price) {
         this.service = service;
         this.initialDate = initialDate;
         this.finalDate = finalDate;
@@ -27,19 +29,19 @@ public class Contract {
         this.service = service;
     }
 
-    public Date getInitialDate() {
+    public LocalDate getInitialDate() {
         return initialDate;
     }
 
-    public void setInitialDate(Date initialDate) {
+    public void setInitialDate(LocalDate initialDate) {
         this.initialDate = initialDate;
     }
 
-    public Date getFinalDate() {
+    public LocalDate getFinalDate() {
         return finalDate;
     }
 
-    public void setFinalDate(Date finalDate) {
+    public void setFinalDate(LocalDate finalDate) {
         this.finalDate = finalDate;
     }
 

@@ -1,19 +1,21 @@
 package es.uji.ei1027.majorsacasa.model;
 
-import java.sql.Date;
+import org.apache.tomcat.jni.Local;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Invoice {
 
     private String codInvoice;
     private float price;
-    private Date date;
+    private LocalDate date;
     private ArrayList<Line> lines;
 
     public Invoice() {
     }
 
-    public Invoice(String codInvoice, float price, Date date) {
+    public Invoice(String codInvoice, float price, LocalDate date) {
         this.codInvoice = codInvoice;
         this.price = price;
         this.date = date;
@@ -36,11 +38,11 @@ public class Invoice {
         this.price = price;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

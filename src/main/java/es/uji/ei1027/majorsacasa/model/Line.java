@@ -6,10 +6,7 @@ public class Line {
     private Request request;
     private float price;
 
-    public Line() {
-    }
-
-
+    public Line() { }
 
     public Line(String concept, Request request, float price) {
 

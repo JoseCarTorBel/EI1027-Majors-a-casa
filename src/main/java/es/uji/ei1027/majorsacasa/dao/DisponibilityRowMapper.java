@@ -13,8 +13,8 @@ public class DisponibilityRowMapper implements RowMapper<Disponibility> {
         Disponibility disponibility = new Disponibility();
 
         disponibility.setDayOfWeek(rs.getInt("dayofweek"));
-        disponibility.setFinalTime(rs.getDate("finaltime"));
-        disponibility.setInitialTime(rs.getDate("initialtime"));
+        disponibility.setFinalTime(rs.getDate("finaltime").toLocalDate());
+        disponibility.setInitialTime(rs.getDate("initialtime").toLocalDate());
         disponibility.setOpen(rs.getBoolean("open"));
 
 

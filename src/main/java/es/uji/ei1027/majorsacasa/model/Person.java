@@ -1,6 +1,6 @@
 package es.uji.ei1027.majorsacasa.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Person {
 
@@ -8,7 +8,7 @@ public class Person {
     private String name;
     private String secondName;
     private String phone;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String postAddress;
     private String email;
     private String username;
@@ -16,7 +16,7 @@ public class Person {
 
     public Person(){}
 
-    public Person(String dni, String name, String secondName, String phone, Date dateOfBirith, String postAddress,String email, String username, String passwd) {
+    public Person(String dni, String name, String secondName, String phone, LocalDate dateOfBirith, String postAddress,String email, String username, String passwd) {
         this.dni = dni;
         this.email=email;
         this.name = name;
@@ -44,7 +44,7 @@ public class Person {
         this.phone = phone;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -76,7 +76,7 @@ public class Person {
         return phone;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
