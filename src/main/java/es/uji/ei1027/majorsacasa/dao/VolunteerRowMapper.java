@@ -4,6 +4,7 @@ import es.uji.ei1027.majorsacasa.model.Volunteer;
 
 import org.springframework.jdbc.core.RowMapper;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -16,7 +17,8 @@ public class VolunteerRowMapper implements RowMapper<Volunteer> {
         volunteer.setName(rs.getString("name"));
         volunteer.setSecondName(rs.getString("secondname"));
         volunteer.setPhone(rs.getString("phone"));
-        volunteer.setDateOfBirth(rs.getDate("dateofbrith").toLocalDate());
+        Date date=rs.getDate("dateofbrith");
+        volunteer.setDateOfBirth(date==null ? null : date.toLocalDate());
         volunteer.setPostAddress(rs.getString("postaddress"));
         volunteer.setState(rs.getString("state").charAt(0));
         volunteer.setEmail(rs.getString("email"));

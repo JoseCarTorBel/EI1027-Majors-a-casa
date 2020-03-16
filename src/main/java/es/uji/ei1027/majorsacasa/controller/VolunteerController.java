@@ -51,8 +51,10 @@ public class VolunteerController {
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                    BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getAllErrors()); // TODO da un error de string a localdate (resolverlo)
             return "volunteer/add";
+        }
         volunteerDao.addVolunteer(volunteer);
         return "redirect:list";
     }

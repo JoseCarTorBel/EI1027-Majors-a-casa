@@ -4,6 +4,7 @@ import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
 
 import org.springframework.jdbc.core.RowMapper;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -16,7 +17,8 @@ public class ElderlyPeopleRowMapper implements RowMapper<ElderlyPeople> {
         elderlyPeople.setName(rs.getString("name"));
         elderlyPeople.setSecondName(rs.getString("secondname"));
         elderlyPeople.setPhone(rs.getString("phone"));
-        elderlyPeople.setDateOfBirth(rs.getDate("dateofbrith").toLocalDate());
+        Date date=rs.getDate("dateofbrith");
+        elderlyPeople.setDateOfBirth(date==null ? null : date.toLocalDate());
         elderlyPeople.setPostAddress(rs.getString("postaddress"));
         elderlyPeople.setJustification(rs.getString("justification"));
         elderlyPeople.setDniSocialWorker(rs.getString("dnisocialworker"));

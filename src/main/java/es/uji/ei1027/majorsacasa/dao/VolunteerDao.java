@@ -44,7 +44,7 @@ public class VolunteerDao {
      */
     public Volunteer getVolunteer(String dni) {
         try{
-            return jdbcTemplate.queryForObject("SELECT * FROM volunteer WHERE dni=?",
+            return jdbcTemplate.queryForObject("SELECT * FROM volunteer JOIN person ON volunteer.dni=person.dni WHERE person.dni=?",
                                                 new VolunteerRowMapper(), dni);
         }catch(EmptyResultDataAccessException e) {
             return null;
