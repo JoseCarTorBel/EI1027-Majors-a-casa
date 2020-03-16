@@ -41,7 +41,7 @@ CREATE TABLE hobbies (
         hobbie      VARCHAR(50),
 
         CONSTRAINT cp_hobbies PRIMARY KEY (dni, hobbie),  -- CP
-        CONSTRAINT ca_hobbies_vol FOREIGN KEY (dni) REFERENCES volunteer(dni) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a volunteer
+        CONSTRAINT ca_hobbies_vol FOREIGN KEY (dni) REFERENCES volunteer(dni) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a volunteer
 );
 
 
@@ -57,7 +57,7 @@ CREATE TABLE elderlypeople (
         CONSTRAINT cp_elderlypeople PRIMARY KEY (dni),      -- clau primària
         CONSTRAINT ca_elderlypeople_per FOREIGN KEY (dni) REFERENCES person(dni) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a elderlypeople
 
-        CONSTRAINT ca_elderlypeople_soc FOREIGN KEY (dnisocialworker) REFERENCES socialworker(dni) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a socialworker
+        CONSTRAINT ca_elderlypeople_soc FOREIGN KEY (dnisocialworker) REFERENCES socialworker(dni) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a socialworker
 );
 
 
@@ -72,7 +72,7 @@ CREATE TABLE disponibility (
         
         CONSTRAINT cp_book PRIMARY KEY (dnivolunteer, dnielderlypeople),  -- CP
         CONSTRAINT ca_book_vol FOREIGN KEY (dnivolunteer) REFERENCES volunteer(dni) ON DELETE RESTRICT ON UPDATE CASCADE, -- clau aliena a volunteer
-        CONSTRAINT ca_book_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a elderlypeople
+        CONSTRAINT ca_book_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a elderlypeople
 );
 
 CREATE TABLE company (
@@ -99,7 +99,7 @@ CREATE TABLE request (
         dnielderlypeople VARCHAR(15),
         
         CONSTRAINT cp_request PRIMARY KEY (codrequest),  -- CP
-        CONSTRAINT ca_request_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE RESTRICT ON UPDATE CASCADE, -- clau aliena a elderlypeople
+        CONSTRAINT ca_request_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a elderlypeople
         CONSTRAINT serviceIntegrity CHECK (servicetype>=0 AND servicetype<=2)
 );
 
@@ -112,8 +112,8 @@ CREATE TABLE contract (
         price           INTEGER,
 
         CONSTRAINT cp_contract PRIMARY KEY (codrequest, cifcompany),  -- CP
-        CONSTRAINT ca_contract_request FOREIGN KEY (codrequest) REFERENCES request(codrequest) ON DELETE RESTRICT ON UPDATE CASCADE, -- clau aliena a request
-        CONSTRAINT ca_contract_company FOREIGN KEY (cifcompany) REFERENCES company(cif) ON DELETE RESTRICT ON UPDATE CASCADE, -- clau aliena a company
+        CONSTRAINT ca_contract_request FOREIGN KEY (codrequest) REFERENCES request(codrequest) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a request
+        CONSTRAINT ca_contract_company FOREIGN KEY (cifcompany) REFERENCES company(cif) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a company
         CONSTRAINT serviceIntegrity CHECK (service>=0 AND service<=2)
 );
 
@@ -124,7 +124,7 @@ CREATE TABLE invoice (
 	    date		DATE,
         
         CONSTRAINT cp_invoice PRIMARY KEY (codinvoice),  -- CP
-        CONSTRAINT ca_invoice_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a elderlypeople
+        CONSTRAINT ca_invoice_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a elderlypeople
 );
 
 CREATE TABLE line (
@@ -134,8 +134,8 @@ CREATE TABLE line (
         priceservice           INTEGER,
         
         CONSTRAINT cp_line PRIMARY KEY (codinvoice,codrequest),  -- CP
-        CONSTRAINT ca_line_inv FOREIGN KEY (codinvoice) REFERENCES invoice(codinvoice) ON DELETE RESTRICT ON UPDATE CASCADE, -- clau aliena a invoice
-        CONSTRAINT ca_line_req FOREIGN KEY (codrequest) REFERENCES request(codrequest) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a request
+        CONSTRAINT ca_line_inv FOREIGN KEY (codinvoice) REFERENCES invoice(codinvoice) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a invoice
+        CONSTRAINT ca_line_req FOREIGN KEY (codrequest) REFERENCES request(codrequest) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a request
 );
 
 CREATE TABLE CASUSERS(
