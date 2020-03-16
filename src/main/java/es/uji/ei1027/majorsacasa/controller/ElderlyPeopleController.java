@@ -87,6 +87,4 @@ public class ElderlyPeopleController {
         return "redirect:../list";
     }
 
-    //TODO Arreglar problema NULL (dnisocialworker) O en elderlypeople
-
 }
