@@ -16,9 +16,9 @@ public class ContractRowMapper implements RowMapper<Contract> {
         Contract contract = new Contract();
         contract.setService((ServiceType) rs.getObject("servicetype")); //TODO esto no se si esta bien asi
         Date date=rs.getDate("initialtime");
-        contract.setInitialDate(date==null ? null : date.toLocalDate());
+        contract.setInitialDate(date != null ? date.toLocalDate() : null);
         date=rs.getDate("finaltime");
-        contract.setFinalDate(date==null ? null : date.toLocalDate());
+        contract.setFinalDate(date != null ? date.toLocalDate() : null);
         contract.setPrice(rs.getFloat("price"));
         return contract;
 

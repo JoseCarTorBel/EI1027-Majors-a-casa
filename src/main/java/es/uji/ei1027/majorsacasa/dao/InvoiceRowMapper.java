@@ -16,7 +16,7 @@ public class InvoiceRowMapper implements RowMapper<Invoice> {
         invoice.setCodInvoice(rs.getString("codinvoice"));
         invoice.setPrice(rs.getFloat("price"));
         Date date=rs.getDate("date");
-        invoice.setDate(date==null ? null : date.toLocalDate());
+        invoice.setDate(date != null ? date.toLocalDate() : null);
         return invoice;
 
     }
