@@ -20,9 +20,9 @@ INSERT INTO disponibility VALUES ('20904567S','20987655T','1','2020-01-01','2020
 
 INSERT INTO company VALUES ('A2091','EmpresasJoaquin','Joaquin','603548721','al375824@uji.es','Rnd Mgd#Castellon de la plana#Castellon');
 
-INSERT INTO request VALUES ('R001','O','Dar de comer','2020-01-01','2020-12-01',false,'2022-01-01','20987655T');
+INSERT INTO request VALUES ('R001','O',0,'2020-01-01','2020-12-01',false,'2022-01-01','20987655T');
 
-INSERT INTO contract VALUES ('R001','A2091','Dar de comer','2020-01-01','2021-01-01',23);
+INSERT INTO contract VALUES ('R001','A2091',0,'2020-01-01','2021-01-01',23);
 
 INSERT INTO invoice VALUES ('F001','20987655T',240,'2010-02-02');
 

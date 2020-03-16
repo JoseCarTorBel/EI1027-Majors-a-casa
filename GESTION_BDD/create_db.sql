@@ -52,7 +52,7 @@ CREATE TABLE hobbies (
 CREATE TABLE elderlypeople (
         dni      VARCHAR(15),
         justification      VARCHAR(50),
-        dnisocialworker     VARCHAR(20),
+        dnisocialworker     VARCHAR(20) NULL,
         
         CONSTRAINT cp_elderlypeople PRIMARY KEY (dni),      -- clau primària
         CONSTRAINT ca_elderlypeople_per FOREIGN KEY (dni) REFERENCES person(dni) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a elderlypeople
@@ -91,7 +91,7 @@ CREATE TABLE company (
 CREATE TABLE request (
         codrequest      VARCHAR(15),
         state   VARCHAR (1),
-        servicetype      VARCHAR(50),
+        servicetype      INTEGER,
         requestdate     DATE,
         approveddate     DATE,
         rejected     BOOLEAN NULL,
@@ -99,20 +99,21 @@ CREATE TABLE request (
         dnielderlypeople VARCHAR(15),
         
         CONSTRAINT cp_request PRIMARY KEY (codrequest),  -- CP
-        CONSTRAINT ca_request_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a elderlypeople
+        CONSTRAINT ca_request_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE RESTRICT ON UPDATE CASCADE, -- clau aliena a elderlypeople
+        CONSTRAINT serviceIntegrity CHECK (servicetype>=0 AND servicetype<=2)
 );
 
 CREATE TABLE contract (
         codrequest      VARCHAR(15),
         cifcompany      VARCHAR(15),
-        service      VARCHAR(50),
+        service      INTEGER,
         initialtime     DATE,
         finaltime     DATE NULL,
         price           INTEGER,
 
         CONSTRAINT cp_contract PRIMARY KEY (codrequest, cifcompany),  -- CP
         CONSTRAINT ca_contract_request FOREIGN KEY (codrequest) REFERENCES request(codrequest) ON DELETE RESTRICT ON UPDATE CASCADE, -- clau aliena a request
-        CONSTRAINT ca_contract_company FOREIGN KEY (cifcompany) REFERENCES company(cif) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a company
+        CONSTRAINT ca_contract_company FOREIGN KEY (cifcompany) REFERENCES company(cif) ON DELETE RESTRICT ON UPDATE CASCADE, -- clau aliena a company
         CONSTRAINT serviceIntegrity CHECK (service>=0 AND service<=2)
 );
 
@@ -120,7 +121,7 @@ CREATE TABLE invoice (
         codinvoice      VARCHAR(15),
         dnielderlypeople VARCHAR(15),
         price           INTEGER,
-	date		DATE,
+	    date		DATE,
         
         CONSTRAINT cp_invoice PRIMARY KEY (codinvoice),  -- CP
         CONSTRAINT ca_invoice_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE RESTRICT ON UPDATE CASCADE -- clau aliena a elderlypeople
