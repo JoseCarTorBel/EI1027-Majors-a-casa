@@ -8,8 +8,8 @@ public class ElderlyPeople extends Person {
     private String justification;
     private String dniSocialWorker;
 
-    public ElderlyPeople(String dni, String name, String secondName, String phone, LocalDate dateOfBirith, String postaddress, String email, String username, String passwd,String justification,String dniSocialWorker) {
-        super(dni, name, secondName, phone, dateOfBirith, postaddress, email, username, passwd);
+    public ElderlyPeople(String dni, String name, String secondName, String phone, LocalDate dateOfBirth, String postaddress, String email, String username, String passwd,String justification,String dniSocialWorker) {
+        super(dni, name, secondName, phone, dateOfBirth, postaddress, email, username, passwd);
         this.justification=justification;
         this.dniSocialWorker=dniSocialWorker;
     }

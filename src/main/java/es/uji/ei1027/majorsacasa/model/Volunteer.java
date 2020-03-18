@@ -16,8 +16,8 @@ public class Volunteer extends Person{
 
     }
 
-    public Volunteer(String dni, String name, String secondName, String phone, LocalDate dateOfBirith, LocalDate endDate,String postAddress, char state, String email, String username, String passwd) {
-        super(dni, name, secondName, phone, dateOfBirith, postAddress, email, username, passwd);
+    public Volunteer(String dni, String name, String secondName, String phone, LocalDate dateOfBirth, LocalDate endDate,String postAddress, char state, String email, String username, String passwd) {
+        super(dni, name, secondName, phone, dateOfBirth, postAddress, email, username, passwd);
         this.hobbies = new ArrayList<String>();
         this.disponibilities=new ArrayList<Disponibility>();
         this.endDate=endDate;

@@ -16,13 +16,13 @@ public class Person {
 
     public Person(){}
 
-    public Person(String dni, String name, String secondName, String phone, LocalDate dateOfBirith, String postAddress,String email, String username, String passwd) {
+    public Person(String dni, String name, String secondName, String phone, LocalDate dateOfBirth, String postAddress,String email, String username, String passwd) {
         this.dni = dni;
         this.email=email;
         this.name = name;
         this.secondName = secondName;
         this.phone = phone;
-        this.dateOfBirth = dateOfBirith;
+        this.dateOfBirth = dateOfBirth;
         this.postAddress = postAddress;
         this.username = username;
         this.passwd = passwd;
