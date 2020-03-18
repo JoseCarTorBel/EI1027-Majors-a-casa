@@ -92,7 +92,7 @@ public class Person {
         return passwd;
     }
 
-    public void setEmail(String mail) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
