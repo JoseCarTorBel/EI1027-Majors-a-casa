@@ -1,13 +1,18 @@
 package es.uji.ei1027.majorsacasa.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Request {
     private char state;
     private ServiceType service;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate initialDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate approvedDate;
     private boolean rejected;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private String dniElderlyPeople;
 

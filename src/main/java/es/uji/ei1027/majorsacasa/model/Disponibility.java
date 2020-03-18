@@ -1,10 +1,14 @@
 package es.uji.ei1027.majorsacasa.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Disponibility {
     private int dayOfWeek;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate initialTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate finalTime;
     private boolean open;
 

@@ -1,13 +1,16 @@
 package es.uji.ei1027.majorsacasa.model;
 
 import org.apache.tomcat.jni.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
 public class Contract {
 
     private ServiceType service;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate initialDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate finalDate;
     private float price;
 

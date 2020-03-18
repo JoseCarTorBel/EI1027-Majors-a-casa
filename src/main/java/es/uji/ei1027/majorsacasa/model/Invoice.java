@@ -1,6 +1,7 @@
 package es.uji.ei1027.majorsacasa.model;
 
 import org.apache.tomcat.jni.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ public class Invoice {
 
     private String codInvoice;
     private float price;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private ArrayList<Line> lines;
 

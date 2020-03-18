@@ -1,5 +1,7 @@
 package es.uji.ei1027.majorsacasa.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Person {
@@ -8,6 +10,7 @@ public class Person {
     private String name;
     private String secondName;
     private String phone;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
     private String postAddress;
     private String email;

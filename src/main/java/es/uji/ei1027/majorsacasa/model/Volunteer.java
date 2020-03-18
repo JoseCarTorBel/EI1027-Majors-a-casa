@@ -1,5 +1,7 @@
 package es.uji.ei1027.majorsacasa.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +10,7 @@ public class Volunteer extends Person{
 
     private List<String> hobbies;
     private List<Disponibility> disponibilities;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private char state;
 
