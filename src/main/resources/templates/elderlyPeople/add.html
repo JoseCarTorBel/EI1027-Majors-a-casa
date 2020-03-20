@@ -9,11 +9,12 @@
 <body>
 <h2>Nou elderly people</h2>
 <form action="#" th:action="@{/elderlyPeople/add}"
-      th:object="${elderlyPeople}" method="post">
+                 th:object="${elderlyPeople}" method="post">
     <table>
         <tr>
             <td><label>Dni </label></td>
             <td><input required type="text" th:field="*{dni}" /></td>
+            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></td>
         </tr>
         <tr>
             <td><label>Name </label></td>

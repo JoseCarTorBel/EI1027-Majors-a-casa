@@ -54,6 +54,8 @@ public class ElderlyPeopleController {
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("elderlyPeople") ElderlyPeople elderlyPeople,
                                    BindingResult bindingResult) {
+        ElderlyPeopleVallidator elderlyPeopleVallidator = new ElderlyPeopleVallidator();
+        elderlyPeopleVallidator.validate(elderlyPeople, bindingResult);
         if (bindingResult.hasErrors())
             return "elderlyPeople/add";
         elderlyPeopleDao.addElderlyPeople(elderlyPeople);

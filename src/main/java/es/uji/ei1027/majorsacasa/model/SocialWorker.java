@@ -15,8 +15,6 @@ public class SocialWorker {
 
     public SocialWorker(){}
 
-
-
     public SocialWorker(String name, int phone, String dni, String userName, String passwd) {
         this.name = name;
         this.phone = phone;
