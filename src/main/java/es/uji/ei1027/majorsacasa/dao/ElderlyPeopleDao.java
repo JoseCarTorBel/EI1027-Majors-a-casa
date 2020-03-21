@@ -21,8 +21,6 @@ public class ElderlyPeopleDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
-
     /**
      * Obtiene la lista de todos los ancianos de la tabla elderlypeple
      * @return List<ElderlyPeople>

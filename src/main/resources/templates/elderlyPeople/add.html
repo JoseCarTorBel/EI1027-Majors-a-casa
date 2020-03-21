@@ -13,45 +13,57 @@
     <table>
         <tr>
             <td><label>Dni </label></td>
-            <td><input required type="text" th:field="*{dni}" /></td>
+            <td><input type="text" th:field="*{dni}" /></td>
             <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></td>
         </tr>
         <tr>
-            <td><label>Name </label></td>
-            <td><input required type="text" th:field="*{name}" /></td>
+            <td><label>Nom </label></td>
+            <td><input type="text" th:field="*{name}" /></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
         </tr>
         <tr>
-            <td><label>Second Name </label></td>
-            <td><input required type="text" th:field="*{secondName}" /></td>
+            <td><label>Cognom </label></td>
+            <td><input type="text" th:field="*{secondName}" /></td>
         </tr>
         <tr>
-            <td><label>Phone </label></td>
+            <td><label>Telèfon </label></td>
             <td><input type="text" th:field="*{phone}" /></td>
+            <td th:if="${#fields.hasErrors('phone')}" th:errors="*{name}"></td>
+
         </tr>
         <tr>
-            <td><label>dateOfBirth (YEAR-MONTH-DAY) </label></td>
+            <td><label>Data de naixement (YEAR-MONTH-DAY) </label></td>
             <td><input type="date" th:field="*{dateOfBirth}" /></td>
         </tr>
         <tr>
-            <td><label>Post Address </label></td>
+            <td><label>Direcció </label></td>
             <td><input type="text" th:field="*{postAddress}" /></td>
         </tr>
         <tr>
-            <td><label>Justification </label></td>
-            <td><input type="text" th:field="*{justification}" /></td>
+            <td><label>Justificatió </label></td>
+            <td><input  type="text" th:field="*{justification}" /></td>
+            <td th:if="${#fields.hasErrors('justification')}" th:errors="*{justification}"></td>
         </tr>
         <tr>
             <td><label>Mail </label></td>
             <td><input type="email" th:field="*{email}" /></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+
         </tr>
         <tr>
-            <td><label>Username </label></td>
-            <td><input required type="text" th:field="*{username}" /></td>
+            <td><label>Nom d'usuari </label></td>
+            <td><input  type="text" th:field="*{username}" /></td>
+            <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
+
         </tr>
         <tr>
-            <td><label>Pasword </label></td>
-            <td><input required type="text" th:field="*{passwd}" /></td>
+            <td><label>Contrasenya </label></td>
+            <td><input  type="password" th:field="*{passwd}" /></td>
+            <td th:if="${#fields.hasErrors('passwd')}" th:errors="*{passwd}"></td>
+
         </tr>
+
+
         <tr>
             <td><label>dnisocialworker </label></td>
             <td><input value="%00" type="text" th:field="*{dniSocialWorker}" /></td>
