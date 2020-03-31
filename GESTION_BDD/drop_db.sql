@@ -1,7 +1,7 @@
 DROP TABLE line;
+DROP TABLE request;
 DROP TABLE invoice;
 DROP TABLE contract;
-DROP TABLE request;
 DROP TABLE company;
 DROP TABLE disponibility;
 DROP TABLE elderlypeople;
