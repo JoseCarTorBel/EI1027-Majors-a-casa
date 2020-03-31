@@ -97,22 +97,23 @@ CREATE TABLE request (
         rejected     BOOLEAN NULL,
         enddate     DATE,
         dnielderlypeople VARCHAR(15),
+        cifcompany VARCHAR(15),
         
         CONSTRAINT cp_request PRIMARY KEY (codrequest),  -- CP
         CONSTRAINT ca_request_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a elderlypeople
+        CONSTRAINT ca_contract_cifcompany FOREIGN KEY (cifcompany) REFERENCES contract(cifcompany) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a company
         CONSTRAINT serviceIntegrity CHECK (servicetype>=0 AND servicetype<=2)
 );
 
 CREATE TABLE contract (
-        codrequest      VARCHAR(15),
+
         cifcompany      VARCHAR(15),
         service      INTEGER,
         initialtime     DATE,
         finaltime     DATE NULL,
         price           INTEGER,
 
-        CONSTRAINT cp_contract PRIMARY KEY (codrequest, cifcompany),  -- CP
-        CONSTRAINT ca_contract_request FOREIGN KEY (codrequest) REFERENCES request(codrequest) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a request
+        CONSTRAINT cp_contract PRIMARY KEY (cifcompany),  -- CP
         CONSTRAINT ca_contract_company FOREIGN KEY (cifcompany) REFERENCES company(cif) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a company
         CONSTRAINT serviceIntegrity CHECK (service>=0 AND service<=2)
 );
