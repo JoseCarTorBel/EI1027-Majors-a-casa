@@ -51,7 +51,10 @@ public class VolunteerController {
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                    BindingResult bindingResult) {
+        VolunteerVallidator validator = new VolunteerVallidator();
+        validator.validate(volunteer, bindingResult);
         if (bindingResult.hasErrors()) {
+            //TODO falta comprobar el check de las 2 contraseñas (opcional mejora) si no quitar el segundo passwdd
             System.out.println(bindingResult.getAllErrors());
             return "volunteer/add";
         }

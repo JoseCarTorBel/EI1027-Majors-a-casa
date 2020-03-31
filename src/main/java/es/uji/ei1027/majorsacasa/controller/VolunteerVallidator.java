@@ -23,8 +23,12 @@ public class VolunteerVallidator implements Validator{
             errors.rejectValue("dni","Obligatori", "Cal introduir el DNI.");
         }
 
+        if(volunteer.getEmail().trim().equals("")){
+            errors.rejectValue("email","Obligatori", "Cal introduir un email.");
+        }
+
         if(volunteer.getSecondName().trim().equals("")){
-            errors.rejectValue("secondname","Obligatori","Cal introduir el cognom");
+            errors.rejectValue("secondName","Obligatori","Cal introduir el cognom");
         }
 
         if(volunteer.getPhone().trim().equals("")){
@@ -33,12 +37,12 @@ public class VolunteerVallidator implements Validator{
             errors.rejectValue("phone","Obligatori","Cal introduir un telèfon vàlid.");
         }
 
-        if(volunteer.getDateOfBirth().isBefore(LocalDate.now())){
+        if(volunteer.getDateOfBirth() == null || volunteer.getDateOfBirth().isBefore(LocalDate.now())){
             errors.rejectValue("dateOfBirth","Obligatori","Cal introduir una data de naixement vàlida");
         }
 
         if(volunteer.getPostAddress().trim().equals("")){
-            errors.rejectValue("dateOfBirth","Obligatori","Cal introduir una data de naixement vàlida");
+            errors.rejectValue("postAddress","Obligatori","Cal introduir una direccio valida");
         }
 
         if(volunteer.getUsername().trim().equals("")){
