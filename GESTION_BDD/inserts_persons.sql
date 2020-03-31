@@ -9,4 +9,4 @@ INSERT INTO person VALUES ('EP_Jose Carlos','Torro Belda','20654491U','672945673
 INSERT INTO person VALUES ('EP_Joaquin','Gonzalez Alvarez','20884391O','627367564','1940-01-03','Calle pepe, Ontinyete, Alicante','joaquin@uji.es','EP_Joaquin', 'EP_Joaquin');
 INSERT INTO person VALUES ('EP_Maria','Peris Alonso','20119392I','612737283','1935-06-01','Calle egipcia, Ontinyete, Alicante','maria23@uji.es','EP_Maria', 'EP_Maria');
 INSERT INTO person VALUES ('EP_Marta','Lopez Marza','20119290R','675672934','1937-11-20','Avenida casalduch, Castellon de la plana, Castellon','marta@uji.es','EP_Marta', 'EP_Marta');
-INSERT INTO person VALUES ('EP_Cristina','Sanahuja Leira','20917888Y','624378234','1953-19-26','Calle la calle, Ontinyete, Alicante',null,'EP_Cristina', 'EP_Cristina');
+INSERT INTO person VALUES ('EP_Cristina','Sanahuja Leira','20917888Y','624378234','1953-10-26','Calle la calle, Ontinyete, Alicante',null,'EP_Cristina', 'EP_Cristina');

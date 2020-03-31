@@ -15,7 +15,7 @@ CREATE TABLE person(
 	dni VARCHAR(20),
 	phone VARCHAR(20),
 	dateofbrith DATE,
-	postaddress VARCHAR(50),
+	postaddress VARCHAR(70),
 	email 	VARCHAR(30),
 	username VARCHAR(20),
 	passwd VARCHAR(20),
@@ -81,7 +81,7 @@ CREATE TABLE company (
         personalcontact      VARCHAR(50),
         phonecontact     VARCHAR(20),
         email     VARCHAR(20),
-        postaddress     VARCHAR(50),
+        postaddress     VARCHAR(70),
         
         CONSTRAINT cp_company PRIMARY KEY (cif),  -- CP
         CONSTRAINT calt_company UNIQUE (email) -- clau alternativa
