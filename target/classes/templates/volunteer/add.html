@@ -1,64 +1,143 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Crear nou voluntari</title>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-</head>
-<body>
-<h2>Nou voluntari</h2>
-<form action="#" th:action="@{/volunteer/add}"
-      th:object="${volunteer}" method="post">
-    <table>
-        <tr>
-            <td><label>Dni </label></td>
-            <td><input required type="text" th:field="*{dni}" /></td>
-        </tr>
-        <tr>
-            <td><label>Name </label></td>
-            <td><input required type="text" th:field="*{name}" /></td>
-        </tr>
-        <tr>
-            <td><label>Second Name </label></td>
-            <td><input required type="text" th:field="*{secondName}" /></td>
-        </tr>
-        <tr>
-            <td><label>Phone </label></td>
-            <td><input type="text" th:field="*{phone}" /></td>
-        </tr>
-        <tr>
-            <td><label>dateOfBirth (YEAR-MONTH-DAY) </label></td>
-            <td><input type="text" th:field="*{dateOfBirth}" /></td>
-        </tr>
-        <tr>
-            <td><label>Post Address </label></td>
-            <td><input type="text" th:field="*{postAddress}" /></td>
-        </tr>
-        <tr>
-            <td><label>State </label></td>
-            <td><input type="text" th:field="*{state}" /></td>
-        </tr>
-        <tr>
-            <td><label>Mail </label></td>
-            <td><input type="email" th:field="*{email}" /></td>
-        </tr>
-        <tr>
-            <td><label>End date: (YEAR-MONTH-DAY)</label></td>
-            <td><input type="text" th:field="*{endDate}" /></td>
-        </tr>
-        <tr>
-            <td><label>Username </label></td>
-            <td><input required type="text" th:field="*{username}" /></td>
-        </tr>
-        <tr>
-            <td><label>Pasword </label></td>
-            <td><input required type="text" th:field="*{passwd}" /></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Afegeix voluntari" /></td>
-        </tr>
-    </table>
-</form>
-</body>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"
+       >
+<!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<!--&lt;!&ndash;&#45;&#45;&#45;&#45; Include the above in your HEAD tag &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+<div class="container">
+
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Crear un compte</h4>
+
+<!--            <p class="divider-text">-->
+<!--                <span class="bg-light">OR</span>-->
+<!--            </p>-->
+            <form action="#" th:action="@{/volunteer/add}"
+                             th:object="${volunteer}" method="post">
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input required name="" class="form-control" placeholder="DNI / NIF" type="text" th:field="*{dni}">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input required name="" class="form-control" placeholder="Nombre" type="text" th:field="*{name}">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input required name="" class="form-control" placeholder="Apellido" type="text" th:field="*{secondName}">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Email" type="email" th:field="*{email}">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone" th:field="*{phone}"></i> </span>
+                    </div>
+
+                    <select class="custom-select" style="max-width: 120px;">
+                        <option selected="">+34</option>
+                    </select>
+                    <input name="" class="form-control" placeholder="Teléfono" type="text">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building" aria-hidden="true"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Dirección postal" type="text" th:field="*{postAddress}">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Data de naixement" type="date" th:field="*{dateOfBirth}">
+                </div> <!-- form-group// -->
+
+<!--                <div class="form-group input-group">-->
+<!--                    <div class="input-group-prepend">-->
+<!--                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>-->
+<!--                    </div>-->
+<!--                    <input name="" class="form-control" placeholder="Estado" type="text" th:field="*{state}">-->
+<!--                </div> &lt;!&ndash; form-group// &ndash;&gt;-->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Nom d'usuari" type="text" th:field="*{username}">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Contraseña" type="password" th:field="*{passwd}">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input required class="form-control" placeholder="Repite contraseña" type="password" >
+                </div> <!-- form-group// -->
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Crear compte  </button>
+                </div> <!-- form-group// -->
+                <p class="text-center">Ja tens un compte? <a href="">Incia sesió</a> </p>
+
+
+<!--    TODO MIRAR A PARTIR DE AQUÍ ESTOS CAMPOS-->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="End date" type="date" th:field="*{endDate}">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Estado" type="text" th:field="*{state}">
+                </div> <!-- form-group// -->
+            </form>
+        </article>
+    </div> <!-- card.// -->
+
+</div>
+<!--container end.//-->
+
+<br><br>
+<article class="bg-secondary mb-3">
+    <div class="card-body text-center">
+        <h3 class="text-white mt-3">Majors a casa</h3>
+        <p class="h5 text-white">Contacte  <br> Telèfon: 65 796 25 47    Email: majorsacasa@gva.es </p>   <br>
+        <p><a class="btn btn-warning" target="_blank" href="http://majorsacasa.gva.es/"> www.majorsacasa.gva.es
+            <i class="fa fa-window-restore "></i></a></p>
+    </div>
+    <br><br>
+</article>
+
 </html>
