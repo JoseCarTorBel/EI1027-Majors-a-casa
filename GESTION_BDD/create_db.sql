@@ -141,7 +141,7 @@ CREATE TABLE line (
 CREATE TABLE CASUSERS(
         username VARCHAR(20),
         passwd VARCHAR(20),
-        rol VARCHAR(20),
+        rol VARCHAR(30),
 
         CONSTRAINT cp_cas_users PRIMARY KEY (username)  -- CP
 
