@@ -52,7 +52,7 @@ public class VolunteerController {
     public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors()); // TODO da un error de string a localdate (resolverlo)
+            System.out.println(bindingResult.getAllErrors());
             return "volunteer/add";
         }
         volunteerDao.addVolunteer(volunteer);

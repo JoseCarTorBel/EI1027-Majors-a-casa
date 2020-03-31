@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class Disponibility {
-    private int dayOfWeek;
+    private Integer dayOfWeek;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate initialTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -15,7 +15,7 @@ public class Disponibility {
     public Disponibility(){}
 
 
-    public Disponibility(int dayOfWeek, LocalDate initialTime, LocalDate finalTime, boolean open) {
+    public Disponibility(Integer dayOfWeek, LocalDate initialTime, LocalDate finalTime, boolean open) {
         this.dayOfWeek = dayOfWeek;
         this.initialTime = initialTime;
         this.finalTime = finalTime;
@@ -30,11 +30,11 @@ public class Disponibility {
         this.open = open;
     }
 
-    public int getDayOfWeek() {
+    public Integer getDayOfWeek() {
         return dayOfWeek;
     }
 
-    public void setDayOfWeek(int dayOfWeek) {
+    public void setDayOfWeek(Integer dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
 

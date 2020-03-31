@@ -6,7 +6,7 @@ import java.util.List;
 public class SocialWorker {
 
     private String name;
-    private int phone;
+    private Integer phone;
     private String dni;
     private String userName;
     private String passwd;
@@ -15,7 +15,7 @@ public class SocialWorker {
 
     public SocialWorker(){}
 
-    public SocialWorker(String name, int phone, String dni, String userName, String passwd) {
+    public SocialWorker(String name, Integer phone, String dni, String userName, String passwd) {
         this.name = name;
         this.phone = phone;
         this.dni = dni;
@@ -32,11 +32,11 @@ public class SocialWorker {
         this.name = name;
     }
 
-    public int getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(Integer phone) {
         this.phone = phone;
     }
 

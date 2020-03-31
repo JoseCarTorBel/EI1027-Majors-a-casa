@@ -20,7 +20,8 @@ public class VolunteerRowMapper implements RowMapper<Volunteer> {
         Date date=rs.getDate("dateofbrith");
         volunteer.setDateOfBirth(date != null ? date.toLocalDate() : null);
         volunteer.setPostAddress(rs.getString("postaddress"));
-        volunteer.setState(rs.getString("state").charAt(0));
+        String state = rs.getString("state");
+        volunteer.setState(state!=null?state.charAt(0):null);
         volunteer.setEmail(rs.getString("email"));
         volunteer.setUsername(rs.getString("username"));
         volunteer.setPasswd(rs.getString("passwd"));

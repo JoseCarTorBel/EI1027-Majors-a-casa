@@ -1,9 +1,5 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"
-       >
-<!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
-<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45; Include the above in your HEAD tag &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
@@ -47,13 +43,13 @@
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-phone" th:field="*{phone}"></i> </span>
+                        <span class="input-group-text"> <i class="fa fa-phone" ></i> </span>
                     </div>
 
                     <select class="custom-select" style="max-width: 120px;">
                         <option selected="">+34</option>
                     </select>
-                    <input name="" class="form-control" placeholder="Teléfono" type="text">
+                    <input name="" class="form-control" placeholder="Teléfono" type="text"th:field="*{phone}">
                 </div> <!-- form-group// -->
 
                 <div class="form-group input-group">
@@ -105,23 +101,6 @@
 
 
 <!--    TODO MIRAR A PARTIR DE AQUÍ ESTOS CAMPOS-->
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                    </div>
-                    <input class="form-control" placeholder="End date" type="date" th:field="*{endDate}">
-                </div> <!-- form-group// -->
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                    </div>
-                    <input class="form-control" placeholder="Estado" type="text" th:field="*{state}">
-                </div> <!-- form-group// -->
-            </form>
-        </article>
-    </div> <!-- card.// -->
 
 </div>
 <!--container end.//-->

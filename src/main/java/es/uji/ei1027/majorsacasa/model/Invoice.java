@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Invoice {
 
     private String codInvoice;
-    private float price;
+    private Float price;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private ArrayList<Line> lines;
@@ -17,7 +17,7 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(String codInvoice, float price, LocalDate date) {
+    public Invoice(String codInvoice, Float price, LocalDate date) {
         this.codInvoice = codInvoice;
         this.price = price;
         this.date = date;
@@ -32,11 +32,11 @@ public class Invoice {
         this.codInvoice = codInvoice;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 

@@ -12,11 +12,11 @@ public class Contract {
     private LocalDate initialDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate finalDate;
-    private float price;
+    private Float price;
 
     public Contract() {}
 
-    public Contract(ServiceType service, LocalDate initialDate, LocalDate finalDate, float price) {
+    public Contract(ServiceType service, LocalDate initialDate, LocalDate finalDate, Float price) {
         this.service = service;
         this.initialDate = initialDate;
         this.finalDate = finalDate;
@@ -47,11 +47,11 @@ public class Contract {
         this.finalDate = finalDate;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 }

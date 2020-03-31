@@ -12,7 +12,7 @@ public class Volunteer extends Person{
     private List<Disponibility> disponibilities;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
-    private char state;
+    private Character state;
 
     public Volunteer(){
         super();
@@ -47,11 +47,11 @@ public class Volunteer extends Person{
         this.endDate = endDate;
     }
 
-    public char getState() {
+    public Character getState() {
         return state;
     }
 
-    public void setState(char state) {
+    public void setState(Character state) {
         this.state = state;
     }
 }

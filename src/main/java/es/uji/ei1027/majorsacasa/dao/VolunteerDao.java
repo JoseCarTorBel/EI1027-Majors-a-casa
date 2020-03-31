@@ -60,7 +60,8 @@ public class VolunteerDao {
                                 volunteer.getName(),volunteer.getSecondName(),volunteer.getDni(),volunteer.getPhone(),volunteer.getDateOfBirth(),
                                 volunteer.getPostAddress(), volunteer.getEmail(), volunteer.getUsername(),volunteer.getPasswd());
         jdbcTemplate.update("INSERT INTO volunteer VALUES(?,?,?)",
-                                volunteer.getDni(), volunteer.getEndDate(),volunteer.getState());
+                                volunteer.getDni(), null,null); // ESTOS ATRIBUTOS SON NULL YA QUE ES EL CAS QUIEN MANEJA ESTOS DOS DATOS
+        // sera en el update cuando se modifiquen
 
     }
 

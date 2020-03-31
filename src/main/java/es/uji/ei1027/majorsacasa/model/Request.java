@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class Request {
-    private char state;
+    private Character state;
     private ServiceType service;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate initialDate;
@@ -19,7 +19,7 @@ public class Request {
 
     public Request(){}
 
-    public Request(char state, ServiceType service, LocalDate date, LocalDate aprovedDate,boolean rejected,LocalDate enddate,String dniElderlyPeople) {
+    public Request(Character state, ServiceType service, LocalDate date, LocalDate aprovedDate,boolean rejected,LocalDate enddate,String dniElderlyPeople) {
         this.state = state;
         this.service = service;
         this.initialDate = date;
@@ -29,7 +29,7 @@ public class Request {
         this.dniElderlyPeople=dniElderlyPeople;
     }
 
-    public char getState() {
+    public Character getState() {
         return state;
     }
 
@@ -45,7 +45,7 @@ public class Request {
         return approvedDate;
     }
 
-    public void setState(char state) {
+    public void setState(Character state) {
         this.state = state;
     }
 
