@@ -5,6 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class Disponibility {
+    private String dniVolunteer;
+    private String dniElderlyPeople;
     private Integer dayOfWeek;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate initialTime;
@@ -15,11 +17,29 @@ public class Disponibility {
     public Disponibility(){}
 
 
-    public Disponibility(Integer dayOfWeek, LocalDate initialTime, LocalDate finalTime, boolean open) {
+    public Disponibility(String dniVolunteer, String dniElderlyPeople, Integer dayOfWeek, LocalDate initialTime, LocalDate finalTime, boolean open) {
+        this.dniVolunteer = dniVolunteer;
+        this.dniElderlyPeople = dniElderlyPeople;
         this.dayOfWeek = dayOfWeek;
         this.initialTime = initialTime;
         this.finalTime = finalTime;
         this.open=open;
+    }
+
+    public String getDniVolunteer() {
+        return dniVolunteer;
+    }
+
+    public void setDniVolunteer(String dniVolunteer) {
+        this.dniVolunteer = dniVolunteer;
+    }
+
+    public String getDniElderlyPeople() {
+        return dniElderlyPeople;
+    }
+
+    public void setDniElderlyPeople(String dniElderlyPeople) {
+        this.dniElderlyPeople = dniElderlyPeople;
     }
 
     public boolean isOpen() {
