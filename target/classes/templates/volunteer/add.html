@@ -100,7 +100,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
-                    <input  class="form-control" placeholder="Repite contraseña" type="password" >
+                    <input  class="form-control" placeholder="Repite contraseña" type="password" th:field="*{passwdCheck}" >
+                    <td th:if="${#fields.hasErrors('passwdCheck')}" th:errors="*{passwdCheck}"></td>
 
                 </div> <!-- form-group// -->
 

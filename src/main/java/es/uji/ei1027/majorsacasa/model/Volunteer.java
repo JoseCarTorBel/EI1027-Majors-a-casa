@@ -13,6 +13,7 @@ public class Volunteer extends Person{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private Character state;
+    private String passwdCheck;
 
     public Volunteer(){
         super();
@@ -25,6 +26,7 @@ public class Volunteer extends Person{
         this.disponibilities=new ArrayList<Disponibility>();
         this.endDate=endDate;
         this.state=state;
+        this.passwdCheck=passwd;
     }
 
     public List<String> getHobbies() {
@@ -54,4 +56,14 @@ public class Volunteer extends Person{
     public void setState(Character state) {
         this.state = state;
     }
+
+    public void setPasswdCheck(String passwdCheck){
+        this.passwdCheck=passwdCheck;
+    }
+
+    public String getPasswdCheck(){
+        return this.passwdCheck;
+    }
+
+
 }

@@ -53,6 +53,10 @@ public class VolunteerVallidator implements Validator{
             errors.rejectValue("passwd","Obligatori","Cal introduir una contrasenya.");
         }
 
+        if(!volunteer.getPasswd().equals(volunteer.getPasswdCheck())){
+            errors.rejectValue("passwdCheck","No coincideixen","Les contrasenyes no coincideixen.");
+        }
+
 
 
     }
