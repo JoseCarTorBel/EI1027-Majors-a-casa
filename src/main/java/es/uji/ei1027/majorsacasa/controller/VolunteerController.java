@@ -4,6 +4,8 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -58,7 +60,15 @@ public class VolunteerController {
             System.out.println(bindingResult.getAllErrors());
             return "volunteer/add";
         }
-        volunteerDao.addVolunteer(volunteer);
+        try {
+            volunteerDao.addVolunteer(volunteer);
+        }catch (DuplicateKeyException dk){
+            throw new MajorsACasaException("Ja existeix un voluntari amb el dni "+volunteer.getDni(),"CPduplicada");
+        } catch (DataAccessException e) {
+            throw new MajorsACasaException(
+                    "Error en l'accés a la base de dades", "ErrorAccedintDades");
+        }
+
         return "redirect:list";
     }
 
