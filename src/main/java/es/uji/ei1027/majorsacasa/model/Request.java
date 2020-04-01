@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class Request {
+    private String codRequest;
     private Character state;
     private ServiceType service;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -15,27 +16,46 @@ public class Request {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private String dniElderlyPeople;
+    private String cifCompany;
 
 
     public Request(){}
 
-    public Request(Character state, ServiceType service, LocalDate date, LocalDate aprovedDate,boolean rejected,LocalDate enddate,String dniElderlyPeople) {
+    public Request(String codRequest, Character state, ServiceType service, LocalDate initialDate, LocalDate approvedDate, boolean rejected, LocalDate endDate, String dniElderlyPeople, String cifCompany) {
+        this.codRequest = codRequest;
         this.state = state;
         this.service = service;
-        this.initialDate = date;
-        this.approvedDate = aprovedDate;
-        this.rejected=rejected;
-        this.endDate =enddate;
-        this.dniElderlyPeople=dniElderlyPeople;
+        this.initialDate = initialDate;
+        this.approvedDate = approvedDate;
+        this.rejected = rejected;
+        this.endDate = endDate;
+        this.dniElderlyPeople = dniElderlyPeople;
+        this.cifCompany = cifCompany;
+    }
+
+    public String getCodRequest() {
+        return codRequest;
+    }
+
+    public void setCodRequest(String codRequest) {
+        this.codRequest = codRequest;
+    }
+
+    public String getCifCompany() {
+        return cifCompany;
+    }
+
+    public void setCifCompany(String cifCompany) {
+        this.cifCompany = cifCompany;
     }
 
     public Character getState() {
         return state;
     }
 
-    public String getService() {
-        return service.toString();
-    } //todo COMO GESTIONAR ESTO
+    public int getService() {
+        return service.getPosition();
+    }
 
     public LocalDate getInitialDate() {
         return initialDate;

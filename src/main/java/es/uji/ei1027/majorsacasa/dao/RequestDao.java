@@ -19,21 +19,21 @@ public class RequestDao {
 
     /**
      * add a request
-     * @param request,codRequest
+     * @param request
      */
-    public void addRequest(Request request,String codrequest){
-        jdbcTemplate.update("INSERT INTO request VALUES (?,?,?,?,?,?,?,?)",
-                codrequest,request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getDniElderlyPeople()
+    public void addRequest(Request request){
+        jdbcTemplate.update("INSERT INTO request VALUES (?,?,?,?,?,?,?,?,?)",
+                request.getCodRequest(),request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getDniElderlyPeople(), request.getCifCompany()
                 );
     }
 
     /**
      * update a request
-     * @param request,codRequest
+     * @param request
      */
-    public void updateRequest(Request request,String codrequest){
-        jdbcTemplate.update("UPDATE request SET state=?, servicetype=?, requestdate=?, approveddate=?, rejected=?, enddate=?, dnielderlypeople=? WHERE codrequest=?",
-                request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getDniElderlyPeople(),codrequest
+    public void updateRequest(Request request){
+        jdbcTemplate.update("UPDATE request SET state=?, servicetype=?, requestdate=?, approveddate=?, rejected=?, enddate=?, dnielderlypeople=?, cifcompany=? WHERE codrequest=?",
+                request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getDniElderlyPeople(),request.getCifCompany(), request.getCodRequest()
         );
     }
 

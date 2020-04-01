@@ -15,8 +15,10 @@ public class RequestRowMapper implements RowMapper<Request> {
     public Request mapRow(ResultSet rs, int i) throws SQLException {
         Request request = new Request();
 
+        request.setCodRequest(rs.getString("codrequest"));
         request.setState(rs.getString("state").charAt(0));
-        request.setService((ServiceType) rs.getObject("servicetype")); //TODO esto no se si esta bien asi
+        int service = rs.getInt("servicetype");                      //Primero cojo el int de la BD, despues meto el enum en el modelo
+        request.setService(ServiceType.getOpcion(service));        //TODO cuando se implemente comprobar que va bien
         Date date=rs.getDate("requestdate");
         request.setInitialDate(date != null ? date.toLocalDate() : null);
         date=rs.getDate("approvedDate");
@@ -25,6 +27,7 @@ public class RequestRowMapper implements RowMapper<Request> {
         request.setEndDate(date != null ? date.toLocalDate() : null);
         request.setRejected(rs.getBoolean("rejected"));
         request.setDniElderlyPeople(rs.getString("dnielderlypeople"));
+        request.setCifCompany(rs.getString("cifcompany"));
 
         return request;
     }
