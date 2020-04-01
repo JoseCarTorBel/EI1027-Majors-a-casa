@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class Contract {
-
+    private String cifcompany;
     private ServiceType service;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate initialDate;
@@ -16,11 +16,19 @@ public class Contract {
 
     public Contract() {}
 
-    public Contract(ServiceType service, LocalDate initialDate, LocalDate finalDate, Float price) {
+    public Contract(String cifcompany, ServiceType service, LocalDate initialDate, LocalDate finalDate, Float price) {
+        this.cifcompany = cifcompany;
         this.service = service;
         this.initialDate = initialDate;
         this.finalDate = finalDate;
         this.price = price;
+    }
+    public String getCifcompany() {
+        return cifcompany;
+    }
+
+    public void setCifcompany(String cifcompany) {
+        this.cifcompany = cifcompany;
     }
 
     public ServiceType getService() {

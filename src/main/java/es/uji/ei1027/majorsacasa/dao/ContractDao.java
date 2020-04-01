@@ -19,42 +19,42 @@ public class ContractDao {
 
     /**
      * add a contract
-     * @param contract, codRequest, cifCompany
+     * @param contract
      */
-    public void addContract(Contract contract, String codRequest, String cifCompany){
-        jdbcTemplate.update("INSERT INTO contract VALUES (?,?,?,?,?,?)",
-                codRequest, cifCompany, contract.getService(), contract.getInitialDate(), contract.getFinalDate(), contract.getPrice()
+    public void addContract(Contract contract){
+        jdbcTemplate.update("INSERT INTO contract VALUES (?,?,?,?,?)",
+                contract.getCifcompany(), contract.getService(), contract.getInitialDate(), contract.getFinalDate(), contract.getPrice()
         );
     }
 
     /**
      * update a contract
-     * @param contract, codRequest, cifCompany
+     * @param contract
      */
-    public void updateContract(Contract contract, String codRequest, String cifCompany){
-        jdbcTemplate.update("UPDATE contract SET service=?, initialtime=?, finaltime=?, price=? WHERE codrequest=? AND cifcompany=?",
-                contract.getService(), contract.getInitialDate(), contract.getFinalDate(), contract.getPrice(),codRequest, cifCompany
+    public void updateContract(Contract contract){
+        jdbcTemplate.update("UPDATE contract SET service=?, initialtime=?, finaltime=?, price=? WHERE cifcompany=?",
+                contract.getService(), contract.getInitialDate(), contract.getFinalDate(), contract.getPrice(), contract.getCifcompany()
                 );
     }
 
     /**
      * remove a contract
-     * @param codRequest, cifCompany
+     * @param contract
      */
-    public void removeContract(String codRequest, String cifCompany){
-        jdbcTemplate.update("DELETE FROM contract WHERE codrequest=? AND cifcompany=? ",codRequest,cifCompany);
+    public void removeContract(Contract contract){
+        jdbcTemplate.update("DELETE FROM contract WHERE cifcompany=? ",contract.getCifcompany());
     }
 
 
     /**
      * get a contract
-     * @param codRequest, cifCompany
+     * @param cifCompany
      * @return Contract
      */
-    public Contract getContract(String codRequest, String cifCompany){
+    public Contract getContract(String cifCompany){
         try{
-            return jdbcTemplate.queryForObject("SELECT * FROM contract WHERE codrequest=? AND cifcompany=?",
-                    new ContractRowMapper(),codRequest,cifCompany);
+            return jdbcTemplate.queryForObject("SELECT * FROM contract WHERE cifcompany=?",
+                    new ContractRowMapper() ,cifCompany);
         }catch (EmptyResultDataAccessException e){
             return null;
         }

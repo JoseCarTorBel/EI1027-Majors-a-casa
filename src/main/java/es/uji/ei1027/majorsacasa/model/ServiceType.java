@@ -14,4 +14,8 @@ public enum ServiceType {
     private ServiceType(int value){
         this.valueService=value;
     }
+
+    public static ServiceType getOpcion(int posicion){
+        return values()[posicion];
+    }
 }

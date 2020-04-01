@@ -14,7 +14,9 @@ public class ContractRowMapper implements RowMapper<Contract> {
     public Contract mapRow(ResultSet rs, int i) throws SQLException {
 
         Contract contract = new Contract();
-        contract.setService((ServiceType) rs.getObject("servicetype")); //TODO esto no se si esta bien asi
+        contract.setCifcompany(rs.getString("cifcompany"));
+        int service = rs.getInt("service");                      //Primero cojo el int de la BD, despues meto el enum en el modelo
+        contract.setService(ServiceType.getOpcion(service));        //TODO cuando se implemente comprobar que va bien
         Date date=rs.getDate("initialtime");
         contract.setInitialDate(date != null ? date.toLocalDate() : null);
         date=rs.getDate("finaltime");
