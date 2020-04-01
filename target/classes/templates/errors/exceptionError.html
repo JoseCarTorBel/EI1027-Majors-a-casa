@@ -9,8 +9,8 @@
 </head>
 <body>
 <div class="container">
-    <div class="alert" th:classappend="${#strings.equals(errorName, 'CPduplicada')} ? 'alert-danger' : 'alert-info'">  ①
-        <h3 th:text="${message}"></h3> ②
+    <div class="alert" th:classappend="${#strings.equals(errorName, 'CPduplicada')} ? 'alert-danger' : 'alert-info'">
+        <h3 th:text="${message}"></h3>
         <p>Pulsa el botó per anar a l'inici o el botó del navegador per anar cap enrere</p>
     </div>
     <div th:align="center">

@@ -49,10 +49,11 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-phone" ></i> </span>
                     </div>
+                    <!-- TODO esto es o quitarlo o ver como se puede implementar (yo lo quitaria)-->
+                        <!-- <select class="custom-select" style="max-width: 120px;">
+                            <option selected="">+34</option>
+                        </select> -->
 
-                    <select class="custom-select" style="max-width: 120px;">
-                        <option selected="">+34</option>
-                    </select>
                     <input name="" class="form-control" placeholder="Teléfono" type="text"th:field="*{phone}">
                     <td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></td>
                 </div> <!-- form-group// -->
