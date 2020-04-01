@@ -13,6 +13,9 @@ public class LineRowMapper implements RowMapper<Line> {
     public Line mapRow(ResultSet rs, int i) throws SQLException {
 
         Line line = new Line();
+
+        line.setCodInvoice(rs.getString("codrequest"));
+        line.setCodRequest(rs.getString("codrequest"));
         line.setConcept(rs.getString("concept"));
         line.setRequest((Request) rs.getObject("codrequest"));  //TODO esto no se si esta bien asi
         line.setPrice(rs.getFloat("price"));

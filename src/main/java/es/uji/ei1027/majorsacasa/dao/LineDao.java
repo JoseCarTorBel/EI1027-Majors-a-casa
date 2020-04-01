@@ -19,21 +19,21 @@ public class LineDao {
 
     /**
      * add a line
-     * @param line, codInvoice, codRequest
+     * @param line
      */
-    public void addLine(Line line, String codInvoice, String codRequest){
+    public void addLine(Line line){
         jdbcTemplate.update("INSERT INTO line VALUES (?,?,?,?)",
-                codInvoice, codRequest, line.getConcept(), line.getPrice()
+                line.getCodInvoice(), line.getCodRequest(), line.getConcept(), line.getPrice()
         );
     }
 
     /**
      * update a line
-     * @param line, codInvoice, codRequest
+     * @param line
      */
-    public void updateLine(Line line, String codInvoice, String codRequest){
+    public void updateLine(Line line){
         jdbcTemplate.update("UPDATE line SET concept=?, priceservice=? WHERE codinvoice=? AND codrequest=?",
-                line.getConcept(), line.getPrice(),codInvoice, codRequest
+                line.getConcept(), line.getPrice(),line.getCodInvoice(), line.getCodRequest()
         );
     }
 
