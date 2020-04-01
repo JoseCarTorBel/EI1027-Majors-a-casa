@@ -14,9 +14,11 @@ public class LineRowMapper implements RowMapper<Line> {
 
         Line line = new Line();
 
-        line.setCodInvoice(rs.getString("codrequest"));
-        line.setCodRequest(rs.getString("codrequest"));
+        line.setCodInvoice(rs.getString("codinvoice"));
+        String codRequest = rs.getString("codrequest");
+        line.setCodRequest(codRequest);
         line.setConcept(rs.getString("concept"));
+//        line.setRequest(RequestDao.getRequest(codRequest));
         line.setRequest((Request) rs.getObject("codrequest"));  //TODO esto no se si esta bien asi
         line.setPrice(rs.getFloat("price"));
         return line;
