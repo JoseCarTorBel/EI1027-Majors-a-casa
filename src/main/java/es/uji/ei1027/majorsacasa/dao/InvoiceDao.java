@@ -19,21 +19,21 @@ public class InvoiceDao {
 
     /**
      * add a invoice
-     * @param invoice, dniElderlyPeople
+     * @param invoice
      */
-    public void addInvoice(Invoice invoice, String dniElderlyPeople){
+    public void addInvoice(Invoice invoice){
         jdbcTemplate.update("INSERT INTO invoice VALUES (?,?,?,?)",
-                invoice.getCodInvoice(), dniElderlyPeople, invoice.getPrice(), invoice.getDate()
+                invoice.getCodInvoice(), invoice.getDniElderlyPeople(), invoice.getPrice(), invoice.getDate()
         );
     }
 
     /**
      * update a invoice
-     * @param invoice, dniElderlyPeople
+     * @param invoice
      */
-    public void updateInvoice(Invoice invoice, String dniElderlyPeople){
+    public void updateInvoice(Invoice invoice){
         jdbcTemplate.update("UPDATE invoice SET dnielderlypeople=?, price=?, date=? WHERE codinvoice=?",
-                dniElderlyPeople, invoice.getPrice(), invoice.getDate(),invoice.getCodInvoice()
+                invoice.getDniElderlyPeople(), invoice.getPrice(), invoice.getDate(),invoice.getCodInvoice()
         );
     }
 
