@@ -5,9 +5,12 @@
 
 <body>
 
-<header>
+<header class="bg-secondary mb-3">
 
-    <img th:src="@{/resources/images/logo.png}" />
+    <center>
+    <img src="../static/images/logo.png"
+         th:src="@{/images/logo.png}" width="15%" />
+    </center>
 
 </header>
 
@@ -118,7 +121,7 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block"> Crear compte  </button>
                     </div> <!-- form-group// -->
-                    <p class="text-center">Ja tens un compte? <a href="">Incia sesió</a> </p>
+                    <p class="text-center">Ja tens un compte? <a href="../login">Incia sesió</a> </p>
 
 
     <!--    TODO MIRAR A PARTIR DE AQUÍ ESTOS CAMPOS-->
