@@ -25,16 +25,26 @@ public class VolunteerVallidator implements Validator{
 
         if(volunteer.getEmail().trim().equals("")){
             errors.rejectValue("email","Obligatori", "Cal introduir un email.");
+        }else if(!volunteer.getEmail().contains("@")){
+            errors.rejectValue("email","Obligatori", "Cal introduir un email vàlid");
         }
 
         if(volunteer.getSecondName().trim().equals("")){
             errors.rejectValue("secondName","Obligatori","Cal introduir el cognom");
         }
 
-        if(volunteer.getPhone().trim().equals("")){
+        String voluntTest =volunteer.getPhone().trim();
+        if(voluntTest.equals("")){
             errors.rejectValue("phone","Obligatori","Cal introduir el telèfon");
-        }else if(volunteer.getPhone().length()!=9){
-            errors.rejectValue("phone","Obligatori","Cal introduir un telèfon vàlid.");
+        }else{
+            try{
+                Integer.parseInt(volunteer.getPhone());
+                if(voluntTest.length()!=9){
+                    errors.rejectValue("phone","Obligatori","Cal introduir un telèfon vàlid.");
+                }
+            }catch (Exception ex){
+                errors.rejectValue("phone","Obligatori","Cal introduir un telèfon vàlid.");
+            }
         }
 
         if(volunteer.getDateOfBirth() == null || volunteer.getDateOfBirth().isBefore(LocalDate.now())){

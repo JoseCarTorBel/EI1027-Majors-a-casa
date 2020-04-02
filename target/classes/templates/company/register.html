@@ -1,0 +1,132 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+<body>
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperior"></div>
+
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Sol·licitud d'empressa</h4>
+
+            <form action="#" th:action="@{/company/register}"
+                  th:object="${company}" method="post">
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="CIF" type="text" th:field="*{dni}">
+                    <td th:if="${#fields.hasErrors('dni')}" th:errors="*{cif}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Nom de l'empressa" type="text" th:field="*{name}">
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Persona de contacte" type="text" th:field="*{secondName}">
+                    <td th:if="${#fields.hasErrors('secondName')}" th:errors="*{personalContact}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Email" type="email" th:field="*{email}">
+                    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone" ></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Telèfon de contacte" type="text"th:field="*{phone}">
+                    <td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-map-marker" aria-hidden="true"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Dirección postal" type="text" th:field="*{postAddress}">
+                    <td th:if="${#fields.hasErrors('postAddress')}" th:errors="*{postAddress}"></td>
+                </div> <!-- form-group// -->
+
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Nom d'usuari" type="text" th:field="*{username}">
+                    <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Contraseña" type="password" th:field="*{passwd}">
+                    <td th:if="${#fields.hasErrors('passwd')}" th:errors="*{passwd}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input  class="form-control" placeholder="Repite contraseña" type="password" th:field="*{passwdCheck}" >
+                    <td th:if="${#fields.hasErrors('passwdCheck')}" th:errors="*{passwdCheck}"></td>
+
+                </div> <!-- form-group// -->
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal"> Crear compte  </button>
+                </div> <!-- form-group// -->
+                <p class="text-center">Ja tens un compte? <a href="../login">Incia sessió com a empressa</a> </p>
+            </form>
+        </article>
+    </div>
+</div>
+<!--container end.//-->
+
+<!--Modal-->
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+<!--Fin modal-->
+
+
+<div th:replace="fragments/footPage"></div>
+
+</body>
+</html>
