@@ -3,131 +3,134 @@
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
-
-<div class="container">
-
-    <div class="card bg-light">
-        <article class="card-body mx-auto" style="max-width: 400px;">
-            <h4 class="card-title mt-3 text-center">Crear un compte</h4>
-
-            <form action="#" th:action="@{/volunteer/add}"
-                             th:object="${volunteer}" method="post">
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                    </div>
-                    <input  name="" class="form-control" placeholder="DNI / NIF" type="text" th:field="*{dni}">
-                    <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></td>
-                </div> <!-- form-group// -->
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                    </div>
-                    <input  name="" class="form-control" placeholder="Nombre" type="text" th:field="*{name}">
-                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
-                </div> <!-- form-group// -->
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                    </div>
-                    <input  name="" class="form-control" placeholder="Apellido" type="text" th:field="*{secondName}">
-                    <td th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}"></td>
-                </div> <!-- form-group// -->
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                    </div>
-                    <input name="" class="form-control" placeholder="Email" type="email" th:field="*{email}">
-                    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
-                </div> <!-- form-group// -->
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-phone" ></i> </span>
-                    </div>
-                    <!-- TODO esto es o quitarlo o ver como se puede implementar (yo lo quitaria)-->
-                        <!-- <select class="custom-select" style="max-width: 120px;">
-                            <option selected="">+34</option>
-                        </select> -->
-
-                    <input name="" class="form-control" placeholder="Teléfono" type="text"th:field="*{phone}">
-                    <td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></td>
-                </div> <!-- form-group// -->
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-building" aria-hidden="true"></i> </span>
-                    </div>
-                    <input name="" class="form-control" placeholder="Dirección postal" type="text" th:field="*{postAddress}">
-                    <td th:if="${#fields.hasErrors('postAddress')}" th:errors="*{postAddress}"></td>
-                </div> <!-- form-group// -->
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
-                    </div>
-                    <input name="" class="form-control" placeholder="Data de naixement" type="date" th:field="*{dateOfBirth}">
-                    <td th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></td>
-                </div> <!-- form-group// -->
-
-<!--                <div class="form-group input-group">-->
-<!--                    <div class="input-group-prepend">-->
-<!--                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>-->
-<!--                    </div>-->
-<!--                    <input name="" class="form-control" placeholder="Estado" type="text" th:field="*{state}">-->
-<!--                </div> &lt;!&ndash; form-group// &ndash;&gt;-->
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                    </div>
-                    <input class="form-control" placeholder="Nom d'usuari" type="text" th:field="*{username}">
-                    <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
-                </div> <!-- form-group// -->
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                    </div>
-                    <input class="form-control" placeholder="Contraseña" type="password" th:field="*{passwd}">
-                    <td th:if="${#fields.hasErrors('passwd')}" th:errors="*{passwd}"></td>
-                </div> <!-- form-group// -->
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                    </div>
-                    <input  class="form-control" placeholder="Repite contraseña" type="password" th:field="*{passwdCheck}" >
-                    <td th:if="${#fields.hasErrors('passwdCheck')}" th:errors="*{passwdCheck}"></td>
-
-                </div> <!-- form-group// -->
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block"> Crear compte  </button>
-                </div> <!-- form-group// -->
-                <p class="text-center">Ja tens un compte? <a href="">Incia sesió</a> </p>
+<body>
 
 
-<!--    TODO MIRAR A PARTIR DE AQUÍ ESTOS CAMPOS-->
-            </form>
-        </article>
-</div>
-</div>
-<!--container end.//-->
 
-<br><br>
-<article class="bg-secondary mb-3">
-    <div class="card-body text-center">
-        <h3 class="text-white mt-3">Majors a casa</h3>
-        <p class="h5 text-white">Contacte  <br> Telèfon: 65 796 25 47    Email: majorsacasa@gva.es </p>   <br>
-        <p><a class="btn btn-warning" target="_blank" href="http://majorsacasa.gva.es/"> www.majorsacasa.gva.es
-            <i class="fa fa-window-restore "></i></a></p>
+    <div class="container">
+
+        <div class="card bg-light">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h4 class="card-title mt-3 text-center">Crear un compte</h4>
+
+                <form action="#" th:action="@{/volunteer/add}"
+                                 th:object="${volunteer}" method="post">
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input  name="" class="form-control" placeholder="DNI / NIF" type="text" th:field="*{dni}">
+                        <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></td>
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input  name="" class="form-control" placeholder="Nombre" type="text" th:field="*{name}">
+                        <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input  name="" class="form-control" placeholder="Apellido" type="text" th:field="*{secondName}">
+                        <td th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}"></td>
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input name="" class="form-control" placeholder="Email" type="email" th:field="*{email}">
+                        <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-phone" ></i> </span>
+                        </div>
+                        <!-- TODO esto es o quitarlo o ver como se puede implementar (yo lo quitaria)-->
+                            <!-- <select class="custom-select" style="max-width: 120px;">
+                                <option selected="">+34</option>
+                            </select> -->
+
+                        <input name="" class="form-control" placeholder="Teléfono" type="text"th:field="*{phone}">
+                        <td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></td>
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-building" aria-hidden="true"></i> </span>
+                        </div>
+                        <input name="" class="form-control" placeholder="Dirección postal" type="text" th:field="*{postAddress}">
+                        <td th:if="${#fields.hasErrors('postAddress')}" th:errors="*{postAddress}"></td>
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
+                        </div>
+                        <input name="" class="form-control" placeholder="Data de naixement" type="date" th:field="*{dateOfBirth}">
+                        <td th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></td>
+                    </div> <!-- form-group// -->
+
+    <!--                <div class="form-group input-group">-->
+    <!--                    <div class="input-group-prepend">-->
+    <!--                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>-->
+    <!--                    </div>-->
+    <!--                    <input name="" class="form-control" placeholder="Estado" type="text" th:field="*{state}">-->
+    <!--                </div> &lt;!&ndash; form-group// &ndash;&gt;-->
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input class="form-control" placeholder="Nom d'usuari" type="text" th:field="*{username}">
+                        <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input class="form-control" placeholder="Contraseña" type="password" th:field="*{passwd}">
+                        <td th:if="${#fields.hasErrors('passwd')}" th:errors="*{passwd}"></td>
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input  class="form-control" placeholder="Repite contraseña" type="password" th:field="*{passwdCheck}" >
+                        <td th:if="${#fields.hasErrors('passwdCheck')}" th:errors="*{passwdCheck}"></td>
+
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Crear compte  </button>
+                    </div> <!-- form-group// -->
+                    <p class="text-center">Ja tens un compte? <a href="">Incia sesió</a> </p>
+
+
+    <!--    TODO MIRAR A PARTIR DE AQUÍ ESTOS CAMPOS-->
+                </form>
+            </article>
     </div>
-    <br><br>
-</article>
+    </div>
+    <!--container end.//-->
 
+    <br><br>
+    <article class="bg-secondary mb-3">
+        <div class="card-body text-center">
+            <h3 class="text-white mt-3">Majors a casa</h3>
+            <p class="h5 text-white">Contacte  <br> Telèfon: 65 796 25 47    Email: majorsacasa@gva.es </p>   <br>
+            <p><a class="btn btn-warning" target="_blank" href="http://majorsacasa.gva.es/"> www.majorsacasa.gva.es
+                <i class="fa fa-window-restore "></i></a></p>
+        </div>
+        <br><br>
+    </article>
+</body>
 </html>
