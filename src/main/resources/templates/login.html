@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+<body>
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Iniciar sessio</h4>
+
+            <form action="#" th:action="@{/login}"
+                  th:object="${user}" method="post">
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Usuari" type="text" th:field="*{username}">
+                    <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Contrasenya" type="password" th:field="*{password}">
+                    <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Accedir  </button>
+                </div> <!-- form-group// -->
+                <p class="text-center">No tens un compte? <a href="">Registrat</a> </p>
+
+            </form>
+        </article>
+    </div>
+</div>
+<!--container end.//-->
+
+<br><br>
+<article class="bg-secondary mb-3">
+    <div class="card-body text-center">
+        <h3 class="text-white mt-3">Majors a casa</h3>
+        <p class="h5 text-white">Contacte  <br> Telèfon: 65 796 25 47    Email: majorsacasa@gva.es </p>   <br>
+        <p><a class="btn btn-warning" target="_blank" href="http://majorsacasa.gva.es/"> www.majorsacasa.gva.es
+            <i class="fa fa-window-restore "></i></a></p>
+    </div>
+    <br><br>
+</article>
+</body>
+
+</html>

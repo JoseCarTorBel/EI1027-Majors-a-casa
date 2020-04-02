@@ -82,6 +82,8 @@ CREATE TABLE company (
         phonecontact     VARCHAR(20),
         email     VARCHAR(40),
         postaddress     VARCHAR(70),
+      	username VARCHAR(20),
+	    passwd VARCHAR(20),
         
         CONSTRAINT cp_company PRIMARY KEY (cif),  -- CP
         CONSTRAINT calt_company UNIQUE (email) -- clau alternativa

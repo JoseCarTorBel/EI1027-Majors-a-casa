@@ -7,17 +7,36 @@ public class Company {
     private String phoneContact;
     private String postAddress;
     private String email;
+    private String username;
+    private String passwd;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
 
     public Company(){}
 
-    public Company(String cif, String name, String personalContact, String phoneContact, String postAddress,String email) {
+    public Company(String cif, String name, String personalContact, String phoneContact, String postAddress,String email,String username,String passwd) {
         this.cif = cif;
         this.name = name;
         this.personalContact = personalContact;
         this.phoneContact = phoneContact;
         this.postAddress = postAddress;
         this.email=email;
+        this.username=username;
+        this.passwd=passwd;
     }
 
     // GETER

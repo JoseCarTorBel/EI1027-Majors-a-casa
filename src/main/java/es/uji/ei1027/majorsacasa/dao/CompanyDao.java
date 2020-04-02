@@ -22,8 +22,8 @@ public class CompanyDao {
      * @param company
      */
     public void addCompany(Company company){
-        jdbcTemplate.update("INSERT INTO company VALUES (?,?,?,?,?,?)",
-                company.getCif(),company.getName(),company.getPersonalContact(),company.getPhoneContact(),company.getEmail(),company.getPostAddress()
+        jdbcTemplate.update("INSERT INTO company VALUES (?,?,?,?,?,?,?,?)",
+                company.getCif(),company.getName(),company.getPersonalContact(),company.getPhoneContact(),company.getEmail(),company.getPostAddress(),null,null
                 );
     }
 
@@ -58,6 +58,12 @@ public class CompanyDao {
         }catch (EmptyResultDataAccessException e){
             return null;
         }
+    }
+
+    public void setUsernameAndPasswd(String cif,String username, String passwd){
+        jdbcTemplate.update("UPDATE company SET username=?, passwd=? WHERE cif=?",
+                username,passwd,cif
+        );
     }
 
 
