@@ -14,7 +14,7 @@
             <h4 class="card-title mt-3 text-center">Sol·licitud d'empressa</h4>
 
             <form action="#" th:action="@{/company/register}"
-                  th:object="${company}" method="post">
+                             th:object="${company}" method="post">
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -37,7 +37,7 @@
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
                     <input  name="" class="form-control" placeholder="Persona de contacte" type="text" th:field="*{secondName}">
-                    <td th:if="${#fields.hasErrors('secondName')}" th:errors="*{personalContact}"></td>
+                    <td th:if="${#fields.hasErrors('personalContact')}" th:errors="*{personalContact}"></td>
                 </div> <!-- form-group// -->
 
                 <div class="form-group input-group">
@@ -87,7 +87,6 @@
                     </div>
                     <input  class="form-control" placeholder="Repite contraseña" type="password" th:field="*{passwdCheck}" >
                     <td th:if="${#fields.hasErrors('passwdCheck')}" th:errors="*{passwdCheck}"></td>
-
                 </div> <!-- form-group// -->
 
                 <div class="form-group">
@@ -101,7 +100,6 @@
 <!--container end.//-->
 
 <!--Modal-->
-<!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
@@ -118,11 +116,8 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
-
     </div>
-
-
-
+</div>
 <!--Fin modal-->
 
 

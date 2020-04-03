@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.naming.Binding;
 
 @Controller
 @RequestMapping("/company")
@@ -23,10 +22,10 @@ public class CompanyController {
         this.companyDao=companyDao;
     }
 
-    @RequestMapping(value="/add")
+    @RequestMapping(value="/register")
     public String addCompany(Model model){
         model.addAttribute("company",new Company());
-        return "/company/register";
+        return "company/register";
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
