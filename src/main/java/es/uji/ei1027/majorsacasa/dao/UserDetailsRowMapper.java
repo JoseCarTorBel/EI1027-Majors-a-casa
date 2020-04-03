@@ -11,6 +11,7 @@ public UserDetails mapRow(ResultSet rs, int i) throws SQLException{
     UserDetails userDetails = new UserDetails();
     userDetails.setUsername(rs.getString("username"));
     userDetails.setPassword(rs.getString("passwd"));
+    userDetails.setDni(rs.getString("dni"));
         return userDetails;
         }
 }

@@ -57,12 +57,6 @@ public class LoginController {
         // Autenticats correctament.
         // Guardem les dades de l'usuari autenticat a la sessió
 
-        System.out.println("Usuario: "+user.getUsername());
-        System.out.println("Contraseña: "+user.getPassword());
-        System.out.println("Rol: "+user.getRol());
-
-        //TODO tenemos que tener como 3 zonas seguras, para que puedan acceder volunatrios, elderly, compaía, socialworker y cas
-
         session.setAttribute("user", user);
 
         // Torna a la pàgina principal

@@ -4,6 +4,15 @@ public class UserDetails {
     String username;
     String password;
     String rol;
+    String dni;
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
 
     public void setRol(String rol) {
         this.rol = rol;

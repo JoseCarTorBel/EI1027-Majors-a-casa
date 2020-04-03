@@ -37,7 +37,7 @@ public class UserProviderDao implements UserDao {
         // SocialWorker
         try {
 
-            List<UserDetails> userDetails= jdbcTemplate.query("SELECT username,passwd FROM socialworker;", new UserDetailsRowMapper());
+            List<UserDetails> userDetails= jdbcTemplate.query("SELECT username,passwd,socialworker.dni FROM socialworker;", new UserDetailsRowMapper());
             for(UserDetails user:userDetails) {
                 user.setRol("SocialWorker");
                 users.put(user.getUsername(),user);
@@ -48,7 +48,7 @@ public class UserProviderDao implements UserDao {
         // Voluntarios
         try {
 
-            List<UserDetails> userDetails= jdbcTemplate.query("SELECT username, passwd FROM volunteer JOIN person on person.dni=volunteer.dni;", new UserDetailsRowMapper());
+            List<UserDetails> userDetails= jdbcTemplate.query("SELECT username, passwd,person.dni FROM volunteer JOIN person on person.dni=volunteer.dni;", new UserDetailsRowMapper());
             for(UserDetails user:userDetails){
                 user.setRol("Volunteer");
                 users.put(user.getUsername(),user);
@@ -59,7 +59,7 @@ public class UserProviderDao implements UserDao {
         // ElderlyPeoples
         try {
 
-            List<UserDetails> userDetails= jdbcTemplate.query("SELECT username, passwd FROM elderlypeople JOIN person on person.dni=elderlypeople.dni;", new UserDetailsRowMapper());
+            List<UserDetails> userDetails= jdbcTemplate.query("SELECT username, passwd,person.dni FROM elderlypeople JOIN person on person.dni=elderlypeople.dni;", new UserDetailsRowMapper());
             for(UserDetails user:userDetails){
                 user.setRol("Elderly");
                 users.put(user.getUsername(),user);
@@ -70,7 +70,7 @@ public class UserProviderDao implements UserDao {
         // Company
         try {
 
-            List<UserDetails> userDetails= jdbcTemplate.query("SELECT username, passwd FROM company;", new UserDetailsRowMapper());
+            List<UserDetails> userDetails= jdbcTemplate.query("SELECT username, passwd, cif AS \"dni\" FROM company;", new UserDetailsRowMapper());
             for(UserDetails user:userDetails){
                 user.setRol("Compnay");
                 users.put(user.getUsername(),user);
@@ -102,7 +102,6 @@ public class UserProviderDao implements UserDao {
     @Override
     public UserDetails loadUserByUsername(String username, String password) {
         HashMap<String,UserDetails> users = getUsersList();
-
        if (users.containsKey(username)){
            if(users.get(username).getPassword().equals(password)){
                return users.get(username);

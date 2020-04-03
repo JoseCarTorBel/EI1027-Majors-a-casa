@@ -1,7 +1,9 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 
+import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
+import es.uji.ei1027.majorsacasa.model.UserDetails;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/volunteer")
@@ -36,11 +40,44 @@ public class VolunteerController {
         return "volunteer/prova_voluntari";
     }
 
+
+
     @RequestMapping("/list")
     public String getVolunteerList(Model model){
         model.addAttribute("volunteers",volunteerDao.getVolunteerList());
         return "volunteer/list";
     }
+
+    DisponibilityDao disponibilityDao;
+    @Autowired
+    public void setDisponibilityDao(DisponibilityDao disponibilityDao){
+        this.disponibilityDao=disponibilityDao;
+    }
+
+
+    @RequestMapping("/timetable")
+    public String getVolunteerList(HttpSession session, Model model){
+
+
+
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails usuario = (UserDetails) session.getAttribute("user");
+        if (usuario.getRol()!="Volunteer"){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            //TODO redirija al main o a index o donde sea
+            return "/";
+        }else{
+            model.addAttribute("disponibilities", disponibilityDao.getDisponibility(usuario.getDni()));
+            return "volunteer/timetable";
+        }
+
+    }
+
+
 
     // LLama a la vista pasandole un objeto voluntario
     @RequestMapping(value="/add")

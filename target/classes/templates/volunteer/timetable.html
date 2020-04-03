@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Horari</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Llista de disponibilites</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Dni elderly</th>
+        <th>Dia de la setmana</th>
+        <th>Data inici</th>
+        <th>Data fi</th>
+        <th>Activa</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="disponibility: ${disponibilities}">
+        <td th:text="${disponibility.dniElderlyPeople}"></td>
+        <td th:text="${disponibility.dayOfWeek}"></td>
+        <td th:text="${disponibility.initialTime}"></td>
+        <td th:text="${disponibility.finalTime}"></td>
+        <td th:text="${disponibility.open}"></td>
+        <td><a th:href="@{/volunteer/list}">Cancelar(NO IMPLE)</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
