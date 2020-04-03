@@ -3,6 +3,16 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" ><a class="nav-link" href="/" th:href="@{/}">Pàgina principal</a></li>
             <li class="nav-item"><a class="nav-link" href="/" th:href="@{/}">Pàgina principal</a></li>
+
+            <div class="nav-item" th:object="${session}">
+                <p class="nav-item" th:if="*{user == null}">
+                    No autenticat <a class="nav-item" href="/login" th:href="@{/login}">Entrar</a>
+                </p>
+                <p class="nav-item" th:unless="*{user == null}">
+                    Autenticat com <span class="nav-item" th:text="*{user.username}"></span> <a
+                        href="/logout" th:href="@{/logout}">Eixir</a>
+                </p>
+            </div>
         </ul>
     </div>
 </nav>
