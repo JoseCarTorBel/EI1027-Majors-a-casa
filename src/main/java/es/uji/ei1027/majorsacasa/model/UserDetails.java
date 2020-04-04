@@ -37,4 +37,19 @@ public class UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getMainPage(){
+        if (this.rol.equals("Volunteer"))
+            return "volunteer/main";
+        if (this.rol.equals("Elderly"))
+            return "elderly/main";
+        if (this.rol.equals("SocialWorker"))
+            return "socialworker/main";
+        if (this.rol.equals("Cas"))
+            return "cas/main";
+        return "/";
+    }
+
+
+
 }

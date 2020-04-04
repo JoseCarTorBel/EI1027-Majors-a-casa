@@ -50,6 +50,7 @@ public class LoginController {
         // Comprova que el login siga correcte
         // intentant carregar les dades de l'usuari
         user = userDao.loadUserByUsername(user.getUsername(), user.getPassword());
+
         if (user == null) {
             bindingResult.rejectValue("password", "badpw", "Contrasenya incorrecta o usuari incorrecte");
             return "login";
@@ -59,8 +60,8 @@ public class LoginController {
 
         session.setAttribute("user", user);
 
-        // Torna a la pàgina principal
-        return "redirect:/";
+        // Torna a la pàgina principal dependiendo del rol
+        return user.getMainPage();
     }
 
     @RequestMapping("/logout")

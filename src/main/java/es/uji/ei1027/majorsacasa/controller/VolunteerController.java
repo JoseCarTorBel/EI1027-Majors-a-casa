@@ -66,10 +66,12 @@ public class VolunteerController {
             return "login";
         }
         UserDetails usuario = (UserDetails) session.getAttribute("user");
+
         if (usuario.getRol()!="Volunteer"){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             //TODO redirija al main o a index o donde sea
             return "/";
+
         }else{
             model.addAttribute("disponibilities", disponibilityDao.getDisponibility(usuario.getDni()));
             return "volunteer/timetable";
