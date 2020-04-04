@@ -25,8 +25,8 @@ public class CompanyDao {
      */
     public void addCompany(Company company){
         jdbcTemplate.update("INSERT INTO company VALUES (?,?,?,?,?,?,?,?)",
-                company.getCif(),company.getName(),company.getPersonalContact(),company.getPhoneContact(),company.getEmail(),company.getPostAddress(),null,null
-                );
+                      company.getCif(),company.getName(),company.getPersonalContact(),
+                            company.getPhoneContact(),company.getEmail(),company.getPostAddress(),null,null);
     }
 
     /**

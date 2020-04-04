@@ -28,15 +28,15 @@ public class CompanyVallidator implements Validator {
         }
 
         if(company.getPhoneContact().equals("")){
-            errors.rejectValue("phone","Obligatori","Cal introduir el telèfon de contacte.");
+            errors.rejectValue("phoneContact","Obligatori","Cal introduir el telèfon de contacte.");
         }else{
             try{
                 Integer.parseInt(company.getPhoneContact());
                 if(company.getPhoneContact().length()!=9){
-                    errors.rejectValue("phone","Obligatori","Cal introduir un telèfon vàlid.");
+                    errors.rejectValue("phoneContact","Obligatori","Cal introduir un telèfon vàlid.");
                 }
             }catch (Exception ex){
-                errors.rejectValue("phone","Obligatori","Cal introduir un telèfon vàlid.");
+                errors.rejectValue("phoneContact","Obligatori","Cal introduir un telèfon vàlid.");
             }
         }
 
@@ -46,14 +46,6 @@ public class CompanyVallidator implements Validator {
 
         if(company.getEmail().trim().equals("")){
             errors.rejectValue("email","Obligatori","Cal introduir l'adreça electrónica de l'empressa. ");
-        }
-
-        if(company.getUsername().trim().equals("")){
-            errors.rejectValue("username","Obligatori","Cal introduir l'usuari de l'empressa. ");
-        }
-
-        if(company.getPasswd().trim().equals("")){
-            errors.rejectValue("passwd","Obligatori","Cal introduir una contraseña.");
         }
     }
 }

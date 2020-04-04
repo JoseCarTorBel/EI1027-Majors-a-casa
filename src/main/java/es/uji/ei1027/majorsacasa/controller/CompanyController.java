@@ -4,6 +4,8 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.CompanyDao;
 import es.uji.ei1027.majorsacasa.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,11 +36,21 @@ public class CompanyController {
         CompanyVallidator companyVallidator = new CompanyVallidator();
         companyVallidator.validate(company,bindingResult);
 
-        //TODO CAMBIAR ESTO
+        // TODO Cambiar lo siguiente
         if(bindingResult.hasErrors()){
+            System.out.println(bindingResult.getAllErrors());
             return "company/register";
         }
-        companyDao.addCompany(company);
+        try{
+            companyDao.addCompany(company);
+        }catch (DuplicateKeyException dk){
+            throw new MajorsACasaException("L'empressa ja està registradad.",
+                                            "CPCompany Duplicate");
+        }catch (DataAccessException ex){
+            throw new MajorsACasaException("Error amb l'accés a la BBDD.",
+                                            "Error Access BBDD");
+        }
+
         return "redirect:/";
     }
 }
