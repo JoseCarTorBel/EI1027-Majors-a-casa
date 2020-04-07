@@ -24,7 +24,15 @@ class UserValidator implements Validator {
     }
     @Override
     public void validate(Object obj, Errors errors) {
-            //TODO validar esto
+        UserDetails user = (UserDetails) obj;
+        if(user.getUsername().trim().equals("")){
+            errors.rejectValue("user","Obligatori", "Cal introduir la contrasenya.");
+        }
+
+        if(user.getPassword().trim().equals("")){
+            errors.rejectValue("password","Obligatori", "Cal introduir la contrasenya.");
+        }
+
     }
 }
 

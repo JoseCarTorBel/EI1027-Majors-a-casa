@@ -36,7 +36,7 @@ public class CompanyController {
         CompanyVallidator companyVallidator = new CompanyVallidator();
         companyVallidator.validate(company,bindingResult);
 
-        // TODO Cambiar lo siguiente
+
         if(bindingResult.hasErrors()){
             System.out.println(bindingResult.getAllErrors());
             return "company/register";
@@ -44,7 +44,7 @@ public class CompanyController {
         try{
             companyDao.addCompany(company);
         }catch (DuplicateKeyException dk){
-            throw new MajorsACasaException("L'empressa ja està registradad.",
+            throw new MajorsACasaException("L'empressa ja està registradada.",
                                             "CPCompany Duplicate");
         }catch (DataAccessException ex){
             throw new MajorsACasaException("Error amb l'accés a la BBDD.",

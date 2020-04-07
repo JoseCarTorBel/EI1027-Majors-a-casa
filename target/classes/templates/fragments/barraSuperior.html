@@ -1,18 +1,26 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="navbar-collapse collapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item" ><a class="nav-link" href="/" th:href="@{/}">Pàgina principal</a></li>
-            <li class="nav-item"><a class="nav-link" href="/" th:href="@{/}">Pàgina principal</a></li>
+        <a class="nav-link" href="/" th:href="@{/}"><i class="fa fa-fw fa-home"></i> Inici</a>
+        <a class="nav-link" href="/" th:href="@{/}"><i class="fa fa-fw fa-home"></i>Pàgina principal</a>
 
-            <div class="nav-item" th:object="${session}">
-                <p class="nav-item" th:if="*{user == null}">
-                    No autenticat <a class="nav-item" href="/login" th:href="@{/login}">Entrar</a>
-                </p>
-                <p class="nav-item" th:unless="*{user == null}">
-                    Autenticat com <span class="nav-item" th:text="*{user.username}"></span> <a
-                        href="/logout" th:href="@{/logout}">Eixir</a>
-                </p>
-            </div>
-        </ul>
+        <div class="loggeduser" th:object="${session}">
+            <p th:if="*{user == null}">
+                <a class="nav-link" href="/login" th:href="@{/login}"> <i class="fa fa-fw fa-sign-in" aria-hidden="true"></i> Entrar</a>
+            </p>
+            <p th:unless="*{user == null}">
+                <!--                        <span th:text="*{user.username}"></span> -->
+                <a class="nav-link" href="/logout" th:href="@{/logout}"> <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i> Eixir</a>
+            </p>
+        </div>
+
+
+
+        <!--        <ul class="navbar-nav mr-auto">-->
+        <!--            <li class="nav-item" ><a class="nav-link" href="/" th:href="@{/}">Pàgina principal</a></li>-->
+        <!--            <li class="nav-item"><a class="nav-link" href="/" th:href="@{/}">Pàgina principal</a></li>-->
+        <!--        </ul>-->
+
     </div>
 </nav>

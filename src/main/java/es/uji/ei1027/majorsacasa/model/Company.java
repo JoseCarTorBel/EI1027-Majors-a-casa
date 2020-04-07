@@ -81,7 +81,7 @@ public class Company {
         this.phoneContact = phoneContact;
     }
 
-    public void setPostAddress(String address) {
+    public void setPostAddress(String postAddress) {
         this.postAddress = postAddress;
     }
 

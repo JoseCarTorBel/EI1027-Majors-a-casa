@@ -41,7 +41,7 @@ public class CompanyVallidator implements Validator {
         }
 
         if(company.getPostAddress().trim().equals("")){
-            errors.rejectValue("postAddress","Obligatori","Cal introduir l'adreça de l'empressa. ");
+            errors.rejectValue("postaddress","Obligatori","Cal introduir l'adreça de l'empressa. ");
         }
 
         if(company.getEmail().trim().equals("")){
