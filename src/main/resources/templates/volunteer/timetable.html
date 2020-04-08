@@ -33,7 +33,9 @@
                     <td th:text="${disponibility.initialTime}"></td>
                     <td th:text="${disponibility.finalTime}"></td>
                     <td th:text="${disponibility.open}"></td>
-                    <td><a th:href="@{/volunteer/list}">Cancelar(NO IMPLE)</a>
+                    <td><a th:href="@{/volunteer/deleteDisponibility/{dniElderly}(dniElderly=${disponibility.dniElderlyPeople})}">Borrar</a>
+                    <!-- Alomejor hay que cambiar la tabla disponibility, y que la CP sea dniVolunteer, y fecha y hora para asi liberar dniElderly en caso de que
+                    no estuvera asignado aun nningun elderly-->
                     </td>
                 </tr>
                 </tbody>

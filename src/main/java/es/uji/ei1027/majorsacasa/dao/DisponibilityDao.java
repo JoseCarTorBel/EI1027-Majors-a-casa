@@ -45,7 +45,7 @@ public class DisponibilityDao {
      * @param dniElderlyPeople, dniVolunteer
      */
     public void removeDisponibility(String dniElderlyPeople,String dniVolunteer){
-        jdbcTemplate.update("DELETE FROM disponibility WHERE dnielderlypeople=?, dnivolunteer=?",dniElderlyPeople,dniVolunteer);
+        jdbcTemplate.update("DELETE FROM disponibility WHERE dnielderlypeople=? AND dnivolunteer=?",dniElderlyPeople,dniVolunteer);
     }
 
     /**

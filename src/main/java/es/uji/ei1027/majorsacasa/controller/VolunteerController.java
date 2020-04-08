@@ -80,6 +80,14 @@ public class VolunteerController {
 
     }
 
+
+    @RequestMapping(value="/deleteDisponibility/{dniElderly}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String removeVolunteer(HttpSession session,@PathVariable String dniElderly){
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        disponibilityDao.removeDisponibility(dniElderly,user.getDni());
+        return "redirect:../timetable";
+    }
+
     @RequestMapping("/main")
     public String getVolunteerMain(HttpSession session, Model model){
 
