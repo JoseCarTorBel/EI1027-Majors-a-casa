@@ -11,10 +11,10 @@
 
 <div class="container">
     <div class="card bg-light">
-        <article class="card-body mx-auto" style="max-width: 400px;">
-            <h4 class="card-title mt-3 text-center">Mi horari</h4>
+        <article class="card-body" style="max-width: 100%;">
+            <h4 class="card-title mt-3 text-center">El meu horari</h4>
 
-            <table>
+            <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>Dni elderly</th>
@@ -23,7 +23,7 @@
                     <th>Data fi</th>
                     <th>Activa</th>
                     <th></th>
-                    <th></th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -33,7 +33,8 @@
                     <td th:text="${disponibility.initialTime}"></td>
                     <td th:text="${disponibility.finalTime}"></td>
                     <td th:text="${disponibility.open}"></td>
-                    <td><a th:href="@{/volunteer/deleteDisponibility/{dniElderly}(dniElderly=${disponibility.dniElderlyPeople})}">Borrar</a>
+                    <td><button type="button" class="btn btn-danger" th:href="@{/volunteer/deleteDisponibility/{dniElderly}(dniElderly=${disponibility.dniElderlyPeople})}">Esborrar</button>
+
                     <!-- Alomejor hay que cambiar la tabla disponibility, y que la CP sea dniVolunteer, y fecha y hora para asi liberar dniElderly en caso de que
                     no estuvera asignado aun nningun elderly-->
                     </td>

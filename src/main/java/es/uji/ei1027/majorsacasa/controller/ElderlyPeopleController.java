@@ -4,6 +4,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.ElderlyPeopleDao;
 
 import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
+import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/elderlyPeople")
@@ -89,6 +92,27 @@ public class ElderlyPeopleController {
     public String removeElderlyPeople(@PathVariable String dni){
         elderlyPeopleDao.removeElderyPeople(dni);
         return "redirect:../list";
+    }
+
+    @RequestMapping("/main")
+    public String getElderlyPeopleMain(HttpSession session, Model model){
+
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails usuario = (UserDetails) session.getAttribute("user");
+
+        if (usuario.getRol()!="Elderly"){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            //TODO redirija al main o a index o donde sea
+            //TODO muestre un mensaje de error
+            return "redirect:/";
+
+        }else{
+            return "elderlyPeople/main";
+        }
+
     }
 
 }

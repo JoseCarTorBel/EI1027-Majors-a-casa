@@ -42,7 +42,7 @@ public class UserDetails {
         if (this.rol.equals("Volunteer"))
             return "volunteer/main";
         if (this.rol.equals("Elderly"))
-            return "elderly/main";
+            return "elderlyPeople/main";
         if (this.rol.equals("SocialWorker"))
             return "socialworker/main";
         if (this.rol.equals("Company"))
