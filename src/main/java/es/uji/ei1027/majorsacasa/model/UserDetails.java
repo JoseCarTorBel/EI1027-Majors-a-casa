@@ -45,7 +45,13 @@ public class UserDetails {
             return "elderly/main";
         if (this.rol.equals("SocialWorker"))
             return "socialworker/main";
-        if (this.rol.equals("Cas"))
+        if (this.rol.equals("Company"))
+            return "company/main";
+        if (this.rol.equals("ResponsableContratacion"))
+            return "cas/main"; // TODO crear 3 paginas para 3 roles de cas?
+        if (this.rol.equals("Comite"))
+            return "cas/main";
+        if (this.rol.equals("SupervisorVolunatris"))
             return "cas/main";
         return "/";
     }

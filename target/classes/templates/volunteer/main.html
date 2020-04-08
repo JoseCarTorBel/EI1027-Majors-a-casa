@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+<body>
+
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperior"></div>
+
+
+<div class="container">
+    <div class="card bg-light">
+
+
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Pagina principal de voluntari</h4>
+
+            <li><a th:href="@{/volunteer/timetable}">Gestio de mi agenda</a></li><!-- TODO porque coño no va -->
+
+
+
+
+        </article>
+    </div>
+</div>
+<!--container end.//-->
+
+<div th:replace="fragments/footPage"></div>
+
+</body>
+</html>

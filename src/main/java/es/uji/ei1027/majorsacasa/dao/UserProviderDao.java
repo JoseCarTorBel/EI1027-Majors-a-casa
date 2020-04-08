@@ -72,7 +72,7 @@ public class UserProviderDao implements UserDao {
 
             List<UserDetails> userDetails= jdbcTemplate.query("SELECT username, passwd, cif AS \"dni\" FROM company;", new UserDetailsRowMapper());
             for(UserDetails user:userDetails){
-                user.setRol("Compnay");
+                user.setRol("Company");
                 users.put(user.getUsername(),user);
             }
         } catch (

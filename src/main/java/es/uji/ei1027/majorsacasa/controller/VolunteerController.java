@@ -70,11 +70,36 @@ public class VolunteerController {
         if (usuario.getRol()!="Volunteer"){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             //TODO redirija al main o a index o donde sea
-            return "/";
+            return "redirect:/";
 
         }else{
             model.addAttribute("disponibilities", disponibilityDao.getDisponibility(usuario.getDni()));
+
             return "volunteer/timetable";
+        }
+
+    }
+
+    @RequestMapping("/main")
+    public String getVolunteerMain(HttpSession session, Model model){
+
+
+
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails usuario = (UserDetails) session.getAttribute("user");
+
+        if (usuario.getRol()!="Volunteer"){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            //TODO redirija al main o a index o donde sea
+            //TODO muestre un mensaje de error
+            return "redirect:/";
+
+        }else{
+            return "volunteer/main";
         }
 
     }

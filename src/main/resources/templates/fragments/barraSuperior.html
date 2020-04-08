@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="navbar-collapse collapse">
         <a class="nav-link" href="/" th:href="@{/}"><i class="fa fa-fw fa-home"></i> Inici</a>
-        <a class="nav-link" href="/" th:href="@{/}"><i class="fa fa-fw fa-home"></i>Pàgina principal</a>
+        <a class="nav-link" href="/" th:href="@{..main}"><i class="fa fa-fw fa-home"></i>Pàgina principal</a>
 
 <!--        TODO Revisar como sale en la barra-->
         <div class="loggeduser" th:object="${session}">

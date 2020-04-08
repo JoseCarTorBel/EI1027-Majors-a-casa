@@ -69,7 +69,7 @@ public class LoginController {
         session.setAttribute("user", user);
 
         // Torna a la pàgina principal dependiendo del rol
-        return user.getMainPage();
+        return "redirect:/"+user.getMainPage();
     }
 
     @RequestMapping("/logout")
