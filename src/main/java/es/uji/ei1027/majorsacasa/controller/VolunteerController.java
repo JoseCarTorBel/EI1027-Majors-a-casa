@@ -145,22 +145,39 @@ public class VolunteerController {
 
     // Cuando le damos al boton editar en la lista, llamamos a este metodo el cual llama a la vista correspondiente
     //      pasandole el objeto voluntario
-    @RequestMapping(value="/update/{dni}", method= {RequestMethod.GET, RequestMethod.POST})
-    public String updatePassword(Model model, @PathVariable String dni){
-        model.addAttribute("volunteer",volunteerDao.getVolunteer(dni));
+    @RequestMapping(value="/update")
+    public String update(Model model,HttpSession session){
+
+
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (user.getRol()!="Volunteer"){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            //TODO redirija al main o a index o donde sea
+            //TODO muestre un mensaje de error
+            return "redirect:/";
+        }
+
+
+        model.addAttribute("volunteer",volunteerDao.getVolunteer(user.getDni()));
         return "volunteer/update";
     }
 
     // Una vez le damos a sumbit se actualiza el voluntario en el dao
-    @RequestMapping(value="/update", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value="/update", method=RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("volunteer") Volunteer volunteer,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "nadador/update";
-
+            return "volunteer/update";
+        //TODO (XIMO) comporbar porque update no updateeaxd
         volunteerDao.updateVolunteer(volunteer);
-        return "redirect:list";
+        return "redirect:main";
     }
 
     // Una vez en el listado le damos al boton delete, lo borramos del dao

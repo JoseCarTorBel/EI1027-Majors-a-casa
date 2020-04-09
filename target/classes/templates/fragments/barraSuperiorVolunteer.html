@@ -3,13 +3,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="navbar-collapse collapse">
         <a class="nav-link" href="/" th:href="@{/}"><i class="fa fa-fw fa-home"></i> Inici</a>
+        <a class="nav-link" href="/" th:href="@{/volunteer/main}"><i class="fa fa-fw fa-home"></i> Mi pagina volunatari</a>
+        <a class="nav-link" href="/" th:href="@{/volunteer/update}"><i class="fa fa-fw fa-home"></i> Cambiar les meues dades</a>
 
 <!--        TODO Revisar como sale en la barra-->
         <div class="loggeduser" th:object="${session}">
-            <p th:if="*{user == null}">
-                <a class="nav-link" href="/login" th:href="@{/login}"> <i class="fa fa-fw fa-sign-in" aria-hidden="true"></i> Entrar</a>
-            </p>
-            <p th:unless="*{user == null}">
+            <p th:if="*{user != null}">
                 <!--                        <span th:text="*{user.username}"></span> -->
                 <a class="nav-link" href="/logout" th:href="@{/logout}"> <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i> Eixir</a>
             </p>
