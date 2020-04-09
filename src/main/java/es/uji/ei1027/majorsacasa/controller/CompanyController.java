@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/company")
@@ -32,7 +34,7 @@ public class CompanyController {
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company,
-                                   BindingResult bindingResult){
+                                   BindingResult bindingResult, HttpSession session){
         CompanyVallidator companyVallidator = new CompanyVallidator();
         companyVallidator.validate(company,bindingResult);
 
@@ -50,7 +52,8 @@ public class CompanyController {
             throw new MajorsACasaException("Error amb l'accés a la BBDD.",
                                             "Error Access BBDD");
         }
-
+        session.setAttribute("registered",company);
+        //return "redirect:company/register";
         return "redirect:/";
     }
 }

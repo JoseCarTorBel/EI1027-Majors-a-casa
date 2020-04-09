@@ -1,13 +1,20 @@
-<!DOCTYPE html>
-<html>
+<!--<!DOCTYPE html>-->
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
 <head>
     <title>EI1027</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
-<h1>EI1027 - Spring MVC</h1>
-<h2>Proves de l'aplicació MAJORS A CASA</h2>
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperior"></div>
+
+<div class="container">
+<!--<h1>EI1027 - Spring MVC</h1>-->
+<!--<h2>Proves de l'aplicació MAJORS A CASA</h2>-->
 <ul>
     <li><a href="volunteer/provaVoluntari">Prova de 1 voluntari</a></li>
     <li><a href="volunteer/list">Listar Voluntaris</a></li>
@@ -20,6 +27,13 @@
     <li><a href="login">Login</a></li>
     <li><a href="volunteer/add">Registro Volunteer</a></li>
     <li><a href="volunteer/timetable">Consultar agenda(FUNCIONA PERO POR ACABAR)</a></li>
+
+<!--    Company -->
+    <li><a href="company/register">Company register</a></li>
 </ul>
+</div>
+
+<div th:replace="fragments/footPage"></div>
+
 </body>
 </html>

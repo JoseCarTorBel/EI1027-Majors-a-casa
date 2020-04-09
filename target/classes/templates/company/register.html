@@ -1,7 +1,16 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+<head>
+    <title>Sol·licita compter</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
 
 <body>
 
@@ -65,35 +74,40 @@
                 </div> <!-- form-group// -->
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal"> Crear compte  </button>
+                    <button type="submit" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal"> Sol·licita compte  </button>
                 </div> <!-- form-group// -->
                 <p class="text-center">Ja tens un compte? <a href="../login">Incia sessió com a empressa</a> </p>
             </form>
         </article>
     </div>
-</div>
-<!--container end.//-->
 
-<!--Modal-->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-                <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Sol·licitud enviada</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    En breu es ficarem en contacte per enviar-li validar la sol·licitud.
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <a href="/" class="btn btn-primary" th:align="center">Inici</a>
+                </div>
             </div>
         </div>
     </div>
+    <!-- End Modal// -->
+
 </div>
-<!--Fin modal-->
+<!--container end.//-->
+
 
 
 <div th:replace="fragments/footPage"></div>
