@@ -5,16 +5,14 @@ public class Line {
     private String codInvoice;
     private String codRequest;
     private String concept;
-    private Request request;
     private Float price;
 
     public Line() { }
 
-    public Line(String codInvoice, String codRequest, String concept, Request request, Float price) {
+    public Line(String codInvoice, String codRequest, String concept, Float price) {
         this.codInvoice = codInvoice;
         this.codRequest = codRequest;
         this.concept = concept;
-        this.request = request;
         this.price = price;
     }
 
@@ -40,14 +38,6 @@ public class Line {
 
     public void setConcept(String concept) {
         this.concept = concept;
-    }
-
-    public Request getRequest() {
-        return request;
-    }
-
-    public void setRequest(Request request) {
-        this.request = request;
     }
 
     public Float getPrice() {
