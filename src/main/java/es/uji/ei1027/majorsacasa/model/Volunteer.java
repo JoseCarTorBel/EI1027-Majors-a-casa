@@ -8,8 +8,6 @@ import java.util.List;
 
 public class Volunteer extends Person{
 
-    private List<String> hobbies;
-    private List<Disponibility> disponibilities;
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate endDate;
     private Character state;
@@ -22,24 +20,11 @@ public class Volunteer extends Person{
 
     public Volunteer(String dni, String name, String secondName, String phone, LocalDate dateOfBirth, LocalDate endDate,String postAddress, char state, String email, String username, String passwd) {
         super(dni, name, secondName, phone, dateOfBirth, postAddress, email, username, passwd);
-        this.hobbies = new ArrayList<String>();
-        this.disponibilities=new ArrayList<Disponibility>();
         this.endDate=endDate;
         this.state=state;
         this.passwdCheck=passwd;
     }
 
-    public List<String> getHobbies() {
-        return hobbies;
-    }
-
-    public boolean addHobbies(String hobbie){
-        return hobbies.add(hobbie);
-    }
-
-    public boolean addDisponibility(String dniVolunteer, String dniEldeerly, String  dayOfWeek, LocalDate initialTime, LocalDate finalTime, boolean open){
-        return disponibilities.add(new Disponibility(dniVolunteer, dniEldeerly, dayOfWeek,initialTime, finalTime, open));
-    }
 
     public LocalDate getEndDate() {
         return endDate;
@@ -68,8 +53,6 @@ public class Volunteer extends Person{
     @Override
     public String toString() {
         return "Volunteer{" +
-                "hobbies=" + hobbies +
-                ", disponibilities=" + disponibilities +
                 ", endDate=" + endDate +
                 ", state=" + state +
                 ", passwdCheck='" + passwdCheck + '\'' +

@@ -10,22 +10,6 @@ public class Person {
     private String name;
     private String secondName;
     private String phone;
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "dni='" + dni + '\'' +
-                ", name='" + name + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", postAddress='" + postAddress + '\'' +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", passwd='" + passwd + '\'' +
-                '}';
-    }
-
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
     private String postAddress;
@@ -117,5 +101,20 @@ public class Person {
 
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "dni='" + dni + '\'' +
+                ", name='" + name + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", postAddress='" + postAddress + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", passwd='" + passwd + '\'' +
+                '}';
     }
 }

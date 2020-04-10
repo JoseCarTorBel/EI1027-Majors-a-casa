@@ -15,7 +15,13 @@
 
             <form action="#" th:action="@{/volunteer/update}"
                   th:object="${volunteer}" method="post">
+
                 <input  name="" class="form-control" placeholder="Nombre" type="text" th:field="*{dni}" hidden>
+                <input  name="" class="form-control" placeholder="Nombre" type="text" th:field="*{endDate}" hidden>
+                <input  name="" class="form-control" placeholder="Nombre" type="text" th:field="*{state}" hidden>
+
+
+
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">

@@ -11,7 +11,6 @@ public class SocialWorker {
     private String userName;
     private String passwd;
 
-    private List<ElderlyPeople> elderlyPeopleAssisted;
 
     public SocialWorker(){}
 
@@ -21,7 +20,6 @@ public class SocialWorker {
         this.dni = dni;
         this.userName=userName;
         this.passwd=passwd;
-        this.elderlyPeopleAssisted = new ArrayList<ElderlyPeople>();
     }
 
     public String getName() {
@@ -56,40 +54,5 @@ public class SocialWorker {
 
     public void setPasswd(String passwd) { this.passwd = passwd; }
 
-    // TODO mirar si tiene el control del día para asistir.
-    /**
-     * Devuelve si se le puede asignar al social worker el elderly people para asistirle.
-     * @param elderly
-     * @return boolean
-     */
-    public boolean elderlyPeopleToAssist(ElderlyPeople elderly){
-        return elderlyPeopleAssisted.add(elderly);
-    }
-
-
-//    /**
-//     * Elimina de la lista el elderly people una vez haya sido asistido
-//     * @param elderlyPeople
-//     * @return
-//     */
-//    public boolean elderlyPeopleAssistComplete(ElderlyPeople elderlyPeople){
-//        return elderlyPeopleAssit.remove(elderlyPeople);
-//    }
-
-    /**
-     * Devuelve el siguiente elderly a asistir por el social worker y se borra de su lista de pendientes.
-     * @return ElderlyPeople si se puede, null si no se le puede asistir
-     *
-     */
-    public ElderlyPeople nextElderlyToAssist(){
-
-        ElderlyPeople nextElderly =  elderlyPeopleAssisted.get(0);
-        if(elderlyPeopleAssisted.remove(nextElderly)){
-            return nextElderly;
-        }
-        return null;
-
-
-    }
 
 }
