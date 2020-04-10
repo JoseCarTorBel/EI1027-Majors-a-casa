@@ -70,8 +70,8 @@ CREATE TABLE disponibility (
         finaltime     DATE,
         open      boolean,
         
-        CONSTRAINT cp_book PRIMARY KEY (dnivolunteer, dnielderlypeople),  -- CP
-        CONSTRAINT ca_book_vol FOREIGN KEY (dnivolunteer) REFERENCES volunteer(dni) ON DELETE RESTRICT ON UPDATE CASCADE, -- clau aliena a volunteer
+        CONSTRAINT cp_book PRIMARY KEY (dnivolunteer, dayofweek),  -- CP
+        CONSTRAINT ca_book_vol FOREIGN KEY (dnivolunteer) REFERENCES volunteer(dni) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a volunteer
         CONSTRAINT ca_book_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a elderlypeople
 );
 

@@ -81,10 +81,10 @@ public class VolunteerController {
     }
 
 
-    @RequestMapping(value="/deleteDisponibility/{dniElderly}", method = {RequestMethod.GET, RequestMethod.DELETE})
-    public String removeVolunteer(HttpSession session,@PathVariable String dniElderly){
+    @RequestMapping(value="/deleteDisponibility/{dayOfWeek}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String removeVolunteer(HttpSession session,@PathVariable String dayOfWeek){
         UserDetails user = (UserDetails) session.getAttribute("user");
-        disponibilityDao.removeDisponibility(dniElderly,user.getDni());
+        disponibilityDao.removeDisponibility(dayOfWeek,user.getDni());
         return "redirect:../timetable";
     }
 

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class Disponibility {
     private String dniVolunteer;
     private String dniElderlyPeople;
-    private Integer dayOfWeek;
+    private String dayOfWeek;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate initialTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -17,7 +17,7 @@ public class Disponibility {
     public Disponibility(){}
 
 
-    public Disponibility(String dniVolunteer, String dniElderlyPeople, Integer dayOfWeek, LocalDate initialTime, LocalDate finalTime, boolean open) {
+    public Disponibility(String dniVolunteer, String dniElderlyPeople, String dayOfWeek, LocalDate initialTime, LocalDate finalTime, boolean open) {
         this.dniVolunteer = dniVolunteer;
         this.dniElderlyPeople = dniElderlyPeople;
         this.dayOfWeek = dayOfWeek;
@@ -50,11 +50,11 @@ public class Disponibility {
         this.open = open;
     }
 
-    public Integer getDayOfWeek() {
+    public String getDayOfWeek() {
         return dayOfWeek;
     }
 
-    public void setDayOfWeek(Integer dayOfWeek) {
+    public void setDayOfWeek(String dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
 

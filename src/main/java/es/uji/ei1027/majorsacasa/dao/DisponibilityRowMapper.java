@@ -16,7 +16,7 @@ public class DisponibilityRowMapper implements RowMapper<Disponibility> {
 
         disponibility.setDniVolunteer(rs.getString("dnivolunteer"));
         disponibility.setDniElderlyPeople(rs.getString("dnielderlypeople"));
-        disponibility.setDayOfWeek(rs.getInt("dayofweek"));
+        disponibility.setDayOfWeek(rs.getString("dayofweek"));
         Date date=rs.getDate("initialtime");
         disponibility.setInitialTime(date != null ? date.toLocalDate() : null);
         date=rs.getDate("finaltime");

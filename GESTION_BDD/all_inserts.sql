@@ -11,7 +11,7 @@ INSERT INTO person VALUES ('V_Pepe','Reina Beltran','20998812E','622198744','199
 INSERT INTO person VALUES ('V_Laura','Martinez Palotes','20912333Y','623317367','2000-11-09','Plaza la lola, Alcora, Castellon','laurita@uji.es','v_laura', 'v_laura');
 
 
-INSERT INTO person VALUES ('EP_Jose Carlos','Torro Belda','20654491U','672945673','1950-02-04','Ronda Vinatea, Ontinyete, Alicante','josecarlos@uji.es','EP_Jose Carlos', 'EP_Jose Carlos');
+INSERT INTO person VALUES ('EP_Jose Carlos','Torro Belda','20654491U','672945673','1950-02-04','Ronda Vinatea, Ontinyete, Alicante','josecarlos@uji.es','EP_Jose_Carlos', 'EP_Jose_Carlos');
 INSERT INTO person VALUES ('EP_Joaquin','Gonzalez Alvarez','20884391O','627367564','1940-01-03','Calle pepe, Ontinyete, Alicante','joaquin@uji.es','EP_Joaquin', 'EP_Joaquin');
 INSERT INTO person VALUES ('EP_Maria','Peris Alonso','20119392I','612737283','1935-06-01','Calle egipcia, Ontinyete, Alicante','maria23@uji.es','EP_Maria', 'EP_Maria');
 INSERT INTO person VALUES ('EP_Marta','Lopez Marza','20119290R','675672934','1937-11-20','Avenida casalduch, Castellon de la plana, Castellon','marta@uji.es','EP_Marta', 'EP_Marta');
@@ -42,9 +42,9 @@ INSERT INTO elderlypeople VALUES ('20119290R','Necesito que me limpien','1902909
 INSERT INTO elderlypeople VALUES ('20917888Y','Tengo mucho dinero',null);
 
 INSERT INTO disponibility VALUES ('20904567S','20654491U','1','2020-01-01','2020-12-01',true);
-INSERT INTO disponibility VALUES ('20764726T','20884391O','1','2020-01-01','2020-12-01',true);
-INSERT INTO disponibility VALUES ('23457855W','20119392I','1','2020-01-01','2020-12-01',true);
-INSERT INTO disponibility VALUES ('20998812E','20119290R','1','2020-01-01','2020-12-01',true);
+INSERT INTO disponibility VALUES ('20764726T','20884391O','1','2020-01-02','2020-12-01',true);
+INSERT INTO disponibility VALUES ('23457855W','20119392I','3','2020-01-01','2020-12-01',true);
+INSERT INTO disponibility VALUES ('20998812E','20119290R','4','2020-01-01','2020-12-01',true);
 
 INSERT INTO company VALUES ('G34672398','Catering Miravete','Vicente Miravete','647352635','vmiravete@gmail.com','Calle Catalunya, Castelló de la Plana, Castellón',null,null);
 INSERT INTO company VALUES ('T46372819','Dra González','Sandra González','657489325','sandragonzalez@gmail.com','Calle Rafalafena, Castelló de la Plana, Castellon',null,null);

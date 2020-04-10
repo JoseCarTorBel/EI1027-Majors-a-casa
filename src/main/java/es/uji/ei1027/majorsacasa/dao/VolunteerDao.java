@@ -2,6 +2,7 @@ package es.uji.ei1027.majorsacasa.dao;
 
 
 import es.uji.ei1027.majorsacasa.model.Volunteer;
+import org.apache.catalina.valves.JDBCAccessLogValve;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -77,14 +78,6 @@ public class VolunteerDao {
     }
 
 
-    /**
-     * update a volunteer
-     * @param dni
-     */
-    public void updatePasswd(String dni, String password){
-        jdbcTemplate.update("UPDATE volunteer SET passwd=? WHERE dni=?",password,dni);
-    }
-
 
     /**
      * update a volunteer
@@ -105,6 +98,8 @@ public class VolunteerDao {
 
         jdbcTemplate.update("UPDATE volunteer SET enddate=?, state=? WHERE dni=?",
                 volunteer.getEndDate(),volunteer.getState(),volunteer.getDni());
+
     }
+
 
 }

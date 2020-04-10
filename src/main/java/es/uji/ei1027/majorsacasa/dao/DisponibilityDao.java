@@ -31,32 +31,35 @@ public class DisponibilityDao {
     }
 
     /**
-     * update a Disponibility
+     * update a Disponibility, servira para adjudicar a un elderlypeople
      * @param disponibility
      */
     public void updateDisponibility(Disponibility disponibility){
-        jdbcTemplate.update("UPDATE disponibility SET dayofweek=?, initialtime=?, finaltime=?, open=? WHERE dnivolunteer=? AND dnielderlypeople=?",
-                disponibility.getDayOfWeek(),disponibility.getInitialTime(),disponibility.getFinalTime(),disponibility.isOpen(),disponibility.getDniVolunteer(),disponibility.getDniElderlyPeople()
+        jdbcTemplate.update("UPDATE disponibility SET dnielderlypeople=?,dayofweek=?, initialtime=?, finaltime=?, open=? WHERE dnivolunteer=? AND dayOfWeek=?",
+               disponibility.getDniElderlyPeople(), disponibility.getDayOfWeek(),disponibility.getInitialTime(),disponibility.getFinalTime(),disponibility.isOpen(),disponibility.getDniVolunteer(),disponibility.getDayOfWeek()
         );
     }
 
+
+
+
     /**
      * remove a Disponibility
-     * @param dniElderlyPeople, dniVolunteer
+     * @param dayOfWeek, dniVolunteer
      */
-    public void removeDisponibility(String dniElderlyPeople,String dniVolunteer){
-        jdbcTemplate.update("DELETE FROM disponibility WHERE dnielderlypeople=? AND dnivolunteer=?",dniElderlyPeople,dniVolunteer);
+    public void removeDisponibility(String dayOfWeek,String dniVolunteer){
+        jdbcTemplate.update("DELETE FROM disponibility WHERE dayOfWeek=? AND dnivolunteer=?",dayOfWeek,dniVolunteer);
     }
 
     /**
      * get a disponibility
-     * @param dniElderlyPeople, dniVolunteer
+     * @param dayOfWeek, dniVolunteer
      * @return Disponibility
      */
-    public Disponibility getDisponibility(String dniElderlyPeople,String dniVolunteer){
+    public Disponibility getDisponibility(String dayOfWeek,String dniVolunteer){
         try{
-            return  jdbcTemplate.queryForObject("SELECT * FROM disponibility WHERE dnielderlypeople=?, dnivolunteer=?",
-                                    new DisponibilityRowMapper(),dniElderlyPeople,dniVolunteer);
+            return  jdbcTemplate.queryForObject("SELECT * FROM disponibility WHERE dnivolunteer=? AND dayofweek=?",
+                                    new DisponibilityRowMapper(),dniVolunteer,dayOfWeek);
         }catch(EmptyResultDataAccessException e) {
          return null;
         }

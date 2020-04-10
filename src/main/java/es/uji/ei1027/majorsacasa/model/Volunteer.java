@@ -37,7 +37,7 @@ public class Volunteer extends Person{
         return hobbies.add(hobbie);
     }
 
-    public boolean addDisponibility(String dniVolunteer, String dniEldeerly, int dayOfWeek, LocalDate initialTime, LocalDate finalTime, boolean open){
+    public boolean addDisponibility(String dniVolunteer, String dniEldeerly, String  dayOfWeek, LocalDate initialTime, LocalDate finalTime, boolean open){
         return disponibilities.add(new Disponibility(dniVolunteer, dniEldeerly, dayOfWeek,initialTime, finalTime, open));
     }
 
