@@ -67,7 +67,7 @@ public class VolunteerController {
         }
         UserDetails usuario = (UserDetails) session.getAttribute("user");
 
-        if (usuario.getRol()!="Volunteer"){
+        if (!usuario.getRol().equals("Volunteer")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             //TODO redirija al main o a index o donde sea
             return "redirect:/";
@@ -100,7 +100,7 @@ public class VolunteerController {
         }
         UserDetails usuario = (UserDetails) session.getAttribute("user");
 
-        if (usuario.getRol()!="Volunteer"){
+        if (!usuario.getRol().equals("Volunteer")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             //TODO redirija al main o a index o donde sea
             //TODO muestre un mensaje de error
@@ -145,7 +145,7 @@ public class VolunteerController {
 
     // Cuando le damos al boton editar en la lista, llamamos a este metodo el cual llama a la vista correspondiente
     //      pasandole el objeto voluntario
-    @RequestMapping(value="/update")
+    @RequestMapping(value="/update" ,method = RequestMethod.GET)
     public String update(Model model,HttpSession session){
 
 
@@ -156,7 +156,7 @@ public class VolunteerController {
         }
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (user.getRol()!="Volunteer"){
+        if (!user.getRol().equals("Volunteer")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             //TODO redirija al main o a index o donde sea
             //TODO muestre un mensaje de error
@@ -165,6 +165,7 @@ public class VolunteerController {
 
 
         model.addAttribute("volunteer",volunteerDao.getVolunteer(user.getDni()));
+        System.out.println(volunteerDao.getVolunteer(user.getDni()).toString());
         return "volunteer/update";
     }
 

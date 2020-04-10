@@ -87,7 +87,7 @@ public class ElderlyPeopleDao {
      * @param elderlypeople
      */
     public void updateElderlyPeople(ElderlyPeople elderlypeople) {
-        jdbcTemplate.update("UPDATE person SET name=?, secondname=?, phone=?, dateofbrith=?, postaddress=?, email=?, username=?, passwd=? WHERE dni=?",
+        jdbcTemplate.update("UPDATE person SET name=?, secondname=?, phone=?, dateofbirth=?, postaddress=?, email=?, username=?, passwd=? WHERE dni=?",
                 elderlypeople.getName(),elderlypeople.getSecondName(),elderlypeople.getPhone(),elderlypeople.getDateOfBirth(),
                 elderlypeople.getPostAddress(),elderlypeople.getEmail(),elderlypeople.getUsername(),elderlypeople.getPasswd(),elderlypeople.getDni());
         jdbcTemplate.update("UPDATE elderlypeople SET  justification=?, dnisocialworker=? WHERE dni=?",

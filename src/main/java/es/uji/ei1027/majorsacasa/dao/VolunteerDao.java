@@ -92,7 +92,8 @@ public class VolunteerDao {
      * @param volunteer
      */
     public void updateVolunteer(Volunteer volunteer) {
-        jdbcTemplate.update("UPDATE person SET name=?, secondname=?, phone=?, dateofbrith=?, postaddress=?, email=?, username=?, passwd=? WHERE dni=?",
+        System.out.println(volunteer.toString());
+        jdbcTemplate.update("UPDATE person SET name=?, secondname=?, phone=?, dateofbirth=?, postaddress=?, email=?, username=?, passwd=? WHERE dni=?",
                 volunteer.getName(),volunteer.getSecondName(),volunteer.getPhone(),volunteer.getDateOfBirth(),
                 volunteer.getPostAddress(),volunteer.getEmail(),volunteer.getUsername(),volunteer.getPasswd(),volunteer.getDni());
 

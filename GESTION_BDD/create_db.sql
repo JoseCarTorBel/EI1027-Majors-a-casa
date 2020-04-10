@@ -1,5 +1,5 @@
 CREATE TABLE socialworker (
-        dni      VARCHAR(15),
+        dni      VARCHAR(30),
         name      VARCHAR(50),
         phone     VARCHAR(20),
         username     VARCHAR(20),
@@ -12,9 +12,9 @@ CREATE TABLE socialworker (
 CREATE TABLE person(
 	name VARCHAR(50),
 	secondname VARCHAR(50),
-	dni VARCHAR(20),
+	dni VARCHAR(30),
 	phone VARCHAR(20),
-	dateofbrith DATE,
+	dateofbirth DATE,
 	postaddress VARCHAR(70),
 	email 	VARCHAR(30),
 	username VARCHAR(20),
@@ -26,7 +26,7 @@ CREATE TABLE person(
 );
 
 CREATE TABLE volunteer (
-        dni 	VARCHAR(50),
+        dni 	VARCHAR(30),
 	endDate		DATE,
         state   VARCHAR (1),
 
@@ -38,7 +38,7 @@ CREATE TABLE volunteer (
 );
 
 CREATE TABLE hobbies (
-        dni      VARCHAR(15),
+        dni      VARCHAR(30),
         hobbie      VARCHAR(50),
 
         CONSTRAINT cp_hobbies PRIMARY KEY (dni, hobbie),  -- CP
@@ -51,9 +51,9 @@ CREATE TABLE hobbies (
 
 
 CREATE TABLE elderlypeople (
-        dni      VARCHAR(15),
+        dni      VARCHAR(30),
         justification      VARCHAR(50),
-        dnisocialworker     VARCHAR(20) NULL,
+        dnisocialworker     VARCHAR(30) NULL,
         
         CONSTRAINT cp_elderlypeople PRIMARY KEY (dni),      -- clau primària
         CONSTRAINT ca_elderlypeople_per FOREIGN KEY (dni) REFERENCES person(dni) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a elderlypeople
@@ -64,8 +64,8 @@ CREATE TABLE elderlypeople (
 
 
 CREATE TABLE disponibility (
-        dnivolunteer      VARCHAR(15),
-        dnielderlypeople      VARCHAR(15),
+        dnivolunteer      VARCHAR(30),
+        dnielderlypeople      VARCHAR(30),
         dayofweek     VARCHAR(1),
         initialtime     DATE,
         finaltime     DATE,
@@ -77,7 +77,7 @@ CREATE TABLE disponibility (
 );
 
 CREATE TABLE company (
-        cif      VARCHAR(15),
+        cif      VARCHAR(30),
         name      VARCHAR(50),
         personalcontact      VARCHAR(50),
         phonecontact     VARCHAR(20),
@@ -95,7 +95,7 @@ CREATE TABLE company (
 
 CREATE TABLE contract (
 
-        cifcompany      VARCHAR(15),
+        cifcompany      VARCHAR(30),
         service      INTEGER,
         initialtime     DATE,
         finaltime     DATE NULL,
@@ -108,7 +108,7 @@ CREATE TABLE contract (
 
 CREATE TABLE invoice (
         codinvoice      VARCHAR(15),
-        dnielderlypeople VARCHAR(15),
+        dnielderlypeople VARCHAR(30),
         price           INTEGER,
 	    date		DATE,
         
@@ -124,8 +124,8 @@ CREATE TABLE request (
         approveddate     DATE,
         rejected     BOOLEAN NULL,
         enddate     DATE,
-        dnielderlypeople VARCHAR(15),
-        cifcompany VARCHAR(15),
+        dnielderlypeople VARCHAR(30),
+        cifcompany VARCHAR(30),
 
         CONSTRAINT cp_request PRIMARY KEY (codrequest),  -- CP
         CONSTRAINT ca_request_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a elderlypeople

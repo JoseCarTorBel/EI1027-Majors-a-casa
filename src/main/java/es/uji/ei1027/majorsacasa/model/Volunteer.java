@@ -65,5 +65,14 @@ public class Volunteer extends Person{
         return this.passwdCheck;
     }
 
-
+    @Override
+    public String toString() {
+        return "Volunteer{" +
+                "hobbies=" + hobbies +
+                ", disponibilities=" + disponibilities +
+                ", endDate=" + endDate +
+                ", state=" + state +
+                ", passwdCheck='" + passwdCheck + '\'' +
+                "} " + super.toString();
+    }
 }
