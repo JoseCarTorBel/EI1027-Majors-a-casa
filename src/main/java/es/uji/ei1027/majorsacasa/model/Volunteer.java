@@ -10,7 +10,7 @@ public class Volunteer extends Person{
 
     private List<String> hobbies;
     private List<Disponibility> disponibilities;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate endDate;
     private Character state;
     private String passwdCheck;

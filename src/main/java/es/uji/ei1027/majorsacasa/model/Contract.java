@@ -8,9 +8,9 @@ import java.time.LocalDate;
 public class Contract {
     private String cifcompany;
     private ServiceType service;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate initialDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate finalDate;
     private Float price;
 

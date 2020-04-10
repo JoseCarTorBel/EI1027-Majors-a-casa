@@ -8,9 +8,9 @@ public class Disponibility {
     private String dniVolunteer;
     private String dniElderlyPeople;
     private String dayOfWeek;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate initialTime;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate finalTime;
     private boolean open;
 

@@ -10,7 +10,7 @@ public class Person {
     private String name;
     private String secondName;
     private String phone;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
     private String postAddress;
     private String email;

@@ -20,7 +20,8 @@ CREATE TABLE person(
 	username VARCHAR(20),
 	passwd VARCHAR(20),
 
-        CONSTRAINT cp_person PRIMARY KEY (dni)      -- clau primària
+        CONSTRAINT cp_person PRIMARY KEY (dni) ,     -- clau primària
+        CONSTRAINT calt_person UNIQUE  (username)      -- clau primària
 
 );
 

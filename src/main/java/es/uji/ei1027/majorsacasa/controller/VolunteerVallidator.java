@@ -47,7 +47,7 @@ public class VolunteerVallidator implements Validator{
             }
         }
 
-        if(volunteer.getDateOfBirth() == null || volunteer.getDateOfBirth().isBefore(LocalDate.now())){
+        if(volunteer.getDateOfBirth() == null || volunteer.getDateOfBirth().isAfter(LocalDate.now())){
             errors.rejectValue("dateOfBirth","Obligatori","Cal introduir una data de naixement vàlida");
         }
 

@@ -11,7 +11,7 @@ public class Invoice {
     private String dniElderlyPeople;
     private String codInvoice;
     private Float price;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate date;
     private ArrayList<Line> lines;
 

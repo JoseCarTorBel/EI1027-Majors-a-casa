@@ -134,7 +134,7 @@ public class VolunteerController {
         try {
             volunteerDao.addVolunteer(volunteer);
         }catch (DuplicateKeyException dk){
-            throw new MajorsACasaException("Ja existeix un voluntari amb el dni "+volunteer.getDni(),"CPduplicada");
+            throw new MajorsACasaException("Ja existeix un voluntari amb el dni "+volunteer.getDni()+" o amb el usuari "+volunteer.getUsername(),"CPduplicada");
         } catch (DataAccessException e) {
             throw new MajorsACasaException(
                     "Error en l'accés a la base de dades", "ErrorAccedintDades");
