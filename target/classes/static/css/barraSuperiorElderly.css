@@ -1,0 +1,19 @@
+a {
+   font-size: xx-large;
+}
+
+body {
+    font-size: xx-large;
+}
+
+ul.horizontal{
+    margin:0;
+    padding:0;
+}
+
+ul.horizontal li{
+    display:block;
+    float:left;
+    padding:0 10px;
+}
+

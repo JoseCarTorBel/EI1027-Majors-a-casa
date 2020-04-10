@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
+<link rel="stylesheet" type="text/css" href="/css/elderlyPeople.css" th:href="@{/css/elderlyPeople.css}"/>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
 <body>
@@ -10,6 +10,7 @@
 <div th:replace="fragments/barraImagen"></div>
 <div th:replace="fragments/barraSuperiorElderly"></div>
 
+<br>
 
 <div class="container">
     <div class="card bg-light">
@@ -18,7 +19,7 @@
         <article class="card-body mx-auto" style="max-width: 400px;">
             <h4 class="card-title mt-3 text-center">Pagina principal de persona major</h4>
 
-            <li><a th:href="@{/volunteer/timetable}">Gestio de mi agenda</a></li><!-- TODO esto debe ir en un menu lateral-->
+           Aquí se mostrará un mensaje de bienvenida e información de interés para el usuario.
 
 
 
