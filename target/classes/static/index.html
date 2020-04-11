@@ -1,39 +1,131 @@
-<!--<!DOCTYPE html>-->
+<!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
 <head>
-    <title>EI1027</title>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Majors a casa</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/small-business.css" rel="stylesheet">
+
 </head>
+
 <body>
-<div th:replace="fragments/barraImagen"></div>
-<div th:replace="fragments/barraSuperior"></div>
 
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Content -->
 <div class="container">
-<!--<h1>EI1027 - Spring MVC</h1>-->
-<!--<h2>Proves de l'aplicació MAJORS A CASA</h2>-->
-<ul>
-    <li><a href="volunteer/provaVoluntari">Prova de 1 voluntari</a></li>
-    <li><a href="volunteer/list">Listar Voluntaris</a></li>
 
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+        <div class="col-lg-7">
+            <img class="img-fluid rounded mb-4 mb-lg-0" src="images/logo.png" alt="">
+        </div>
+        <!-- /.col-lg-8 -->
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">Majors a casa</h1>
+            <p> Facilitar a les persones majors la permanència en el seu domicili i/o entorn familiar i social el major temps possible.</p>
+            <a class="btn btn-primary" href="#">Contacta'ns per més informació</a>
+        </div>
+        <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
 
-    <li><a href="elderlyPeople/provaElderlyPeople">Prova de 1 elderlypeople</a></li>
-    <li><a href="elderlyPeople/list">Listar ElderlyPeoples</a></li>
+    <!-- Call to Action Well -->
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+        <div class="card-body">
+            <p class="text-white m-0">Contacta per més informació.</p>
+        </div>
+    </div>
 
-<!--    <h2>TAREAS IMPLEMENTADAS</h2>-->
-    <li><a href="login">Login</a></li>
-    <li><a href="volunteer/add">Registro Volunteer</a></li>
-    <li><a href="volunteer/timetable">Consultar agenda</a></li>
-    <a class="nav-link" href="/logout" th:href="@{/logout}"> <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i> LOG OUT</a>
-<!--    Company -->
-    <li><a href="company/register">Company register</a></li>
-</ul>
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <img class="card-img-top" src="../static/images/286x180.svg" alt="Card image cap">
+                <div class="card-body">
+                    <h2 class="card-title">Demana ara mateix ajuda</h2>
+                    <p class="card-text">¿Necessites ajuda a casa? No dubtes en ficar-te en contacte o registrar-te.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="login" class="btn btn-primary btn-sm">Registra't o inicia sessió</a>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-md-4 -->
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <img class="card-img-top" src="../static/images/286x180.svg" alt="Card image cap">
+                <div class="card-body">
+                    <h2 class="card-title"> Fes-te voluntari </h2>
+                    <p class="card-text"> Fes-te voluntari i ajuda a la gent més major. </p>
+                </div>
+                <div class="card-footer">
+                    <a href="volunteer/add" class="btn btn-primary btn-sm">Registra't</a>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-md-4 -->
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <img class="card-img-top" src="../static/images/286x180.svg" alt="Card image cap">
+                <div class="card-body">
+                    <h2 class="card-title">Vols oferir els teus serveis? </h2>
+                    <p class="card-text">Eres empressa i vols oferir els teus serveis? Sol·licita-ho i es ficare'm en contacte.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="company/register" class="btn btn-primary btn-sm">Sol·licita informació</a>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-md-4 -->
+
+    </div>
+    <!-- /.row -->
+
 </div>
+<!-- /.container -->
 
-<div th:replace="fragments/footPage"></div>
+<!-- Footer -->
+<div th:replace="/templates/fragments/footPage"></div>
+<!-- / end footer -->
+
 
 </body>
+
 </html>
