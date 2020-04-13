@@ -21,8 +21,8 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Els meus voluntaris</h5>
-                    <p class="card-text">En aquesta pàgina vosté podrà accedir als horaris del voluntaris que ha sol·licitat.</p><br>
-                    <a href="#" class="btn btn-primary btn-lg">Anar als meus voluntaris</a>
+                    <p class="card-text">En aquesta pàgina vosté podrà accedir als horaris del voluntaris que ja ha sol·licitat.</p><br>
+                    <a href="/" th:href="@{/elderlyPeople/meusVoluntaris}" class="btn btn-primary btn-lg">Anar als meus voluntaris</a>
                 </div>
             </div>
         </div>
@@ -30,12 +30,14 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Voluntaris disponibles</h5>
-                    <p class="card-text">En aquesta pàgina vosté podrà accedir a la llista del voluntaris que hi ha disponibles per a sol·licitar els serveis de un voluntari.</p>
+                    <p class="card-text">En aquesta pàgina vosté podrà accedir a la llista del voluntaris que hi ha disponibles per a sol·licitar els serveis d'un voluntari.</p>
                     <a href="#" class="btn btn-primary btn-lg">Anar als voluntaris disponibles</a>
                 </div>
             </div>
         </div>
     </div>
+    <br>
+    <a href="/" th:href="@{/elderlyPeople/main}" class="btn btn-primary btn-lg">Tornar a la pàgina principal</a>
 </div>
 <!--container end.//-->
 

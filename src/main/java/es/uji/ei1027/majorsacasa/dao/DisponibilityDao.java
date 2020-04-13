@@ -79,6 +79,20 @@ public class DisponibilityDao {
         }
     }
 
+    /**
+     * get a disponibility with the dnielderlypeople
+     * @param dniElderlyPeople
+     * @return Disponibility
+     */
+    public List<Disponibility> getDisponibilitiesElderly(String dniElderlyPeople){
+        try{
+            return  jdbcTemplate.query("SELECT * FROM disponibility WHERE dnielderlypeople=?;",
+                    new DisponibilityRowMapper(),dniElderlyPeople);
+        }catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
 
 
 

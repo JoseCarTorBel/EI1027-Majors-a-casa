@@ -1,6 +1,7 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 
+import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
 import es.uji.ei1027.majorsacasa.dao.ElderlyPeopleDao;
 
 import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
@@ -132,6 +133,34 @@ public class ElderlyPeopleController {
 
         }else{
             return "elderlyPeople/volunteersManagement";
+        }
+
+    }
+
+    DisponibilityDao disponibilityDao;
+    @Autowired
+    public void setDisponibilityDao(DisponibilityDao disponibilityDao){
+        this.disponibilityDao=disponibilityDao;
+    }
+
+    @RequestMapping("/meusVoluntaris")
+    public String getMeusVoluntaris(HttpSession session, Model model){
+
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails usuario = (UserDetails) session.getAttribute("user");
+
+        if (usuario.getRol()!="Elderly"){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            //TODO redirija al main o a index o donde sea
+            //TODO muestre un mensaje de error
+            return "redirect:/";
+
+        }else{
+            model.addAttribute("disponibilities", disponibilityDao.getDisponibilitiesElderly(usuario.getDni()));
+            return "elderlyPeople/meusVoluntaris";
         }
 
     }
