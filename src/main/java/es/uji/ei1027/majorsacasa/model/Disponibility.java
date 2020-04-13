@@ -73,4 +73,16 @@ public class Disponibility {
     public void setFinalTime(LocalDate finalTime) {
         this.finalTime = finalTime;
     }
+
+    @Override
+    public String toString() {
+        return "Disponibility{" +
+                "dniVolunteer='" + dniVolunteer + '\'' +
+                ", dniElderlyPeople='" + dniElderlyPeople + '\'' +
+                ", dayOfWeek='" + dayOfWeek + '\'' +
+                ", initialTime=" + initialTime +
+                ", finalTime=" + finalTime +
+                ", open=" + open +
+                '}';
+    }
 }

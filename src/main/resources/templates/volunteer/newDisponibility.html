@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+<body>
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorVolunteer"></div>
+
+<div class="container">
+        <div class="card bg-light">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h4 class="card-title mt-3 text-center">Afegir nou horari</h4>
+
+                <form action="#" th:action="@{/volunteer/newDisponibility}"
+                                 th:object="${disponibility}" method="post">
+
+                    <input  name="" class="form-control" placeholder="DNI / NIF" type="text" th:field="*{dniVolunteer}" hidden>
+
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input  name="" class="form-control" placeholder="Dia de la setmana:(1-7)" type="text" th:field="*{dayOfWeek}">
+                    </div> <!-- form-group// -->
+                    Data de inici:
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input  name="" class="form-control" placeholder="Data inici" type="date" th:field="*{initialTime}">
+                    </div> <!-- form-group// -->
+
+                    Data de fi:
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input name="" class="form-control" placeholder="Data fi" type="date" th:field="*{finalTime}">
+                    </div> <!-- form-group// -->
+
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Nou horari </button>
+                    </div> <!-- form-group// -->
+
+
+                </form>
+            </article>
+    </div>
+    </div>
+    <!--container end.//-->
+
+    <div th:replace="fragments/footPage"></div>
+
+</body>
+</html>

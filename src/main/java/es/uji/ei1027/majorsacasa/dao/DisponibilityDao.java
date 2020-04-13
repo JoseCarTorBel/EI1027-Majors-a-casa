@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 @Repository
 public class DisponibilityDao {
@@ -69,9 +70,9 @@ public class DisponibilityDao {
      * @param dniVolunteer
      * @return Disponibility
      */
-    public Disponibility getDisponibility(String dniVolunteer){
+    public List<Disponibility> getDisponibilitys(String dniVolunteer){
         try{
-            return  jdbcTemplate.queryForObject("SELECT * FROM disponibility WHERE dnivolunteer=?;",
+            return  jdbcTemplate.query("SELECT * FROM disponibility WHERE dnivolunteer=?;",
                     new DisponibilityRowMapper(),dniVolunteer);
         }catch(EmptyResultDataAccessException e) {
             return null;

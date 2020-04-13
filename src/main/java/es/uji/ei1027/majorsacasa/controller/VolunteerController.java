@@ -3,6 +3,7 @@ package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
+import es.uji.ei1027.majorsacasa.model.Disponibility;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +74,7 @@ public class VolunteerController {
             return "redirect:/";
 
         }else{
-            model.addAttribute("disponibilities", disponibilityDao.getDisponibility(usuario.getDni()));
+            model.addAttribute("disponibilities", disponibilityDao.getDisponibilitys(usuario.getDni()));
 
             return "volunteer/timetable";
         }
@@ -107,6 +108,7 @@ public class VolunteerController {
             return "redirect:/";
 
         }else{
+            model.addAttribute("volunteer",volunteerDao.getVolunteer(usuario.getDni()));
             return "volunteer/main";
         }
 
@@ -188,7 +190,50 @@ public class VolunteerController {
         return "redirect:../list";
     }
 
-    //TODO Crear una vista nueva para añadir hobbies y desponibilities
+    // LLama a la vista pasandole un objeto disponibility
+    @RequestMapping(value="/newDisponibility")
+    public String addDisponibility(Model model,HttpSession session){
+
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        if (!user.getRol().equals("Volunteer")){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            //TODO redirija al main o a index o donde sea
+            //TODO muestre un mensaje de error
+            return "redirect:/";
+        }
+
+        model.addAttribute("disponibility",new Disponibility());
+        return "volunteer/newDisponibility";
+    }
+
+    // Una vez le damos al sumbit la vista devuelve el objeto disponibility con todos los atributos
+    @RequestMapping(value="/newDisponibility", method=RequestMethod.POST)
+    public String processAddSubmit(@ModelAttribute("disponibility") Disponibility disponibility,
+                                   BindingResult bindingResult,HttpSession session) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        disponibility.setDniVolunteer(user.getDni());
+        if (bindingResult.hasErrors()) {
+            return "volunteer/newDisponibility";
+        }
+        try {
+            System.out.println(disponibility.toString());
+            disponibilityDao.addDisponibility(disponibility);
+        }catch (DuplicateKeyException dk){
+            throw new MajorsACasaException("Ja tens una disponibility el dia "+disponibility.getDayOfWeek(),"CPduplicada");
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+            throw new MajorsACasaException(
+                    "Error en l'accés a la base de dades", "ErrorAccedintDades");
+        }
+
+        return "redirect:main";
+    }
 
 
 

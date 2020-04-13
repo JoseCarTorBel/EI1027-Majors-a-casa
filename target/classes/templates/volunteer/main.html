@@ -18,10 +18,16 @@
         <article class="card-body mx-auto" style="max-width: 400px;">
 
             <h4 class="card-title mt-3 text-center">Pagina principal de voluntari</h4>
-            <h2>AQUI SE VERA INFO DEL VOLUNTARIO Y ESTAS OPCIONES SOLO EN LA BARRA</h2>
-            <li><a th:href="@{/volunteer/timetable}">Gestio de mi agenda</a></li>
-            <li><td><a th:href="@{/volunteer/update}">Editar la meua informacio personal</a></li>
-
+            <p><b>Dni:</b> <span th:text="${volunteer.dni}"> </span></p>
+            <p><b>Name:</b> <span th:text="${volunteer.name}"> </span></p>
+            <p><b>SecondName:</b> <span th:text="${volunteer.secondName}"> </span></p>
+            <p><b>phone:</b> <span th:text="${volunteer.phone}"> </span></p>
+            <p><b>dateOfBirth:</b> <span th:text="${volunteer.dateOfBirth}"> </span></p>
+            <p><b>postaddress:</b> <span th:text="${volunteer.postAddress}"> </span></p>
+            <p><b>state:</b> <span th:text="${volunteer.state}"> </span></p>
+            <p><b>email:</b> <span th:text="${volunteer.email}"> </span></p>
+            <p><b>username:</b> <span th:text="${volunteer.username}"> </span></p>
+            <p><b>Password:</b> <span th:text="${volunteer.passwd}"> </span></p>
 
 
         </article>

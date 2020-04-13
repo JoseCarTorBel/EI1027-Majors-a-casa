@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
@@ -20,33 +20,32 @@
 
 <body>
 
-<!-- Navigation -->
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">-->
-<!--    <div class="container">-->
-<!--        <a class="navbar-brand" href="#">Start Bootstrap</a>-->
-<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
-<!--        <div class="collapse navbar-collapse" id="navbarResponsive">-->
-<!--            <ul class="navbar-nav ml-auto">-->
-<!--                <li class="nav-item active">-->
-<!--                    <a class="nav-link" href="#">Home-->
-<!--                        <span class="sr-only">(current)</span>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" href="#">About</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" href="#">Services</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" href="#">Contact</a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Majors a casa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/volunteer/add">Registrat com voluntari</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Registrat com elderly</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Inicia sessio</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <!-- Page Content -->
 <div class="container">
@@ -69,7 +68,8 @@
     <!-- Call to Action Well -->
     <div class="card text-white bg-secondary my-5 py-4 text-center">
         <div class="card-body">
-            <p class="text-white m-0">Contacta per més informació.</p>
+            <p class="text-white m-0">T`Oferim una serie de serveis per part dels nostres voluntaris i de les nostres empreses,
+                per els cuals obtindras diferents serveis al teu hogar, els cuals facilitaran la teua vida.</p>
         </div>
     </div>
 
@@ -103,9 +103,9 @@
         <!-- /.col-md-4 -->
         <div class="col-md-4 mb-5">
             <div class="card h-100">
-                <img class="card-img-top" src="../static/images/286x180.svg" alt="Card image cap">
+                <img class="card-img-top" src="../static/images/286x180.svg" alt="Card image cap"> <!--TODO la ruta creo que es images/loquesea -->
                 <div class="card-body">
-                    <h2 class="card-title">Vols oferir els teus serveis? </h2>
+                    <h2 class="card-title">Vols oferir els tela millorus serveis? </h2>
                     <p class="card-text">Eres empressa i vols oferir els teus serveis? Sol·licita-ho i es ficare'm en contacte.</p>
                 </div>
                 <div class="card-footer">
@@ -122,7 +122,16 @@
 <!-- /.container -->
 
 <!-- Footer -->
-<div th:replace="/templates/fragments/footPage"></div>
+<br><br>
+<article class="bg-secondary mb-3">
+    <div class="card-body text-center">
+        <h3 class="text-white mt-3">Majors a casa</h3>
+        <p class="h5 text-white">Contacte  <br> Telèfon: 65 796 25 47    Email: majorsacasa@gva.es </p>   <br>
+        <p><a class="btn btn-warning" target="_blank" href="http://majorsacasa.gva.es/"> www.majorsacasa.gva.es
+            <i class="fa fa-window-restore "></i></a></p>
+    </div>
+    <br><br>
+</article>
 <!-- / end footer -->
 
 
