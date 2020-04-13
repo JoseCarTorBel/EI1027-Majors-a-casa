@@ -41,10 +41,10 @@ INSERT INTO elderlypeople VALUES ('20119392I','No se cocinar',null);
 INSERT INTO elderlypeople VALUES ('20119290R','Necesito que me limpien','19029093W');
 INSERT INTO elderlypeople VALUES ('20917888Y','Tengo mucho dinero',null);
 
-INSERT INTO disponibility VALUES ('20904567S','20654491U','1','2020-01-01','2020-12-01',true);
-INSERT INTO disponibility VALUES ('20764726T','20884391O','1','2020-01-02','2020-12-01',true);
-INSERT INTO disponibility VALUES ('23457855W','20119392I','3','2020-01-01','2020-12-01',true);
-INSERT INTO disponibility VALUES ('20998812E','20119290R','4','2020-01-01','2020-12-01',true);
+INSERT INTO disponibility VALUES ('20904567S','20654491U',1,'2020-01-01','2020-12-01',true);
+INSERT INTO disponibility VALUES ('20764726T','20884391O',1,'2020-01-02','2020-12-01',true);
+INSERT INTO disponibility VALUES ('23457855W','20119392I',3,'2020-01-01','2020-12-01',true);
+INSERT INTO disponibility VALUES ('20998812E','20119290R',4,'2020-01-01','2020-12-01',true);
 
 INSERT INTO company VALUES ('G34672398','Catering Miravete','Vicente Miravete','647352635','vmiravete@gmail.com','Calle Catalunya, Castelló de la Plana, Castellón',null,null);
 INSERT INTO company VALUES ('T46372819','Dra González','Sandra González','657489325','sandragonzalez@gmail.com','Calle Rafalafena, Castelló de la Plana, Castellon',null,null);

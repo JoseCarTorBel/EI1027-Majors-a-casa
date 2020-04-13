@@ -167,7 +167,7 @@ public class VolunteerController {
 
 
         model.addAttribute("volunteer",volunteerDao.getVolunteer(user.getDni()));
-        System.out.println(volunteerDao.getVolunteer(user.getDni()).toString());
+
         return "volunteer/update";
     }
 
@@ -222,7 +222,6 @@ public class VolunteerController {
             return "volunteer/newDisponibility";
         }
         try {
-            System.out.println(disponibility.toString());
             disponibilityDao.addDisponibility(disponibility);
         }catch (DuplicateKeyException dk){
             throw new MajorsACasaException("Ja tens una disponibility el dia "+disponibility.getDayOfWeek(),"CPduplicada");

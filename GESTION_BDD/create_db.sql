@@ -66,7 +66,7 @@ CREATE TABLE elderlypeople (
 CREATE TABLE disponibility (
         dnivolunteer      VARCHAR(30),
         dnielderlypeople      VARCHAR(30),
-        dayofweek     VARCHAR(1),
+        dayofweek     integer,
         initialtime     DATE,
         finaltime     DATE,
         open      boolean,

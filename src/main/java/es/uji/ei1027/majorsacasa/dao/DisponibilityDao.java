@@ -57,7 +57,7 @@ public class DisponibilityDao {
      * @param dayOfWeek, dniVolunteer
      * @return Disponibility
      */
-    public Disponibility getDisponibility(String dayOfWeek,String dniVolunteer){
+    public Disponibility getDisponibility(Integer dayOfWeek,String dniVolunteer){
         try{
             return  jdbcTemplate.queryForObject("SELECT * FROM disponibility WHERE dnivolunteer=? AND dayofweek=?",
                                     new DisponibilityRowMapper(),dniVolunteer,dayOfWeek);
