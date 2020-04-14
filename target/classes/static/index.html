@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
 <head>
 
@@ -22,7 +23,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Majors a casa</a>
+        <a class="navbar-brand" href="/">Majors a casa</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,14 +34,14 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/volunteer/add">Registrat com voluntari</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">Registrat com elderly</a>-->
+<!--                </li>-->
                 <li class="nav-item">
-                    <a class="nav-link" href="/volunteer/add">Registrat com voluntari</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Registrat com elderly</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Inicia sessio</a>
+                    <a class="nav-link" href="/login">Inicia sessió</a>
                 </li>
             </ul>
         </div>
@@ -53,10 +54,11 @@
     <!-- Heading Row -->
     <div class="row align-items-center my-5">
         <div class="col-lg-7">
-            <img class="img-fluid rounded mb-4 mb-lg-0" src="images/logo900x400.png" alt="">
+            <img class="img-fluid rounded mb-1 mb-lg-0" src="images/logo900x400.png" alt="">
         </div>
         <!-- /.col-lg-8 -->
         <div class="col-lg-5">
+
             <h1 class="font-weight-light">Majors a casa</h1>
             <p> Facilitar a les persones majors la permanència en el seu domicili i/o entorn familiar i social el major temps possible.</p>
             <a class="btn btn-primary" href="#">Contacta'ns per més informació</a>
@@ -66,18 +68,34 @@
     <!-- /.row -->
 
     <!-- Call to Action Well -->
-    <div class="card text-white bg-secondary my-5 py-4 text-center">
+    <div class="card text-white bg-secondary my-5 py-1 text-center">
         <div class="card-body">
-            <p class="text-white m-0">T`Oferim una serie de serveis per part dels nostres voluntaris i de les nostres empreses,
-                per els cuals obtindras diferents serveis al teu hogar, els cuals facilitaran la teua vida.</p>
+<!--            <p class="text-white m-0">T`Oferim una serie de serveis per part dels nostres voluntaris i de les nostres empreses,-->
+<!--                per els cuals obtindras diferents serveis al teu hogar, els cuals facilitaran la teua vida.</p>-->
+                <h1 class="text-while"> <i class="fa fa-phone" aria-hidden="true"></i> 96 291 82 00</h1>
+
         </div>
     </div>
 
     <!-- Content Row -->
     <div class="row">
+
         <div class="col-md-4 mb-5">
             <div class="card h-100">
-                <img class="card-img-top" src="../static/images/286x180.svg" alt="Card image cap">
+                <img class="card-img-top" src="images/volunteer.png" alt="Card image cap">
+                <div class="card-body">
+                    <h2 class="card-title"> Fes-te voluntari </h2>
+                    <p class="card-text"> Fes-te voluntari i ajuda a la gent més major. </p>
+                </div>
+                <div class="card-footer">
+                    <a href="volunteer/add" class="btn btn-primary btn-sm">Registra't</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <img class="card-img-top" src="images/elderly.png" alt="Card image cap">
                 <div class="card-body">
                     <h2 class="card-title">Demana ara mateix ajuda</h2>
                     <p class="card-text">¿Necessites ajuda a casa? No dubtes en ficar-te en contacte o registrar-te.</p>
@@ -88,25 +106,13 @@
             </div>
         </div>
         <!-- /.col-md-4 -->
-        <div class="col-md-4 mb-5">
-            <div class="card h-100">
-                <img class="card-img-top" src="../static/images/286x180.svg" alt="Card image cap">
-                <div class="card-body">
-                    <h2 class="card-title"> Fes-te voluntari </h2>
-                    <p class="card-text"> Fes-te voluntari i ajuda a la gent més major. </p>
-                </div>
-                <div class="card-footer">
-                    <a href="volunteer/add" class="btn btn-primary btn-sm">Registra't</a>
-                </div>
-            </div>
-        </div>
         <!-- /.col-md-4 -->
         <div class="col-md-4 mb-5">
             <div class="card h-100">
-                <img class="card-img-top" src="../static/images/286x180.svg" alt="Card image cap"> <!--TODO la ruta creo que es images/loquesea -->
+                <img class="card-img-top" src="images/empresa.png" alt="Card image cap">
                 <div class="card-body">
-                    <h2 class="card-title">Vols oferir els tela millorus serveis? </h2>
-                    <p class="card-text">Eres empressa i vols oferir els teus serveis? Sol·licita-ho i es ficare'm en contacte.</p>
+                    <h2 class="card-title">Vols oferir els teus serveis? </h2>
+                    <p class="card-text">Eres empressa i vols oferir els teus serveis? Sol·licita informació i es ficare'm en contacte.</p>
                 </div>
                 <div class="card-footer">
                     <a href="company/register" class="btn btn-primary btn-sm">Sol·licita informació</a>
@@ -126,7 +132,7 @@
 <article class="bg-secondary mb-3">
     <div class="card-body text-center">
         <h3 class="text-white mt-3">Majors a casa</h3>
-        <p class="h5 text-white">Contacte  <br> Telèfon: 65 796 25 47    Email: majorsacasa@gva.es </p>   <br>
+        <p class="h5 text-white">Contacte  <br> Telèfon: 96 291 82 00    Email: majorsacasa@gva.es </p>   <br>
         <p><a class="btn btn-warning" target="_blank" href="http://majorsacasa.gva.es/"> www.majorsacasa.gva.es
             <i class="fa fa-window-restore "></i></a></p>
     </div>
