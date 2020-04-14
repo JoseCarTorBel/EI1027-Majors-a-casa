@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
 
 <body>
 
@@ -18,7 +18,7 @@
 
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            <span class="input-group-text"> <i class="far fa-id-card"></i> </span>
                         </div>
                         <input  name="" class="form-control" placeholder="DNI / NIF" type="text" th:field="*{dni}">
                         <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></td>

@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
 
 <body>
 
@@ -18,12 +18,21 @@
 
                     <input  name="" class="form-control" placeholder="DNI / NIF" type="text" th:field="*{dniVolunteer}" hidden>
 
-
+                    Dia de la setmana:
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
                         </div>
-                        <input  name="" class="form-control" placeholder="Dia de la setmana:(1-7)" type="text" th:field="*{dayOfWeek}">
+
+                        <select th:field="*{dayOfWeek}">
+                            <option th:value="'1'" th:text="Dilluns"></option>
+                            <option th:value="'2'" th:text="Dimarts"></option>
+                            <option th:value="'3'" th:text="Dimecres"></option>
+                            <option th:value="'4'" th:text="Dijous"></option>
+                            <option th:value="'5'" th:text="Divendres"></option>
+                            <option th:value="'6'" th:text="Dissabte"></option>
+                            <option th:value="'7'" th:text="Diumenge"></option>
+                        </select>
                     </div> <!-- form-group// -->
                     Data de inici:
                     <div class="form-group input-group">
@@ -49,7 +58,10 @@
 
                 </form>
             </article>
+
+
     </div>
+    <a href="/" th:href="@{/volunteer/main}" class="btn btn-primary btn-lg">Tornar a la meua pàgina principal</a>
     </div>
     <!--container end.//-->
 
