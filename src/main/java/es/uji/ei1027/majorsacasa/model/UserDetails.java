@@ -48,11 +48,11 @@ public class UserDetails {
         if (this.rol.equals("Company"))
             return "company/main";
         if (this.rol.equals("ResponsableContratacion"))
-            return "cas/main"; // TODO crear 3 paginas para 3 roles de cas?
+            return "responsableContratacion/main";
         if (this.rol.equals("Comite"))
-            return "cas/main";
+            return "comite/main";
         if (this.rol.equals("SupervisorVolunatris"))
-            return "cas/main";
+            return "supervisorVoluntaris/main";
         return "/";
     }
 

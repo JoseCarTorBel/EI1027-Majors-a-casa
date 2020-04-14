@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Voluntaris</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Llista de Voluntaris</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Dni</th>
+        <th>Nom</th>
+        <th>Cognom</th>
+        <th>Phone</th>
+        <th>Fecha nacimiento</th>
+        <th>Direccion</th>
+        <th>Estado</th>
+        <th>Email</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="volunteer: ${volunteers}">
+        <td th:text="${volunteer.dni}"></td>
+        <td th:text="${volunteer.name}"></td>
+        <td th:text="${volunteer.secondName}"></td>
+        <td th:text="${volunteer.phone}"></td>
+        <td th:text="${volunteer.dateOfBirth}"></td>
+        <td th:text="${volunteer.postAddress}"></td>
+        <td th:text="${volunteer.state}"></td>
+        <td th:text="${volunteer.email}"></td>
+        <!-- TODO aqui tendra un input aceptar o denegar las peticiones -->
+        <td><a th:href="@{/volunteer/update/{dni}(dni=${volunteer.dni})}">Edita</a>
+        </td>
+        <td><a th:href="@{/volunteer/delete/{dni}(dni=${volunteer.dni})}">Borra</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="add">Afegeix Voluntari</a>
+</body>
+</html>

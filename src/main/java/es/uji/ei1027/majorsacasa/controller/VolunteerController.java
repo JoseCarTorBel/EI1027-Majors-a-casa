@@ -108,8 +108,19 @@ public class VolunteerController {
             return "redirect:/";
 
         }else{
-            model.addAttribute("volunteer",volunteerDao.getVolunteer(usuario.getDni()));
-            return "volunteer/main";
+            Volunteer volunteer = volunteerDao.getVolunteer(usuario.getDni());
+            if (volunteer.getState()=='A'){
+
+                 model.addAttribute("volunteer",volunteer);
+
+                    return "volunteer/main";
+            }else{
+                System.out.println("El voluntario no tiene su peticion activada por el cas");
+                session.invalidate();
+                //TODO redirija al main o a index o donde sea
+                //TODO muestre un mensaje de error
+                return "redirect:/";
+            }
         }
 
     }
