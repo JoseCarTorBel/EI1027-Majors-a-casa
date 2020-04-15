@@ -26,7 +26,7 @@
                     <th>Dia de la setmana</th>
                     <th>Data inici</th>
                     <th>Data fi</th>
-                    <th>Activa</th>
+                    <th>Estat</th>
                     <th></th>
 
                 </tr>
@@ -45,7 +45,7 @@
                     </td>
                     <td th:text="${disponibility.initialTime}"></td>
                     <td th:text="${disponibility.finalTime}"></td>
-                    <td th:text="${disponibility.open}"></td>
+                    <td th:text="${disponibility.state}"></td>
                     <td><a role="button" class="btn btn-danger" th:href="@{/volunteer/deleteDisponibility/{dayOfWeek}(dayOfWeek=${disponibility.dayOfWeek})}">Esborrar</a>
 
                     </td>

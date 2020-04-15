@@ -21,7 +21,8 @@ public class DisponibilityRowMapper implements RowMapper<Disponibility> {
         disponibility.setInitialTime(date != null ? date.toLocalDate() : null);
         date=rs.getDate("finaltime");
         disponibility.setFinalTime(date != null ? date.toLocalDate() : null);
-        disponibility.setOpen(rs.getBoolean("open"));
+        String state = rs.getString("state");
+        disponibility.setState(state!=null?state.charAt(0):null);
 
 
         return disponibility;

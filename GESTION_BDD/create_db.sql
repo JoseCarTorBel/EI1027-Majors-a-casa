@@ -69,7 +69,7 @@ CREATE TABLE disponibility (
         dayofweek     integer,
         initialtime     DATE,
         finaltime     DATE,
-        open      boolean,
+        state      VARCHAR(1),
         
         CONSTRAINT cp_book PRIMARY KEY (dnivolunteer, dayofweek),  -- CP
         CONSTRAINT ca_book_vol FOREIGN KEY (dnivolunteer) REFERENCES volunteer(dni) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a volunteer

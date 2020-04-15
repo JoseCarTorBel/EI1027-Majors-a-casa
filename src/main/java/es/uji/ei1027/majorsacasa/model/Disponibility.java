@@ -12,18 +12,18 @@ public class Disponibility {
     private LocalDate initialTime;
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate finalTime;
-    private boolean open;
+    private Character state;
 
     public Disponibility(){}
 
 
-    public Disponibility(String dniVolunteer, String dniElderlyPeople, Integer dayOfWeek, LocalDate initialTime, LocalDate finalTime, boolean open) {
+    public Disponibility(String dniVolunteer, String dniElderlyPeople, Integer dayOfWeek, LocalDate initialTime, LocalDate finalTime, Character state) {
         this.dniVolunteer = dniVolunteer;
         this.dniElderlyPeople = dniElderlyPeople;
         this.dayOfWeek = dayOfWeek;
         this.initialTime = initialTime;
         this.finalTime = finalTime;
-        this.open=open;
+        this.state=state;
     }
 
     public String getDniVolunteer() {
@@ -42,12 +42,12 @@ public class Disponibility {
         this.dniElderlyPeople = dniElderlyPeople;
     }
 
-    public boolean isOpen() {
-        return open;
+    public Character getState() {
+        return state;
     }
 
-    public void setOpen(boolean open) {
-        this.open = open;
+    public void setState(Character state) {
+        this.state = state;
     }
 
     public Integer getDayOfWeek() {
@@ -82,7 +82,7 @@ public class Disponibility {
                 ", dayOfWeek='" + dayOfWeek + '\'' +
                 ", initialTime=" + initialTime +
                 ", finalTime=" + finalTime +
-                ", open=" + open +
+                ", state=" + state +
                 '}';
     }
 }
