@@ -71,8 +71,8 @@ public class VolunteerController {
 
         if (!usuario.getRol().equals("Volunteer")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            //TODO redirija al main o a index o donde sea
-            return "redirect:/";
+            throw  new MajorsACasaException("No pots accedir si no te loegas com voluntari","AccesDenied");
+
 
         }else{
             model.addAttribute("disponibilities", disponibilityDao.getDisponibilitys(usuario.getDni()));
@@ -102,9 +102,7 @@ public class VolunteerController {
 
         if (!usuario.getRol().equals("Volunteer")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            //TODO redirija al main o a index o donde sea
-            //TODO muestre un mensaje de error
-            return "redirect:/";
+            throw  new MajorsACasaException("No pots accedir si no te loegas com voluntari","AccesDenied");
 
         }else{
             Volunteer volunteer = volunteerDao.getVolunteer(usuario.getDni());
@@ -116,9 +114,7 @@ public class VolunteerController {
             }else{
                 System.out.println("El voluntario no tiene su peticion activada por el cas");
                 session.invalidate();
-                //TODO redirija al main o a index o donde sea
-                //TODO muestre un mensaje de error
-                return "redirect:/";
+                throw  new MajorsACasaException("No pots accedir, tens que esperar a que el CAS acepte la teua solicitud","AccesDenied");
             }
         }
 
@@ -134,9 +130,7 @@ public class VolunteerController {
             model.addAttribute("volunteer", new Volunteer());
             return "volunteer/add";
         }else{
-            //TODO redirija al main o a index o donde sea
-            //TODO muestre un mensaje de error
-            return "redirect:/";
+            throw  new MajorsACasaException("Ja estas logejat, si vols registrarte fes logout","AccesDenied");
 
         }
     }
@@ -178,9 +172,7 @@ public class VolunteerController {
 
         if (!user.getRol().equals("Volunteer")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            //TODO redirija al main o a index o donde sea
-            //TODO muestre un mensaje de error
-            return "redirect:/";
+            throw  new MajorsACasaException("No pots accedir si no te loegas com voluntari","AccesDenied");
         }
 
 
@@ -196,7 +188,6 @@ public class VolunteerController {
             BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "volunteer/update";
-        //TODO (XIMO) comporbar porque update no updateeaxd
         volunteerDao.updateVolunteer(volunteer);
         return "redirect:main";
     }
@@ -221,9 +212,8 @@ public class VolunteerController {
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (!user.getRol().equals("Volunteer")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            //TODO redirija al main o a index o donde sea
-            //TODO muestre un mensaje de error
-            return "redirect:/";
+            throw  new MajorsACasaException("No pots accedir si no te loegas com voluntari","AccesDenied");
+
         }
 
         model.addAttribute("disponibility",new Disponibility());

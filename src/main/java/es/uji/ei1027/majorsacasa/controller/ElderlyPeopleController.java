@@ -106,9 +106,7 @@ public class ElderlyPeopleController {
 
         if (usuario.getRol()!="Elderly"){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            //TODO redirija al main o a index o donde sea
-            //TODO muestre un mensaje de error
-            return "redirect:/";
+            throw  new MajorsACasaException("No pots accedir si no te loegas com elderly","AccesDenied");
 
         }else{
             return "elderlyPeople/main";
@@ -127,9 +125,8 @@ public class ElderlyPeopleController {
 
         if (usuario.getRol()!="Elderly"){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            //TODO redirija al main o a index o donde sea
-            //TODO muestre un mensaje de error
-            return "redirect:/";
+            throw  new MajorsACasaException("No pots accedir si no te loegas com elderly","AccesDenied");
+
 
         }else{
             return "elderlyPeople/volunteersManagement";
@@ -154,9 +151,7 @@ public class ElderlyPeopleController {
 
         if (usuario.getRol()!="Elderly"){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            //TODO redirija al main o a index o donde sea
-            //TODO muestre un mensaje de error
-            return "redirect:/";
+            throw  new MajorsACasaException("No pots accedir si no te loegas com elderly","AccesDenied");
 
         }else{
             model.addAttribute("disponibilities", disponibilityDao.getDisponibilitiesElderly(usuario.getDni()));

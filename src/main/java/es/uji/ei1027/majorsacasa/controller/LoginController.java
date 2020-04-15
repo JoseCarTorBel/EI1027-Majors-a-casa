@@ -49,8 +49,7 @@ public class LoginController {
             model.addAttribute("user", new UserDetails());
             return "login";
         }else{
-            //TODO mensaje error ya esta logeado
-            return "redirect:/";
+            throw  new MajorsACasaException("Ja estas logejat","AccesDenied");
         }
     }
 

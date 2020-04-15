@@ -38,8 +38,7 @@ public class CompanyController {
             model.addAttribute("company",new Company());
             return "company/register";
         }else{
-            //todo mensaje error
-            return "redirect:/";
+            throw  new MajorsACasaException("Ja estas logejat, si vols registrarte fes logout","AccesDenied");
         }
 
     }
@@ -82,7 +81,8 @@ public class CompanyController {
         UserDetails user =  (UserDetails) session.getAttribute("user");
 
         if(!user.getRol().equals("Company")){
-            return "redirect:/";
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No pots accedir si no te loegas com company","AccesDenied");
         }
 
         // TODO La empresa deberá de tener un correo asignado
@@ -103,7 +103,8 @@ public class CompanyController {
 
         UserDetails user =  (UserDetails) session.getAttribute("user");
         if(!user.getRol().equals("Company")){
-            return "redirect:/";
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No pots accedir si no te loegas com company","AccesDenied");
         }
 
         model.addAttribute("company",companyDao.getCompany(user.getDni()));
