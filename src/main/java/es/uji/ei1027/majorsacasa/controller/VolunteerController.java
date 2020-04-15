@@ -92,8 +92,6 @@ public class VolunteerController {
     @RequestMapping("/main")
     public String getVolunteerMain(HttpSession session, Model model){
 
-
-
         if (session.getAttribute("user") == null)
         {
             model.addAttribute("user", new UserDetails());
@@ -113,7 +111,7 @@ public class VolunteerController {
 
                  model.addAttribute("volunteer",volunteer);
 
-                    return "volunteer/main";
+                 return "volunteer/main";
             }else{
                 System.out.println("El voluntario no tiene su peticion activada por el cas");
                 session.invalidate();
@@ -161,12 +159,12 @@ public class VolunteerController {
     @RequestMapping(value="/update" ,method = RequestMethod.GET)
     public String update(Model model,HttpSession session){
 
-
         if (session.getAttribute("user") == null)
         {
             model.addAttribute("user", new UserDetails());
             return "login";
         }
+
         UserDetails user = (UserDetails) session.getAttribute("user");
 
         if (!user.getRol().equals("Volunteer")){

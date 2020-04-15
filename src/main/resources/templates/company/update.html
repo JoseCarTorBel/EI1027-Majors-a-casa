@@ -1,34 +1,35 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
-
+<head>
+    <meta charset="UTF-8">
+    <title>Cambiar dades</title>
+</head>
 <body>
 
 <div th:replace="fragments/barraImagen"></div>
-<div th:replace="fragments/barraSuperiorVolunteer"></div>
-<br>
+<div th:replace="fragments/barraSuperior"></div>
+
 <div class="container">
     <div class="card bg-light">
         <article class="card-body mx-auto" style="max-width: 400px;">
-            <h4 class="card-title mt-3 text-center">Modificar el meus datos</h4>
+            <h4 class="card-title mt-3 text-center">Sol·licitud d'empressa</h4>
 
-            <form action="#" th:action="@{/volunteer/update}"
-                  th:object="${volunteer}" method="post">
-
-                <input  name="" class="form-control" placeholder="Nombre" type="text" th:field="*{dni}" hidden>
-                <input  name="" class="form-control" placeholder="Nombre" type="text" th:field="*{endDate}" hidden>
-                <input  name="" class="form-control" placeholder="Nombre" type="text" th:field="*{state}" hidden>
-                <input  name="" class="form-control" placeholder="Nombre" type="text" th:field="*{username}" hidden>
-
-
-
+            <form action="#" th:action="@{/company/register}"
+                  th:object="${company}" method="post">
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
-                    <input  name="" class="form-control" placeholder="Nombre" type="text" th:field="*{name}">
+                    <input  name="" class="form-control" placeholder="CIF" type="text" th:field="*{cif}">
+                    <td th:if="${#fields.hasErrors('cif')}" th:errors="*{cif}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Nom de l'empressa" type="text" th:field="*{name}">
                     <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
                 </div> <!-- form-group// -->
 
@@ -36,9 +37,19 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
-                    <input  name="" class="form-control" placeholder="Apellido" type="text" th:field="*{secondName}">
-                    <td th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}"></td>
+                    <input  name="" class="form-control" placeholder="Persona de contacte" type="text" th:field="*{personalContact}">
+                    <td th:if="${#fields.hasErrors('personalContact')}" th:errors="*{personalContact}"></td>
                 </div> <!-- form-group// -->
+
+<!--                TODO CUANDO SE AÑADA EL NIF A LA BBDD-->
+<!--                <div class="form-group input-group">-->
+<!--                    <div class="input-group-prepend">-->
+<!--                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>-->
+<!--                    </div>-->
+<!--                    <input  name="" class="form-control" placeholder="NIF Persona de contacte" type="text" th:field="*{nifpersonalContact}">-->
+<!--                    <td th:if="${#fields.hasErrors('nifpersonalContact')}" th:errors="*{nifpersonalContact}"></td>-->
+<!--                </div> &lt;!&ndash; form-group// &ndash;&gt;-->
+<!--                -->
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -52,13 +63,13 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-phone" ></i> </span>
                     </div>
-                    <input name="" class="form-control" placeholder="Teléfono" type="text"th:field="*{phone}">
-                    <td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></td>
+                    <input name="" class="form-control" placeholder="Telèfon de contacte" type="text"th:field="*{phoneContact}">
+                    <td th:if="${#fields.hasErrors('phoneContact')}" th:errors="*{phoneContact}"></td>
                 </div> <!-- form-group// -->
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-building" aria-hidden="true"></i> </span>
+                        <span class="input-group-text"> <i class="fa fa-map-marker" aria-hidden="true"></i> </span>
                     </div>
                     <input name="" class="form-control" placeholder="Dirección postal" type="text" th:field="*{postAddress}">
                     <td th:if="${#fields.hasErrors('postAddress')}" th:errors="*{postAddress}"></td>
@@ -66,17 +77,9 @@
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
-                    </div>
-                    <input name="" class="form-control" placeholder="Data de naixement" type="date" th:field="*{dateOfBirth}">
-                    <td th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></td>
-                </div> <!-- form-group// -->
-
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
-                    <input class="form-control" placeholder="Contraseña" type="password" th:field="*{passwd}">
+                    <input class="form-control" placeholder="Contrasenya" type="password" th:field="*{passwd}">
                     <td th:if="${#fields.hasErrors('passwd')}" th:errors="*{passwd}"></td>
                 </div> <!-- form-group// -->
 
@@ -84,25 +87,20 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
-                    <input  class="form-control" placeholder="Repite contraseña" type="password" th:field="*{passwdCheck}" >
+                    <input  class="form-control" placeholder="Repetisca contrasenya" type="password" th:field="*{passwdCheck}" >
                     <td th:if="${#fields.hasErrors('passwdCheck')}" th:errors="*{passwdCheck}"></td>
-
                 </div> <!-- form-group// -->
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block"> Modificar compter  </button>
+                    <button type="submit" class="btn btn-primary btn-block"> Actualitza dades  </button>
                 </div> <!-- form-group// -->
 
             </form>
-
         </article>
-
     </div>
-    <a href="/" th:href="@{/volunteer/main}" class="btn btn-primary btn-lg">Tornar a la meua pàgina principal</a>
 </div>
-<!--container end.//-->
+
 
 <div th:replace="fragments/footPage"></div>
-<div class="container">
 </body>
 </html>
