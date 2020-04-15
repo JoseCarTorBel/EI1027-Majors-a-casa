@@ -42,9 +42,16 @@ public class LoginController {
     private UserDao userDao;
 
     @RequestMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("user", new UserDetails());
-        return "login";
+    public String login(Model model,HttpSession session) {
+
+        if (session.getAttribute("user") == null) {
+
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }else{
+            //TODO mensaje error ya esta logeado
+            return "redirect:/";
+        }
     }
 
     @RequestMapping(value="/login", method=RequestMethod.POST)

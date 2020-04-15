@@ -31,6 +31,7 @@ public class VolunteerController {
     }
 
 
+
     // Probar a mostrar la informacion de 1 voluntario
     @RequestMapping("/provaVoluntari")
     public String provaUnVoluntari(Model model) {
@@ -127,9 +128,17 @@ public class VolunteerController {
 
     // LLama a la vista pasandole un objeto voluntario
     @RequestMapping(value="/add")
-    public String addVolunteer(Model model){
-        model.addAttribute("volunteer",new Volunteer());
-        return "volunteer/add";
+    public String addVolunteer(Model model,HttpSession session){
+
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("volunteer", new Volunteer());
+            return "volunteer/add";
+        }else{
+            //TODO redirija al main o a index o donde sea
+            //TODO muestre un mensaje de error
+            return "redirect:/";
+
+        }
     }
 
     // Una vez le damos al sumbit la vista devuelve el objeto volunteer con todos los atributos

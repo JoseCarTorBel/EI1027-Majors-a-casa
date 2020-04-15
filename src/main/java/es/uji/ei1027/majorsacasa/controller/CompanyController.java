@@ -33,9 +33,15 @@ public class CompanyController {
     }
 
     @RequestMapping(value="/register")
-    public String addCompany(Model model){
-        model.addAttribute("company",new Company());
-        return "company/register";
+    public String addCompany(Model model,HttpSession session){
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("company",new Company());
+            return "company/register";
+        }else{
+            //todo mensaje error
+            return "redirect:/";
+        }
+
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
