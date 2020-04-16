@@ -9,6 +9,8 @@ INSERT INTO person VALUES ('V_Juan','Gonzalez Lopez','20764726T','679564357','19
 INSERT INTO person VALUES ('V_Jaime','Ibañez Torro','23457855W','692458891','2000-09-09','Avenida Vinatea, Alcora, Castellon','jaimito22@yahoo.es','v_jaime', 'v_jaime');
 INSERT INTO person VALUES ('V_Pepe','Reina Beltran','20998812E','622198744','1997-11-09','Plaza la paz, Castellon de la plana, Castellon','pepereina@uji.es','v_pepe', 'v_pepe');
 INSERT INTO person VALUES ('V_Laura','Martinez Palotes','20912333Y','623317367','2000-11-09','Plaza la lola, Alcora, Castellon','laurita@uji.es','v_laura', 'v_laura');
+INSERT INTO person VALUES ('V_Marcos','Kinto Trujillo','20998877E','655442123','2010-10-16','Plaza Juan, Valencia, Valencia','marquitosss@uji.es','v_marcos', 'v_marcos');
+INSERT INTO person VALUES ('V_Lucia','De la cueva Mijatres','20112233Y','655223991','2001-11-20','Plaza Jaime I, Vinaroz, Castellon','luciadelacu@uji.es','v_lucia', 'v_lucia');
 
 
 INSERT INTO person VALUES ('EP_Jose Carlos','Torro Belda','20654491U','672945673','1950-02-04','Ronda Vinatea, Ontinyete, Alicante','josecarlos@uji.es','EP_Jose_Carlos', 'EP_Jose_Carlos');
@@ -22,17 +24,15 @@ INSERT INTO volunteer VALUES ('20764726T','2021-01-01','R');
 INSERT INTO volunteer VALUES ('23457855W','2024-01-01','A');
 INSERT INTO volunteer VALUES ('20998812E','2027-01-01','P');
 INSERT INTO volunteer VALUES ('20912333Y','2021-01-01','A');
+INSERT INTO volunteer VALUES ('20998877E',null,'P');
+INSERT INTO volunteer VALUES ('20112233Y',null,'A');
 
 INSERT INTO hobbies VALUES ('20904567S','Tocar la Trompeta');
 INSERT INTO hobbies VALUES ('20904567S','Correr');
-
 INSERT INTO hobbies VALUES ('20764726T','Nadar');
 INSERT INTO hobbies VALUES ('20764726T','Pasear por la montaña');
-
 INSERT INTO hobbies VALUES ('23457855W','Bailar');
-
 INSERT INTO hobbies VALUES ('20998812E','Dormir');
-
 INSERT INTO hobbies VALUES ('20912333Y','Ver la TV');
 
 INSERT INTO elderlypeople VALUES ('20654491U','Tengo hambre','20914826Y');
@@ -42,9 +42,15 @@ INSERT INTO elderlypeople VALUES ('20119290R','Necesito que me limpien','1902909
 INSERT INTO elderlypeople VALUES ('20917888Y','Tengo mucho dinero',null);
 
 INSERT INTO disponibility VALUES ('20904567S','20654491U',1,'2020-01-01','2020-12-01','A');
+INSERT INTO disponibility VALUES ('20904567S',null,2,'2020-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20904567S',null,3,'2020-01-01','2020-12-01','P');
 INSERT INTO disponibility VALUES ('20764726T','20884391O',1,'2020-01-02','2020-12-01','A');
-INSERT INTO disponibility VALUES ('23457855W','20119392I',3,'2020-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('23457855W','20119392I',3,'2020-01-01','2020-12-01','A');
 INSERT INTO disponibility VALUES ('20998812E','20119290R',4,'2020-01-01','2020-12-01','R');
+INSERT INTO disponibility VALUES ('20998877E',null,4,'2020-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20112233Y',null,1,'2019-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20998877E',null,3,'2020-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20112233Y',null,2,'2019-01-01','2020-12-01','P');
 
 INSERT INTO company VALUES ('G34672398','Catering Miravete','Vicente Miravete','647352635','vmiravete@gmail.com','Calle Catalunya, Castelló de la Plana, Castellón',null,null);
 INSERT INTO company VALUES ('T46372819','Dra González','Sandra González','657489325','sandragonzalez@gmail.com','Calle Rafalafena, Castelló de la Plana, Castellon',null,null);
