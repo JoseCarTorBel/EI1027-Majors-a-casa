@@ -8,7 +8,7 @@
 
 
 <div th:replace="fragments/barraImagen"></div>
-<div th:replace="fragments/barraSuperior"></div><!--TODO su propia barra-->
+<div th:replace="fragments/barraSuperiorCasVolunteer"></div>
 
 <br>
 
@@ -19,8 +19,29 @@
         <article class="card-body mx-auto" style="max-width: 400px;">
             <h4 class="card-title mt-3 text-center">Pagina principal del responsable de voluntarios</h4>
 
-           Aquí se mostrará un mensaje de bienvenida e información de interés para el usuario.
-
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Solicituds de registre de voluntaris</h5>
+                            <p class="card-text">En aquesta pàgina vosté podrà aceptar-rebutjar les solicituds de registre de voluntaris.</p><br>
+                            <a href="/" th:href="@{/supervisorVoluntaris/requestPendent}" class="btn btn-primary btn-lg">Solicituds</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestio de Voluntaris</h5>
+                            <p class="card-text">En aquesta pàgina vosté podrà accedir a la llista del voluntaris per a modificar les seues dades</p>
+                            <a href="/" th:href="@{/supervisorVoluntaris/listVolunteers}" class="btn btn-primary btn-lg">Voluntaris</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <a href="/" th:href="@{/elderlyPeople/main}" class="btn btn-primary btn-lg">Tornar a la pàgina principal</a>
+    </div>
 
 
 

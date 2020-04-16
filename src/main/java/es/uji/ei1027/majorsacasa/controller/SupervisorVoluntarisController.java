@@ -41,13 +41,11 @@ public class SupervisorVoluntarisController {
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails usuario = (UserDetails) session.getAttribute("user");
+        UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (!usuario.getRol().equals("SupervisorVolunatris")){
+        if (!user.getRol().equals("SupervisorVolunatris")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            //TODO redirija al main o a index o donde sea
-            //TODO muestre un mensaje de error
-            return "redirect:/";
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a CAS supervisor voluntaris  per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
         }else{
             return "supervisorVoluntaris/main";
@@ -56,24 +54,93 @@ public class SupervisorVoluntarisController {
     }
 
     @RequestMapping("/requestPendent")
+    public String getRequestVolunteerList(Model model,HttpSession session){
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (!user.getRol().equals("SupervisorVolunatris")) {
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a CAS supervisor voluntaris  per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        }
+
+
+        model.addAttribute("volunteers",volunteerDao.getVolunteersPendent());
+        return "supervisorVoluntaris/requestPendent";
+    }
+
+
+    @RequestMapping("/listVolunteers")
     public String getVolunteerList(Model model,HttpSession session){
         if (session.getAttribute("user") == null)
         {
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails usuario = (UserDetails) session.getAttribute("user");
+        UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (!usuario.getRol().equals("SupervisorVolunatris")) {
+        if (!user.getRol().equals("SupervisorVolunatris")) {
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            //TODO redirija al main o a index o donde sea
-            //TODO muestre un mensaje de error
-            return "redirect:/";
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a CAS supervisor voluntaris  per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
         }
 
 
-        model.addAttribute("volunteers",volunteerDao.getVolunteersPendent());
-        return "supervisorVoluntaris/requestPendent";
+        model.addAttribute("volunteers",volunteerDao.getVolunteerList());
+        return "supervisorVoluntaris/listVolunteers";
+    }
+
+
+    @RequestMapping(value="/accept/{dniVolunteer}", method = {RequestMethod.GET})
+    public String acceptVolunteer(@PathVariable String dniVolunteer,HttpSession session){
+        volunteerDao.acceptVolunteer(dniVolunteer);
+        return "redirect:../requestPendent";
+    }
+
+    @RequestMapping(value="/deny/{dniVolunteer}", method = {RequestMethod.GET})
+    public String denyVolunteer(@PathVariable String dniVolunteer,HttpSession session){
+        volunteerDao.denyVolunteer(dniVolunteer);
+        return "redirect:../requestPendent";
+    }
+
+    // Cuando le damos al boton editar en la lista, llamamos a este metodo el cual llama a la vista correspondiente
+    //      pasandole el objeto voluntario
+    @RequestMapping(value="/update/{dniVolunteer}" ,method = RequestMethod.GET)
+    public String update(Model model,HttpSession session,@PathVariable String dniVolunteer){
+
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (!user.getRol().equals("SupervisorVolunatris")){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a CAS supervisor voluntaris  per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        }
+        Volunteer volunteer = volunteerDao.getVolunteer(dniVolunteer);
+        session.setAttribute("passwd",volunteer.getPasswd());
+        model.addAttribute("volunteer",volunteer);
+
+        return "supervisorVoluntaris/update";
+    }
+
+    // Una vez le damos a sumbit se actualiza el voluntario en el dao
+    @RequestMapping(value="/update", method=RequestMethod.POST)
+    public String processUpdateSubmit(
+            @ModelAttribute("volunteer") Volunteer volunteer,
+            BindingResult bindingResult,HttpSession session) {
+        if (bindingResult.hasErrors())
+            return "supervisorVoluntaris/update";
+        volunteer.setPasswd((String) session.getAttribute("passwd"));
+
+
+        volunteerDao.updateVolunteer(volunteer);
+        return "redirect:main";
     }
 
 

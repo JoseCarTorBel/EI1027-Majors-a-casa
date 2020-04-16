@@ -1,0 +1,134 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Modificar els meus datos</title>
+
+</head>
+<body>
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorVolunteer"></div>
+<br>
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Modificar el datos de un voluntari</h4>
+
+            <form action="#" th:action="@{/supervisorVoluntaris/update}"
+                  th:object="${volunteer}" method="post">
+
+
+
+
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Dni" type="text" th:field="*{dni}" readonly>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Username" type="text" th:field="*{username}" readonly>
+                </div> <!-- form-group// -->
+
+
+
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Nombre" type="text" th:field="*{name}">
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Apellido" type="text" th:field="*{secondName}">
+                    <td th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Email" type="email" th:field="*{email}">
+                    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone" ></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Teléfono" type="text"th:field="*{phone}">
+                    <td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building" aria-hidden="true"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Dirección postal" type="text" th:field="*{postAddress}">
+                    <td th:if="${#fields.hasErrors('postAddress')}" th:errors="*{postAddress}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Data de naixement" type="date" th:field="*{dateOfBirth}">
+                    <td th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></td>
+                </div> <!-- form-group// -->
+
+                <input class="form-control" placeholder="Contraseña" type="password" th:field="*{passwd}" hidden>
+                <input  class="form-control" placeholder="Repite contraseña" type="password" th:field="*{passwdCheck}" hidden >
+
+                Fecha de baixa:
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Fecha de baixa" type="date" th:field="*{endDate}">
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+                </div> <!-- form-group// -->
+
+               Estat:
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+                    </div>
+
+                    <select th:field="*{state}">
+                        <option th:value="'P'" th:text="Pendent"></option>
+                        <option th:value="'R'" th:text="Rebutjada"></option>
+                        <option th:value="'A'" th:text="Acceptada"></option>
+                    </select>
+                </div> <!-- form-group// -->
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Modificar compter  </button>
+                </div> <!-- form-group// -->
+
+            </form>
+
+        </article>
+
+    </div>
+    <a href="/" th:href="@{/volunteer/main}" class="btn btn-primary btn-lg">Tornar a la meua pàgina principal</a>
+</div>
+<!--container end.//-->
+
+<div th:replace="fragments/footPage"></div>
+<div class="container">
+</body>
+</html>

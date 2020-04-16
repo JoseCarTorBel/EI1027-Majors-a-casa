@@ -89,12 +89,22 @@ public class VolunteerDao {
     }
 
 
+    public void acceptVolunteer(String dniVolunteer){
+        updateState(dniVolunteer,"A");
+    }
+
+    public void denyVolunteer(String dniVolunteer){
+        updateState(dniVolunteer,"R");
+
+    }
+
 
     /**
      * update a volunteer
      * @param dni, newState
      */
     public void updateState(String dni, String newState) {
+        System.out.println(dni+"  "+newState);
         jdbcTemplate.update("UPDATE volunteer SET state=? WHERE dni=?",newState,dni);
     }
 

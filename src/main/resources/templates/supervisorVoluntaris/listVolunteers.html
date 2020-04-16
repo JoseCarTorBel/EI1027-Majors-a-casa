@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Solicituds de registre</title>
+    <title>Llista de Voluntaris</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
@@ -13,7 +13,7 @@
 <div class="container">
     <div class="card bg-light">
         <article class="card-body" style="max-width: 100%;">
-            <h4 class="card-title mt-3 text-center">Llista de Solicituds de registre</h4>
+            <h4 class="card-title mt-3 text-center">Llista de Voluntaris</h4>
 
             <table class="table table-striped">
                 <thead>
@@ -45,8 +45,6 @@
 
                     </td>
                     <td th:text="${volunteer.email}"></td>
-                    <td><a role="button" class="btn btn-success"th:href="@{/supervisorVoluntaris/accept/{dniVolunteer}(dniVolunteer=${volunteer.dni})}">Accept</a>
-                    <td><a role="button" class="btn btn-danger"th:href="@{/supervisorVoluntaris/deny/{dniVolunteer}(dniVolunteer=${volunteer.dni})}">Deny</a>
                     <td><a role="button" class="btn btn-warning"th:href="@{/supervisorVoluntaris/update/{dniVolunteer}(dniVolunteer=${volunteer.dni})}">Modificar</a>
 
 
