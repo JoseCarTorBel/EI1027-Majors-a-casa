@@ -67,15 +67,15 @@ public class VolunteerController {
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails usuario = (UserDetails) session.getAttribute("user");
+        UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (!usuario.getRol().equals("Volunteer")){
+        if (!user.getRol().equals("Volunteer")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No pots accedir si no te loegas com voluntari","AccesDenied");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
 
         }else{
-            model.addAttribute("disponibilities", disponibilityDao.getDisponibilitys(usuario.getDni()));
+            model.addAttribute("disponibilities", disponibilityDao.getDisponibilitys(user.getDni()));
 
             return "volunteer/timetable";
         }
@@ -98,14 +98,14 @@ public class VolunteerController {
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails usuario = (UserDetails) session.getAttribute("user");
+        UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (!usuario.getRol().equals("Volunteer")){
+        if (!user.getRol().equals("Volunteer")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No pots accedir si no te loegas com voluntari","AccesDenied");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
         }else{
-            Volunteer volunteer = volunteerDao.getVolunteer(usuario.getDni());
+            Volunteer volunteer = volunteerDao.getVolunteer(user.getDni());
             if (volunteer.getState()=='A'){
 
                  model.addAttribute("volunteer",volunteer);
@@ -114,7 +114,7 @@ public class VolunteerController {
             }else{
                 System.out.println("El voluntario no tiene su peticion activada por el cas");
                 session.invalidate();
-                throw  new MajorsACasaException("No pots accedir, tens que esperar a que el CAS acepte la teua solicitud","AccesDenied");
+                throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
             }
         }
 
@@ -130,7 +130,8 @@ public class VolunteerController {
             model.addAttribute("volunteer", new Volunteer());
             return "volunteer/add";
         }else{
-            throw  new MajorsACasaException("Ja estas logejat, si vols registrarte fes logout","AccesDenied");
+            UserDetails user = (UserDetails) session.getAttribute("user");
+            throw  new MajorsACasaException("No pots accedir al login perquè ja has iniciat sessió.","AccesDenied","../"+user.getMainPage());
 
         }
     }
@@ -172,7 +173,7 @@ public class VolunteerController {
 
         if (!user.getRol().equals("Volunteer")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No pots accedir si no te loegas com voluntari","AccesDenied");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
         }
 
 
@@ -212,7 +213,7 @@ public class VolunteerController {
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (!user.getRol().equals("Volunteer")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No pots accedir si no te loegas com voluntari","AccesDenied");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
         }
 

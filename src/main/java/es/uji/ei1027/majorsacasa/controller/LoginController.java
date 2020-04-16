@@ -49,7 +49,8 @@ public class LoginController {
             model.addAttribute("user", new UserDetails());
             return "login";
         }else{
-            throw  new MajorsACasaException("Ja estas logejat","AccesDenied");
+            UserDetails user = (UserDetails) session.getAttribute("user");
+            throw  new MajorsACasaException("Ja estas logejat","AccesDenied","../"+user.getMainPage());
         }
     }
 

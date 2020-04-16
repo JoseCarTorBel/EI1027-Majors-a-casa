@@ -102,11 +102,11 @@ public class ElderlyPeopleController {
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails usuario = (UserDetails) session.getAttribute("user");
+        UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (usuario.getRol()!="Elderly"){
+        if (user.getRol()!="Elderly"){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No pots accedir si no te loegas com elderly","AccesDenied");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a Elderly per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
         }else{
             return "elderlyPeople/main";
@@ -121,11 +121,11 @@ public class ElderlyPeopleController {
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails usuario = (UserDetails) session.getAttribute("user");
+        UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (usuario.getRol()!="Elderly"){
+        if (user.getRol()!="Elderly"){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No pots accedir si no te loegas com elderly","AccesDenied");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a Elderly per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
 
         }else{
@@ -147,14 +147,14 @@ public class ElderlyPeopleController {
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails usuario = (UserDetails) session.getAttribute("user");
+        UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (usuario.getRol()!="Elderly"){
+        if (user.getRol()!="Elderly"){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No pots accedir si no te loegas com elderly","AccesDenied");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
         }else{
-            model.addAttribute("disponibilities", disponibilityDao.getDisponibilitiesElderly(usuario.getDni()));
+            model.addAttribute("disponibilities", disponibilityDao.getDisponibilitiesElderly(user.getDni()));
             return "elderlyPeople/meusVoluntaris";
         }
 

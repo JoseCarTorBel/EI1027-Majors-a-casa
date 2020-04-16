@@ -15,6 +15,7 @@ public class MajorsACasaControllerAdvice {
         ModelAndView mav = new ModelAndView("errors/exceptionError");
         mav.addObject("message", ex.getMessage());
         mav.addObject("errorName", ex.getErrorName());
+        mav.addObject("returnPath", ex.getReturnPath());
         return mav;
     }
 
