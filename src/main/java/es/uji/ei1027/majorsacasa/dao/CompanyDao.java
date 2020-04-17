@@ -73,16 +73,23 @@ public class CompanyDao {
 
     public List<ElderlyPeople> getServicesToDo(String cif){
         try {
-            return jdbcTemplate.query(
-                        "SELECT person.*, ep.justification,ep.dnisocialworker " +
-                            "FROM person JOIN elderlypeople AS ep ON person.dni =ep.dni " +
-                            "WHERE ep.dni IN" +
-                            "(  SELECT dnielderlypeople " +
-                                "FROM request " +
-                                "WHERE serviceType = (  SELECT service " +
-                                "                       FROM contract " +
-                                "                       WHERE cifcompany=?));\n"
-                    ,new ElderlyPeopleRowMapper(), cif);
+//            return jdbcTemplate.query(
+//                        "SELECT person.*, ep.justification,ep.dnisocialworker " +
+//                            "FROM person JOIN elderlypeople AS ep ON person.dni =ep.dni " +
+//                            "WHERE ep.dni IN" +
+//                            "(  SELECT dnielderlypeople " +
+//                                "FROM request " +
+//                                "WHERE serviceType = (  SELECT service " +
+//                                "                       FROM contract " +
+//                                "                       WHERE cifcompany=?));\n"
+//                    ,new ElderlyPeopleRowMapper(), cif);
+
+                return jdbcTemplate.query(
+                        "SELECT person.*, ep.justification,ep.dnisocialworker \n" +
+                                "FROM person     JOIN elderlypeople AS ep ON person.dni =ep.dni\n" +
+                                "                JOIN request AS req ON ep.dni=req.dniElderlyPeople \n" +
+                                "                JOIN contract AS con ON req.servicetype = con.service WHERE con.cifcompany=?;"
+                                        ,new ElderlyPeopleRowMapper(), cif);
 
         }catch(EmptyResultDataAccessException e){
             return new ArrayList<ElderlyPeople>();
