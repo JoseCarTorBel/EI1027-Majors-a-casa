@@ -1,12 +1,15 @@
 package es.uji.ei1027.majorsacasa.dao;
 
 import es.uji.ei1027.majorsacasa.model.Company;
+import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class CompanyDao {
@@ -68,18 +71,22 @@ public class CompanyDao {
         );
     }
 
-    public void getServicesToDo(String cif){
-        jdbcTemplate.queryForObject(
-                "   SELECT dni, phone, name, secondname, postaddress " +
-                        "FROM person " +
-                        "WHERE dni IN ( SELECT dni " +
-                        "               FROM elderlypeople " +
-                        "               WHERE dni IN (  SELECT dnielderlypeople " +
-                        "                               FROM request " +
-                        "                               WHERE serviceType= (SELECT service " +
-                        "                                                   FROM contract " +
-                        "                                                   WHERE cifcompany=?)));",
-                        new CompanyRowMapper(),cif);
+    public List<ElderlyPeople> getServicesToDo(String cif){
+        try {
+            return jdbcTemplate.query(
+                        "SELECT person.*, ep.justification,ep.dnisocialworker " +
+                            "FROM person JOIN elderlypeople AS ep ON person.dni =ep.dni " +
+                            "WHERE ep.dni IN" +
+                            "(  SELECT dnielderlypeople " +
+                                "FROM request " +
+                                "WHERE serviceType = (  SELECT service " +
+                                "                       FROM contract " +
+                                "                       WHERE cifcompany=?));\n"
+                    ,new ElderlyPeopleRowMapper(), cif);
+
+        }catch(EmptyResultDataAccessException e){
+            return new ArrayList<ElderlyPeople>();
+        }
     }
 
 

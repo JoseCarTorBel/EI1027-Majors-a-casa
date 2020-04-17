@@ -1,16 +1,42 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Clients</title>
 </head>
 <body>
 
 <div th:replace="fragments/barraImagen"></div>
-<div th:replace="fragments/barraSuperior"></div>
+<div th:replace="fragments/barraSuperiorCompany"></div>
 
-
-
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body" style="max-width: 100%;">
+            <h4 class="card-title mt-3 text-center">Clients</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>DNI</th>
+                            <th>Nom</th>
+                            <th>Cognom</th>
+                            <th>Direcció</th>
+                            <th>Telèfon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="elderlyPeople:${servicesToDo}">
+                            <td th:text="${elderlyPeople.dni}"></td>
+                            <td th:text="${elderlyPeople.name}"></td>
+                            <td th:text="${elderlyPeople.secondName}"></td>
+                            <td th:text="${elderlyPeople.postAddress}"></td>
+                            <td th:text="${elderlyPeople.phone}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+        </article>
+    </div>
+</div>
 
 <div th:replace="fragments/footPage"></div>
 </body>
