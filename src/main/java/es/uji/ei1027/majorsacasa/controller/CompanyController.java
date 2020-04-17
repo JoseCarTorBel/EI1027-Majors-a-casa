@@ -130,10 +130,11 @@ public class CompanyController {
 
 
 
+
+
     // *************************
     // Métodos privados ********
     // *************************
-
 
     /**
      *  Chequea si la sesión está activa o no

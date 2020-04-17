@@ -68,6 +68,20 @@ public class CompanyDao {
         );
     }
 
+    public void getServicesToDo(String cif){
+        jdbcTemplate.queryForObject(
+                "   SELECT dni, phone, name, secondname, postaddress " +
+                        "FROM person " +
+                        "WHERE dni IN ( SELECT dni " +
+                        "               FROM elderlypeople " +
+                        "               WHERE dni IN (  SELECT dnielderlypeople " +
+                        "                               FROM request " +
+                        "                               WHERE serviceType= (SELECT service " +
+                        "                                                   FROM contract " +
+                        "                                                   WHERE cifcompany=?)));",
+                        new CompanyRowMapper(),cif);
+    }
+
 
 
 }
