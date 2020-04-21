@@ -45,10 +45,21 @@
                     </td>
                     <td th:text="${disponibility.initialTime}"></td>
                     <td th:text="${disponibility.finalTime}"></td>
-                    <td th:text="${disponibility.state}"></td>
-                    <td><a role="button" class="btn btn-danger" th:href="@{/volunteer/deleteDisponibility/{dayOfWeek}(dayOfWeek=${disponibility.dayOfWeek})}">Esborrar</a>
-
+                    <td th:switch="${disponibility.state}">
+                        <span th:case="'P'">Pendent</span>
+                        <span th:case="'R'">Rebutjada</span>
+                        <span th:case="'A'">Aceptada</span>
                     </td>
+                    <div th:switch="${disponibility.state}">
+                        <span th:case="'A'"><td></td></span>
+                        <span th:case="'R'"> <td><a role="button" class="btn btn-danger" th:href="@{/volunteer/deleteDisponibility/{dayOfWeek}(dayOfWeek=${disponibility.dayOfWeek})}">Esborrar</a></td></span>
+                        <span th:case="'P'"> <td><a role="button" class="btn btn-warning" th:href="@{/volunteer/updateDisponibility/{dayOfWeek}(dayOfWeek=${disponibility.dayOfWeek})}">Modifica</a></td></span>
+                    </div>
+
+
+
+
+
                 </tr>
                 </tbody>
             </table>

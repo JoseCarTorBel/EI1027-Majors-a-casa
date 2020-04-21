@@ -36,6 +36,7 @@ public class DisponibilityDao {
      * @param disponibility
      */
     public void updateDisponibility(Disponibility disponibility){
+        System.out.println(disponibility.toString());
         jdbcTemplate.update("UPDATE disponibility SET dnielderlypeople=?,dayofweek=?, initialtime=?, finaltime=?, state=? WHERE dnivolunteer=? AND dayOfWeek=?",
                disponibility.getDniElderlyPeople(), disponibility.getDayOfWeek(),disponibility.getInitialTime(),disponibility.getFinalTime(),disponibility.getState(),disponibility.getDniVolunteer(),disponibility.getDayOfWeek()
         );
@@ -48,7 +49,7 @@ public class DisponibilityDao {
      * remove a Disponibility
      * @param dayOfWeek, dniVolunteer
      */
-    public void removeDisponibility(String dayOfWeek,String dniVolunteer){
+    public void removeDisponibility(Integer dayOfWeek,String dniVolunteer){
         jdbcTemplate.update("DELETE FROM disponibility WHERE dayOfWeek=? AND dnivolunteer=?",dayOfWeek,dniVolunteer);
     }
 
@@ -70,9 +71,23 @@ public class DisponibilityDao {
      * @param dniVolunteer
      * @return Disponibility
      */
-    public List<Disponibility> getDisponibilitys(String dniVolunteer){
+    public List<Disponibility> getDisponibilitysAccepted(String dniVolunteer){
         try{
             return  jdbcTemplate.query("SELECT * FROM disponibility WHERE dnivolunteer=? AND state='A';",
+                    new DisponibilityRowMapper(),dniVolunteer);
+        }catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    /**
+     * get a disponibility
+     * @param dniVolunteer
+     * @return Disponibility
+     */
+    public List<Disponibility> getDisponibilitys(String dniVolunteer){
+        try{
+            return  jdbcTemplate.query("SELECT * FROM disponibility WHERE dnivolunteer=?",
                     new DisponibilityRowMapper(),dniVolunteer);
         }catch(EmptyResultDataAccessException e) {
             return null;

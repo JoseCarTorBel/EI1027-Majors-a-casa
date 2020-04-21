@@ -23,66 +23,45 @@
 
         <article class="card-body mx-auto" style="max-width: 400px;">
 
-            <h4 class="card-title mt-3 text-center">Pagina principal de voluntari</h4>
+            <h4 class="card-title mt-3 text-center">El meu horari</h4>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Dni elderly people</th>
+                    <th>Dia de la setmana</th>
+                    <th>Data inici</th>
+                    <th>Data fi</th>
+                    <th>Estat</th>
 
 
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="disponibility: ${disponibilities}">
+                    <td th:text="${disponibility.dniElderlyPeople}"></td>
+                    <td th:switch="${disponibility.dayOfWeek}">
+                        <span th:case="'1'">Dilluns</span>
+                        <span th:case="'2'">Dimarts</span>
+                        <span th:case="'3'">Dimecres</span>
+                        <span th:case="'4'">Dijous</span>
+                        <span th:case="'5'">Divendres</span>
+                        <span th:case="'6'">Dissabte</span>
+                        <span th:case="'7'">Diumenge</span>
+                    </td>
+                    <td th:text="${disponibility.initialTime}"></td>
+                    <td th:text="${disponibility.finalTime}"></td>
+                    <td th:switch="${disponibility.state}">
+                        <span th:case="'P'">Pendent</span>
+                        <span th:case="'R'">Rebutjada</span>
+                        <span th:case="'A'">Aceptada</span>
+                    </td>
 
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="far fa-id-card"></i> </span>
-                    <span class="input-group-text" th:text="${volunteer.dni}"> </span>
-                </div>
-            </div>
 
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                    <span class="input-group-text" th:text="${volunteer.name}"> </span>
-                </div>
-            </div>
-
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                    <span class="input-group-text" th:text="${volunteer.secondName}"> </span>
-                </div>
-            </div>
-
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-                    <span class="input-group-text" th:text="${volunteer.phone}"> </span>
-                </div>
-            </div>
-
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
-                    <span class="input-group-text" th:text="${volunteer.dateOfBirth}"> </span>
-                </div>
-            </div>
-
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-                    <span class="input-group-text" th:text="${volunteer.postAddress}"> </span>
-                </div>
-            </div>
-
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                    <span class="input-group-text" th:text="${volunteer.email}"> </span>
-                </div>
-            </div>
-
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                    <span class="input-group-text" th:text="${volunteer.username}"> </span>
-                </div>
-            </div>
-
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
         </article>
     </div>

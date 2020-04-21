@@ -30,26 +30,6 @@ public class VolunteerController {
         this.volunteerDao=volunteerDao;
     }
 
-
-
-    // Probar a mostrar la informacion de 1 voluntario
-    @RequestMapping("/provaVoluntari")
-    public String provaUnVoluntari(Model model) {
-
-        Volunteer volunteer = volunteerDao.getVolunteer("20904567S");
-
-        model.addAttribute("volunteer", volunteer);
-        return "volunteer/prova_voluntari";
-    }
-
-
-
-    @RequestMapping("/list")
-    public String getVolunteerList(Model model){
-        model.addAttribute("volunteers",volunteerDao.getVolunteerList());
-        return "volunteer/list";
-    }
-
     DisponibilityDao disponibilityDao;
     @Autowired
     public void setDisponibilityDao(DisponibilityDao disponibilityDao){
@@ -57,38 +37,6 @@ public class VolunteerController {
     }
 
 
-    @RequestMapping("/timetable")
-    public String getVolunteerList(HttpSession session, Model model){
-
-
-
-        if (session.getAttribute("user") == null)
-        {
-            model.addAttribute("user", new UserDetails());
-            return "login";
-        }
-        UserDetails user = (UserDetails) session.getAttribute("user");
-
-        if (!user.getRol().equals("Volunteer")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
-
-
-        }else{
-            model.addAttribute("disponibilities", disponibilityDao.getDisponibilitys(user.getDni()));
-
-            return "volunteer/timetable";
-        }
-
-    }
-
-
-    @RequestMapping(value="/deleteDisponibility/{dayOfWeek}", method = {RequestMethod.GET, RequestMethod.DELETE})
-    public String removeVolunteer(HttpSession session,@PathVariable String dayOfWeek){
-        UserDetails user = (UserDetails) session.getAttribute("user");
-        disponibilityDao.removeDisponibility(dayOfWeek,user.getDni());
-        return "redirect:../timetable";
-    }
 
     @RequestMapping("/main")
     public String getVolunteerMain(HttpSession session, Model model){
@@ -108,9 +56,9 @@ public class VolunteerController {
             Volunteer volunteer = volunteerDao.getVolunteer(user.getDni());
             if (volunteer.getState()=='A'){
 
-                 model.addAttribute("volunteer",volunteer);
+                model.addAttribute("disponibilities", disponibilityDao.getDisponibilitysAccepted(user.getDni()));
 
-                 return "volunteer/main";
+                return "volunteer/main";
             }else{
                 System.out.println("El voluntario no tiene su peticion activada por el cas");
                 session.invalidate();
@@ -118,6 +66,74 @@ public class VolunteerController {
             }
         }
 
+    }
+
+
+    @RequestMapping("/disponibilitys")
+    public String getVolunteerList(HttpSession session, Model model){
+
+
+
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (!user.getRol().equals("Volunteer")){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+
+        }else{
+            model.addAttribute("disponibilities", disponibilityDao.getDisponibilitys(user.getDni()));
+
+            return "volunteer/disponibilitys";
+        }
+
+    }
+
+
+    @RequestMapping(value="/deleteDisponibility/{dayOfWeek}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String removeDispo(HttpSession session,@PathVariable Integer dayOfWeek){
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        System.out.println(dayOfWeek+" "+user.getDni());
+        disponibilityDao.removeDisponibility(dayOfWeek,user.getDni());
+        return "redirect:../disponibilitys";
+    }
+
+    @RequestMapping(value="/updateDisponibility/{dayOfWeek}", method = {RequestMethod.GET})
+    public String updateDisponibility(Model model,HttpSession session,@PathVariable Integer dayOfWeek){
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (!user.getRol().equals("Volunteer")){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        }
+
+
+        model.addAttribute("disponibility",disponibilityDao.getDisponibility(dayOfWeek,user.getDni()));
+
+        return "volunteer/updateDisponibility";
+    }
+
+    // Una vez le damos a sumbit se actualiza el voluntario en el dao
+    @RequestMapping(value="/updateDisponibility", method=RequestMethod.POST)
+    public String processUpdateSubmit(
+            @ModelAttribute("disponibility") Disponibility disponibility,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "volunteer/updateDisponibility";
+
+        disponibilityDao.updateDisponibility(disponibility);
+        return "redirect:main";
     }
 
 

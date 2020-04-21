@@ -1,0 +1,80 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nou horari</title>
+
+</head>
+<body>
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorVolunteer"></div>
+
+<div class="container">
+        <div class="card bg-light">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h4 class="card-title mt-3 text-center">Modifica un horari</h4>
+
+                <form action="#" th:action="@{/volunteer/updateDisponibility}"
+                                 th:object="${disponibility}" method="post">
+
+                    <input  name="" class="form-control" placeholder="DNI / NIF" type="text" th:field="*{dniVolunteer}" hidden>
+                    <input  name="" class="form-control" placeholder="state" type="text" th:field="*{state}" hidden>
+                    <input  name="" class="form-control" placeholder="day" type="text" th:field="*{dayOfWeek}" hidden>
+
+                    Dia de la setmana:
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+                        </div>
+
+                        <select th:field="*{dayOfWeek}" disabled>
+                            <option th:value="'1'" th:text="Dilluns"></option>
+                            <option th:value="'2'" th:text="Dimarts"></option>
+                            <option th:value="'3'" th:text="Dimecres"></option>
+                            <option th:value="'4'" th:text="Dijous"></option>
+                            <option th:value="'5'" th:text="Divendres"></option>
+                            <option th:value="'6'" th:text="Dissabte"></option>
+                            <option th:value="'7'" th:text="Diumenge"></option>
+                        </select>
+                    </div> <!-- form-group// -->
+                    Data de inici:
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input  name="" class="form-control" placeholder="Data inici" type="date" th:field="*{initialTime}">
+                    </div> <!-- form-group// -->
+
+                    Data de fi:
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input name="" class="form-control" placeholder="Data fi" type="date" th:field="*{finalTime}">
+                    </div> <!-- form-group// -->
+
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Modifica horari </button>
+                    </div> <!-- form-group// -->
+
+
+                </form>
+              <a role="button" class="btn btn-danger" th:href="@{/volunteer/deleteDisponibility/{dayOfWeek}(dayOfWeek=${disponibility.dayOfWeek})}">Esborrar</a>
+            </article>
+
+
+    </div>
+    <a href="/" th:href="@{/volunteer/main}" class="btn btn-primary btn-lg">Tornar a la meua pàgina principal</a>
+    </div>
+    <!--container end.//-->
+
+    <div th:replace="fragments/footPage"></div>
+
+</body>
+</html>
