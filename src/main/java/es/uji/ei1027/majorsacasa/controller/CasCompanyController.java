@@ -33,7 +33,7 @@ public class CasCompanyController {
     public String addCompany(Model model, HttpSession session){
         if (session.getAttribute("user") == null) {
             model.addAttribute("company",new Company());
-            return "company/newCompany";
+            return "cascompany/newCompany";
         }else{
             UserDetails user = (UserDetails) session.getAttribute("user");
             throw  new MajorsACasaException("No pots accedir al login perquè ja has iniciat sessió.","AccesDenied","../"+user.getMainPage());
@@ -97,7 +97,7 @@ public class CasCompanyController {
         UserDetails user = (UserDetails) session.getAttribute("user");
         List<Company> listCompany = companyDao.getCompanys();
         model.addAttribute("listCompanys",listCompany);
-        return "casCompany/list";
+        return "cascompany/list";
     }
 
 
