@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
 
 <head>
-    <title>Sol·licita compter</title>
+    <title>Donar d'alta</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -19,8 +19,8 @@
         <article class="card-body mx-auto" style="max-width: 400px;">
             <h4 class="card-title mt-3 text-center">Sol·licitud d'empressa</h4>
 
-            <form action="#" th:action="@{/company/register}"
-                             th:object="${company}" method="post">
+            <form action="#" th:action="@{/cascompany/add}"
+                  th:object="${company}" method="post">
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">

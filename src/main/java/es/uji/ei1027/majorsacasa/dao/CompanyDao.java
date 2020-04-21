@@ -96,4 +96,14 @@ public class CompanyDao {
             return new ArrayList<ElderlyPeople>();
         }
     }
+
+    public List<Company> getCompanys(){
+        try{
+            return jdbcTemplate.query("SELECT * FROM company;",
+                                        new CompanyRowMapper());
+        }catch (EmptyResultDataAccessException e){
+            return new ArrayList<Company>();
+        }
+    }
+
 }

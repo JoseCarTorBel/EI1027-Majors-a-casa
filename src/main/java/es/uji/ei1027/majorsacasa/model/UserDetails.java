@@ -48,7 +48,7 @@ public class UserDetails {
         if (this.rol.equals("Company"))
             return "company/main";
         if (this.rol.equals("ResponsableContratacion"))
-            return "responsableContratacion/main";
+            return "responsableContratacion/lis";
         if (this.rol.equals("Comite"))
             return "comite/main";
         if (this.rol.equals("SupervisorVolunatris"))

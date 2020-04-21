@@ -46,52 +46,6 @@ public class CompanyController {
     }
 
 
-
-    @RequestMapping(value="/register")
-    public String addCompany(Model model,HttpSession session){
-        if (session.getAttribute("user") == null) {
-            model.addAttribute("company",new Company());
-            return "company/register";
-        }else{
-            UserDetails user = (UserDetails) session.getAttribute("user");
-            throw  new MajorsACasaException("No pots accedir al login perquè ja has iniciat sessió.","AccesDenied","../"+user.getMainPage());
-        }
-    }
-
-/*-------------------------------*/
-
-    @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("company") Company company,
-                                   BindingResult bindingResult, HttpSession session){
-
-        company.setUsername(company.getCif());
-        company.setPasswd(generateRandomPasswd());
-        System.out.println("Usuario: "+company.getCif()
-                              +"Contraseña: "+company.getPasswd());
-
-        CompanyVallidator companyVallidator = new CompanyVallidator();
-        companyVallidator.validate(company,bindingResult);
-
-        if(bindingResult.hasErrors()){
-            System.out.println(bindingResult.getAllErrors());
-            return "company/register";
-        }
-        try{
-            companyDao.addCompany(company);
-        }catch (DuplicateKeyException dk){
-            throw new MajorsACasaException("L'empressa ja està registradada.",
-                                            "CPCompany Duplicate");
-        }catch (DataAccessException ex){
-            throw new MajorsACasaException("Error amb l'accés a la BBDD.",
-                                            "Error Access BBDD");
-        }
-        session.setAttribute("registered",company);
-        //return "redirect:company/register";
-        return "redirect:/";
-    }
-
-
-
     @RequestMapping(value = "/update",method=RequestMethod.GET)
     public String update(Model model, HttpSession session){
         String isSession = checkSession(model,session);
@@ -176,21 +130,6 @@ public class CompanyController {
     }
 
 
-
-    /**
-     * Genera contraseña aleatoria proporcionada por el CAS
-     * @return Random Password
-     */
-    private String generateRandomPasswd(){
-        Random random = new Random();
-        int numeroAleatorio = (int) (Math.random()*25+1);
-        char a = (char) (random.nextInt(26) + 'a');
-        char b = (char) (random.nextInt(26) + 'a');
-        char c = (char) (random.nextInt(26) + 'a');
-
-        String contraseña = ""+numeroAleatorio+""+b+""+c+"";
-        return contraseña;
-    }
 
 
 
