@@ -27,13 +27,11 @@ CREATE TABLE person(
 
 CREATE TABLE volunteer (
         dni 	VARCHAR(30),
-	endDate		DATE,
+	    endDate  DATE,
         state   VARCHAR (1),
 
-        
-        
         CONSTRAINT cp_volunteer PRIMARY KEY (dni),      -- clau primària
- 	CONSTRAINT ca_volunteer_per FOREIGN KEY (dni) REFERENCES person(dni) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a volunteer
+ 	    CONSTRAINT ca_volunteer_per FOREIGN KEY (dni) REFERENCES person(dni) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a volunteer
 
 );
 
@@ -79,6 +77,7 @@ CREATE TABLE disponibility (
 CREATE TABLE company (
         cif      VARCHAR(30),
         name      VARCHAR(50),
+        dnicontact VARCHAR(30),
         personalcontact      VARCHAR(50),
         phonecontact     VARCHAR(20),
         email     VARCHAR(40),
@@ -110,7 +109,7 @@ CREATE TABLE invoice (
         codinvoice      VARCHAR(15),
         dnielderlypeople VARCHAR(30),
         price           INTEGER,
-	    date		DATE,
+	    date     DATE,
         
         CONSTRAINT cp_invoice PRIMARY KEY (codinvoice),  -- CP
         CONSTRAINT ca_invoice_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a elderlypeople
@@ -150,6 +149,4 @@ CREATE TABLE CASUSERS(
         rol VARCHAR(30),
 
         CONSTRAINT cp_cas_users PRIMARY KEY (username)  -- CP
-
-
 );
