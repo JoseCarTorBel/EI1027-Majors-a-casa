@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -97,6 +98,13 @@ public class CasCompanyController {
         List<Company> listCompany = companyDao.getCompanys();
         model.addAttribute("listCompanys",listCompany);
         return "cascompany/list";
+    }
+
+
+    @RequestMapping(value="/delete/{cif}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String removeVolunteer(@PathVariable String cif){
+        companyDao.removeCompany(cif);
+        return "redirect:../list";
     }
 
 

@@ -14,7 +14,7 @@
 
 <div class="card bg-light">
     <article class="card-body" style="max-width: 100%;">
-        <h4 class="card-title mt-3 text-center">Clients</h4>
+        <h4 class="card-title mt-3 text-center">Llistat d'empresses</h4>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -29,15 +29,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="company:${listCompanys}">
-                <td th:text="${company.cif}"></td>
-                <td th:text="${company.name}"></td>
-                <td th:text="${company.nifContact}"></td>
-                <td th:text="${company.personalContact}"></td>
-                <td th:text="${company.phoneContact}"></td>
-                <td th:text="${company.email}"></td>
-                <td th:text="${company.postAddress}"></td>
-            </tr>
+                <tr th:each="company:${listCompanys}">
+                    <td th:text="${company.cif}"></td>
+                    <td th:text="${company.name}"></td>
+                    <td th:text="${company.nifContact}"></td>
+                    <td th:text="${company.personalContact}"></td>
+                    <td th:text="${company.phoneContact}"></td>
+                    <td th:text="${company.email}"></td>
+                    <td th:text="${company.postAddress}"></td>
+                    <td><a th:href="@{/cascompany/delete/{cif}(cif=${company.cif})}">Esborra</a>
+                </tr>
             </tbody>
         </table>
     </article>
