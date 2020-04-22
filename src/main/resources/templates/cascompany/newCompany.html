@@ -42,6 +42,15 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
+                    <input  name="" class="form-control" placeholder="NIF de contacte" type="text" th:field="*{nifContact}">
+                    <td th:if="${#fields.hasErrors('nifContact')}" th:errors="*{nifContact}"></td>
+                </div>
+
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
                     <input  name="" class="form-control" placeholder="Persona de contacte" type="text" th:field="*{personalContact}">
                     <td th:if="${#fields.hasErrors('personalContact')}" th:errors="*{personalContact}"></td>
                 </div> <!-- form-group// -->

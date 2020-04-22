@@ -2,6 +2,7 @@ package es.uji.ei1027.majorsacasa.controller;
 
 
 import es.uji.ei1027.majorsacasa.dao.CompanyDao;
+import es.uji.ei1027.majorsacasa.dao.ContractDao;
 import es.uji.ei1027.majorsacasa.model.Company;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import java.util.Random;
 public class CasCompanyController {
 
     private CompanyDao companyDao;
+    private ContractDao contractDao;
 
     @Autowired
     public void setCompanyDao(CompanyDao companyDao){
@@ -35,6 +37,7 @@ public class CasCompanyController {
         if (isSession != null) {
             return isSession;
         }
+        model.addAttribute("company",new Company());
         return "cascompany/newCompany";
     }
 
@@ -45,12 +48,11 @@ public class CasCompanyController {
      *
      * @param company       Empressa nova
      * @param bindingResult
-     * @param session
      * @return
      */
     @RequestMapping(value = "/newCompany",method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company,
-                                   BindingResult bindingResult, HttpSession session){
+                                   BindingResult bindingResult){
 
         company.setUsername(company.getCif());
         company.setPasswd(generateRandomPasswd());
@@ -71,11 +73,11 @@ public class CasCompanyController {
         }catch (DuplicateKeyException dk){
             throw new MajorsACasaException("L'empressa ja està registradada.",
                     "CPCompany Duplicate");
-        }catch (DataAccessException ex){
-            throw new MajorsACasaException("Error amb l'accés a la BBDD.",
-                    "Error Access BBDD");
+//        }catch (DataAccessException ex){
+//            throw new MajorsACasaException("Error amb l'accés a la BBDD.",
+//                    "Error Access BBDD");
         }
-        session.setAttribute("registered",company);
+       // session.setAttribute("company",company);
         //return "redirect:company/register";
         return "redirect:list";
     }
@@ -92,14 +94,10 @@ public class CasCompanyController {
             return isSession;
         }
 
-        UserDetails user = (UserDetails) session.getAttribute("user");
         List<Company> listCompany = companyDao.getCompanys();
         model.addAttribute("listCompanys",listCompany);
         return "cascompany/list";
     }
-
-
-
 
 
 

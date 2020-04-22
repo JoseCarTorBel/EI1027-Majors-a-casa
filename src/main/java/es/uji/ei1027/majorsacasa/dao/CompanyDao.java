@@ -27,8 +27,8 @@ public class CompanyDao {
      * @param company
      */
     public void addCompany(Company company){
-        jdbcTemplate.update("INSERT INTO company VALUES (?,?,?,?,?,?,?,?)",
-                      company.getCif(),company.getName(),company.getPersonalContact(),
+        jdbcTemplate.update("INSERT INTO company VALUES (?,?,?,?,?,?,?,?,?)",
+                      company.getCif(),company.getName(),company.getNifContact(),company.getPersonalContact(),
                             company.getPhoneContact(),company.getEmail(),company.getPostAddress(),null,null);
     }
 
@@ -49,7 +49,6 @@ public class CompanyDao {
     public void removeCompany(String cif){
         jdbcTemplate.update("DELETE FROM company WHERE cif=?",cif);
     }
-
 
     /**
      * get a company
