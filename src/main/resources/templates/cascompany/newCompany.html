@@ -17,10 +17,10 @@
 <div class="container">
     <div class="card bg-light">
         <article class="card-body mx-auto" style="max-width: 400px;">
-            <h4 class="card-title mt-3 text-center">Sol·licitud d'empressa</h4>
+            <h4 class="card-title mt-3 text-center">Donar d'alta</h4>
 
-            <form action="#" th:action="@{/cascompany/add}"
-                  th:object="${company}" method="post">
+            <form action="#"    th:action="@{/cascompany/newCompany}"
+                                th:object="${company}" method="post">
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -71,9 +71,8 @@
                 </div> <!-- form-group// -->
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block" > Sol·licita compte  </button>
+                    <button type="submit" class="btn btn-primary btn-block" > Donar d'alta </button>
                 </div> <!-- form-group// -->
-                <p class="text-center">Ja tens un compte? <a href="../login">Incia sessió com a empressa</a> </p>
             </form>
         </article>
     </div>

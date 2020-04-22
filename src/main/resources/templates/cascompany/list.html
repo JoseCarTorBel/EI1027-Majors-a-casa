@@ -20,6 +20,7 @@
             <tr>
                 <th>CIF</th>
                 <th>Nom empressa</th>
+                <th>DNI Contacte</th>
                 <th>Contacte</th>
                 <th>Telèfon</th>
                 <th>Email</th>
@@ -31,6 +32,7 @@
             <tr th:each="company:${listCompanys}">
                 <td th:text="${company.cif}"></td>
                 <td th:text="${company.name}"></td>
+                <td th:text="${company.nifContact}"></td>
                 <td th:text="${company.personalContact}"></td>
                 <td th:text="${company.phoneContact}"></td>
                 <td th:text="${company.email}"></td>

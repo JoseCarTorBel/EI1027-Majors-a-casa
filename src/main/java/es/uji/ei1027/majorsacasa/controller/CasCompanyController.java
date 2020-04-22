@@ -31,13 +31,11 @@ public class CasCompanyController {
 
     @RequestMapping(value="/newCompany")
     public String addCompany(Model model, HttpSession session){
-        if (session.getAttribute("user") == null) {
-            model.addAttribute("company",new Company());
-            return "cascompany/newCompany";
-        }else{
-            UserDetails user = (UserDetails) session.getAttribute("user");
-            throw  new MajorsACasaException("No pots accedir al login perquè ja has iniciat sessió.","AccesDenied","../"+user.getMainPage());
+        String isSession = checkSession(model, session);
+        if (isSession != null) {
+            return isSession;
         }
+        return "cascompany/newCompany";
     }
 
     /*-------------------------------*/

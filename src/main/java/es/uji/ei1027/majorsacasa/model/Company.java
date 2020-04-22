@@ -3,6 +3,7 @@ package es.uji.ei1027.majorsacasa.model;
 public class Company {
     private String cif;
     private String name;
+    private String nifContact;
     private String personalContact;
     private String phoneContact;
     private String postAddress;
@@ -48,6 +49,8 @@ public class Company {
         return name;
     }
 
+    public String getNifContact() {return nifContact;}
+
     public String getPersonalContact() {
         return personalContact;
     }
@@ -72,6 +75,8 @@ public class Company {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setNifContact(String nifContact){this.nifContact=nifContact;}
 
     public void setPersonalContact(String personalContact) {
         this.personalContact = personalContact;

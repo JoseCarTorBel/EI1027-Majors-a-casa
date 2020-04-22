@@ -23,6 +23,11 @@ public class CompanyVallidator implements Validator {
             errors.rejectValue("name","Obligatori","Cal introduir el nom de l'empressa.");
         }
 
+        if(company.getNifContact().trim().equals("")){
+            errors.rejectValue("nifContact","Obligatori","Cal introduir el NIF de la persona de contacte.");
+
+        }
+
         if (company.getPersonalContact().trim().equals("")){
             errors.rejectValue("personalContact","Obligatori","Cal introduir el una persona de contacte.");
         }
