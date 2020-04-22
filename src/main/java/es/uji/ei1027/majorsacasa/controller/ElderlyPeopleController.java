@@ -4,6 +4,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
 import es.uji.ei1027.majorsacasa.dao.ElderlyPeopleDao;
 
+import es.uji.ei1027.majorsacasa.model.Disponibility;
 import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,7 +126,7 @@ public class ElderlyPeopleController {
 
         if (user.getRol()!="Elderly"){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a Elderly per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
 
         }else{
@@ -151,7 +152,7 @@ public class ElderlyPeopleController {
 
         if (user.getRol()!="Elderly"){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
         }else{
             model.addAttribute("disponibilities", disponibilityDao.getDisponibilitiesElderly(user.getDni()));
@@ -160,4 +161,55 @@ public class ElderlyPeopleController {
 
     }
 
+    @RequestMapping(value="/deleteDisponibility/{dayOfWeek}/{dniVolunteer}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String removeDispo(HttpSession session,@PathVariable Integer dayOfWeek, @PathVariable String dniVolunteer) {
+
+        disponibilityDao.removeDisponibility(dayOfWeek, dniVolunteer);
+        return "redirect:../../meusVoluntaris";
+    }
+
+    @RequestMapping("/voluntarisLliures")
+    public String getVoluntarisLliures(HttpSession session, Model model){
+
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (user.getRol()!="Elderly"){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+        }else{
+            model.addAttribute("disponibilities", disponibilityDao.getDisponibilitiesLibres());
+            return "elderlyPeople/voluntarisLliures";
+        }
+
+    }
+
+    @RequestMapping(value="/solicitarDisponibility/{dayOfWeek}/{dniVolunteer}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String solicitarDispo(HttpSession session, Model model, @PathVariable Integer dayOfWeek, @PathVariable String dniVolunteer) {
+
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (user.getRol()!="Elderly"){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+        }else{
+            model.addAttribute("disponibilities", disponibilityDao.getDisponibilitiesLibres());
+            Disponibility nuevaDisp = disponibilityDao.getDisponibility(dayOfWeek, dniVolunteer);
+            nuevaDisp.setState('P');
+            nuevaDisp.setDniElderlyPeople(user.getDni());
+            disponibilityDao.updateDisponibility(nuevaDisp);
+            return "redirect:../../voluntarisLliures";
+        }
+
+
+    }
 }

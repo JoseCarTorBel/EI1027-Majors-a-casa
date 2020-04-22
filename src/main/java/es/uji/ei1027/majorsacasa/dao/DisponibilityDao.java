@@ -108,6 +108,24 @@ public class DisponibilityDao {
         }
     }
 
+    /**
+     * get a free disponibilities
+     * @param
+     * @return Disponibility
+     */
+    public List<Disponibility> getDisponibilitiesLibres(){
+        try{
+            return  jdbcTemplate.query("SELECT * FROM disponibility WHERE dnielderlypeople IS NULL;",
+                    new DisponibilityRowMapper());
+        }catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+
+
+
+
 
 
 
