@@ -4,6 +4,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.CompanyDao;
 import es.uji.ei1027.majorsacasa.dao.ContractDao;
 import es.uji.ei1027.majorsacasa.model.Company;
+import es.uji.ei1027.majorsacasa.model.Contract;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -32,6 +33,9 @@ public class CasCompanyController {
         this.companyDao=companyDao;
     }
 
+    @Autowired
+    public void setContractDao(ContractDao contractDao) { this.contractDao=contractDao;}
+
     @RequestMapping(value="/newCompany")
     public String addCompany(Model model, HttpSession session){
         String isSession = checkSession(model, session);
@@ -46,7 +50,6 @@ public class CasCompanyController {
 
     /**
      * Dona d'alta una empressa com a responsable de contractació.
-     *
      * @param company       Empressa nova
      * @param bindingResult
      * @return
@@ -106,6 +109,30 @@ public class CasCompanyController {
         companyDao.removeCompany(cif);
         return "redirect:../list";
     }
+
+
+
+
+
+
+    @RequestMapping(value = "/newContract")
+    public String newContract(HttpSession session, Model model){
+        return "";
+    }
+
+    /**
+     * Afegir contracte a la GVA.
+     * @param contract
+     * @param bindingResult
+     * @return
+     */
+    public String processAddSubmit(@ModelAttribute("contract")Contract contract,
+                                   BindingResult bindingResult){
+        return "";
+
+    }
+
+
 
 
 
