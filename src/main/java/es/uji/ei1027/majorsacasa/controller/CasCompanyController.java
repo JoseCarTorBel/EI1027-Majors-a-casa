@@ -52,7 +52,7 @@ public class CasCompanyController {
      * Dona d'alta una empressa com a responsable de contractació.
      * @param company       Empressa nova
      * @param bindingResult
-     * @return
+     * @return Inicio si es correcto, sinó errores.
      */
     @RequestMapping(value = "/newCompany",method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company,
@@ -77,9 +77,9 @@ public class CasCompanyController {
         }catch (DuplicateKeyException dk){
             throw new MajorsACasaException("L'empressa ja està registradada.",
                     "CPCompany Duplicate");
-//        }catch (DataAccessException ex){
-//            throw new MajorsACasaException("Error amb l'accés a la BBDD.",
-//                    "Error Access BBDD");
+        }catch (DataAccessException ex){
+            throw new MajorsACasaException("Error amb l'accés a la BBDD.",
+                    "Error Access BBDD");
         }
        // session.setAttribute("company",company);
         //return "redirect:company/register";
@@ -111,25 +111,51 @@ public class CasCompanyController {
     }
 
 
-
-
-
-
+    /**
+     *
+     * @param session
+     * @param model
+     * @return Devulve si la sesión y el usuario es el que corresponde para añadir el contrato.
+     */
     @RequestMapping(value = "/newContract")
     public String newContract(HttpSession session, Model model){
-        return "";
+
+        String isSession = checkSession(model, session);
+        if (isSession != null) {
+            return isSession;
+        }
+        model.addAttribute("newContract",new Contract());
+        return "cascompany/newContract";
     }
 
     /**
-     * Afegir contracte a la GVA.
+     * Añadir contracto a la BBDD.
      * @param contract
      * @param bindingResult
-     * @return
+     * @return Devulve la página principal si se ha podido añadir a la BBDD
      */
+    @RequestMapping(value = "/newContract",method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("contract")Contract contract,
                                    BindingResult bindingResult){
-        return "";
 
+        ContractValidator contractValidator = new ContractValidator();
+        contractValidator.validate(contract,bindingResult);
+
+        if(bindingResult.hasErrors()){
+            System.out.println(bindingResult.getAllErrors());
+            return "cascompany/newContract";
+        }
+
+        try{
+            contractDao.addContract(contract);
+        }catch (DuplicateKeyException dk){
+            throw new MajorsACasaException("El contracte ja ha sigut fet.",
+                                            "CPCompany Duplicate");
+        }catch (DataAccessException ex){
+            throw new MajorsACasaException( "Error amb l'accés a la BBDD.",
+                                            "Error Access BBDD");
+        }
+        return "redirect:list";
     }
 
 

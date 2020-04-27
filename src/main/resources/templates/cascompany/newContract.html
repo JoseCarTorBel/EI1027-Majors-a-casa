@@ -5,15 +5,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Nou contracte</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <div th:replace="fragments/barraImagen"></div>
 <div th:replace="fragments/barraSuperiorCompany"></div>
 
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Donar d'alta</h4>
 
+            <form action="#"    th:action="@{/cascompany/newContract}"
+                                th:object="${newContract}" method="post">
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="CIF" type="text" th:field="*{cif}">
+                    <td th:if="${#fields.hasErrors('cif')}" th:errors="*{cif}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <label for="sel1">Servici</label>
+                    <select class="form-control" id="sel1">
+                        <option>Catering</option>
+                        <option>Neteja</option>
+                        <option>Salud</option>
+                    </select>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Data d'inici de contracte" type="date" th:field="*{initialtime}">
+                    <td th:if="${#fields.hasErrors('initialtime')}" th:errors="*{initialtime}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Data de finalització de contracte" type="date" th:field="*{finaltime}">
+                    <td th:if="${#fields.hasErrors('finaltime')}" th:errors="*{finaltime}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-eur" aria-hidden="true"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Preu de contracte" type="text" th:field="*{price}">
+                    <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Afegix contracte </button>
+                </div> <!-- form-group// -->
+            </form>
+        </article>
+    </div>
+</div>
 
 
 <div th:replace="fragments/footPage"></div>
+
 </body>
 </html>
