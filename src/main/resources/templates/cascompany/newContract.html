@@ -26,8 +26,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
-                    <input  name="" class="form-control" placeholder="CIF" type="text" th:field="*{cif}">
-                    <td th:if="${#fields.hasErrors('cif')}" th:errors="*{cif}"></td>
+                    <input  name="" class="form-control" placeholder="CIF" type="text" th:field="*{cifcompany}">
+                    <td th:if="${#fields.hasErrors('cifcompany')}" th:errors="*{cifcompany}"></td>
                 </div> <!-- form-group// -->
 
                 <div class="form-group input-group">
@@ -43,16 +43,16 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
                     </div>
-                    <input name="" class="form-control" placeholder="Data d'inici de contracte" type="date" th:field="*{initialtime}">
-                    <td th:if="${#fields.hasErrors('initialtime')}" th:errors="*{initialtime}"></td>
+                    <input name="" class="form-control" placeholder="Data d'inici de contracte" type="date" th:field="*{initialDate}">
+                    <td th:if="${#fields.hasErrors('initialDate')}" th:errors="*{initialDate}"></td>
                 </div> <!-- form-group// -->
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
                     </div>
-                    <input name="" class="form-control" placeholder="Data de finalització de contracte" type="date" th:field="*{finaltime}">
-                    <td th:if="${#fields.hasErrors('finaltime')}" th:errors="*{finaltime}"></td>
+                    <input name="" class="form-control" placeholder="Data de finalització de contracte" type="date" th:field="*{finalDate}">
+                    <td th:if="${#fields.hasErrors('finalDate')}" th:errors="*{finalDate}"></td>
                 </div> <!-- form-group// -->
 
                 <div class="form-group input-group">

@@ -27,13 +27,13 @@ public class ContractValidator  implements Validator {
         Contract contract = (Contract) o;
 
         if(contract.getCifcompany().equals("")){
-            errors.rejectValue("cif","Obligatori", "Cal introduir el CIF de l'empresa a contractar.");
+            errors.rejectValue("cifcompany","Obligatori", "Cal introduir el CIF de l'empresa a contractar.");
         }
 
         if(contract.getInitialDate().equals("")){
-            errors.rejectValue("initialtime","Obligatori", "Cal introduir la data inicial del contracte.");
+            errors.rejectValue("initialDate","Obligatori", "Cal introduir la data inicial del contracte.");
         }else if(contract.getFinalDate().equals("")){
-            errors.rejectValue("finaltime","Obligatori", "Cal introduir la data de finalització del contracte.");
+            errors.rejectValue("initialDate","Obligatori", "Cal introduir la data de finalització del contracte.");
         }else if(   contract.getFinalDate().isBefore(contract.getInitialDate()) &&
                     contract.getInitialDate().isBefore(LocalDate.now())         &&
                     contract.getFinalDate().isBefore(LocalDate.now())   ){
