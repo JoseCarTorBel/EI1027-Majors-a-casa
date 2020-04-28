@@ -9,27 +9,64 @@
 
 <body>
 
-<div th:replace="fragments/barraImagen"></div>
+<di th:replace="fragments/barraImagen"></di>
 <div th:replace="fragments/barraSuperiorCasCompany"></div>
 
-<div class="card bg-light">
-    <article class="card-body" style="max-width: 100%;">
-        <h4 class="card-title mt-3 text-center">Llistat d'empresses</h4>
-        <table class="table table-striped">
-            <thead>
-            <tr>
+<div class="container">
+    <!--Contratos vigentes-->
+    <div class="card bg-light">
+        <article class="card-body" style="max-width: 100%;">
+            <h4 class="card-title mt-3 text-center">Contractes vigents</h4>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>CIF</th>
+                    <th>Data inici</th>
+                    <th>Data finalització</th>
+                    <th>Servici</th>
+                    <th>Preu</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="contract:${contractVigente}">
+                        <td th:text="${contract.cifcompany}"></td>
+                        <td th:text="${contract.initialDate}"></td>
+                        <td th:text="${contract.finalDate}"></td>
+                        <td th:text="${contract.service}"></td>
+                        <td th:text="${contract.price}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </div>
 
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="contract:${listContract}">
-
-            </tr>
-            </tbody>
-        </table>
-    </article>
+    <!--Contratos pasados-->
+    <div class="card bg-light">
+        <article class="card-body" style="max-width: 100%;">
+            <h4 class="card-title mt-3 text-center">Contractes passats</h4>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>CIF</th>
+                    <th>Data inici</th>
+                    <th>Data finalització</th>
+                    <th>Servici</th>
+                    <th>Preu</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="contract:${contractPasados}">
+                    <td th:text="${contract.cifcompany}"></td>
+                    <td th:text="${contract.initialDate}"></td>
+                    <td th:text="${contract.finalDate}"></td>
+                    <td th:text="${contract.service}"></td>
+                    <td th:text="${contract.price}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </article>
+    </div>
 </div>
-
 
 
 <div th:replace="fragments/footPage"></div>

@@ -172,8 +172,13 @@ public class CasCompanyController {
             return isSession;
         }
 
+        List<Contract> contractVigente = contractDao.getListContractVigente();
+        List<Contract> contractPasados = contractDao.getListContractPasados();
 
+        model.addAttribute("contractVigente",contractVigente);
+        model.addAttribute("contractPasados",contractPasados);
 
+        return "cascompany/listContracts";
     }
 
 
