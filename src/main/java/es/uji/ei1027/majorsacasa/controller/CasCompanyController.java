@@ -159,9 +159,34 @@ public class CasCompanyController {
     }
 
 
+    /**
+     *
+     * @param session   Sesión actual
+     * @param model     Modelo
+     * @return  Vista de lista de contractos que tiene la empresa.
+     */
+    @RequestMapping(value = "/listContracts")
+    public String getListContracts(HttpSession session, Model model){
+        String isSession = checkSession(model, session);
+        if (isSession != null) {
+            return isSession;
+        }
 
 
 
+    }
+
+
+
+
+
+
+
+
+
+
+
+/** ___________________________________________________________________________________________________________________
 
     /******************************/
     /** private methods************/

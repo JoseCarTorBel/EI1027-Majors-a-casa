@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class ContractDao {
@@ -59,6 +61,39 @@ public class ContractDao {
                     new ContractRowMapper() ,cifCompany);
         }catch (EmptyResultDataAccessException e){
             return null;
+        }
+    }
+
+    /**
+     * Listado de contratos vigentes en comparación con hoy.
+     * @return List<Contract>
+     */
+    public List<Contract> getListContractVigente(){
+        try{
+            return jdbcTemplate.query(  "SELECT * " +
+                                            "FROM contract " +
+                                            "WHERE initialtime<= NOW() AND finaltime>=NOW();",
+                                        new ContractRowMapper());
+
+        }catch (EmptyResultDataAccessException e){
+            return  new ArrayList<Contract>();
+        }
+
+    }
+
+    /**
+     * Listado de contrados NO vigentes comparados con hoy.
+     * @return List<Contract>
+     */
+    public List<Contract> getListContractPasados(){
+        try{
+            return jdbcTemplate.query(  "SELECT * " +
+                                            "FROM contract " +
+                                            "WHERE finaltime<=NOW();",
+                                        new ContractRowMapper());
+
+        }catch (EmptyResultDataAccessException e){
+            return  new ArrayList<Contract>();
         }
     }
 }
