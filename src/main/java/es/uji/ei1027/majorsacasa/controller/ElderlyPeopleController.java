@@ -212,4 +212,27 @@ public class ElderlyPeopleController {
 
 
     }
+
+    @RequestMapping("/help")
+    public String getElderlyPeopleAjuda(HttpSession session, Model model){
+
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (user.getRol()!="Elderly"){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+
+        }else{
+
+            model.addAttribute("mensaje", "");
+            return "elderlyPeople/help";
+        }
+
+    }
+
 }
