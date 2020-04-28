@@ -5,6 +5,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class ContractValidator  implements Validator {
@@ -45,11 +47,9 @@ public class ContractValidator  implements Validator {
         }else if(contract.getPrice()<0){
             errors.rejectValue("price","Obligatori", "El preu no pot ser menor que 0.");
         }
-
-        if("NONE".equals(contract.getService())){
-            errors.rejectValue("selService","Obligatori","S'ha d'indicar el tipus de servici.");
-        }
-
-
+//        List<String> services = Arrays.asList("")
+//        if(.equals(contract.getService())){
+//            errors.rejectValue("selService","Obligatori","S'ha d'indicar el tipus de servici.");
+//        }
     }
 }

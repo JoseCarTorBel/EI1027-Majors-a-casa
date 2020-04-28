@@ -34,11 +34,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fas fa-list"></i> </span>
                     </div>
-                    <select class="form-control" id="selService">
-                        <option>Catering</option>
-                        <option>Neteja</option>
-                        <option>Salud</option>
+                    <select class="form-control" th:field="*{service}">
+<!--                        <option value="NoSelect">Selecciona un servei</option>-->
+                        <option value="catering">Catering</option>
+                        <option value="neteja">Neteja</option>
+                        <option value="salud">Salud</option>
                     </select>
+                    <td th:if="${#fields.hasErrors('service')}" th:errors="*{service}"></td>
+
                 </div> <!-- form-group// -->
 
                 <div class="form-group input-group">
@@ -59,7 +62,7 @@
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-eur" aria-hidden="true"></i> </span>
+                        <span class="input-group-text"> <i class="fas fa-euro-sign"></i></i> </span>
                     </div>
                     <input name="" class="form-control" placeholder="Preu de contracte" type="text" th:field="*{price}">
                     <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></td>
