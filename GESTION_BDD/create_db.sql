@@ -93,17 +93,53 @@ CREATE TABLE company (
 
 
 CREATE TABLE contract (
-
+        codcontract     VARCHAR(30),
         cifcompany      VARCHAR(30),
         service      INTEGER,
         initialtime     DATE,
         finaltime     DATE NULL,
         price           INTEGER,
 
-        CONSTRAINT cp_contract PRIMARY KEY (cifcompany),  -- CP
+        CONSTRAINT cp_codcontract PRIMARY KEY (codcontract),  -- CP
         CONSTRAINT ca_contract_company FOREIGN KEY (cifcompany) REFERENCES company(cif) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a company
         CONSTRAINT serviceIntegrity CHECK (service>=0 AND service<=2)
 );
+
+
+CREATE TABLE catering (
+    codcontract VARCHAR(30),
+    days_week VARCHAR(100),
+    hour_initial    TIME,
+    hour_final      TIME,
+
+    CONSTRAINT cp_codcontract PRIMARY (codcontract),
+    CONSTRAINT ca_codcontract FOREIGN KEY (codcontract) REFERENCES contract(codcontract) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+
+CREATE TABLE cleaning (
+    codcontract VARCHAR(30),
+    days_week VARCHAR(100),
+    hour_initial    TIME,
+    hour_final      TIME,
+
+    CONSTRAINT cp_codcontract PRIMARY (codcontract),
+    CONSTRAINT ca_codcontract FOREIGN KEY (codcontract) REFERENCES contract(codcontract) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- TODO THIS
+--CREATE TABLE health(
+--        codcontract VARCHAR(30),
+--
+--
+--        CONSTRAINT cp_health PRIMARY (codcontract,exactday),
+--        CONSTRAINT ca_codcontract FOREIGN KEY (codcontract) REFERENCES contract(codcontract) ON DELETE CASCADE ON UPDATE CASCADE
+--);
+
+
+
+
 
 CREATE TABLE invoice (
         codinvoice      VARCHAR(15),
