@@ -4,6 +4,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
 import es.uji.ei1027.majorsacasa.dao.ElderlyPeopleDao;
 
+import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Disponibility;
 import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
@@ -210,6 +211,52 @@ public class ElderlyPeopleController {
             return "redirect:../../voluntarisLliures";
         }
 
+
+    }
+
+    @RequestMapping("/services")
+    public String getElderlyPeopleServices(HttpSession session, Model model){
+
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (user.getRol()!="Elderly"){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+
+        }else{
+            return "elderlyPeople/services";
+        }
+
+    }
+
+    RequestDao requestDao;
+    @Autowired
+    public void setRequestyDao(RequestDao requestDao){
+        this.requestDao=requestDao;
+    }
+
+    @RequestMapping("/meusServicis")
+    public String getMeusServicis(HttpSession session, Model model){
+
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (user.getRol()!="Elderly"){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+        }else{
+            model.addAttribute("requests", requestDao.getRequestsElderly(user.getDni()));
+            return "elderlyPeople/meusVoluntaris";
+        }
 
     }
 
