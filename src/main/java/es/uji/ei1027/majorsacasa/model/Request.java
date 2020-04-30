@@ -2,6 +2,7 @@ package es.uji.ei1027.majorsacasa.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.sql.Time;
 import java.time.LocalDate;
 
 public class Request {
@@ -15,13 +16,16 @@ public class Request {
     private boolean rejected;
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate endDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private Time serviceHour;
+    private float price;
     private String dniElderlyPeople;
     private String cifCompany;
 
 
     public Request(){}
 
-    public Request(String codRequest, Character state, ServiceType service, LocalDate initialDate, LocalDate approvedDate, boolean rejected, LocalDate endDate, String dniElderlyPeople, String cifCompany) {
+    public Request(String codRequest, Character state, ServiceType service, LocalDate initialDate, LocalDate approvedDate, boolean rejected, LocalDate endDate, Time serviceHour, float price, String dniElderlyPeople, String cifCompany) {
         this.codRequest = codRequest;
         this.state = state;
         this.service = service;
@@ -29,8 +33,26 @@ public class Request {
         this.approvedDate = approvedDate;
         this.rejected = rejected;
         this.endDate = endDate;
+        this.serviceHour = serviceHour;
+        this.price = price;
         this.dniElderlyPeople = dniElderlyPeople;
         this.cifCompany = cifCompany;
+    }
+
+    public Time getServiceHour() {
+        return serviceHour;
+    }
+
+    public void setServiceHour(Time serviceHour) {
+        this.serviceHour = serviceHour;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     public String getCodRequest() {

@@ -25,8 +25,8 @@ public class RequestDao {
      * @param request
      */
     public void addRequest(Request request){
-        jdbcTemplate.update("INSERT INTO request VALUES (?,?,?,?,?,?,?,?,?)",
-                request.getCodRequest(),request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getDniElderlyPeople(), request.getCifCompany()
+        jdbcTemplate.update("INSERT INTO request VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                request.getCodRequest(),request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getServiceHour(), request.getPrice(), request.getDniElderlyPeople(), request.getCifCompany()
                 );
     }
 
@@ -35,8 +35,8 @@ public class RequestDao {
      * @param request
      */
     public void updateRequest(Request request){
-        jdbcTemplate.update("UPDATE request SET state=?, servicetype=?, requestdate=?, approveddate=?, rejected=?, enddate=?, dnielderlypeople=?, cifcompany=? WHERE codrequest=?",
-                request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getDniElderlyPeople(),request.getCifCompany(), request.getCodRequest()
+        jdbcTemplate.update("UPDATE request SET state=?, servicetype=?, requestdate=?, approveddate=?, rejected=?, enddate=?, servicehour=?, price=? , dnielderlypeople=?, cifcompany=? WHERE codrequest=?",
+                request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getServiceHour(), request.getPrice(), request.getDniElderlyPeople(),request.getCifCompany(), request.getCodRequest()
         );
     }
 

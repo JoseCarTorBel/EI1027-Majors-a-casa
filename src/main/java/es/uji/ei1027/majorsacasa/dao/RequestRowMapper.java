@@ -26,6 +26,8 @@ public class RequestRowMapper implements RowMapper<Request> {
         date=rs.getDate("enddate");
         request.setEndDate(date != null ? date.toLocalDate() : null);
         request.setRejected(rs.getBoolean("rejected"));
+        request.setServiceHour(rs.getTime("servicehour"));
+        request.setPrice(rs.getFloat("price"));
         request.setDniElderlyPeople(rs.getString("dnielderlypeople"));
         request.setCifCompany(rs.getString("cifcompany"));
 
