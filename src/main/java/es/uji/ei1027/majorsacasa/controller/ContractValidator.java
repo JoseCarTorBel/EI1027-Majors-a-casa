@@ -47,6 +47,5 @@ public class ContractValidator  implements Validator {
         }else if(contract.getPrice()<0){
             errors.rejectValue("price","Obligatori", "El preu no pot ser menor que 0.");
         }
-
     }
 }

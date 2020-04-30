@@ -78,14 +78,14 @@
 
                 <div class="form-group">
                     <label>Díes de la setmana (Mantin polsat Ctrl per elegir diversos)</label>
-                    <select multiple class="form-control"  size="7" th:field="daysOfWeek">
-                        <option>Dilluns</option>
-                        <option>Dimarts</option>
-                        <option>Dimecres</option>
-                        <option>Dijous</option>
-                        <option>Divendres</option>
-                        <option>Dissabte</option>
-                        <option>Diumenge</option>
+                    <select multiple class="form-control"  size="7" th:field="*{daysOfWeek}">
+                        <option value="Dilluns">Dilluns</option>
+                        <option value="Dimarts">Dimarts</option>
+                        <option value="Dimecres">Dimecres</option>
+                        <option value="Dijous">Dijous</option>
+                        <option value="Divendres">Divendres</option>
+                        <option value="Dissabte">Dissabte</option>
+                        <option value="Diiumenge">Diumenge</option>
                     </select>
                 </div>
 
