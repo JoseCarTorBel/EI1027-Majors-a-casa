@@ -104,10 +104,10 @@ public class CasCompanyController {
     }
 
 
-    @RequestMapping(value="/delete/{cif}", method = {RequestMethod.GET, RequestMethod.DELETE})
-    public String removeVolunteer(@PathVariable String cif){
-        companyDao.removeCompany(cif);
-        return "redirect:../list";
+    @RequestMapping(value="unregisterContract/{codContract}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String unsubscribeContract(@PathVariable String codContract){
+        contractDao.unsubscribeContract(codContract);
+        return "redirect:cascompany/listContracts";
     }
 
 

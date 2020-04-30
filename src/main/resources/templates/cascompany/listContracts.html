@@ -46,6 +46,7 @@
                         <td th:text="${contract.daysOfWeek}"></td>
                         <td th:text="${contract.hour_initial}"></td>
                         <td th:text="${contract.hour_final}"></td>
+                        <td><a th:href="@{/cascompany/unregisterContract/{codContract}(codContract=${contract.codContract})}">Donar de baixa</a>
                     </tr>
                 </tbody>
             </table>
@@ -64,6 +65,9 @@
                     <th>Data finalització</th>
                     <th>Servici</th>
                     <th>Preu</th>
+                    <th>Dies contractats</th>
+                    <th>Hora d'inici</th>
+                    <th>Hora de finalització</th>
                 </tr>
                 </thead>
                 <tbody>

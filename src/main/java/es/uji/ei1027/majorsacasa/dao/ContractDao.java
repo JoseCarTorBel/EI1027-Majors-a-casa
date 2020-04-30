@@ -46,10 +46,10 @@ public class ContractDao {
 
     /**
      * Dar de baja a una empresa, es decir, cambiar la fecha de finalización.
-     * @param contract  Contrato actual
+     * @param codContract  Código contrato actual
      */
-    public void unsubscribeContract(Contract contract){
-        jdbcTemplate.update("UPDATE contract SET finaltime=NOW() WHERE codcontract=?",contract.getCodContract());
+    public void unsubscribeContract(String codContract){
+        jdbcTemplate.update("UPDATE contract SET finaltime=NOW() WHERE codcontract=?",codContract);
     }
 
 
