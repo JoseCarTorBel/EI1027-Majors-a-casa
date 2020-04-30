@@ -31,6 +31,9 @@
                     <th>Data finalització</th>
                     <th>Servici</th>
                     <th>Preu</th>
+                    <th>Dies contractats</th>
+                    <th>Hora d'inici</th>
+                    <th>Hora de finalització</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,6 +43,9 @@
                         <td th:text="${contract.finalDate}"></td>
                         <td th:text="${contract.service}"></td>
                         <td th:text="${contract.price}"></td>
+                        <td th:text="${contract.daysOfWeek}"></td>
+                        <td th:text="${contract.hour_initial}"></td>
+                        <td th:text="${contract.hour_final}"></td>
                     </tr>
                 </tbody>
             </table>
@@ -67,6 +73,9 @@
                     <td th:text="${contract.finalDate}"></td>
                     <td th:text="${contract.service}"></td>
                     <td th:text="${contract.price}"></td>
+                    <td th:text="${contract.daysOfWeek}"></td>
+                    <td th:text="${contract.hour_initial}"></td>
+                    <td th:text="${contract.hour_final}"></td>
                 </tr>
                 </tbody>
             </table>

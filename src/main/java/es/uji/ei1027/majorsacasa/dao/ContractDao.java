@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.w3c.dom.ls.LSException;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -26,9 +27,11 @@ public class ContractDao {
      * @param contract
      */
     public void addContract(Contract contract){
-        jdbcTemplate.update("INSERT INTO contract VALUES (?,?,?,?,?)",
-                contract.getCifcompany(), contract.getService(), contract.getInitialDate(), contract.getFinalDate(), contract.getPrice()
-        );
+
+
+        jdbcTemplate.update("INSERT INTO contract VALUES (?,?,?,?,?,?,?,?,?)",
+                makeKey(contract),contract.getCodContract(), contract.getCifcompany(), contract.getService(), contract.getInitialDate(), contract.getFinalDate(),
+                contract.getPrice(),contract.getDaysOfWeek(),contract.getHour_initial(),contract.getHour_final());
     }
 
     /**
@@ -42,23 +45,23 @@ public class ContractDao {
     }
 
     /**
-     * remove a contract
-     * @param contract
+     * Dar de baja a una empresa, es decir, cambiar la fecha de finalización.
+     * @param contract  Contrato actual
      */
-    public void removeContract(Contract contract){
-        jdbcTemplate.update("DELETE FROM contract WHERE cifcompany=? ",contract.getCifcompany());
+    public void unsubscribeContract(Contract contract){
+        jdbcTemplate.update("UPDATE contract SET finaltime=NOW() WHERE codcontract=?",contract.getCodContract());
     }
 
 
     /**
      * get a contract
-     * @param cifCompany
+     * @param codContract
      * @return Contract
      */
-    public Contract getContract(String cifCompany){
+    public Contract getContract(String codContract){
         try{
             return jdbcTemplate.queryForObject("SELECT * FROM contract WHERE cifcompany=?",
-                    new ContractRowMapper() ,cifCompany);
+                    new ContractRowMapper() ,codContract);
         }catch (EmptyResultDataAccessException e){
             return null;
         }
@@ -95,5 +98,49 @@ public class ContractDao {
         }catch (EmptyResultDataAccessException e){
             return  new ArrayList<Contract>();
         }
+    }
+
+    /**
+     *  Contratos por servicio.
+     * @param servicio  int
+     * @return  List<Contract>
+     */
+    public List<Contract> getListContractVigente(int servicio){
+        try{
+            return jdbcTemplate.query(  "SELECT * " +
+                            "FROM contract " +
+                            "WHERE initialtime<= NOW() AND finaltime>=NOW() " +
+                            "AND service=?;",
+                    new ContractRowMapper(),servicio);
+
+        }catch (EmptyResultDataAccessException e){
+            return  new ArrayList<Contract>();
+        }
+    }
+
+    /**
+     * Listado de contrados NO vigentes comparados con hoy según tipo de servicio.
+     * @return List<Contract>
+     */
+    public List<Contract> getListContractPasados(int servicio){
+        try{
+            return jdbcTemplate.query(  "SELECT * " +
+                            "FROM contract " +
+                            "WHERE finaltime<=NOW()" +
+                            "AND service=?;",
+                    new ContractRowMapper(),servicio);
+
+        }catch (EmptyResultDataAccessException e){
+            return  new ArrayList<Contract>();
+        }
+    }
+
+
+    private String makeKey(Contract contract) {
+        String[] f = contract.getInitialDate().toString().split("-");
+        int serv = contract.getService().getPosition();
+
+        return serv+""+f[0]+""+f[1]+""+f[2]+""+contract.getCifcompany();
+
     }
 }

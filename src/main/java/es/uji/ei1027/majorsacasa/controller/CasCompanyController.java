@@ -127,7 +127,7 @@ public class CasCompanyController {
         model.addAttribute("newContract",new Contract());
         return "cascompany/newContract";
     }
-
+    //TODO he cambiado contract por newContract
     /**
      * Añadir contracto a la BBDD.
      * @param contract
@@ -135,7 +135,7 @@ public class CasCompanyController {
      * @return Devulve la página principal si se ha podido añadir a la BBDD
      */
     @RequestMapping(value = "/newContract",method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("contract")Contract contract,
+    public String processAddSubmit(@ModelAttribute("newContract")Contract contract,
                                    BindingResult bindingResult){
 
         ContractValidator contractValidator = new ContractValidator();
@@ -193,15 +193,20 @@ public class CasCompanyController {
         if (isSession != null) {
             return isSession;
         }
+        List<Contract> contractVigente = contractDao.getListContractVigente(0);
+        List<Contract> contractPasados = contractDao.getListContractPasados(0);
 
-        return "";
+        model.addAttribute("contractVigente",contractVigente);
+        model.addAttribute("contractPasados",contractPasados);
+
+        return "cascompany/listContractsCatering";
 
     }
 
     /**
      *
-     * @param model
-     * @Modelo utilizado
+     * @param session   Sesion usuario
+     * @param model  utilizado
      * @return Vista para listar contratos de limpieza
      */
     @RequestMapping(value ="/listContractsClean")
@@ -210,8 +215,13 @@ public class CasCompanyController {
         if (isSession != null) {
             return isSession;
         }
-        return "";
+        List<Contract> contractVigente = contractDao.getListContractVigente(1);
+        List<Contract> contractPasados = contractDao.getListContractPasados(1);
 
+        model.addAttribute("contractVigente",contractVigente);
+        model.addAttribute("contractPasados",contractPasados);
+
+        return "cascompany/listContractsClean";
     }
 
     /**
@@ -226,9 +236,16 @@ public class CasCompanyController {
         if (isSession != null) {
             return isSession;
         }
-        return "";
+        List<Contract> contractVigente = contractDao.getListContractVigente(2);
+        List<Contract> contractPasados = contractDao.getListContractPasados(2);
 
+        model.addAttribute("contractVigente",contractVigente);
+        model.addAttribute("contractPasados",contractPasados);
+
+        return "cascompany/listContractsHealth";
     }
+
+
 
 
 
