@@ -56,19 +56,26 @@ INSERT INTO disponibility VALUES ('20112233Y',null,1,'2019-01-01','2020-12-01','
 INSERT INTO disponibility VALUES ('20998877E',null,3,'2020-01-01','2020-12-01','P');
 INSERT INTO disponibility VALUES ('20112233Y',null,2,'2019-01-01','2020-12-01','P');
 
-INSERT INTO company VALUES ('G34672398','Catering Miravete','12345678G','Vicente Miravete','647352635','vmiravete@gmail.com','Calle Catalunya, Castelló de la Plana, Castellón',null,null);
-INSERT INTO company VALUES ('T46372819','Dra González','45632178F','Sandra González','657489325','sandragonzalez@gmail.com','Calle Rafalafena, Castelló de la Plana, Castellon',null,null);
-INSERT INTO company VALUES ('R36271856','Limpiezas Pedro','14253698A','Pedro Alonso','678543234','pedroalonso@gmail.com','Calle Mozart, Castelló de la Plana, Castellon','C_Limiezas','C_Limiezas');
-INSERT INTO company VALUES ('U68352416','Conchi Limpiezas','25361482A','Concepción García','687935268','conchigarcia@gmail.com','Calle de Arriba, Castelló de la Plana, Castellon','C_Irco','C_Irco');
-INSERT INTO company VALUES ('L84736273','Irco','689543765','María del Mar Álvarez','14578965A','maralvarez@irco.es','Gran Vía, Castelló de la Plana, Castellon',null,null);
+INSERT INTO company VALUES ('G34672398','Catering Miravete','12345678G','Vicente Miravete','647352635','vmiravete@gmail.com','Calle Catalunya, Castelló de la Plana, Castellón',null,null,NOW());
+INSERT INTO company VALUES ('T46372819','Dra González','45632178F','Sandra González','657489325','sandragonzalez@gmail.com','Calle Rafalafena, Castelló de la Plana, Castellon',null,null,NOW());
+INSERT INTO company VALUES ('R36271856','Limpiezas Pedro','14253698A','Pedro Alonso','678543234','pedroalonso@gmail.com','Calle Mozart, Castelló de la Plana, Castellon','C_Limiezas','C_Limiezas',NOW());
+INSERT INTO company VALUES ('U68352416','Conchi Limpiezas','25361482A','Concepción García','687935268','conchigarcia@gmail.com','Calle de Arriba, Castelló de la Plana, Castellon','C_Irco','C_Irco',NOW());
+INSERT INTO company VALUES ('L84736273','Irco','689543765','María del Mar Álvarez','14578965A','maralvarez@irco.es','Gran Vía, Castelló de la Plana, Castellon',null,null,NOW());
 
 
-INSERT INTO contract VALUES ('G34672398',0,'2020-01-01','2021-01-01',130);
-INSERT INTO contract VALUES ('T46372819',2,'2020-01-01','2021-01-01',20);
-INSERT INTO contract VALUES ('L84736273',0,'2020-01-01','2021-01-01',130);
-INSERT INTO contract VALUES ('R36271856',1,'2020-01-01','2021-01-01',10);
-INSERT INTO contract VALUES ('U68352416',1,'2020-01-01','2021-01-01',10);
+INSERT INTO contract VALUES ('020200101G34672398','G34672398',0,'2020-01-01','2021-01-01',130);
+INSERT INTO contract VALUES ('2020200101T46372819','T46372819',2,'2020-01-01','2021-01-01',20);
+INSERT INTO contract VALUES ('020200101L84736273','L84736273',0,'2020-01-01','2021-01-01',130);
+INSERT INTO contract VALUES ('120200101R36271856','R36271856',1,'2020-01-01','2021-01-01',10);
+INSERT INTO contract VALUES ('120200101U68352416','U68352416',1,'2020-01-01','2021-01-01',10);
 
+INSERT INTO catering VALUES ('020200101G34672398','Dilluns;Dimarts;Dimecres;Dijous;Divendres',CAST('12:00' AS TIME), CAST('14:30' AS TIME));
+INSERT INTO catering VALUES ('020200101L84736273','Dissabte;Diumenge',CAST('12:00' AS TIME), CAST('15:00' AS TIME));
+
+INSERT INTO cleaning VALUES ('120200101R36271856', 'Dilluns; Dimecres; Divendres',CAST('9:00' AS TIME), CAST('13:00' AS TIME));
+INSERT INTO cleaning VALUES ('120200101U68352416', 'Dimarts; Dijous',CAST('7:30' AS TIME), CAST('15:30' AS TIME));
+
+INSERT INTO health VALUES ('2020200101T46372819','Dilluns; Divendres',CAST('9:00' AS TIME), CAST('13:00' AS TIME));
 
 
 
@@ -79,11 +86,11 @@ INSERT INTO invoice VALUES ('F004','20119290R',10,'2010-02-02');
 INSERT INTO invoice VALUES ('F005','20917888Y',10,'2010-02-02');
 
 
-INSERT INTO request VALUES ('R002','P',0,'2020-01-01',null,false,'2022-01-01','20654491U','G34672398');
-INSERT INTO request VALUES ('R003','A',2,'2020-03-01','2020-04-01',false,'2022-01-01','20884391O','T46372819');
-INSERT INTO request VALUES ('R004','A',0,'2020-02-14','2020-04-01',false,'2022-01-01','20119392I','L84736273');
-INSERT INTO request VALUES ('R005','R',1,'2020-01-12','2020-04-01',false,'2022-01-01','20119290R','R36271856');
-INSERT INTO request VALUES ('R006','P',1,'2020-02-04',null,false,'2022-01-01','20917888Y','U68352416');
+INSERT INTO request VALUES ('R002','P',0,'2020-01-01',null,false,'2022-01-01','20654491U','020200101G34672398');
+INSERT INTO request VALUES ('R003','A',2,'2020-03-01','2020-04-01',false,'2022-01-01','20884391O','2020200101T46372819');
+INSERT INTO request VALUES ('R004','A',0,'2020-02-14','2020-04-01',false,'2022-01-01','20119392I','020200101L84736273');
+INSERT INTO request VALUES ('R005','R',1,'2020-01-12','2020-04-01',false,'2022-01-01','20119290R','120200101R36271856');
+INSERT INTO request VALUES ('R006','P',1,'2020-02-04',null,false,'2022-01-01','20917888Y','120200101U68352416');
 
 
 

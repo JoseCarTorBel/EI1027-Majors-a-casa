@@ -84,6 +84,7 @@ CREATE TABLE company (
         postaddress     VARCHAR(70),
       	username VARCHAR(20),
 	    passwd VARCHAR(20),
+	    fechaAlta DATE,
         
         CONSTRAINT cp_company PRIMARY KEY (cif),  -- CP
         CONSTRAINT calt_company UNIQUE (email) -- clau alternativa
@@ -112,7 +113,7 @@ CREATE TABLE catering (
     hour_initial    TIME,
     hour_final      TIME,
 
-    CONSTRAINT cp_codcontract PRIMARY (codcontract),
+    CONSTRAINT cp_codcontract_catering PRIMARY KEY(codcontract),
     CONSTRAINT ca_codcontract FOREIGN KEY (codcontract) REFERENCES contract(codcontract) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
@@ -124,18 +125,19 @@ CREATE TABLE cleaning (
     hour_initial    TIME,
     hour_final      TIME,
 
-    CONSTRAINT cp_codcontract PRIMARY (codcontract),
+    CONSTRAINT cp_codcontract_cleaning PRIMARY KEY (codcontract),
     CONSTRAINT ca_codcontract FOREIGN KEY (codcontract) REFERENCES contract(codcontract) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- TODO THIS
---CREATE TABLE health(
---        codcontract VARCHAR(30),
---
---
---        CONSTRAINT cp_health PRIMARY (codcontract,exactday),
---        CONSTRAINT ca_codcontract FOREIGN KEY (codcontract) REFERENCES contract(codcontract) ON DELETE CASCADE ON UPDATE CASCADE
---);
+CREATE TABLE health(
+        codcontract VARCHAR(30),
+        days_week VARCHAR(100),
+        hour_initial    TIME,
+        hour_final      TIME,
+
+        CONSTRAINT cp_health_health PRIMARY KEY (codcontract),
+        CONSTRAINT ca_codcontract FOREIGN KEY (codcontract) REFERENCES contract(codcontract) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 
 
@@ -160,11 +162,11 @@ CREATE TABLE request (
         rejected     BOOLEAN NULL,
         enddate     DATE,
         dnielderlypeople VARCHAR(30),
-        cifcompany VARCHAR(30),
+        codcontract VARCHAR(30),
 
         CONSTRAINT cp_request PRIMARY KEY (codrequest),  -- CP
         CONSTRAINT ca_request_eld FOREIGN KEY (dnielderlypeople) REFERENCES elderlypeople(dni) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a elderlypeople
-        CONSTRAINT ca_contract_cifcompany FOREIGN KEY (cifcompany) REFERENCES contract(cifcompany) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a company
+        CONSTRAINT ca_contract_codcontract FOREIGN KEY (codcontract) REFERENCES contract(codcontract) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a company
         CONSTRAINT serviceIntegrity CHECK (servicetype>=0 AND servicetype<=2)
 );
 

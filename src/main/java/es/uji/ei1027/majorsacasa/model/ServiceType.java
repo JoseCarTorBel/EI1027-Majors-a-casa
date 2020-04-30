@@ -5,7 +5,7 @@ package es.uji.ei1027.majorsacasa.model;
  */
 
 public enum ServiceType {
-    CATTERING(0,"Servicio de cattering"),
+    CATTERING(0,"Servicio de catering"),
     CLEAR(1,"Servicio de limpieza"),
     HEALTH(2,"Servicio de salud");
 
