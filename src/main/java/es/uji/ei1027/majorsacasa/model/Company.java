@@ -1,5 +1,9 @@
 package es.uji.ei1027.majorsacasa.model;
 
+import org.apache.tomcat.jni.Local;
+
+import java.time.LocalDate;
+
 public class Company {
     private String cif;
     private String name;
@@ -10,6 +14,7 @@ public class Company {
     private String email;
     private String username;
     private String passwd;
+    private LocalDate fechaAlta;
 
     public String getUsername() {
         return username;
@@ -29,7 +34,7 @@ public class Company {
 
     public Company(){}
 
-    public Company(String cif, String name, String personalContact, String phoneContact, String postAddress,String email,String username,String passwd) {
+    public Company(String cif, String name, String personalContact, String phoneContact, String postAddress, String email, String username, String passwd, LocalDate fechaAlta) {
         this.cif = cif;
         this.name = name;
         this.personalContact = personalContact;
@@ -38,6 +43,7 @@ public class Company {
         this.email=email;
         this.username=username;
         this.passwd=passwd;
+        this.fechaAlta=fechaAlta;
     }
 
     // GETER
@@ -67,6 +73,8 @@ public class Company {
         return email;
     }
 
+    public LocalDate getFechaAlta() { return fechaAlta; }
+
     // SETTER
     public void setCif(String cif) {
         this.cif = cif;
@@ -93,4 +101,6 @@ public class Company {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void  setFechaAlta(LocalDate fechaAlta) {this.fechaAlta = fechaAlta; }
 }

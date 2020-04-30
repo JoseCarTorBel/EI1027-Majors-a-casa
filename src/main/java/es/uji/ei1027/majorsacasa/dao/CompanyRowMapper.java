@@ -22,6 +22,7 @@ public class CompanyRowMapper implements RowMapper<Company> {
         company.setPostAddress(rs.getString("postaddress"));
         company.setUsername(rs.getString("username"));
         company.setUsername(rs.getString("passwd"));
+        company.setFechaAlta(rs.getDate("fechaalta").toLocalDate());
 
         return company;
     }

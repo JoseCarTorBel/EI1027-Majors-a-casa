@@ -25,6 +25,7 @@
                 <th>Telèfon</th>
                 <th>Email</th>
                 <th>Adreça</th>
+                <th>Data d'alta</th>
 
             </tr>
             </thead>
@@ -37,6 +38,7 @@
                     <td th:text="${company.phoneContact}"></td>
                     <td th:text="${company.email}"></td>
                     <td th:text="${company.postAddress}"></td>
+                    <td th:text="${company.fechaAlta}"></td>
                     <td><a th:href="@{/cascompany/delete/{cif}(cif=${company.cif})}">Esborra</a>
                 </tr>
             </tbody>
