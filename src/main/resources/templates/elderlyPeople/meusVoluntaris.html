@@ -45,7 +45,11 @@
                     </td>
                     <td th:text="${disponibility.initialTime}"></td>
                     <td th:text="${disponibility.finalTime}"></td>
-                    <td th:text="${disponibility.state}"></td>
+                    <td th:switch="${disponibility.state}">
+                        <span th:case="'A'">Aprovada</span>
+                        <span th:case="'P'">Pendet</span>
+                        <span th:case="'R'">Rebutjada</span>
+                    </td>
                     <td><a role="button" class="btn btn-danger" th:href="@{/elderlyPeople/deleteDisponibility/{dayOfWeek}/{dniVolunteer}(dayOfWeek=${disponibility.dayOfWeek}, dniVolunteer=${disponibility.dniVolunteer} )}">Cancel·lar</a>
 
                     </td>
