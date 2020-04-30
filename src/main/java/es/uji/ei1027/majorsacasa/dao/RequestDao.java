@@ -1,5 +1,6 @@
 package es.uji.ei1027.majorsacasa.dao;
 
+import es.uji.ei1027.majorsacasa.model.Disponibility;
 import es.uji.ei1027.majorsacasa.model.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -26,7 +27,7 @@ public class RequestDao {
      */
     public void addRequest(Request request){
         jdbcTemplate.update("INSERT INTO request VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-                request.getCodRequest(),request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getServiceHour(), request.getPrice(), request.getDniElderlyPeople(), request.getCifCompany()
+                request.getCodRequest(),request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getServiceHour(), request.getPrice(), request.getDniElderlyPeople(), request.getCodContract()
                 );
     }
 
@@ -35,8 +36,8 @@ public class RequestDao {
      * @param request
      */
     public void updateRequest(Request request){
-        jdbcTemplate.update("UPDATE request SET state=?, servicetype=?, requestdate=?, approveddate=?, rejected=?, enddate=?, servicehour=?, price=? , dnielderlypeople=?, cifcompany=? WHERE codrequest=?",
-                request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getServiceHour(), request.getPrice(), request.getDniElderlyPeople(),request.getCifCompany(), request.getCodRequest()
+        jdbcTemplate.update("UPDATE request SET state=?, servicetype=?, requestdate=?, approveddate=?, rejected=?, enddate=?, servicehour=?, price=? , dnielderlypeople=?, codcontract=? WHERE codrequest=?",
+                request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getServiceHour(), request.getPrice(), request.getDniElderlyPeople(),request.getCodContract(), request.getCodRequest()
         );
     }
 
@@ -70,9 +71,9 @@ public class RequestDao {
      */
     public List<Request> getRequestsElderly(String dniElderlyPeople){
         try{
-            return jdbcTemplate.query("SELECT * FROM request WHERE dnielderlypeople=?",
+            return  jdbcTemplate.query("SELECT * FROM request WHERE dnielderlypeople=?;",
                     new RequestRowMapper(),dniElderlyPeople);
-        }catch (EmptyResultDataAccessException e){
+        }catch(EmptyResultDataAccessException e) {
             return null;
         }
     }

@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
 <head>
     <meta charset="UTF-8">
-    <title>Els meus servicis</title>
+    <title>Els meus serveis</title>
 
 </head>
 <body>
@@ -17,7 +17,7 @@
 <div class="container">
     <div class="card bg-light">
         <article class="card-body" style="max-width: 100%;">
-            <h4 class="card-title mt-3 text-center">Els meus voluntaris</h4>
+            <h4 class="card-title mt-3 text-center">Els meus serveis</h4>
 
             <table class="table table-striped">
                 <thead>
@@ -34,15 +34,19 @@
                 </thead>
                 <tbody>
                 <tr th:each="request: ${requests}">
-                    <!-- Falta esto-->
-
+                    <td th:text="${request.service}"></td>
+                    <td th:text="${request.initialDate}"></td>
+                    <td th:text="${request.endDate}"></td>
+                    <td th:text="${request.serviceHour}"></td>
+                    <td th:text="${request.price}"></td>
+                    <td th:text="${request.state}"></td>
                 </tr>
                 </tbody>
             </table>
         </article>
     </div>
     <br>
-    <a href="/" th:href="@{/elderlyPeople/servicis}" class="btn btn-primary btn-lg">Tornar a la pàgina de gestió dels servicis</a>
+    <a href="/" th:href="@{/elderlyPeople/services}" class="btn btn-primary btn-lg">Tornar a la pàgina de gestió dels serveis</a>
 </div>
 <!--container end.//-->
 

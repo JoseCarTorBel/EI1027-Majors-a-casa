@@ -20,7 +20,7 @@ public class Request {
     private Time serviceHour;
     private float price;
     private String dniElderlyPeople;
-    private String cifCompany;
+    private String codContract;
 
 
     public Request(){}
@@ -36,7 +36,7 @@ public class Request {
         this.serviceHour = serviceHour;
         this.price = price;
         this.dniElderlyPeople = dniElderlyPeople;
-        this.cifCompany = cifCompany;
+        this.codContract = codContract;
     }
 
     public Time getServiceHour() {
@@ -63,12 +63,12 @@ public class Request {
         this.codRequest = codRequest;
     }
 
-    public String getCifCompany() {
-        return cifCompany;
+    public String getCodContract() {
+        return codContract;
     }
 
-    public void setCifCompany(String cifCompany) {
-        this.cifCompany = cifCompany;
+    public void setCodContract(String codContract) {
+        this.codContract = codContract;
     }
 
     public Character getState() {

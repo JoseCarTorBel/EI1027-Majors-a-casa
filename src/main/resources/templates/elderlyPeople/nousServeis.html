@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" type="text/css" href="/css/elderlyPeople.css" th:href="@{/css/elderlyPeople.css}"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Sol·licitar un nou servei</title>
+
+</head>
+<body>
+
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorElderly"></div>
+
+<br>
+
+<div class="container">
+    <h1>Sol·licitar un nou servei</h1>
+
+
+    <div class="card">
+        <h5 class="card-header">Servei de menjar</h5>
+        <div class="card-body">
+            <h5 class="card-title">Menjar a casa</h5>
+            <p class="card-text">Amb aquest servei vosté por rebre a casa cada dia el menjar per a no preocupar-se per cuinar.</p>
+            <a href="#" class="btn btn-primary">Sol·licitar</a>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <h5 class="card-header">Servei de neteja</h5>
+        <div class="card-body">
+            <h5 class="card-title">Neteja</h5>
+            <p class="card-text">Amb aquest servei vosté pot contractar un servei de neteja i així no haurà de fer cap esforç en la neteja de la casa.  </p>
+            <a href="#" class="btn btn-primary">Sol·licitar</a>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <h5 class="card-header">Servei de salut</h5>
+        <div class="card-body">
+            <h5 class="card-title">Salut a casa</h5>
+            <p class="card-text">Amb aquest servei vosté pot contractar un servei de salut a casa i així rebre ajuda en tot allò que necessite. </p>
+            <a href="#" class="btn btn-primary">Sol·licitar</a>
+        </div>
+    </div>
+    <br>
+    <a href="/" th:href="@{/elderlyPeople/services}" class="btn btn-primary btn-lg">Tornar a la pàgina de gestió dels serveis</a>
+</div>
+<!--container end.//-->
+
+<div th:replace="fragments/footPage"></div>
+
+</body>
+</html>

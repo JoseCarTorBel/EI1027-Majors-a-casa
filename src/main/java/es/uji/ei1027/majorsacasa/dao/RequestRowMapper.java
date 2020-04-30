@@ -29,7 +29,7 @@ public class RequestRowMapper implements RowMapper<Request> {
         request.setServiceHour(rs.getTime("servicehour"));
         request.setPrice(rs.getFloat("price"));
         request.setDniElderlyPeople(rs.getString("dnielderlypeople"));
-        request.setCifCompany(rs.getString("cifcompany"));
+        request.setCodContract(rs.getString("codcontract"));
 
         return request;
     }
