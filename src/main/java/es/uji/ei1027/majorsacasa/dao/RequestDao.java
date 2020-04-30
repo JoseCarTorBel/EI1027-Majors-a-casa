@@ -6,6 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 public class RequestDao {
 
@@ -55,6 +56,20 @@ public class RequestDao {
         try{
             return jdbcTemplate.queryForObject("SELECT * FROM request WHERE codrequest=?",
                                     new RequestRowMapper(),codRequest);
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
+    }
+
+    /**
+     * get a request
+     * @param dniElderlyPeople
+     * @return Disponibility
+     */
+    public List<Request> getRequestsElderly(String dniElderlyPeople){
+        try{
+            return jdbcTemplate.query("SELECT * FROM request WHERE dnielderlypeople=?",
+                    new RequestRowMapper(),dniElderlyPeople);
         }catch (EmptyResultDataAccessException e){
             return null;
         }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" type="text/css" href="/css/elderlyPeople.css" th:href="@{/css/elderlyPeople.css}"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Els meus servicis</title>
+
+</head>
+<body>
+
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorElderly"></div>
+<br>
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body" style="max-width: 100%;">
+            <h4 class="card-title mt-3 text-center">Els meus voluntaris</h4>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Servei</th>
+                    <th>Data de inici</th>
+                    <th>Data de fi</th>
+                    <th>Hora</th>
+                    <th>Preu</th>
+                    <th>Estat</th>
+                    <th></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="request: ${requests}">
+                    <!-- Falta esto-->
+
+                </tr>
+                </tbody>
+            </table>
+        </article>
+    </div>
+    <br>
+    <a href="/" th:href="@{/elderlyPeople/servicis}" class="btn btn-primary btn-lg">Tornar a la pàgina de gestió dels servicis</a>
+</div>
+<!--container end.//-->
+
+<div th:replace="fragments/footPage"></div>
+
+</body>
+</html>
