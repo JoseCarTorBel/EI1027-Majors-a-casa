@@ -199,7 +199,7 @@ public class CasCompanyController {
         model.addAttribute("contractVigente",contractVigente);
         model.addAttribute("contractPasados",contractPasados);
 
-        return "cascompany/listContractsCatering";
+        return "cascompany/listContracts";
 
     }
 
@@ -221,7 +221,7 @@ public class CasCompanyController {
         model.addAttribute("contractVigente",contractVigente);
         model.addAttribute("contractPasados",contractPasados);
 
-        return "cascompany/listContractsClean";
+        return "cascompany/listContracts";
     }
 
     /**
@@ -242,7 +242,7 @@ public class CasCompanyController {
         model.addAttribute("contractVigente",contractVigente);
         model.addAttribute("contractPasados",contractPasados);
 
-        return "cascompany/listContractsHealth";
+        return "cascompany/listContracts";
     }
 
 
