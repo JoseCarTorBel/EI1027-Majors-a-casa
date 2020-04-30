@@ -126,6 +126,8 @@ CREATE TABLE request (
         approveddate     DATE,
         rejected     BOOLEAN NULL,
         enddate     DATE,
+        servicehour      TIME,
+        price           INTEGER,
         dnielderlypeople VARCHAR(30),
         codcontract VARCHAR(30),
 
