@@ -3,12 +3,49 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="navbar-collapse collapse">
-            <a class="nav-link" href="/" th:href="@{/}"><i class="fa fa-fw fa-home"></i> Inici</a>
-            <a class="nav-link" href="/" th:href="@{/cascompany/list}"><i class="fa fa-users" aria-hidden="true"></i> Llistat d'empresses</a>
-            <a class="nav-link" href="/" th:href="@{/cascompany/newCompany}"><i class="fas fa-user-edit"></i> Donar d'alta empressa</a>
-            <a class="nav-link" href="/" th:href="@{/cascompany/newContract}"><i class="fas fa-file-signature"></i> Afegir contracte</a>
-            <a class="nav-link" href="/" th:href="@{/cascompany/listContracts}"><i class="fas fa-list"></i> Llistat de contractes</a>
-            <a class="nav-link" href="/logout" th:href="@{/logout}"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Eixir</a>
+
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="/" th:href="@{/}"><i class="fa fa-fw fa-home"></i> Inici</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/" th:href="@{/cascompany/list}"><i class="fa fa-users" aria-hidden="true"></i> Llistat d'empresses</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/" th:href="@{/cascompany/newCompany}"><i class="fas fa-user-edit"></i> Donar d'alta empressa</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/" th:href="@{/cascompany/newContract}"><i class="fas fa-file-signature"></i> Afegir contracte</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false"><i class="fas fa-list"></i>Llistat de contractes</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/" th:href="@{/cascompany/listContracts}"> Tots els contractes</a>
+                        <a class="dropdown-item" href="/" th:href="@{/cascompany/listContractsHealth}"> Contractes de salud</a>
+                        <a class="dropdown-item" href="/" th:href="@{/cascompany/listContractsClean}"> Contractes de neteja</a>
+                        <a class="dropdown-item" href="/" th:href="@{/cascompany/listContractsCatering}"> Contractes de catering</a>
+                    </div>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="/logout" th:href="@{/logout}"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Eixir</a>
+                </li>
+
+
+            </ul>
+
+
+
+
+
+
         </div>
     </nav>
 </div>
+
+

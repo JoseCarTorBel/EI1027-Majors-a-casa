@@ -55,7 +55,6 @@ CREATE TABLE elderlypeople (
         
         CONSTRAINT cp_elderlypeople PRIMARY KEY (dni),      -- clau primària
         CONSTRAINT ca_elderlypeople_per FOREIGN KEY (dni) REFERENCES person(dni) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a elderlypeople
-
         CONSTRAINT ca_elderlypeople_soc FOREIGN KEY (dnisocialworker) REFERENCES socialworker(dni) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a socialworker
 );
 
@@ -88,7 +87,6 @@ CREATE TABLE company (
         
         CONSTRAINT cp_company PRIMARY KEY (cif),  -- CP
         CONSTRAINT calt_company UNIQUE (email) -- clau alternativa
-   
 );
 
 
@@ -100,47 +98,14 @@ CREATE TABLE contract (
         initialtime     DATE,
         finaltime     DATE NULL,
         price           INTEGER,
+        days_week VARCHAR(100),
+        hour_initial    TIME,
+        hour_final      TIME,
 
         CONSTRAINT cp_codcontract PRIMARY KEY (codcontract),  -- CP
         CONSTRAINT ca_contract_company FOREIGN KEY (cifcompany) REFERENCES company(cif) ON DELETE CASCADE ON UPDATE CASCADE, -- clau aliena a company
         CONSTRAINT serviceIntegrity CHECK (service>=0 AND service<=2)
 );
-
-
-CREATE TABLE catering (
-    codcontract VARCHAR(30),
-    days_week VARCHAR(100),
-    hour_initial    TIME,
-    hour_final      TIME,
-
-    CONSTRAINT cp_codcontract_catering PRIMARY KEY(codcontract),
-    CONSTRAINT ca_codcontract FOREIGN KEY (codcontract) REFERENCES contract(codcontract) ON DELETE CASCADE ON UPDATE CASCADE
-
-);
-
-
-CREATE TABLE cleaning (
-    codcontract VARCHAR(30),
-    days_week VARCHAR(100),
-    hour_initial    TIME,
-    hour_final      TIME,
-
-    CONSTRAINT cp_codcontract_cleaning PRIMARY KEY (codcontract),
-    CONSTRAINT ca_codcontract FOREIGN KEY (codcontract) REFERENCES contract(codcontract) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-CREATE TABLE health(
-        codcontract VARCHAR(30),
-        days_week VARCHAR(100),
-        hour_initial    TIME,
-        hour_final      TIME,
-
-        CONSTRAINT cp_health_health PRIMARY KEY (codcontract),
-        CONSTRAINT ca_codcontract FOREIGN KEY (codcontract) REFERENCES contract(codcontract) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-
-
 
 
 CREATE TABLE invoice (

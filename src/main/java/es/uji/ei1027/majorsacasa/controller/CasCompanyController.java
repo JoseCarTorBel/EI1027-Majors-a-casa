@@ -181,10 +181,54 @@ public class CasCompanyController {
         return "cascompany/listContracts";
     }
 
+    /**
+     *
+     * @param model
+     * @Modelo utilizado
+     * @return Vista para listar contratos de cateriong
+     */
+    @RequestMapping(value ="/listContractsCatering")
+    public String getListContractsCatering(HttpSession session, Model model) {
+        String isSession = checkSession(model, session);
+        if (isSession != null) {
+            return isSession;
+        }
 
+        return ""
 
+    }
 
+    /**
+     *
+     * @param model
+     * @Modelo utilizado
+     * @return Vista para listar contratos de limpieza
+     */
+    @RequestMapping(value ="/listContractsClean")
+    public String getListContractsClean(HttpSession session, Model model) {
+        String isSession = checkSession(model, session);
+        if (isSession != null) {
+            return isSession;
+        }
+        return "";
 
+    }
+
+    /**
+     *
+     * @param session   Sesion actual
+     * @param model     Modelo utilizado
+     * @return Vista para listar contratos de salud
+     */
+    @RequestMapping(value ="/listContractsHealth")
+    public String getListContractsHealth(HttpSession session, Model model) {
+        String isSession = checkSession(model, session);
+        if (isSession != null) {
+            return isSession;
+        }
+        return "";
+
+    }
 
 
 
