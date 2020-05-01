@@ -66,8 +66,10 @@ public class CompanyController {
     @RequestMapping(value="/update",method=RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("company") Company company,
                                       BindingResult bindingResult){
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getAllErrors());
             return "company/update";
+        }
         companyDao.updateCompany(company);
         return "redirect:main";
     }
@@ -88,6 +90,28 @@ public class CompanyController {
         List<ElderlyPeople> servicesToDo = companyDao.getServicesToDo(user.getDni());
         model.addAttribute("servicesToDo",servicesToDo);
         return "/company/services";
+    }
+
+    @RequestMapping(value = "/contact",method=RequestMethod.GET)
+    public String contactWithCas(HttpSession session, Model model) {
+
+        String isSession = checkSession(model,session);
+        if(isSession!=null){ return isSession; }
+        UserDetails user =  (UserDetails) session.getAttribute("user");
+
+        model.addAttribute("company",companyDao.getCompany(user.getDni()));
+
+        return "company/contact";
+
+    }
+
+    @RequestMapping(value="/contact",method=RequestMethod.POST)
+    public String contactSubmit(@ModelAttribute("company") Company company,
+                                      BindingResult bindingResult){
+        if (bindingResult.hasErrors())
+            return "company/contact";
+
+        return "redirect:main";
     }
 
 
