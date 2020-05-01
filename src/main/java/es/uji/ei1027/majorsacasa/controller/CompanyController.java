@@ -71,7 +71,7 @@ public class CompanyController {
             return "company/update";
         }
         companyDao.updateCompany(company);
-        return "redirect:main";
+        return "company/update";
     }
 
     /**

@@ -18,6 +18,7 @@
 
             <form action="#" th:action="@{/company/update}"
                              th:object="${company}" method="post">
+                <input  name="" class="form-control" type="text" th:field="*{cif}" hidden>
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
