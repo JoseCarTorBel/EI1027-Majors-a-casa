@@ -5,10 +5,7 @@ import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
 import es.uji.ei1027.majorsacasa.dao.ElderlyPeopleDao;
 
 import es.uji.ei1027.majorsacasa.dao.RequestDao;
-import es.uji.ei1027.majorsacasa.model.Disponibility;
-import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
-import es.uji.ei1027.majorsacasa.model.Request;
-import es.uji.ei1027.majorsacasa.model.UserDetails;
+import es.uji.ei1027.majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -336,8 +334,8 @@ public class ElderlyPeopleController {
 
     }
 
-    @RequestMapping(value="/solicitarDisponibility/{serviceType}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String solicitarServei(HttpSession session, Model model, @PathVariable Integer serviceType) {
+    @RequestMapping(value="/solicitarServei/{serviceType}/{price}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String solicitarServei(HttpSession session, Model model, @PathVariable Integer serviceType, @PathVariable Integer price) {
 
         if (session.getAttribute("user") == null) {
             model.addAttribute("user", new UserDetails());
@@ -350,7 +348,11 @@ public class ElderlyPeopleController {
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
         }else{
-            //Todo me he quedado por aquí
+            LocalDateTime actual = LocalDateTime.now();
+            String codReq = "R" + actual.getYear()%100 + actual.getMonth() + actual.getDayOfMonth() + actual.getHour() + actual.getMinute() + actual.getSecond() + actual.getNano();
+            System.out.println(codReq);
+            Request nuevaReq = new Request(codReq,'P',ServiceType.getOpcion(serviceType),null,null,false,null,null,price,user.getDni(),null);
+            requestDao.addRequest(nuevaReq);
             return "redirect:../../nousServeis";
         }
 

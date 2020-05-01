@@ -24,9 +24,9 @@
         <h5 class="card-header">Servei de menjar</h5>
         <div class="card-body">
             <h5 class="card-title">Menjar a casa</h5>
-            <p class="card-text">Amb aquest servei vosté por rebre a casa cada dia el menjar per a no preocupar-se per cuinar.</p>
+            <p class="card-text">Amb aquest servei vosté por rebre a casa cada dia el menjar per a no preocupar-se per cuinar. <br> <br> Preu: 120€/mes</p>
             <div th:switch="${menjar}">
-                <span th:case="'C'"> <a href="#" class="btn btn-success">Sol·licitar</a> </span>
+                <span th:case="'C'"> <a th:href="@{/elderlyPeople/solicitarServei/0/120}" class="btn btn-success" >Sol·licitar</a> </span>
                 <span th:case="'P'"><b>No pot sol·licitar aquest servei, ja lo ha sol·licitat i està pendent de ser acceptat.</b></span>
                 <span th:case="'A'"> <b>Ja està gaudint d'aquest servei, no pot sol·licitar-lo de nou.</b></span>
             </div>
@@ -38,9 +38,9 @@
         <h5 class="card-header">Servei de neteja</h5>
         <div class="card-body">
             <h5 class="card-title">Neteja</h5>
-            <p class="card-text">Amb aquest servei vosté pot contractar un servei de neteja i així no haurà de fer cap esforç en la neteja de la casa.  </p>
+            <p class="card-text">Amb aquest servei vosté pot contractar un servei de neteja i així no haurà de fer cap esforç en la neteja de la casa. <br> <br> Preu: 10€/visita  </p>
             <div th:switch="${neteja}">
-                <span th:case="'C'"> <a href="#" class="btn btn-success">Sol·licitar</a> </span>
+                <span th:case="'C'"> <a th:href="@{/elderlyPeople/solicitarServei/1/10}" class="btn btn-success">Sol·licitar</a> </span>
                 <span th:case="'P'"><b>No pot sol·licitar aquest servei, ja lo ha sol·licitat i està pendent de ser acceptat.</b></span>
                 <span th:case="'A'"> <b>Ja està gaudint d'aquest servei, no pot sol·licitar-lo de nou.</b></span>
             </div>
@@ -51,9 +51,9 @@
         <h5 class="card-header">Servei de salut</h5>
         <div class="card-body">
             <h5 class="card-title">Salut a casa</h5>
-            <p class="card-text">Amb aquest servei vosté pot contractar un servei de salut a casa i així rebre ajuda en tot allò que necessite. </p>
+            <p class="card-text">Amb aquest servei vosté pot contractar un servei de salut a casa i així rebre ajuda en tot allò que necessite. <br> <br> Preu: 20€/visita </p>
             <div th:switch="${salut}">
-                <span th:case="'C'"> <a href="#" class="btn btn-success">Sol·licitar</a> </span>
+                <span th:case="'C'"> <a th:href="@{/elderlyPeople/solicitarServei/2/20}" class="btn btn-success">Sol·licitar</a> </span>
                 <span th:case="'P'"><b>No pot sol·licitar aquest servei, ja lo ha sol·licitat i està pendent de ser acceptat.</b></span>
                 <span th:case="'A'"> <b>Ja està gaudint d'aquest servei, no pot sol·licitar-lo de nou.</b></span>
             </div>

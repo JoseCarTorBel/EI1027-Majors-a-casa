@@ -119,7 +119,7 @@ CREATE TABLE invoice (
 );
 
 CREATE TABLE request (
-        codrequest      VARCHAR(15),
+        codrequest      VARCHAR(25),
         state   VARCHAR (1),
         servicetype      INTEGER,
         requestdate     DATE,

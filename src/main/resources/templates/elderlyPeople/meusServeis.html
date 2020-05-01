@@ -48,6 +48,11 @@
                         <span th:case="'P'">Pendent</span>
                         <span th:case="'R'">Rebutjada</span>
                     </td>
+                    <td th:switch="${request.state}">
+                        <span th:case="'A'"></span>
+                        <span th:case="'P'">Pendent</span>
+                        <span th:case="'R'">Rebutjada</span>
+                    </td>
                 </tr>
                 </tbody>
             </table>
