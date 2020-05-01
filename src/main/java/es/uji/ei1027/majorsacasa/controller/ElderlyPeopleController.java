@@ -107,7 +107,7 @@ public class ElderlyPeopleController {
         }
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (user.getRol()!="Elderly"){
+        if (!user.getRol().equals("Elderly")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a Elderly per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
@@ -126,7 +126,7 @@ public class ElderlyPeopleController {
         }
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (user.getRol()!="Elderly"){
+        if (!user.getRol().equals("Elderly")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
@@ -152,7 +152,7 @@ public class ElderlyPeopleController {
         }
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (user.getRol()!="Elderly"){
+        if (!user.getRol().equals("Elderly")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
@@ -179,7 +179,7 @@ public class ElderlyPeopleController {
         }
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (user.getRol()!="Elderly"){
+        if (!user.getRol().equals("Elderly")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
@@ -199,7 +199,7 @@ public class ElderlyPeopleController {
         }
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (user.getRol()!="Elderly"){
+        if (!user.getRol().equals("Elderly")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
@@ -224,7 +224,7 @@ public class ElderlyPeopleController {
         }
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (user.getRol()!="Elderly"){
+        if (!user.getRol().equals("Elderly")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
@@ -250,7 +250,7 @@ public class ElderlyPeopleController {
         }
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (user.getRol()!="Elderly"){
+        if (!user.getRol().equals("Elderly")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
@@ -270,7 +270,7 @@ public class ElderlyPeopleController {
         }
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (user.getRol()!="Elderly"){
+        if (!user.getRol().equals("Elderly")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
@@ -343,7 +343,7 @@ public class ElderlyPeopleController {
         }
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (user.getRol()!="Elderly"){
+        if (!user.getRol().equals("Elderly")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
@@ -368,7 +368,7 @@ public class ElderlyPeopleController {
         }
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (user.getRol()!="Elderly"){
+        if (!user.getRol().equals("Elderly")){
             System.out.println("El usuario no puede acceder a esta pagina con este rol");
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 

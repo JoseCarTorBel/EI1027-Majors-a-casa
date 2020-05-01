@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" type="text/css" href="/css/elderlyPeople.css" th:href="@{/css/elderlyPeople.css}"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Pàgina principal</title>
+
+</head>
+<body>
+
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorCas"></div>
+
+<br>
+
+<div class="container">
+    <div class="card bg-light">
+
+
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Pàgina principal del comite del cas</h4>
+
+            Aquí se mostrará un mensaje de bienvenida e información de interés para el usuario.
+
+
+
+
+        </article>
+    </div>
+</div>
+<!--container end.//-->
+
+<div th:replace="fragments/footPage"></div>
+
+</body>
+</html>
