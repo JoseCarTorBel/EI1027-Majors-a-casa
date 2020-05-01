@@ -25,7 +25,12 @@
         <div class="card-body">
             <h5 class="card-title">Menjar a casa</h5>
             <p class="card-text">Amb aquest servei vosté por rebre a casa cada dia el menjar per a no preocupar-se per cuinar.</p>
-            <a href="#" class="btn btn-primary">Sol·licitar</a>
+            <div th:switch="${menjar}">
+                <span th:case="'C'"> <a href="#" class="btn btn-success">Sol·licitar</a> </span>
+                <span th:case="'P'"><b>No pot sol·licitar aquest servei, ja lo ha sol·licitat i està pendent de ser acceptat.</b></span>
+                <span th:case="'A'"> <b>Ja està gaudint d'aquest servei, no pot sol·licitar-lo de nou.</b></span>
+            </div>
+
         </div>
     </div>
     <br>
@@ -34,7 +39,11 @@
         <div class="card-body">
             <h5 class="card-title">Neteja</h5>
             <p class="card-text">Amb aquest servei vosté pot contractar un servei de neteja i així no haurà de fer cap esforç en la neteja de la casa.  </p>
-            <a href="#" class="btn btn-primary">Sol·licitar</a>
+            <div th:switch="${neteja}">
+                <span th:case="'C'"> <a href="#" class="btn btn-success">Sol·licitar</a> </span>
+                <span th:case="'P'"><b>No pot sol·licitar aquest servei, ja lo ha sol·licitat i està pendent de ser acceptat.</b></span>
+                <span th:case="'A'"> <b>Ja està gaudint d'aquest servei, no pot sol·licitar-lo de nou.</b></span>
+            </div>
         </div>
     </div>
     <br>
@@ -43,7 +52,11 @@
         <div class="card-body">
             <h5 class="card-title">Salut a casa</h5>
             <p class="card-text">Amb aquest servei vosté pot contractar un servei de salut a casa i així rebre ajuda en tot allò que necessite. </p>
-            <a href="#" class="btn btn-primary">Sol·licitar</a>
+            <div th:switch="${salut}">
+                <span th:case="'C'"> <a href="#" class="btn btn-success">Sol·licitar</a> </span>
+                <span th:case="'P'"><b>No pot sol·licitar aquest servei, ja lo ha sol·licitat i està pendent de ser acceptat.</b></span>
+                <span th:case="'A'"> <b>Ja està gaudint d'aquest servei, no pot sol·licitar-lo de nou.</b></span>
+            </div>
         </div>
     </div>
     <br>

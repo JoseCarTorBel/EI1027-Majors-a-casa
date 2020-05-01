@@ -7,6 +7,7 @@ import es.uji.ei1027.majorsacasa.dao.ElderlyPeopleDao;
 import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Disponibility;
 import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
+import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping("/elderlyPeople")
@@ -274,10 +277,83 @@ public class ElderlyPeopleController {
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
         }else{
-            //model.addAttribute("requests", requestDao.getRequestsElderly(user.getDni()));
-            //Puede que haya que pasarle algo
+            char menjar = 'C';
+            char neteja = 'C';
+            char salut = 'C';
+
+            //Comprovar estat actual del servei de menjar
+            for(Request req : requestDao.getRequestsMenjarElderly(user.getDni())){
+                if(req.getState()=='P'){
+                    menjar = 'P';
+                    break;
+                }else{
+                    if(req.getState()=='A'){
+                        if(req.getEndDate().isAfter(LocalDate.now())){
+                            menjar = 'A';
+                            break;
+                        }
+                    }
+                }
+            }
+
+            //Comprovar estat actual del servei de neteja
+            for(Request req : requestDao.getRequestsNetejaElderly(user.getDni())){
+                if(req.getState()=='P'){
+                    neteja = 'P';
+                    break;
+                }else{
+                    if(req.getState()=='A'){
+                        if(req.getEndDate().isAfter(LocalDate.now())){
+                            neteja = 'A';
+                            break;
+                        }
+                    }
+                }
+            }
+
+            //Comprovar estat actual del servei de salut
+            for(Request req : requestDao.getRequestsSalutElderly(user.getDni())){
+                if(req.getState()=='P'){
+                    salut = 'P';
+                    break;
+                }else{
+                    if(req.getState()=='A'){
+                        if(req.getEndDate().isAfter(LocalDate.now())){
+                            salut = 'A';
+                            break;
+                        }
+                    }
+                }
+            }
+
+            model.addAttribute("menjar", menjar);
+            model.addAttribute("neteja", neteja);
+            model.addAttribute("salut", salut);
+
+
             return "elderlyPeople/nousServeis";
         }
+
+    }
+
+    @RequestMapping(value="/solicitarDisponibility/{serviceType}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String solicitarServei(HttpSession session, Model model, @PathVariable Integer serviceType) {
+
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (user.getRol()!="Elderly"){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+        }else{
+            //Todo me he quedado por aquí
+            return "redirect:../../nousServeis";
+        }
+
 
     }
 

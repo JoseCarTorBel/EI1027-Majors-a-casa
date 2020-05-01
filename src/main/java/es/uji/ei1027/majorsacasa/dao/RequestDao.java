@@ -78,6 +78,62 @@ public class RequestDao {
         }
     }
 
+    /**
+     * get a request
+     * @param dniElderlyPeople
+     * @return Disponibility
+     */
+    public List<Request> getRequestsMenjarElderly(String dniElderlyPeople){
+        try{
+            return  jdbcTemplate.query("SELECT * FROM request WHERE dnielderlypeople=? AND servicetype=0;",
+                    new RequestRowMapper(),dniElderlyPeople);
+        }catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 
+    /**
+     * get a request
+     * @param dniElderlyPeople
+     * @return Disponibility
+     */
+    public List<Request> getRequestsNetejaElderly(String dniElderlyPeople){
+        try{
+            return  jdbcTemplate.query("SELECT * FROM request WHERE dnielderlypeople=? AND servicetype=1;",
+                    new RequestRowMapper(),dniElderlyPeople);
+        }catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    /**
+     * get a request
+     * @param dniElderlyPeople
+     * @return Disponibility
+     */
+    public List<Request> getRequestsSalutElderly(String dniElderlyPeople){
+        try{
+            return  jdbcTemplate.query("SELECT * FROM request WHERE dnielderlypeople=? AND servicetype=2;",
+                    new RequestRowMapper(),dniElderlyPeople);
+        }catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    /**
+     * get a request
+     * @param codRequest
+     * @return boolean
+     */
+    public boolean codRequestIsFree(String codRequest){
+        try{
+            Request req =  jdbcTemplate.queryForObject("SELECT * FROM request WHERE codrequest=?",
+                    new RequestRowMapper(),codRequest);
+            if(req!=null) return false;
+            return true;
+        }catch (EmptyResultDataAccessException e){
+            return true;
+        }
+    }
 
 }
