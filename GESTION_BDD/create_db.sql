@@ -50,6 +50,7 @@ CREATE TABLE hobbies (
 
 CREATE TABLE elderlypeople (
         dni      VARCHAR(30),
+        state   VARCHAR (1),
         justification      VARCHAR(50),
         dnisocialworker     VARCHAR(30) NULL,
         

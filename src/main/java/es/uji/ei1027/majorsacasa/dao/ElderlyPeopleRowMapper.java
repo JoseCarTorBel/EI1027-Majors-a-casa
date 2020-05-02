@@ -20,6 +20,8 @@ public class ElderlyPeopleRowMapper implements RowMapper<ElderlyPeople> {
         Date date=rs.getDate("dateofbirth");
         elderlyPeople.setDateOfBirth(date != null ? date.toLocalDate() : null);
         elderlyPeople.setPostAddress(rs.getString("postaddress"));
+        String state = rs.getString("state");
+        elderlyPeople.setState(state!=null?state.charAt(0):null);
         elderlyPeople.setJustification(rs.getString("justification"));
         elderlyPeople.setDniSocialWorker(rs.getString("dnisocialworker"));
         elderlyPeople.setEmail(rs.getString("email"));

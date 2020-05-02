@@ -18,6 +18,9 @@ INSERT INTO person VALUES ('EP_Joaquin','Gonzalez Alvarez','20884391O','62736756
 INSERT INTO person VALUES ('EP_Maria','Peris Alonso','20119392I','612737283','1935-06-01','Calle egipcia, Ontinyete, Alicante','maria23@uji.es','EP_Maria', 'EP_Maria');
 INSERT INTO person VALUES ('EP_Marta','Lopez Marza','20119290R','675672934','1937-11-20','Avenida casalduch, Castellon de la plana, Castellon','marta@uji.es','EP_Marta', 'EP_Marta');
 INSERT INTO person VALUES ('EP_Cristina','Sanahuja Leira','20917888Y','624378234','1953-10-26','Calle la calle, Ontinyete, Alicante',null,'EP_Cristina', 'EP_Cristina');
+INSERT INTO person VALUES ('EP_Cristina','Sanahuja Leira','20917888Y','624378234','1953-10-26','Calle la calle, Ontinyete, Alicante',null,'EP_Cristina', 'EP_Cristina');
+INSERT INTO person VALUES ('EP_Juanlu','Perez Llanos ','34758384E','675432345','1953-10-26','Calle la calle, Valencia, Valencia',null,'EP_Juanlu', 'EP_Juanlu');
+INSERT INTO person VALUES ('EP_Ibai','Etxebarrieta Ybarra ','34567654R','675432345','1953-10-26','Calle la calle, Vila-Real, Castellon',null,'EP_Ibai', 'EP_Ibai');
 
 INSERT INTO volunteer VALUES ('20904567S','2023-01-01','A');
 INSERT INTO volunteer VALUES ('20764726T','2021-01-01','R');
@@ -35,11 +38,13 @@ INSERT INTO hobbies VALUES ('23457855W','Bailar');
 INSERT INTO hobbies VALUES ('20998812E','Dormir');
 INSERT INTO hobbies VALUES ('20912333Y','Ver la TV');
 
-INSERT INTO elderlypeople VALUES ('20654491U','Tengo hambre','20914826Y');
-INSERT INTO elderlypeople VALUES ('20884391O','Necesito ayuda',null);
-INSERT INTO elderlypeople VALUES ('20119392I','No se cocinar',null);
-INSERT INTO elderlypeople VALUES ('20119290R','Necesito que me limpien','19029093W');
-INSERT INTO elderlypeople VALUES ('20917888Y','Tengo mucho dinero',null);
+INSERT INTO elderlypeople VALUES ('20654491U','A','Tengo hambre','20914826Y');
+INSERT INTO elderlypeople VALUES ('20884391O','A','Necesito ayuda',null);
+INSERT INTO elderlypeople VALUES ('20119392I','A','No se cocinar',null);
+INSERT INTO elderlypeople VALUES ('20119290R','A','Necesito que me limpien','19029093W');
+INSERT INTO elderlypeople VALUES ('20917888Y','A','Tengo mucho dinero',null);
+INSERT INTO elderlypeople VALUES ('34758384E','R','No me hace mucha falta',null);
+INSERT INTO elderlypeople VALUES ('34567654R','P','Necesito compañía',null);
 
 INSERT INTO disponibility VALUES ('20904567S','20654491U',1,'2020-01-01','2020-12-01','A');
 INSERT INTO disponibility VALUES ('20904567S',null,2,'2020-01-01','2020-12-01','P');

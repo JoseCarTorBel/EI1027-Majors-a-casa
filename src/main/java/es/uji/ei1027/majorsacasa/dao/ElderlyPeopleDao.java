@@ -58,8 +58,8 @@ public class ElderlyPeopleDao {
                 elderlyPeople.getDni(),elderlyPeople.getSecondName(),elderlyPeople.getDni(),elderlyPeople.getPhone(),elderlyPeople.getDateOfBirth(),
                 elderlyPeople.getPostAddress(),elderlyPeople.getEmail(),elderlyPeople.getUsername(),elderlyPeople.getPasswd());
 
-        jdbcTemplate.update("INSERT INTO elderlypeople VALUES(?,?,?)",
-               elderlyPeople.getDni(),elderlyPeople.getJustification(),elderlyPeople.getDniSocialWorker());
+        jdbcTemplate.update("INSERT INTO elderlypeople VALUES(?,?,?,?)",
+               elderlyPeople.getDni(),"P",elderlyPeople.getJustification(),elderlyPeople.getDniSocialWorker());
 
     }
 
@@ -90,8 +90,8 @@ public class ElderlyPeopleDao {
         jdbcTemplate.update("UPDATE person SET name=?, secondname=?, phone=?, dateofbirth=?, postaddress=?, email=?, username=?, passwd=? WHERE dni=?",
                 elderlypeople.getName(),elderlypeople.getSecondName(),elderlypeople.getPhone(),elderlypeople.getDateOfBirth(),
                 elderlypeople.getPostAddress(),elderlypeople.getEmail(),elderlypeople.getUsername(),elderlypeople.getPasswd(),elderlypeople.getDni());
-        jdbcTemplate.update("UPDATE elderlypeople SET  justification=?, dnisocialworker=? WHERE dni=?",
-                elderlypeople.getJustification(),elderlypeople.getDniSocialWorker(),elderlypeople.getDni());
+        jdbcTemplate.update("UPDATE elderlypeople SET  state=?, justification=?, dnisocialworker=? WHERE dni=?",
+                elderlypeople.getState(), elderlypeople.getJustification(),elderlypeople.getDniSocialWorker(),elderlypeople.getDni());
     }
 
 }
