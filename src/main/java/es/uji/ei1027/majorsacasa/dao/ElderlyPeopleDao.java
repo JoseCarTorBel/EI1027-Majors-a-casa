@@ -94,4 +94,18 @@ public class ElderlyPeopleDao {
                 elderlypeople.getState(), elderlypeople.getJustification(),elderlypeople.getDniSocialWorker(),elderlypeople.getDni());
     }
 
+    /**
+     * Obtiene la lista de todos los ancianos de la tabla elderlypeple con  ese estado
+     * @param state
+     * @return List<ElderlyPeople>
+     */
+    public List<ElderlyPeople> getElderlyPeopleSetState(char state) {
+        try{
+            return jdbcTemplate.query("SELECT * FROM elderlypeople JOIN person ON elderlypeople.dni=person.dni where state=?",new ElderlyPeopleRowMapper(),state);
+        } catch (
+                EmptyResultDataAccessException e) {
+            return new ArrayList<ElderlyPeople>();
+        }
+    }
+
 }

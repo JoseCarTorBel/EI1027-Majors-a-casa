@@ -1,10 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" type="text/css" href="/css/elderlyPeople.css" th:href="@{/css/elderlyPeople.css}"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Sol·licituds de registre</title>
+
 </head>
 <body>
+
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorCas"></div>
+<br>
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body" style="max-width: 100%;">
+            <h4 class="card-title mt-3 text-center">Sol·licituds de persones majors</h4>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Dni</th>
+                    <th>Nom</th>
+                    <th>Cognom</th>
+                    <th>Phone</th>
+                    <th>Fecha nacimiento</th>
+                    <th>Direccion</th>
+                    <th>Justifaction</th>
+                    <th>Email</th>
+                    <th>DniSocialWorker</th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="elderlyPeople: ${personesMajors}">
+                    <td th:text="${elderlyPeople.dni}"></td>
+                    <td th:text="${elderlyPeople.name}"></td>
+                    <td th:text="${elderlyPeople.secondName}"></td>
+                    <td th:text="${elderlyPeople.phone}"></td>
+                    <td th:text="${elderlyPeople.dateOfBirth}"></td>
+                    <td th:text="${elderlyPeople.postAddress}"></td>
+                    <td th:switch="${elderlyPeople.state}">
+                        <span th:case="'A'">Aprovat</span>
+                        <span th:case="'P'">Pendent</span>
+                        <span th:case="'R'">Rebutjat</span>
+                    </td>
+                    <td th:text="${elderlyPeople.justification}"></td>
+                    <td th:text="${elderlyPeople.email}"></td>
+                    <td th:text="${elderlyPeople.dniSocialWorker}"></td>
+                    <td><a th:href="@{/elderlyPeople/update/{dni}(dni=${elderlyPeople.dni})}">Edita</a>
+                    </td>
+                    <td><a th:href="@{/elderlyPeople/delete/{dni}(dni=${elderlyPeople.dni})}">Borra</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </article>
+    </div>
+    <br>
+    <a href="/" th:href="@{/elderlyPeople/volunteersManagement}" class="btn btn-primary btn-lg">Tornar a la pàgina de gestió dels voluntaris</a>
+</div>
+<!--container end.//-->
+
+<div th:replace="fragments/footPage"></div>
 
 </body>
 </html>

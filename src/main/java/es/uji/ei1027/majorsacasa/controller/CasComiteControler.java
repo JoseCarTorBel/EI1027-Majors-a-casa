@@ -1,6 +1,8 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import es.uji.ei1027.majorsacasa.dao.ElderlyPeopleDao;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,13 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/comite")
 public class CasComiteControler {
+
+    private ElderlyPeopleDao elderlyPeopleDao;
+
+    @Autowired
+    public void setElderlyPeopleDao(ElderlyPeopleDao elderlyPeopleDao){
+        this.elderlyPeopleDao=elderlyPeopleDao;
+    }
 
 
     @RequestMapping("/main")
@@ -47,6 +56,8 @@ public class CasComiteControler {
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a CAS Comite per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
         }else{
+
+            model.addAttribute("personesMajors", elderlyPeopleDao.getElderlyPeopleSetState('P'));
 
             return "comite/solicitudsRegistre";
         }
