@@ -131,7 +131,7 @@ public class CasCompanyController {
         model.addAttribute("newContract",new Contract());
         return "cascompany/newContract";
     }
-    //TODO he cambiado contract por newContract
+
     /**
      * Añadir contracto a la BBDD.
      * @param contract
