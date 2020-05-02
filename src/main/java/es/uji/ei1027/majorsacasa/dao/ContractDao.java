@@ -28,6 +28,7 @@ public class ContractDao {
      */
     public void addContract(Contract contract){
 
+        System.out.println(contract.toString());
 
         jdbcTemplate.update("INSERT INTO contract VALUES (?,?,?,?,?,?,?,?,?)",
                 makeKey(contract), contract.getCifcompany(), contract.getService().getPosition(), contract.getInitialDate(),
@@ -39,6 +40,7 @@ public class ContractDao {
      * @param contract
      */
     public void updateContract(Contract contract){
+
         jdbcTemplate.update("UPDATE contract SET service=?, initialtime=?, finaltime=?, price=? WHERE cifcompany=?",
                 contract.getService(), contract.getInitialDate(), contract.getFinalDate(), contract.getPrice(), contract.getCifcompany()
                 );
@@ -75,7 +77,7 @@ public class ContractDao {
         try{
             return jdbcTemplate.query(  "SELECT * " +
                                             "FROM contract " +
-                                            "WHERE initialtime<= NOW() AND finaltime>=NOW();",
+                                            "WHERE finaltime>=NOW();",
                                         new ContractRowMapper());
 
         }catch (EmptyResultDataAccessException e){

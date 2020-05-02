@@ -105,12 +105,25 @@ public class Contract {
     }
 
     public void setHour_final(LocalTime hour_final) {
-        this.hour_initial = hour_final ;
+        this.hour_final = hour_final ;
     }
 
     public LocalTime getHour_final() {
         return hour_final;
     }
 
-
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "codContract='" + codContract + '\'' +
+                ", cifcompany='" + cifcompany + '\'' +
+                ", service=" + service +
+                ", initialDate=" + initialDate +
+                ", finalDate=" + finalDate +
+                ", price=" + price +
+                ", daysOfWeek='" + daysOfWeek + '\'' +
+                ", hour_initial=" + hour_initial +
+                ", hour_final=" + hour_final +
+                '}';
+    }
 }
