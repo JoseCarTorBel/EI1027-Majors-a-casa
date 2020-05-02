@@ -88,16 +88,16 @@
                     </select>
                 </div>
 
-                Hora d'inici
+
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fas fa-clock"></i> </span>
                     </div>
-                    <input name="" class="form-control"  type="text" th:field="*{hour_initial}">
+                    <input name="" class="form-control" placeholder="Hora d'inici (HH:MM)" type="text" th:field="*{hour_initial}">
                     <td th:if="${#fields.hasErrors('hour_initial')}" th:errors="*{hour_initial}"></td>
                 </div> <!-- form-group// -->
 
-                Hora de fi
+
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fas fa-clock"></i> </span>

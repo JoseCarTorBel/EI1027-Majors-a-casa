@@ -111,7 +111,7 @@ public class CasCompanyController {
         List<Company> listCompany = companyDao.getCompanys();
         model.addAttribute("listCompanys",listCompany);
 
-        return "cascompany/list";
+        return "redirect:../listContracts";
     }
 
 
@@ -203,7 +203,7 @@ public class CasCompanyController {
         model.addAttribute("contractVigente",contractVigente);
         model.addAttribute("contractPasados",contractPasados);
 
-        return "cascompany/listContracts";
+        return "redirect:../listContracts";
 
     }
 
@@ -225,7 +225,7 @@ public class CasCompanyController {
         model.addAttribute("contractVigente",contractVigente);
         model.addAttribute("contractPasados",contractPasados);
 
-        return "cascompany/listContracts";
+        return "redirect:../listContracts";
     }
 
     /**
@@ -246,7 +246,7 @@ public class CasCompanyController {
         model.addAttribute("contractVigente",contractVigente);
         model.addAttribute("contractPasados",contractPasados);
 
-        return "cascompany/listContracts";
+        return "rediret:../listContracts";
     }
 
 
