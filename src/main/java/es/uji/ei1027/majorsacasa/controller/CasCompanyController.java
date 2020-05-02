@@ -159,7 +159,7 @@ public class CasCompanyController {
 //            throw new MajorsACasaException( "Error amb l'accés a la BBDD.",
 //                                            "Error Access BBDD");
         }
-        return "redirect:list";
+        return "redirect:listContracts";
     }
 
 
@@ -203,7 +203,7 @@ public class CasCompanyController {
         model.addAttribute("contractVigente",contractVigente);
         model.addAttribute("contractPasados",contractPasados);
 
-        return "redirect:../listContracts";
+        return "cascompany/listContracts";
     }
 
     /**
@@ -224,7 +224,7 @@ public class CasCompanyController {
         model.addAttribute("contractVigente",contractVigente);
         model.addAttribute("contractPasados",contractPasados);
 
-        return "redirect:../listContracts";
+        return "cascompany/listContracts";
     }
 
     /**
@@ -245,19 +245,8 @@ public class CasCompanyController {
         model.addAttribute("contractVigente",contractVigente);
         model.addAttribute("contractPasados",contractPasados);
 
-        return "rediret:../listContracts";
+        return "cascompany/listContracts";
     }
-
-
-
-//    @ModelAttribute("DiasSemana")
-//    public String diasSemana(){
-//
-//    }
-
-
-
-
 
 
 /** ___________________________________________________________________________________________________________________
