@@ -47,5 +47,12 @@ public class ContractValidator  implements Validator {
         }else if(contract.getPrice()<0){
             errors.rejectValue("price","Obligatori", "El preu no pot ser menor que 0.");
         }
+
+//        if(contract.getHour_initial().equals("") ){
+//            errors.rejectValue("hour_initial","Obligatori", "S'ha d'especificar l'hora d'inici. ");
+//        }
+//        if(contract.getHour_final().equals("") ){
+//            errors.rejectValue("hour_final","Obligatori", "S'ha d'especificar l'hora de final. ");
+//        }
     }
 }

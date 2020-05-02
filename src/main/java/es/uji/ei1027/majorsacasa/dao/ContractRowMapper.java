@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 
 public class ContractRowMapper implements RowMapper<Contract> {
 
@@ -26,8 +27,8 @@ public class ContractRowMapper implements RowMapper<Contract> {
         contract.setPrice(rs.getFloat("price"));
 
         contract.setDaysOfWeek(rs.getString("days_week"));
-        contract.setHour_final(rs.getTime("hour_final"));
-        contract.setHour_initial(rs.getTime("hour_initial"));
+        contract.setHour_final(rs.getObject("hour_final", LocalTime.class));
+        contract.setHour_initial(rs.getObject("hour_initial", LocalTime.class));
 
         return contract;
 

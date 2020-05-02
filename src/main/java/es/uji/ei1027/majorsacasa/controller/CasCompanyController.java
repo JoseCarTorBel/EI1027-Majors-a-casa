@@ -105,9 +105,13 @@ public class CasCompanyController {
 
 
     @RequestMapping(value="unregisterContract/{codContract}", method = {RequestMethod.GET, RequestMethod.DELETE})
-    public String unsubscribeContract(@PathVariable String codContract){
+    public String unsubscribeContract(@PathVariable String codContract,Model model){
         contractDao.unsubscribeContract(codContract);
-        return "redirect:cascompany/listContracts";
+
+        List<Company> listCompany = companyDao.getCompanys();
+        model.addAttribute("listCompanys",listCompany);
+
+        return "cascompany/list";
     }
 
 
