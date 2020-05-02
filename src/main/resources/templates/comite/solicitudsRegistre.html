@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link rel="stylesheet" type="text/css" href="/css/elderlyPeople.css" th:href="@{/css/elderlyPeople.css}"/>
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
 <br>
 <div class="container">
     <div class="card bg-light">
-        <article class="card-body" style="max-width: 100%;">
+        <article class="card-body" style="max-width: 120%;">
             <h4 class="card-title mt-3 text-center">Sol·licituds de persones majors</h4>
 
             <table class="table table-striped">
@@ -28,9 +28,9 @@
                     <th>Phone</th>
                     <th>Fecha nacimiento</th>
                     <th>Direccion</th>
+                    <th>Estado</th>
                     <th>Justifaction</th>
-                    <th>Email</th>
-                    <th>DniSocialWorker</th>
+
                     <th></th>
                     <th></th>
 
@@ -51,10 +51,10 @@
                     </td>
                     <td th:text="${elderlyPeople.justification}"></td>
                     <td th:text="${elderlyPeople.email}"></td>
-                    <td th:text="${elderlyPeople.dniSocialWorker}"></td>
-                    <td><a th:href="@{/elderlyPeople/update/{dni}(dni=${elderlyPeople.dni})}">Edita</a>
+
+                    <td><a role="button" class="btn btn-success" th:href="@{/comite/acceptarSolicitud/{dni}(dni=${elderlyPeople.dni})}">Acceptar</a>
                     </td>
-                    <td><a th:href="@{/elderlyPeople/delete/{dni}(dni=${elderlyPeople.dni})}">Borra</a>
+                    <td><a role="button" class="btn btn-danger" th:href="@{/comite/rebujarSolicitud/{dni}(dni=${elderlyPeople.dni})}">Rebujar</a>
                     </td>
                 </tr>
                 </tbody>
@@ -62,7 +62,7 @@
         </article>
     </div>
     <br>
-    <a href="/" th:href="@{/elderlyPeople/volunteersManagement}" class="btn btn-primary btn-lg">Tornar a la pàgina de gestió dels voluntaris</a>
+    <a href="/" th:href="@{/comite/main}" class="btn btn-primary btn-lg">Tornar a la pàgina principal</a>
 </div>
 <!--container end.//-->
 

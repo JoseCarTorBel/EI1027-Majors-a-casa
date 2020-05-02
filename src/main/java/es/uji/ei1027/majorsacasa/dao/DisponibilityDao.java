@@ -122,6 +122,20 @@ public class DisponibilityDao {
         }
     }
 
+    /**
+     * Get de pending disponibilities
+     * @param
+     * @return Disponibility
+     */
+    public List<Disponibility> getDisponibilitiesPendents(){
+        try{
+            return  jdbcTemplate.query("SELECT * FROM disponibility WHERE state='P' AND dniElderlyPeople IS NOT NULL;",
+                    new DisponibilityRowMapper());
+        }catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
 
 
 

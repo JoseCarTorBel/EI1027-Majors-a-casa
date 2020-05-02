@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Sol·licituds de voluntaris</title>
+
 </head>
 <body>
+
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorCas"></div>
+<br>
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body" style="max-width: 100%;">
+            <h4 class="card-title mt-3 text-center">Els meus voluntaris</h4>
+
+            <table class="table table-striped">
+                <thead>
+                <tr><th>DNI persona major</th>
+                    <th>DNI voluntari</th>
+                    <th>Dia de la setmana</th>
+                    <th>Data inici</th>
+                    <th>Data fi</th>
+                    <th>Estat</th>
+                    <th></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="disponibility: ${disponibilities}">
+                    <td th:text="${disponibility.dniElderlyPeople}"></td>
+                    <td th:text="${disponibility.dniVolunteer}"></td>
+                    <td th:switch="${disponibility.dayOfWeek}">
+                        <span th:case="'1'">Dilluns</span>
+                        <span th:case="'2'">Dimarts</span>
+                        <span th:case="'3'">Dimecres</span>
+                        <span th:case="'4'">Dijous</span>
+                        <span th:case="'5'">Divendres</span>
+                        <span th:case="'6'">Dissabte</span>
+                        <span th:case="'7'">Diumenge</span>
+                    </td>
+                    <td th:text="${disponibility.initialTime}"></td>
+                    <td th:text="${disponibility.finalTime}"></td>
+                    <td th:switch="${disponibility.state}">
+                        <span th:case="'A'">Aprovada</span>
+                        <span th:case="'P'">Pendent</span>
+                        <span th:case="'R'">Rebutjada</span>
+                    </td>
+                    <td><a role="button" class="btn btn-success" th:href="@{/comite/acceptarSolicitudVoluntari/{dayOfWeek}/{dniVolunteer}(dayOfWeek=${disponibility.dayOfWeek}, dniVolunteer=${disponibility.dniVolunteer} )}">Acceptar</a>
+                    </td>
+                    <td><a role="button" class="btn btn-danger" th:href="@{/comite/rebujarSolicitudVoluntari/{dayOfWeek}/{dniVolunteer}(dayOfWeek=${disponibility.dayOfWeek}, dniVolunteer=${disponibility.dniVolunteer} )}">Rebujar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </article>
+    </div>
+    <br>
+    <a href="/" th:href="@{/elderlyPeople/volunteersManagement}" class="btn btn-primary btn-lg">Tornar a la pàgina de gestió dels voluntaris</a>
+</div>
+<!--container end.//-->
+
+<div th:replace="fragments/footPage"></div>
 
 </body>
 </html>

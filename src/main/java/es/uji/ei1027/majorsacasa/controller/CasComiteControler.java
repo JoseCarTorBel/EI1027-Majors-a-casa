@@ -1,11 +1,16 @@
 package es.uji.ei1027.majorsacasa.controller;
 
+import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
 import es.uji.ei1027.majorsacasa.dao.ElderlyPeopleDao;
+import es.uji.ei1027.majorsacasa.model.Disponibility;
+import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,10 +19,15 @@ import javax.servlet.http.HttpSession;
 public class CasComiteControler {
 
     private ElderlyPeopleDao elderlyPeopleDao;
-
     @Autowired
     public void setElderlyPeopleDao(ElderlyPeopleDao elderlyPeopleDao){
         this.elderlyPeopleDao=elderlyPeopleDao;
+    }
+
+    DisponibilityDao disponibilityDao;
+    @Autowired
+    public void setDisponibilityDao(DisponibilityDao disponibilityDao){
+        this.disponibilityDao=disponibilityDao;
     }
 
 
@@ -64,7 +74,26 @@ public class CasComiteControler {
 
     }
 
-    @RequestMapping("/solicitudsServeis")
+    @RequestMapping(value="/acceptarSolicitud/{dni}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String acceptarSolicitud(HttpSession session, Model model, @PathVariable String dni) {
+
+        ElderlyPeople nouElderly = elderlyPeopleDao.getElderlyPeople(dni);
+        nouElderly.setState('A');
+        elderlyPeopleDao.updateElderlyPeople(nouElderly);
+        return "redirect:../solicitudsRegistre";
+    }
+
+    @RequestMapping(value="/rebujarSolicitud/{dni}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String rebujarSolicitud(HttpSession session, Model model, @PathVariable String dni) {
+
+        ElderlyPeople nouElderly = elderlyPeopleDao.getElderlyPeople(dni);
+        nouElderly.setState('R');
+        elderlyPeopleDao.updateElderlyPeople(nouElderly);
+        return "redirect:../solicitudsRegistre";
+    }
+
+
+    @RequestMapping("/solicitudsVoluntaris")
     public String getComiteSolicitudsServeis(HttpSession session, Model model){
 
         if (session.getAttribute("user") == null) {
@@ -79,12 +108,31 @@ public class CasComiteControler {
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a CAS Comite per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
         }else{
-            return "comite/solicitudsServeis";
+            model.addAttribute("disponibilities",disponibilityDao.getDisponibilitiesPendents());
+            return "comite/solicitudsVoluntaris";
         }
 
     }
 
-    @RequestMapping("/solicitudsVoluntaris")
+    @RequestMapping(value="/acceptarSolicitudVoluntari/{dayOfWeek}/{dniVolunteer}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String acceptarSolicitudVoluntari(HttpSession session, Model model, @PathVariable Integer dayOfWeek, @PathVariable String dniVolunteer) {
+
+        Disponibility novaDisp = disponibilityDao.getDisponibility(dayOfWeek, dniVolunteer);
+        novaDisp.setState('A');
+        disponibilityDao.updateDisponibility(novaDisp);
+        return "redirect:../../solicitudsVoluntaris";
+    }
+
+    @RequestMapping(value="/rebujarSolicitudVoluntari/{dayOfWeek}/{dniVolunteer}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String rebujarSolicitudVoluntari(HttpSession session, Model model, @PathVariable Integer dayOfWeek, @PathVariable String dniVolunteer) {
+
+        Disponibility novaDisp = disponibilityDao.getDisponibility(dayOfWeek, dniVolunteer);
+        novaDisp.setState('R');
+        disponibilityDao.updateDisponibility(novaDisp);
+        return "redirect:../../solicitudsVoluntaris";
+    }
+
+    @RequestMapping("/solicitudsServeis")
     public String getComiteSolicitudsVoluntaris(HttpSession session, Model model){
 
         if (session.getAttribute("user") == null) {
