@@ -6,6 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,8 @@ public class ContractDao {
 
 
         jdbcTemplate.update("INSERT INTO contract VALUES (?,?,?,?,?,?,?,?,?)",
-                makeKey(contract),contract.getCodContract(), contract.getCifcompany(), contract.getService(), contract.getInitialDate(), contract.getFinalDate(),
-                contract.getPrice(),contract.getDaysOfWeek(),contract.getHour_initial(),contract.getHour_final());
+                makeKey(contract), contract.getCifcompany(), contract.getService().getPosition(), contract.getInitialDate(),
+                contract.getFinalDate(), contract.getPrice(),contract.getDaysOfWeek(),contract.getHour_initial(),contract.getHour_final());
     }
 
     /**

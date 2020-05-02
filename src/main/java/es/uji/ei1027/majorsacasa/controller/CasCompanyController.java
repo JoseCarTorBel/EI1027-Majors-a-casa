@@ -155,9 +155,9 @@ public class CasCompanyController {
         }catch (DuplicateKeyException dk){
             throw new MajorsACasaException("El contracte ja ha sigut fet.",
                                             "CPCompany Duplicate");
-        }catch (DataAccessException ex){
-            throw new MajorsACasaException( "Error amb l'accés a la BBDD.",
-                                            "Error Access BBDD");
+//        }catch (DataAccessException ex){
+//            throw new MajorsACasaException( "Error amb l'accés a la BBDD.",
+//                                            "Error Access BBDD");
         }
         return "redirect:list";
     }
@@ -204,7 +204,6 @@ public class CasCompanyController {
         model.addAttribute("contractPasados",contractPasados);
 
         return "redirect:../listContracts";
-
     }
 
     /**
@@ -250,6 +249,11 @@ public class CasCompanyController {
     }
 
 
+
+//    @ModelAttribute("DiasSemana")
+//    public String diasSemana(){
+//
+//    }
 
 
 
