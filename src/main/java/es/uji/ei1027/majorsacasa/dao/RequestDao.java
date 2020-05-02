@@ -67,7 +67,7 @@ public class RequestDao {
     /**
      * get a request
      * @param dniElderlyPeople
-     * @return Disponibility
+     * @return Request
      */
     public List<Request> getRequestsElderly(String dniElderlyPeople){
         try{
@@ -81,7 +81,7 @@ public class RequestDao {
     /**
      * get a request
      * @param dniElderlyPeople
-     * @return Disponibility
+     * @return Request
      */
     public List<Request> getRequestsMenjarElderly(String dniElderlyPeople){
         try{
@@ -95,7 +95,7 @@ public class RequestDao {
     /**
      * get a request
      * @param dniElderlyPeople
-     * @return Disponibility
+     * @return Request
      */
     public List<Request> getRequestsNetejaElderly(String dniElderlyPeople){
         try{
@@ -109,7 +109,7 @@ public class RequestDao {
     /**
      * get a request
      * @param dniElderlyPeople
-     * @return Disponibility
+     * @return Request
      */
     public List<Request> getRequestsSalutElderly(String dniElderlyPeople){
         try{
@@ -122,18 +122,18 @@ public class RequestDao {
 
     /**
      * get a request
-     * @param codRequest
-     * @return boolean
+     * @param
+     * @return Request
      */
-    public boolean codRequestIsFree(String codRequest){
+    public List<Request> getPendentRequest(){
         try{
-            Request req =  jdbcTemplate.queryForObject("SELECT * FROM request WHERE codrequest=?",
-                    new RequestRowMapper(),codRequest);
-            if(req!=null) return false;
-            return true;
-        }catch (EmptyResultDataAccessException e){
-            return true;
+            return  jdbcTemplate.query("SELECT * FROM request WHERE state='P';",
+                    new RequestRowMapper());
+        }catch(EmptyResultDataAccessException e) {
+            return null;
         }
     }
+
+
 
 }

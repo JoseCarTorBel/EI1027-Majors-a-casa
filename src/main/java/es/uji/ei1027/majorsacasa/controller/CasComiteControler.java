@@ -2,8 +2,10 @@ package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
 import es.uji.ei1027.majorsacasa.dao.ElderlyPeopleDao;
+import es.uji.ei1027.majorsacasa.dao.RequestDao;
 import es.uji.ei1027.majorsacasa.model.Disponibility;
 import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
+import es.uji.ei1027.majorsacasa.model.Request;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,12 @@ public class CasComiteControler {
     @Autowired
     public void setDisponibilityDao(DisponibilityDao disponibilityDao){
         this.disponibilityDao=disponibilityDao;
+    }
+
+    RequestDao requestDao;
+    @Autowired
+    public void setRequestyDao(RequestDao requestDao){
+        this.requestDao=requestDao;
     }
 
 
@@ -147,8 +155,21 @@ public class CasComiteControler {
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a CAS Comite per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
 
         }else{
-            return "comite/solicitudsVoluntaris";
+
+            model.addAttribute("requests", requestDao.getPendentRequest());
+
+            return "comite/solicitudsServeis";
         }
 
+    }
+
+    @RequestMapping(value="/rebujarSolicitudServici/{codReq}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String rebujarSolicitudVoluntari(HttpSession session, Model model, @PathVariable String codReq) {
+
+        Request novaReq =requestDao.getRequest(codReq);
+        novaReq.setState('R');
+        novaReq.setRejected(true);
+        requestDao.updateRequest(novaReq);
+        return "redirect:../solicitudsServeis";
     }
 }
