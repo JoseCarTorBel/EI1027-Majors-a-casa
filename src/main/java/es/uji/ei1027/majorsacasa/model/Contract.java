@@ -1,9 +1,9 @@
 package es.uji.ei1027.majorsacasa.model;
 
-import org.apache.tomcat.jni.Local;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Time;
+import java.time.LocalTime;
 import java.time.LocalDate;
 
 public class Contract {
@@ -12,19 +12,25 @@ public class Contract {
 
     private String cifcompany;
     private ServiceType service;
+
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate initialDate;
+
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate finalDate;
     private Float price;
 
     private String daysOfWeek;
-    private Time hour_initial,  hour_final;
+
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime hour_initial;
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime hour_final;
 
     public Contract() { }
 
     public Contract(String codContract,String cifcompany, ServiceType service, LocalDate initialDate, LocalDate finalDate,
-                    Float price, String daysOfWeek, Time hour_initial, Time hour_final) {
+                    Float price, String daysOfWeek, LocalTime hour_initial, LocalTime hour_final) {
         this.codContract = codContract;
         this.cifcompany = cifcompany;
         this.service = service;
@@ -48,9 +54,11 @@ public class Contract {
         return service;
     }
 
-    public void setService(ServiceType service) {
-        this.service = service;
+    public void setService(String service) {
+        this.service = ServiceType.getOpcion(Integer.getInteger(service));
     }
+
+    public void setService(ServiceType service){this.service=service;}
 
     public LocalDate getInitialDate() {
         return initialDate;
@@ -88,20 +96,21 @@ public class Contract {
         this.daysOfWeek = daysOfWeek;
     }
 
-    public Time getHour_initial() {
+    public LocalTime getHour_initial() {
         return hour_initial;
     }
 
-    public void setHour_initial(Time hour_initial) {
+    public void setHour_initial(LocalTime hour_initial) {
         this.hour_initial = hour_initial;
     }
 
-    public Time getHour_final() {
+    public void setHour_final(LocalTime hour_final) {
+        this.hour_initial = hour_final ;
+    }
+
+    public LocalTime getHour_final() {
         return hour_final;
     }
 
-    public void setHour_final(Time hour_final) {
-        this.hour_final = hour_final;
-    }
 
 }

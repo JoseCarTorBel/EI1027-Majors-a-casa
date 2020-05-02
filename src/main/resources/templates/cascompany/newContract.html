@@ -41,10 +41,9 @@
                         <span class="input-group-text"> <i class="fas fa-list"></i> </span>
                     </div>
                     <select class="form-control" th:field="*{service}">
-<!--                        <option value="NoSelect">Selecciona un servei</option>-->
-                        <option value="catering">Catering</option>
-                        <option value="neteja">Neteja</option>
-                        <option value="salud">Salud</option>
+                        <option value=CATTERING>Catering</option>
+                        <option value=CLEAR>Neteja</option>
+                        <option value=HEALTH>Salud</option>
                     </select>
                     <td th:if="${#fields.hasErrors('service')}" th:errors="*{service}"></td>
 
@@ -85,9 +84,10 @@
                         <option th:value="Dijous">Dijous</option>
                         <option th:value="Divendres">Divendres</option>
                         <option th:value="Dissabte">Dissabte</option>
-                        <option th:value="Diiumenge">Diumenge</option>
+                        <option th:value="Diumenge">Diumenge</option>
                     </select>
                 </div>
+
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -96,6 +96,7 @@
                     <input name="" class="form-control" placeholder="Hora d'inici (HH:MM)" type="text" th:field="*{hour_initial}">
                     <td th:if="${#fields.hasErrors('hour_initial')}" th:errors="*{hour_initial}"></td>
                 </div> <!-- form-group// -->
+
 
                 <div class="form-group input-group">
                     <div class="input-group-prepend">

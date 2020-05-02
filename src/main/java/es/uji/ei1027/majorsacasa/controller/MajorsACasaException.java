@@ -10,7 +10,7 @@ public class MajorsACasaException extends RuntimeException {
     {
         this.message=message;
         this.errorName=errorName;
-        this.returnPath="redirect:/";
+        this.returnPath="/";
     }
 
 

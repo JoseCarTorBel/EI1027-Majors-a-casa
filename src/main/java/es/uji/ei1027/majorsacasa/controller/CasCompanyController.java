@@ -105,9 +105,13 @@ public class CasCompanyController {
 
 
     @RequestMapping(value="unregisterContract/{codContract}", method = {RequestMethod.GET, RequestMethod.DELETE})
-    public String unsubscribeContract(@PathVariable String codContract){
+    public String unsubscribeContract(@PathVariable String codContract,Model model){
         contractDao.unsubscribeContract(codContract);
-        return "redirect:cascompany/listContracts";
+
+        List<Company> listCompany = companyDao.getCompanys();
+        model.addAttribute("listCompanys",listCompany);
+
+        return "redirect:../listContracts";
     }
 
 
@@ -199,7 +203,7 @@ public class CasCompanyController {
         model.addAttribute("contractVigente",contractVigente);
         model.addAttribute("contractPasados",contractPasados);
 
-        return "cascompany/listContracts";
+        return "redirect:../listContracts";
 
     }
 
@@ -221,7 +225,7 @@ public class CasCompanyController {
         model.addAttribute("contractVigente",contractVigente);
         model.addAttribute("contractPasados",contractPasados);
 
-        return "cascompany/listContracts";
+        return "redirect:../listContracts";
     }
 
     /**
@@ -242,7 +246,7 @@ public class CasCompanyController {
         model.addAttribute("contractVigente",contractVigente);
         model.addAttribute("contractPasados",contractPasados);
 
-        return "cascompany/listContracts";
+        return "rediret:../listContracts";
     }
 
 
