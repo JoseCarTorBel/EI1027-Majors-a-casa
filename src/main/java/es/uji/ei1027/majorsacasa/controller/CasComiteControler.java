@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -180,8 +181,11 @@ public class CasComiteControler {
 
         //RequestVallidator requestVallidator = new RequestVallidator();
         //requestVallidator.validate(request, bindingResult);
-        //if (bindingResult.hasErrors())
-        //    return "comite/updateRequest";
+        if (bindingResult.hasErrors())
+            return "comite/updateRequest";
+        System.out.println(request);
+        request.setState('A');
+        request.setAprovedDate(LocalDate.now());
         requestDao.updateRequest(request);
         return "redirect:../../solicitudsVoluntaris";
     }

@@ -350,7 +350,6 @@ public class ElderlyPeopleController {
         }else{
             LocalDateTime actual = LocalDateTime.now();
             String codReq = "R" + actual.getYear()%100 + actual.getMonth() + actual.getDayOfMonth() + actual.getHour() + actual.getMinute() + actual.getSecond() + actual.getNano();
-            System.out.println(codReq);
             Request nuevaReq = new Request(codReq,'P',ServiceType.getOpcion(serviceType),null,null,false,null,null,price,user.getDni(),null);
             requestDao.addRequest(nuevaReq);
             return "redirect:../../nousServeis";

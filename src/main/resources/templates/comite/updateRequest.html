@@ -49,7 +49,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
                     </div>
-                    <input name="" class="form-control" placeholder="Data d'inici del servei" type="date" th:field="*{approvedDate}">
+                    <input name="" class="form-control" placeholder="Data d'inici del servei" type="date" th:field="*{initialDate}">
 
                 </div> <!-- form-group// -->
 
@@ -72,12 +72,12 @@
                         <span class="input-group-text"> <i class="fas fa-clock"></i> </span>
                     </div>
                     <input name="" class="form-control" placeholder="Hora del servei (HH:MM)" type="text" th:field="*{serviceHour}">
-
+                    <td th:if="${#fields.hasErrors('serviceHour')}" th:errors="*{serviceHour}"></td>
                 </div> <!-- form-group// -->
 
                 <input name="" class="form-control" placeholder="Preu de contracte" type="text" th:field="*{price}"hidden>
                 <input name="" class="form-control" placeholder="Dni elderly" type="text" th:field="*{dniElderlyPeople}"hidden>
-
+                Codi de contracte:
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>

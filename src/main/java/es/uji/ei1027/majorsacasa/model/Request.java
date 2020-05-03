@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Request {
     private String codRequest;
@@ -16,8 +17,8 @@ public class Request {
     private boolean rejected;
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate endDate;
-    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
-    private Time serviceHour;
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime serviceHour;
     private float price;
     private String dniElderlyPeople;
     private String codContract;
@@ -25,7 +26,7 @@ public class Request {
 
     public Request(){}
 
-    public Request(String codRequest, Character state, ServiceType service, LocalDate initialDate, LocalDate approvedDate, boolean rejected, LocalDate endDate, Time serviceHour, float price, String dniElderlyPeople, String codContract) {
+    public Request(String codRequest, Character state, ServiceType service, LocalDate initialDate, LocalDate approvedDate, boolean rejected, LocalDate endDate, LocalTime serviceHour, float price, String dniElderlyPeople, String codContract) {
         this.codRequest = codRequest;
         this.state = state;
         this.service = service;
@@ -39,11 +40,11 @@ public class Request {
         this.codContract = codContract;
     }
 
-    public Time getServiceHour() {
+    public LocalTime getServiceHour() {
         return serviceHour;
     }
 
-    public void setServiceHour(Time serviceHour) {
+    public void setServiceHour(LocalTime serviceHour) {
         this.serviceHour = serviceHour;
     }
 
