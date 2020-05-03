@@ -169,7 +169,7 @@ public class CasComiteControler {
     }
 
     @RequestMapping(value="/acceptarSolicitudServici/{codReq}", method=RequestMethod.GET)
-    public String editNadador(Model model, @PathVariable String codReq) {
+    public String editRequest(Model model, @PathVariable String codReq) {
         model.addAttribute("request", requestDao.getRequest(codReq));
         return "comite/updateRequest";
     }
@@ -183,11 +183,12 @@ public class CasComiteControler {
         //requestVallidator.validate(request, bindingResult);
         if (bindingResult.hasErrors())
             return "comite/updateRequest";
-        System.out.println(request);
+
         request.setState('A');
         request.setAprovedDate(LocalDate.now());
+        System.out.println(request.toString());
         requestDao.updateRequest(request);
-        return "redirect:../../solicitudsVoluntaris";
+        return "redirect:../comite/main";
     }
 
     @RequestMapping(value="/rebujarSolicitudServici/{codReq}", method = {RequestMethod.GET, RequestMethod.POST})

@@ -124,5 +124,20 @@ public class Request {
         this.approvedDate = aprovedDate;
     }
 
-
+    @Override
+    public String toString() {
+        return "Request{" +
+                "codRequest='" + codRequest + '\'' +
+                ", state=" + state +
+                ", service=" + service +
+                ", initialDate=" + initialDate +
+                ", approvedDate=" + approvedDate +
+                ", rejected=" + rejected +
+                ", endDate=" + endDate +
+                ", serviceHour=" + serviceHour +
+                ", price=" + price +
+                ", dniElderlyPeople='" + dniElderlyPeople + '\'' +
+                ", codContract='" + codContract + '\'' +
+                '}';
+    }
 }
