@@ -85,11 +85,12 @@ public class CompanyDao {
 //                    ,new ElderlyPeopleRowMapper(), cif);
 
                 return jdbcTemplate.query(
-                        "    SELECT person.*, ep.justification,ep.dnisocialworker \n" +
+                        "SELECT person.*, ep.*\n" +
                                 "FROM person     JOIN elderlypeople AS ep ON person.dni =ep.dni\n" +
-                                "                JOIN request AS req ON ep.dni=req.dniElderlyPeople \n" +
-                                "                JOIN contract AS con ON req.servicetype = con.service " +
-                                "                WHERE con.cifcompany=?;"
+                                "JOIN request AS req ON ep.dni=req.dniElderlyPeople\n" +
+                                "JOIN contract AS con ON req.servicetype = con.service\n" +
+                                "WHERE con.cifcompany=? " +
+                                "AND con.initialtime<=NOW() AND con.finaltime>=NOW();"
                                         ,new ElderlyPeopleRowMapper(), cif);
 
         }catch(EmptyResultDataAccessException e){
