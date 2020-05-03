@@ -10,11 +10,15 @@ import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/comite")
@@ -161,6 +165,25 @@ public class CasComiteControler {
             return "comite/solicitudsServeis";
         }
 
+    }
+
+    @RequestMapping(value="/acceptarSolicitudServici/{codReq}", method=RequestMethod.GET)
+    public String editNadador(Model model, @PathVariable String codReq) {
+        model.addAttribute("request", requestDao.getRequest(codReq));
+        return "comite/updateRequest";
+    }
+
+    @RequestMapping(value="/updateRequest", method = RequestMethod.POST)
+    public String processUpdateSubmit(
+            @ModelAttribute("request") Request request,
+            BindingResult bindingResult) {
+
+        RequestVallidator requestVallidator = new RequestVallidator();
+        requestVallidator.validate(request, bindingResult);
+        if (bindingResult.hasErrors())
+            return "comite/upupdateRequest";
+        requestDao.updateRequest(request);
+        return "redirect:../solicitudsServeis";
     }
 
     @RequestMapping(value="/rebujarSolicitudServici/{codReq}", method = {RequestMethod.GET, RequestMethod.POST})

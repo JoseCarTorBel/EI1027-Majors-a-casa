@@ -1,0 +1,90 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+<link href="vendors/select/bootstrap-select.min.css" rel="stylesheet">
+<link href="vendors/form-helpers/css/bootstrap-formhelpers.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Acceptat sol·licitud</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorCasCompany"></div>
+
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Acceptar sol·licitud de servei</h4>
+
+            <form action="#"    th:action="@{/comite/updateRequest}"
+                  th:object="${request}" method="post">
+
+                <input  name="" class="form-control" placeholder="DNI / NIF" type="text" th:field="*{codRequest}" hidden>
+                <input  name="" class="form-control" placeholder="state" type="text" th:field="*{state}" hidden>
+                <input  name="" class="form-control" placeholder="service" type="text" th:field="*{service}" hidden>
+
+                Data inici del servei:
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Data d'inici del servei" type="date" th:field="*{initialDate}">
+                    <td th:if="${#fields.hasErrors('initialDate')}" th:errors="*{initialDate}"></td>
+                </div> <!-- form-group// -->
+
+                <input name="" class="form-control" placeholder="Data acceptar servei" type="date" th:field="*{approvedDate}" hidden>
+
+                <input  name="" class="form-control" placeholder="service" type="text" th:field="*{rejected}" hidden>
+
+                Data de final del servei:
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Data de final del servei" type="date" th:field="*{endDate}">
+                    <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></td>
+                </div> <!-- form-group// -->
+
+                Hora del servei:
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fas fa-clock"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Hora del servei (HH:MM)" type="text" th:field="*{serviceHour}">
+
+                </div> <!-- form-group// -->
+
+                <input name="" class="form-control" placeholder="Preu de contracte" type="text" th:field="*{price}"hidden>
+                <input name="" class="form-control" placeholder="Dni elderly" type="text" th:field="*{dniElderlyPeople}"hidden>
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Codi de contracte" type="text" th:field="*{codContract}">
+
+                </div> <!-- form-group// -->
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Acceptar sol·licitud </button>
+                </div> <!-- form-group// -->
+            </form>
+        </article>
+    </div>
+</div>
+
+
+<div th:replace="fragments/footPage"></div>
+
+</body>
+</html>

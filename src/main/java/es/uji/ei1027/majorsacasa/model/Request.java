@@ -25,7 +25,7 @@ public class Request {
 
     public Request(){}
 
-    public Request(String codRequest, Character state, ServiceType service, LocalDate initialDate, LocalDate approvedDate, boolean rejected, LocalDate endDate, Time serviceHour, float price, String dniElderlyPeople, String cifCompany) {
+    public Request(String codRequest, Character state, ServiceType service, LocalDate initialDate, LocalDate approvedDate, boolean rejected, LocalDate endDate, Time serviceHour, float price, String dniElderlyPeople, String codContract) {
         this.codRequest = codRequest;
         this.state = state;
         this.service = service;
