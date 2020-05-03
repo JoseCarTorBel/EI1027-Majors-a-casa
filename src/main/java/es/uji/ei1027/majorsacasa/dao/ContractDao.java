@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +28,11 @@ public class ContractDao {
      * add a contract
      * @param contract
      */
-    public void addContract(Contract contract){
-
-        System.out.println(contract.toString());
+    public void addContract(Contract contract) {
 
         jdbcTemplate.update("INSERT INTO contract VALUES (?,?,?,?,?,?,?,?,?)",
                 makeKey(contract), contract.getCifcompany(), contract.getService().getPosition(), contract.getInitialDate(),
-                contract.getFinalDate(), contract.getPrice(),contract.getDaysOfWeek(),contract.getHour_initial(),contract.getHour_final());
+                contract.getFinalDate(), contract.getPrice(), contract.getDaysOfWeek(), contract.getHour_initial(), contract.getHour_final());
     }
 
     /**

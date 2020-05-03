@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import sun.text.resources.en.FormatData_en_IN;
 
 import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 
@@ -152,12 +154,14 @@ public class CasCompanyController {
 
         try{
             contractDao.addContract(contract);
-        }catch (DuplicateKeyException dk){
+        }catch (DuplicateKeyException dk) {
             throw new MajorsACasaException("El contracte ja ha sigut fet.",
-                                            "CPCompany Duplicate");
-//        }catch (DataAccessException ex){
-//            throw new MajorsACasaException( "Error amb l'accés a la BBDD.",
-//                                            "Error Access BBDD");
+                    "CPCompany Duplicate");
+        }catch (DataAccessException ex) {
+            MajorsACasaException exection = new MajorsACasaException("No pots crear un contracte sense que l'empressa es done d'alta",
+                    "Empressa no donada d'alta");
+            exection.setReturnPath("/cascompany/newContract");
+            throw exection;
         }
         return "redirect:listContracts";
     }
