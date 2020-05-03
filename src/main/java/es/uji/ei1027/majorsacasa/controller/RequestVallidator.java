@@ -19,12 +19,12 @@ public class RequestVallidator implements Validator {
         Request request = (Request) o;
 
         if(request.getCodRequest().equals("")){
-            errors.rejectValue("codReqeust","Obligatori", "Cal introduir el codi de la sol·licitud.");
+            errors.rejectValue("codRequest","Obligatori", "Cal introduir el codi de la sol·licitud.");
         }
         if(request.getInitialDate().equals("")){
             errors.rejectValue("initialDate","Obligatori", "Cal introduir la data inicial del servei");
         }else if(request.getEndDate().equals("")){
-            errors.rejectValue("initialDate","Obligatori", "Cal introduir la data de finalització del servei.");
+            errors.rejectValue("endDate","Obligatori", "Cal introduir la data de finalització del servei.");
         }else if(   request.getEndDate().isBefore(request.getInitialDate()) &&
                 request.getInitialDate().isBefore(LocalDate.now())         &&
                 request.getEndDate().isBefore(LocalDate.now())   ){

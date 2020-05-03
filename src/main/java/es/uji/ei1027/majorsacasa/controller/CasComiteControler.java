@@ -178,12 +178,12 @@ public class CasComiteControler {
             @ModelAttribute("request") Request request,
             BindingResult bindingResult) {
 
-        RequestVallidator requestVallidator = new RequestVallidator();
-        requestVallidator.validate(request, bindingResult);
-        if (bindingResult.hasErrors())
-            return "comite/upupdateRequest";
+        //RequestVallidator requestVallidator = new RequestVallidator();
+        //requestVallidator.validate(request, bindingResult);
+        //if (bindingResult.hasErrors())
+        //    return "comite/updateRequest";
         requestDao.updateRequest(request);
-        return "redirect:../solicitudsServeis";
+        return "redirect:../../solicitudsVoluntaris";
     }
 
     @RequestMapping(value="/rebujarSolicitudServici/{codReq}", method = {RequestMethod.GET, RequestMethod.POST})

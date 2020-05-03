@@ -18,7 +18,7 @@
 <body>
 
 <div th:replace="fragments/barraImagen"></div>
-<div th:replace="fragments/barraSuperiorCasCompany"></div>
+<div th:replace="fragments/barraSuperiorCas"></div>
 
 <div class="container">
     <div class="card bg-light">
@@ -29,7 +29,19 @@
                   th:object="${request}" method="post">
 
                 <input  name="" class="form-control" placeholder="DNI / NIF" type="text" th:field="*{codRequest}" hidden>
-                <input  name="" class="form-control" placeholder="state" type="text" th:field="*{state}" hidden>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fas fa-list"></i> </span>
+                    </div>
+                    <select class="form-control" th:field="*{service}">
+                        <option value=CATTERING>Catering</option>
+                        <option value=CLEAR>Neteja</option>
+                        <option value=HEALTH>Salud</option>
+                    </select>
+
+
+                </div> <!-- form-group// -->
+
                 <input  name="" class="form-control" placeholder="service" type="text" th:field="*{service}" hidden>
 
                 Data inici del servei:
@@ -37,8 +49,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
                     </div>
-                    <input name="" class="form-control" placeholder="Data d'inici del servei" type="date" th:field="*{initialDate}">
-                    <td th:if="${#fields.hasErrors('initialDate')}" th:errors="*{initialDate}"></td>
+                    <input name="" class="form-control" placeholder="Data d'inici del servei" type="date" th:field="*{approvedDate}">
+
                 </div> <!-- form-group// -->
 
                 <input name="" class="form-control" placeholder="Data acceptar servei" type="date" th:field="*{approvedDate}" hidden>
@@ -51,7 +63,7 @@
                         <span class="input-group-text"> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
                     </div>
                     <input name="" class="form-control" placeholder="Data de final del servei" type="date" th:field="*{endDate}">
-                    <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></td>
+
                 </div> <!-- form-group// -->
 
                 Hora del servei:

@@ -75,7 +75,11 @@ public class Request {
         return state;
     }
 
-    public int getService() {
+    public ServiceType getService() {
+        return service;
+    }
+
+    public int getServicePosition() {
         return service.getPosition();
     }
 

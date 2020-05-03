@@ -27,7 +27,7 @@ public class RequestDao {
      */
     public void addRequest(Request request){
         jdbcTemplate.update("INSERT INTO request VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-                request.getCodRequest(),request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getServiceHour(), request.getPrice(), request.getDniElderlyPeople(), request.getCodContract()
+                request.getCodRequest(),request.getState(),request.getServicePosition(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getServiceHour(), request.getPrice(), request.getDniElderlyPeople(), request.getCodContract()
                 );
     }
 
@@ -37,7 +37,7 @@ public class RequestDao {
      */
     public void updateRequest(Request request){
         jdbcTemplate.update("UPDATE request SET state=?, servicetype=?, requestdate=?, approveddate=?, rejected=?, enddate=?, servicehour=?, price=? , dnielderlypeople=?, codcontract=? WHERE codrequest=?",
-                request.getState(),request.getService(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getServiceHour(), request.getPrice(), request.getDniElderlyPeople(),request.getCodContract(), request.getCodRequest()
+                request.getState(),request.getServicePosition(),request.getInitialDate(),request.getAprovedDate(),request.isRejected(),request.getEndDate(),request.getServiceHour(), request.getPrice(), request.getDniElderlyPeople(),request.getCodContract(), request.getCodRequest()
         );
     }
 
