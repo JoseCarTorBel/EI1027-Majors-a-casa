@@ -171,7 +171,7 @@ public class VolunteerController {
                     "Error en l'accés a la base de dades", "ErrorAccedintDades");
         }
 
-        return "redirect:list";
+        return "redirect:main";
     }
 
     // Cuando le damos al boton editar en la lista, llamamos a este metodo el cual llama a la vista correspondiente
