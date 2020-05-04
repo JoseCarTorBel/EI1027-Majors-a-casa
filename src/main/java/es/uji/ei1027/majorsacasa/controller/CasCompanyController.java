@@ -38,6 +38,18 @@ public class CasCompanyController {
     @Autowired
     public void setContractDao(ContractDao contractDao) { this.contractDao=contractDao;}
 
+
+    @RequestMapping(value="/main")
+    public String getCompanyMain(HttpSession session, Model model){
+        String isSession = checkSession(model, session);
+        if (isSession != null) {
+            return isSession;
+        }
+
+        return "cascompany/main";
+    }
+
+
     @RequestMapping(value="/newCompany")
     public String addCompany(Model model, HttpSession session){
         String isSession = checkSession(model, session);
