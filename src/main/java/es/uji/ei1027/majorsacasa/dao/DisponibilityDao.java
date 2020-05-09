@@ -85,6 +85,22 @@ public class DisponibilityDao {
      * @param dniVolunteer
      * @return Disponibility
      */
+    public List<String>     getDirectionsAccepted(String dniVolunteer){
+        try{
+            return  jdbcTemplate.query("SELECT postaddress FROM person WHERE dni IN (SELECT dnielderlypeople FROM disponibility WHERE dnivolunteer=? AND state='A')",
+                    new DirectionRowMapper(),dniVolunteer);
+        }catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+
+
+    /**
+     * get a disponibility
+     * @param dniVolunteer
+     * @return Disponibility
+     */
     public List<Disponibility> getDisponibilitys(String dniVolunteer){
         try{
             return  jdbcTemplate.query("SELECT * FROM disponibility WHERE dnivolunteer=?",

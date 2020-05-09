@@ -1,6 +1,7 @@
 package es.uji.ei1027.majorsacasa.controller;
 
 
+import ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy;
 import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
 import es.uji.ei1027.majorsacasa.model.Disponibility;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/volunteer")
@@ -55,6 +57,9 @@ public class VolunteerController {
         }else{
             Volunteer volunteer = volunteerDao.getVolunteer(user.getDni());
             if (volunteer.getState()=='A'){
+
+
+                model.addAttribute("directions",disponibilityDao.getDirectionsAccepted(user.getDni()));
 
                 model.addAttribute("disponibilities", disponibilityDao.getDisponibilitysAccepted(user.getDni()));
 

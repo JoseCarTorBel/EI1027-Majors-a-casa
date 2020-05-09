@@ -33,11 +33,13 @@
                     <th>Data inici</th>
                     <th>Data fi</th>
                     <th>Estat</th>
+                    <th>Direcció</th>
 
 
                 </tr>
                 </thead>
                 <tbody>
+                <span th:each="direction : ${directions}">
                 <tr th:each="disponibility: ${disponibilities}">
                     <td th:text="${disponibility.dniElderlyPeople}"></td>
                     <td th:switch="${disponibility.dayOfWeek}">
@@ -56,10 +58,12 @@
                         <span th:case="'R'">Rebutjada</span>
                         <span th:case="'A'">Aceptada</span>
                     </td>
+                    <td th:text="${direction}"></td>
 
 
                     </td>
                 </tr>
+                </span>
                 </tbody>
             </table>
 
