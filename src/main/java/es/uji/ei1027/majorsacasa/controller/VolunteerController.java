@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/volunteer")
@@ -59,9 +61,23 @@ public class VolunteerController {
             if (volunteer.getState()=='A'){
 
 
-                model.addAttribute("directions",disponibilityDao.getDirectionsAccepted(user.getDni()));
+                ArrayList<String> directions = (ArrayList<String>) disponibilityDao.getDirectionsAccepted(user.getDni());
+                ArrayList<Disponibility> disponibilities = (ArrayList<Disponibility>) disponibilityDao.getDisponibilitysAccepted(user.getDni());
 
-                model.addAttribute("disponibilities", disponibilityDao.getDisponibilitysAccepted(user.getDni()));
+                int i=0;
+                while(i<disponibilities.size()){
+                    if(disponibilities.get(i).getInitialTime().isAfter(LocalDate.now()) || disponibilities.get(i).getFinalTime().isBefore(LocalDate.now()) ) {
+                        disponibilities.remove(i);
+                        directions.remove(i);
+                    }else{
+                        i++;
+                    }
+                }
+
+
+                model.addAttribute("directions",directions);
+
+                model.addAttribute("disponibilities",disponibilities);
 
                 return "volunteer/main";
             }else{
