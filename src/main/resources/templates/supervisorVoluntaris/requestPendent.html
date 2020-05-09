@@ -15,6 +15,7 @@
         <article class="card-body" style="max-width: 100%;">
             <h4 class="card-title mt-3 text-center">Llista de Solicituds de registre</h4>
 
+            <span th:if="${volunteers.size()>0}">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -54,6 +55,8 @@
                 </tr>
                 </tbody>
             </table>
+            </span>
+            <span th:unless="${volunteers.size()>0}">No tens ninguna solicitud de voluntari que gestionar</span>
 
         </article>
     </div>

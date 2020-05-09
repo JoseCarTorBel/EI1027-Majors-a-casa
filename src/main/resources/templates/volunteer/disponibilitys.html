@@ -18,7 +18,7 @@
     <div class="card bg-light">
         <article class="card-body" style="max-width: 100%;">
             <h4 class="card-title mt-3 text-center">El meu horari</h4>
-
+            <span th:if="${disponibilities.size()>0}">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -63,6 +63,8 @@
                 </tr>
                 </tbody>
             </table>
+            </span>
+            <span th:unless="${disponibilities.size()>0}">No tens ningun horari disponible</span>
 
         </article>
     </div>
