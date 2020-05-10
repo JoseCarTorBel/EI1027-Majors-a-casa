@@ -53,7 +53,10 @@ public class VolunteerDao {
     }
 
 
-
+    /**
+     * Obtiene un listado de voluntarios, los cuales estan pendientes de aprovacion por el cas
+     * @return List<Volunteer>
+     */
     public List<Volunteer> getVolunteersPendent() {
         try{
             return jdbcTemplate.query("SELECT * FROM volunteer JOIN person ON volunteer.dni=person.dni WHERE volunteer.state='P'",
@@ -64,7 +67,7 @@ public class VolunteerDao {
     }
 
     /**
-     * Pimero se añade a Person y luego a Volunteer.
+     * Añade un voluntario a la BBDD, incluye los inserts a la tabla person y volunteer
      * @param volunteer
      */
     public void addVolunteer(Volunteer volunteer){
@@ -89,10 +92,20 @@ public class VolunteerDao {
     }
 
 
+    /**
+     * Acepta la peticion de registro de un voluntario
+     * @param dniVolunteer
+     */
     public void acceptVolunteer(String dniVolunteer){
         updateState(dniVolunteer,"A");
     }
 
+
+    /**
+     * Deniega la peticion de registro de un voluntario
+     * *
+     * @param dniVolunteer
+     */
     public void denyVolunteer(String dniVolunteer){
         updateState(dniVolunteer,"R");
 
@@ -100,7 +113,7 @@ public class VolunteerDao {
 
 
     /**
-     * update a volunteer
+     * Actualiza el estado de un voluntario
      * @param dni, newState
      */
     public void updateState(String dni, String newState) {
@@ -109,7 +122,8 @@ public class VolunteerDao {
     }
 
     /**
-     * update a volunteer
+     * Actualiza tod o el voluntario
+     * IMPORTANTE NO CAMBIAR DNI (si no problema BBDD)
      * @param volunteer
      */
     public void updateVolunteer(Volunteer volunteer) {

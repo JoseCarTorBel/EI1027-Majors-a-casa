@@ -28,7 +28,10 @@ public class UserProviderDao implements UserDao {
 
 
 
-    // Se guardara una clave username, y una lista de UserDetails
+    /**
+     * Devuelve un diccionario con la clave username y el objeto userdetails
+     * @return hashMap
+     */
     public HashMap<String,UserDetails> getUsersList() {
 
 
@@ -99,6 +102,10 @@ public class UserProviderDao implements UserDao {
     }
 
 
+    /**
+     * Comprueba que un username y contraseña estan en la BBBDD
+     * @return UserDetails
+     */
     @Override
     public UserDetails loadUserByUsername(String username, String password) {
         HashMap<String,UserDetails> users = getUsersList();
@@ -113,6 +120,11 @@ public class UserProviderDao implements UserDao {
 
     }
 
+
+    /**
+     * Devuelve un listado con todos los username de la bbdd
+     * @return UserDetails
+     */
     @Override
     public Collection<UserDetails> listAllUsers() {
         return getUsersList().values();

@@ -41,7 +41,12 @@ public class VolunteerController {
     }
 
 
-
+    /**
+     * Carga la vista principal de voluntario, para ello comprueba si el usuario ha iniciado sesion (obj session), y
+     *  despues si tiene el rol adecuado para acceder a esta pagina, finalmente comprueba si tiene la peticion aceptada
+     *  por el cas, en caso contrario le muestra un mensaje de error y le devuelve al main
+     *
+     */
     @RequestMapping("/main")
     public String getVolunteerMain(HttpSession session, Model model){
 
@@ -90,6 +95,12 @@ public class VolunteerController {
     }
 
 
+    /**
+     * Carga la vista de disponibilitys, para ello comprueba si el usuario ha iniciado sesion (obj session), y
+     *  despues si tiene el rol adecuado para acceder a esta pagina, finalmente comprueba si tiene la peticion aceptada
+     *  por el cas, en caso contrario le muestra un mensaje de error y le devuelve al main
+     *
+     */
     @RequestMapping("/disponibilitys")
     public String getVolunteerList(HttpSession session, Model model){
 
@@ -116,14 +127,24 @@ public class VolunteerController {
     }
 
 
+    /**
+     * Escuchador para borraar una disponibility, borra la disponibility que queremos (dia de la semana, dni)
+     * solo se pueden borrar si no estan aceptadas
+     *
+     */
     @RequestMapping(value="/deleteDisponibility/{dayOfWeek}", method = {RequestMethod.GET, RequestMethod.DELETE})
     public String removeDispo(HttpSession session,@PathVariable Integer dayOfWeek){
         UserDetails user = (UserDetails) session.getAttribute("user");
-        System.out.println(dayOfWeek+" "+user.getDni());
         disponibilityDao.removeDisponibility(dayOfWeek,user.getDni());
         return "redirect:../disponibilitys";
     }
 
+
+    /**
+     * Escuchador para actualizar una disponibility, para ello comprueba si el usuario ha iniciado sesion (obj session), y
+     * despues si tiene el rol adecuado para acceder a esta pagina, finalmente comprueba si tiene la peticion aceptada
+     * por el cas, en caso contrario le muestra un mensaje de error y le devuelve al main
+     */
     @RequestMapping(value="/updateDisponibility/{dayOfWeek}", method = {RequestMethod.GET})
     public String updateDisponibility(Model model,HttpSession session,@PathVariable Integer dayOfWeek){
         if (session.getAttribute("user") == null)
@@ -159,7 +180,11 @@ public class VolunteerController {
 
 
 
-    // LLama a la vista pasandole un objeto voluntario
+    /**
+     * Carga la vista de registro de un voluntario, para ello comprueba si el usuario ha iniciado sesion (obj session)
+     * en su caso le redirige a su main
+     *
+     */
     @RequestMapping(value="/add")
     public String addVolunteer(Model model,HttpSession session){
 
@@ -173,7 +198,6 @@ public class VolunteerController {
         }
     }
 
-    // Una vez le damos al sumbit la vista devuelve el objeto volunteer con todos los atributos
     @RequestMapping(value="/add", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                    BindingResult bindingResult) {
