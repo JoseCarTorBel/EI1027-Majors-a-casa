@@ -264,6 +264,22 @@ public class CasCompanyController {
         return "cascompany/listContracts";
     }
 
+    @RequestMapping(value="/infoCompany/{cif}")
+    public String getInfoCompany(@PathVariable String cif, HttpSession session, Model model){
+        String isSession = checkSession(model, session);
+        if (isSession != null) {
+            return isSession;
+        }
+        System.out.println("ESTE ES EL CIF"+cif);
+        Company company =  companyDao.getCompany(cif);
+
+        model.addAttribute("company",company);
+
+        return "cascompany/infoCompany";
+    }
+
+
+
 
 /** ___________________________________________________________________________________________________________________
 

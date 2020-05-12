@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Informació</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fondo.css" th:href="@{/css/fondo.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorCasCompany"></div>
+
+<div class="container">
+    <div class="card bg-light">
+        <div class="card-body" style="max-width: 100%;">
+
+            <div class="row">
+            <div class="col-sm-7">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title"> <span th:text="${company.name}"></span></li></h3>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">CIF</th>
+                                    <td>  <span th:text="${company.cif}"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Data d'alta</th>
+                                    <td>  <span th:text="${company.fechaAlta}"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Telèfon</th>
+                                    <td> <span th:text="${company.phoneContact}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Email</th>
+                                    <td> <span th:text="${company.email}"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Direcció</th>
+                                    <td> <span th:text="${company.postAddress}"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Persona de contacte</h5>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row"><i class="fas fa-user"></i></th>
+                                    <td>  <span th:text="${company.personalContact}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><i class="fas fa-address-card"></i></th>
+                                    <td> <span th:text="${company.nifContact}"></span></td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <center>
+                <a a th:href="@{/cascompany/delete/{cif}(cif=${company.cif})}" class="btn btn-danger">Donar de baixa</a>
+                <a a th:href="@{/cascompany/update/{cif}(cif=${company.cif})}" class="btn btn-primary">Modificar informació</a>
+            </center>
+        </div>
+    </div>
+
+
+
+</div>
+<div th:replace="fragments/footPage"></div>
+
+</body>
+</html>
