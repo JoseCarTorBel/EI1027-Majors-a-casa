@@ -264,18 +264,58 @@ public class CasCompanyController {
         return "cascompany/listContracts";
     }
 
+
+    /**
+     * Da la información extendida de la empresa.
+     * @param cif   Código de la empresa
+     * @param session   Sesion user
+     * @param model Modelo
+     * @return Página de mostrar información
+     */
     @RequestMapping(value="/infoCompany/{cif}")
     public String getInfoCompany(@PathVariable String cif, HttpSession session, Model model){
         String isSession = checkSession(model, session);
         if (isSession != null) {
             return isSession;
         }
-        System.out.println("ESTE ES EL CIF"+cif);
+
         Company company =  companyDao.getCompany(cif);
 
         model.addAttribute("company",company);
 
         return "cascompany/infoCompany";
+    }
+
+
+
+
+
+
+    @RequestMapping(value = "/update/{cif}",method=RequestMethod.GET)
+    public String update(@PathVariable String cif, Model model, HttpSession session){
+        String isSession = checkSession(model,session);
+        if(isSession!=null){ return isSession; }
+        UserDetails user =  (UserDetails) session.getAttribute("user");
+
+        model.addAttribute("company",companyDao.getCompany(cif));
+        return "cascompany/update";
+    }
+
+    /**
+     * Actualiza la company
+     * @param company
+     * @param bindingResult
+     * @return Página inicial de la companía
+     */
+    @RequestMapping(value="/update",method=RequestMethod.POST)
+    public String processUpdateSubmit(@ModelAttribute("company") Company company,
+                                      BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getAllErrors());
+            return "cascompany/update";
+        }
+        companyDao.updateCompany(company);
+        return "cascompany/update";
     }
 
 

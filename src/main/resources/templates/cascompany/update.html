@@ -1,0 +1,105 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+<link rel="stylesheet" href="css/fondo.css" th:href="@{/css/fondo.css}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Actualitza dades</title>
+</head>
+<body>
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorCasCompany"></div>
+
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Actualitza dades</h4>
+
+            <form action="#" th:action="@{/cascompany/update/}"
+                  th:object="${company}" method="post">
+                <input  name="" class="form-control" type="text" th:field="*{cif}" hidden>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="CIF" type="text" th:field="*{cif}" disabled>
+                    <td th:if="${#fields.hasErrors('cif')}" th:errors="*{cif}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Nom de l'empressa" type="text" th:field="*{name}">
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Persona de contacte" type="text" th:field="*{personalContact}">
+                    <td th:if="${#fields.hasErrors('personalContact')}" th:errors="*{personalContact}"></td>
+                </div> <!-- form-group// -->
+
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="NIF Persona de contacte" type="text" th:field="*{nifContact}">
+                    <td th:if="${#fields.hasErrors('nifContact')}" th:errors="*{nifContact}"></td>
+                </div>
+
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Email" type="email" th:field="*{email}">
+                    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone" ></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Telèfon de contacte" type="text"th:field="*{phoneContact}">
+                    <td th:if="${#fields.hasErrors('phoneContact')}" th:errors="*{phoneContact}"></td>
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-map-marker" aria-hidden="true"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Dirección postal" type="text" th:field="*{postAddress}">
+                    <td th:if="${#fields.hasErrors('postAddress')}" th:errors="*{postAddress}"></td>
+                </div> <!-- form-group// -->
+
+                <input class="form-control" placeholder="Contrasenya" type="password" th:field="*{passwd}" hidden>
+
+
+
+                <!--                <div class="form-group input-group">-->
+                <!--                    <div class="input-group-prepend">-->
+                <!--                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>-->
+                <!--                    </div>-->
+                <!--                    <input  class="form-control" placeholder="Repetisca contrasenya" type="password" th:field="*{passwdCheck}" >-->
+                <!--                    <td th:if="${#fields.hasErrors('passwdCheck')}" th:errors="*{passwdCheck}"></td>-->
+                <!--                </div> &lt;!&ndash; form-group// &ndash;&gt;-->
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Actualitza dades  </button>
+                </div> <!-- form-group// -->
+
+            </form>
+        </article>
+    </div>
+</div>
+
+<div th:replace="fragments/footPage"></div>
+
+</body>
+</html>
