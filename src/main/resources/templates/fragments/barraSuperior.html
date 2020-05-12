@@ -2,18 +2,21 @@
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="navbar-collapse collapse">
-        <a class="nav-link" href="/" th:href="@{/}"><i class="fa fa-fw fa-home"></i> Inici</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/" th:href="@{/}"><i class="fa fa-fw fa-home"></i> Inici</a>
+            </li>
+        </ul>
 
-<!--        TODO Revisar como sale en la barra-->
-        <div class="loggeduser" th:object="${session}">
-            <a th:if="*{user == null}">
-                <a class="nav-link" href="/login" th:href="@{/login}"> <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Entrar</a>
-            </a>
-            <a th:unless="*{user == null}">
-                <!--                        <span th:text="*{user.username}"></span> -->
-                <a class="nav-link" href="/logout" th:href="@{/logout}"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Eixir</a>
-            </a>
-        </div>
+<!--        <div class="loggeduser" th:object="${session}">-->
+<!--            <a th:if="*{user == null}">-->
+<!--                <a class="nav-link" href="/login" th:href="@{/login}"> <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Entrar</a>-->
+<!--            </a>-->
+<!--            <a th:unless="*{user == null}">-->
+<!--                &lt;!&ndash;                        <span th:text="*{user.username}"></span> &ndash;&gt;-->
+<!--                <a class="nav-link" href="/logout" th:href="@{/logout}"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Eixir</a>-->
+<!--            </a>-->
+<!--        </div>-->
 
     </div>
 </nav>

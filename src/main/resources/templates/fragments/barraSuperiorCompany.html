@@ -2,16 +2,27 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="navbar-collapse collapse">
-            <a class="nav-link" href="/" th:href="@{/company/main}"><i class="fa fa-fw fa-home"></i> Inici</a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/" th:href="@{/company/main}"><i class="fa fa-fw fa-home"></i> Inici</a>
+                </li>
 
-            <a class="nav-link" href="/" th:href="@{/company/update}"><i class="fas fa-user-edit"></i> Actualitza dades</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/" th:href="@{/company/update}"><i class="fas fa-user-edit"></i> Actualitza dades</a>
+                </li>
 
-            <a class="nav-link" href="/" th:href="@{/company/services}"><i class="fa fa-users" aria-hidden="true"></i> Clients</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/" th:href="@{/company/services}"><i class="fa fa-users" aria-hidden="true"></i> Clients</a>
+                </li>
 
-            <a class="nav-link" href="/" th:href="@{/company/contact}"><i class="fa fa-envelope" aria-hidden="true"></i> Contacte</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/" th:href="@{/company/contact}"><i class="fa fa-envelope" aria-hidden="true"></i> Contacte</a>
+                </li>
 
-            <a class="nav-link" href="/logout" th:href="@{/logout}"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Eixir </a>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout" th:href="@{/logout}"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Eixir </a>
+                </li>
+            </ul>
         </div>
     </nav>
 </div>

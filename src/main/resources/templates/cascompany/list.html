@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>Donar d'alta</title>
+    <title>Llistat d'empresses</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -45,7 +45,7 @@
     <!--                    <td th:text="${company.postAddress}"></td>-->
                         <td th:text="${company.fechaAlta}"></td>
     <!--                    <td><a th:href="@{/cascompany/delete/{cif}(cif=${company.cif})}">Esborra</a>-->
-                        <td><a th:href="@{/cascompany/infoCompany/{cif}(cif=${company.cif})}">Més informació</a>
+                        <td><a th:href="@{/cascompany/infoCompany/{cif}(cif=${company.cif})}"  class="btn btn-primary"> <i class="fas fa-info-circle"></i> Més informació</a>
 
 
                     </tr>
