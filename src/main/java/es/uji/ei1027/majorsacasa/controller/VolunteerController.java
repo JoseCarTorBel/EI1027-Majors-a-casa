@@ -45,7 +45,6 @@ public class VolunteerController {
     //todo ximo CREAR LISTADO CHULI COMO JOSE
     //todo ximo REVISAR ALL Y CORRESPONDER EL SIETAMP Y DISEÑO DE PAGINAS
     //todo ximo hobbies
-    //todo cimo hora
 
 
     /**

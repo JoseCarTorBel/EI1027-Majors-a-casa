@@ -24,6 +24,7 @@
                 <tr><th>DNI persona major</th>
                     <th>DNI voluntari</th>
                     <th>Dia de la setmana</th>
+                    <th>Hora</th>
                     <th>Data inici</th>
                     <th>Data fi</th>
                     <th>Estat</th>
@@ -44,6 +45,7 @@
                         <span th:case="'6'">Dissabte</span>
                         <span th:case="'7'">Diumenge</span>
                     </td>
+                    <td th:text="${disponibility.hour}"></td>
                     <td th:text="${disponibility.initialTime}"></td>
                     <td th:text="${disponibility.finalTime}"></td>
                     <td th:switch="${disponibility.state}">
