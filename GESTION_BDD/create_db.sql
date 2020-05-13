@@ -65,6 +65,7 @@ CREATE TABLE disponibility (
         dnivolunteer      VARCHAR(30),
         dnielderlypeople      VARCHAR(30),
         dayofweek     integer,
+        hour            TIME,
         initialtime     DATE,
         finaltime     DATE,
         state      VARCHAR(1),

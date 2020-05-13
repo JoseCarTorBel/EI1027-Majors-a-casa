@@ -18,7 +18,6 @@ INSERT INTO person VALUES ('EP_Joaquin','Gonzalez Alvarez','20884391O','62736756
 INSERT INTO person VALUES ('EP_Maria','Peris Alonso','20119392I','612737283','1935-06-01','Calle egipcia 4, Ontinyete, Alicante','maria23@uji.es','EP_Maria', 'EP_Maria');
 INSERT INTO person VALUES ('EP_Marta','Lopez Marza','20119290R','675672934','1937-11-20','Avenida casalduch 1A Castellon de la plana, Castellon','marta@uji.es','EP_Marta', 'EP_Marta');
 INSERT INTO person VALUES ('EP_Cristina','Sanahuja Leira','20917888Y','624378234','1953-10-26','Calle la calle S/N, Ontinyete, Alicante',null,'EP_Cristina', 'EP_Cristina');
-INSERT INTO person VALUES ('EP_Cristina','Sanahuja Leira','20917888Y','624378234','1953-10-26','Calle la calle 9 3p4, Ontinyete, Alicante',null,'EP_Cristina', 'EP_Cristina');
 INSERT INTO person VALUES ('EP_Juanlu','Perez Llanos ','34758384E','675432345','1953-10-26','Calle la calle 9 3p3, Valencia, Valencia',null,'EP_Juanlu', 'EP_Juanlu');
 INSERT INTO person VALUES ('EP_Ibai','Etxebarrieta Ybarra ','34567654R','675432345','1953-10-26','Calle la calle 8 2A, Vila-Real, Castellon',null,'EP_Ibai', 'EP_Ibai');
 
@@ -46,20 +45,20 @@ INSERT INTO elderlypeople VALUES ('20917888Y','A','Tengo mucho dinero',null);
 INSERT INTO elderlypeople VALUES ('34758384E','R','No me hace mucha falta',null);
 INSERT INTO elderlypeople VALUES ('34567654R','P','Necesito compañía',null);
 
-INSERT INTO disponibility VALUES ('20904567S','20654491U',1,'2020-01-01','2020-12-01','A');
-INSERT INTO disponibility VALUES ('20904567S',null,2,'2020-01-01','2020-12-01','P');
-INSERT INTO disponibility VALUES ('20904567S',null,3,'2020-01-01','2020-12-01','P');
-INSERT INTO disponibility VALUES ('20904567S',null,5,'2020-01-01','2020-12-01','P');
-INSERT INTO disponibility VALUES ('20764726T','20884391O',1,'2020-01-02','2020-12-01','A');
-INSERT INTO disponibility VALUES ('23457855W','20884391O',3,'2020-01-02','2020-12-01','A');
-INSERT INTO disponibility VALUES ('20904567S','20884391O',4,'2020-01-02','2020-12-01','R');
-INSERT INTO disponibility VALUES ('20904567S','20884391O',6,'2020-01-02','2020-12-01','P');
-INSERT INTO disponibility VALUES ('23457855W','20119392I',3,'2020-01-01','2020-12-01','A');
-INSERT INTO disponibility VALUES ('20998812E','20119290R',4,'2020-01-01','2020-12-01','R');
-INSERT INTO disponibility VALUES ('20998877E',null,4,'2020-01-01','2020-12-01','P');
-INSERT INTO disponibility VALUES ('20112233Y',null,1,'2019-01-01','2020-12-01','P');
-INSERT INTO disponibility VALUES ('20998877E',null,3,'2020-01-01','2020-12-01','P');
-INSERT INTO disponibility VALUES ('20112233Y',null,2,'2019-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20904567S','20654491U',1,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','A');
+INSERT INTO disponibility VALUES ('20904567S',null,2,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20904567S',null,3,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20904567S',null,5,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20764726T','20884391O',1,CAST('9:00' AS TIME),'2020-01-02','2020-12-01','A');
+INSERT INTO disponibility VALUES ('23457855W','20884391O',3,CAST('9:00' AS TIME),'2020-01-02','2020-12-01','A');
+INSERT INTO disponibility VALUES ('20904567S','20884391O',4,CAST('9:00' AS TIME),'2020-01-02','2020-12-01','R');
+INSERT INTO disponibility VALUES ('20904567S','20884391O',6,CAST('9:00' AS TIME),'2020-01-02','2020-12-01','P');
+INSERT INTO disponibility VALUES ('23457855W','20119392I',7,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','A');
+INSERT INTO disponibility VALUES ('20998812E','20119290R',4,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','R');
+INSERT INTO disponibility VALUES ('20998877E',null,4,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20112233Y',null,1,CAST('9:00' AS TIME),'2019-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20998877E',null,3,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20112233Y',null,2,CAST('9:00' AS TIME),'2019-01-01','2020-12-01','P');
 
 INSERT INTO company VALUES ('G34672398','Catering Miravete','12345678G','Vicente Miravete','647352635','vmiravete@gmail.com','Calle Catalunya 3, Castelló de la Plana, Castellón',null,null,NOW());
 INSERT INTO company VALUES ('T46372819','Dra González','45632178F','Sandra González','657489325','sandragonzalez@gmail.com','Calle Rafalafena 4, Castelló de la Plana, Castellon',null,null,NOW());
