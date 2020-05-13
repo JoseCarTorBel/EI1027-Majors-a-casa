@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 
 public class DisponibilityRowMapper implements RowMapper<Disponibility> {
 
@@ -23,6 +24,7 @@ public class DisponibilityRowMapper implements RowMapper<Disponibility> {
         disponibility.setFinalTime(date != null ? date.toLocalDate() : null);
         String state = rs.getString("state");
         disponibility.setState(state!=null?state.charAt(0):null);
+        disponibility.setHour(rs.getObject("hour", LocalTime.class));
 
 
         return disponibility;

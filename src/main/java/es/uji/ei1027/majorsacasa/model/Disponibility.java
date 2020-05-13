@@ -3,11 +3,14 @@ package es.uji.ei1027.majorsacasa.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Disponibility {
     private String dniVolunteer;
     private String dniElderlyPeople;
     private Integer dayOfWeek;
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime hour;
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate initialTime;
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
@@ -72,6 +75,14 @@ public class Disponibility {
 
     public void setFinalTime(LocalDate finalTime) {
         this.finalTime = finalTime;
+    }
+
+    public LocalTime getHour() {
+        return hour;
+    }
+
+    public void setHour(LocalTime hour) {
+        this.hour = hour;
     }
 
     @Override

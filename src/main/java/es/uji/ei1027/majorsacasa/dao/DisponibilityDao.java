@@ -26,8 +26,8 @@ public class DisponibilityDao {
      * @param disponibility
      */
     public void addDisponibility(Disponibility disponibility){
-        jdbcTemplate.update("INSERT INTO disponibility VALUES (?,?,?,?,?,?)",
-                disponibility.getDniVolunteer(),disponibility.getDniElderlyPeople(),disponibility.getDayOfWeek(),disponibility.getInitialTime(),disponibility.getFinalTime(),'P'
+        jdbcTemplate.update("INSERT INTO disponibility VALUES (?,?,?,?,?,?,?)",
+                disponibility.getDniVolunteer(),disponibility.getDniElderlyPeople(),disponibility.getDayOfWeek(),disponibility.getHour(),disponibility.getInitialTime(),disponibility.getFinalTime(),'P'
                 );
     }
 
@@ -37,8 +37,8 @@ public class DisponibilityDao {
      */
     public void updateDisponibility(Disponibility disponibility){
         System.out.println(disponibility.toString());
-        jdbcTemplate.update("UPDATE disponibility SET dnielderlypeople=?,dayofweek=?, initialtime=?, finaltime=?, state=? WHERE dnivolunteer=? AND dayOfWeek=?",
-               disponibility.getDniElderlyPeople(), disponibility.getDayOfWeek(),disponibility.getInitialTime(),disponibility.getFinalTime(),disponibility.getState(),disponibility.getDniVolunteer(),disponibility.getDayOfWeek()
+        jdbcTemplate.update("UPDATE disponibility SET dnielderlypeople=?,dayofweek=?, hour=?, initialtime=?, finaltime=?, state=? WHERE dnivolunteer=? AND dayOfWeek=?",
+               disponibility.getDniElderlyPeople(), disponibility.getDayOfWeek(),disponibility.getHour(),disponibility.getInitialTime(),disponibility.getFinalTime(),disponibility.getState(),disponibility.getDniVolunteer(),disponibility.getDayOfWeek()
         );
     }
 
