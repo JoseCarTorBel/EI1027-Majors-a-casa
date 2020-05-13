@@ -42,7 +42,6 @@ public class VolunteerController {
     }
 
 
-    //todo ximo CREAR PÀGINA CONTACTO COMO JOSE
     //todo ximo CREAR LISTADO CHULI COMO JOSE
     //todo ximo REVISAR ALL Y CORRESPONDER EL SIETAMP Y DISEÑO DE PAGINAS
     //todo ximo hobbies
@@ -143,7 +142,7 @@ public class VolunteerController {
     public String removeDispo(HttpSession session,@PathVariable Integer dayOfWeek){
         UserDetails user = (UserDetails) session.getAttribute("user");
         disponibilityDao.removeDisponibility(dayOfWeek,user.getDni());
-        return "redirect:../disponibilitys";
+        throw  new MajorsACasaException("Disponibilitat esborrada correctament","Success","../../volunteer/disponibilitys");
     }
 
 
@@ -182,7 +181,7 @@ public class VolunteerController {
             return "volunteer/updateDisponibility";
 
         disponibilityDao.updateDisponibility(disponibility);
-        return "redirect:main";
+        throw  new MajorsACasaException("Disponibilitat actualiztzada correctament","Success","../volunteer/main");
     }
 
 
@@ -223,7 +222,7 @@ public class VolunteerController {
                     "Error en l'accés a la base de dades", "ErrorAccedintDades");
         }
 
-        return "redirect:main";
+        throw  new MajorsACasaException("Te has registrat correctament","Success","../volunteer/main");
     }
 
     // Cuando le damos al boton editar en la lista, llamamos a este metodo el cual llama a la vista correspondiente
@@ -258,14 +257,14 @@ public class VolunteerController {
         if (bindingResult.hasErrors())
             return "volunteer/update";
         volunteerDao.updateVolunteer(volunteer);
-        return "redirect:main";
+        throw  new MajorsACasaException("Actualitzat correctament","Success","../volunteer/main");
     }
 
     // Una vez en el listado le damos al boton delete, lo borramos del dao
     @RequestMapping(value="/delete/{dni}", method = {RequestMethod.GET, RequestMethod.DELETE})
     public String removeVolunteer(@PathVariable String dni){
         volunteerDao.removeVolunteer(dni);
-        return "redirect:../list";
+        throw  new MajorsACasaException("BorradoCorrectamente","Success","../volunteer/list");
     }
 
     // LLama a la vista pasandole un objeto disponibility
@@ -308,7 +307,7 @@ public class VolunteerController {
                     "Error en l'accés a la base de dades", "ErrorAccedintDades");
         }
 
-        return "redirect:main";
+        throw  new MajorsACasaException("Disponibilitat creada corectament","Success","../"+user.getMainPage());
     }
 
     @RequestMapping(value = "/contact",method=RequestMethod.GET)
@@ -337,13 +336,13 @@ public class VolunteerController {
     @RequestMapping(value="/contact",method=RequestMethod.POST)
     public String contactSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                 @ModelAttribute("msg") String msg,
-                                BindingResult bindingResult){
+                                BindingResult bindingResult,HttpSession session){
         if (bindingResult.hasErrors())
             return "volunteer/contact";
         //todo arreglar o quitar
         System.out.println("Mensaje enviado por "+volunteer.getName()+": "+msg);
-
-        return "redirect:main";
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        throw  new MajorsACasaException("Missatge enviat correctament","Mensaje ENviado","../"+user.getMainPage());
     }
 
 

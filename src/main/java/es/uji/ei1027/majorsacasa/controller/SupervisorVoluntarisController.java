@@ -96,13 +96,13 @@ public class SupervisorVoluntarisController {
     @RequestMapping(value="/accept/{dniVolunteer}", method = {RequestMethod.GET})
     public String acceptVolunteer(@PathVariable String dniVolunteer,HttpSession session){
         volunteerDao.acceptVolunteer(dniVolunteer);
-        return "redirect:../requestPendent";
+        throw  new MajorsACasaException("Voluntari acceptat correctament","Success","../../supervisorVoluntaris/requestPendent");
     }
 
     @RequestMapping(value="/deny/{dniVolunteer}", method = {RequestMethod.GET})
     public String denyVolunteer(@PathVariable String dniVolunteer,HttpSession session){
         volunteerDao.denyVolunteer(dniVolunteer);
-        return "redirect:../requestPendent";
+        throw  new MajorsACasaException("Voluntari denegat correctament","Success","../../supervisorVoluntaris/requestPendent");
     }
 
     // Cuando le damos al boton editar en la lista, llamamos a este metodo el cual llama a la vista correspondiente
@@ -140,7 +140,7 @@ public class SupervisorVoluntarisController {
 
 
         volunteerDao.updateVolunteer(volunteer);
-        return "redirect:main";
+        throw  new MajorsACasaException("Voluntari actualitzat correctament","Success","../../supervisorVoluntaris/main");
     }
 
 
