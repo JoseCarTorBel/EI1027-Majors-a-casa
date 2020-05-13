@@ -41,6 +41,10 @@ public class VolunteerController {
     }
 
 
+    //todo ximo CREAR PÀGINA CONTACTO COMO JOSE
+    //todo ximo CREAR LISTADO CHULI COMO JOSE
+    //todo ximo REVISAR ALL Y CORRESPONDER EL SIETAMP Y DISEÑO DE PAGINAS
+
     /**
      * Carga la vista principal de voluntario, para ello comprueba si el usuario ha iniciado sesion (obj session), y
      *  despues si tiene el rol adecuado para acceder a esta pagina, finalmente comprueba si tiene la peticion aceptada
