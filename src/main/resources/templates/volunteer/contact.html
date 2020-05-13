@@ -1,0 +1,67 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+<link rel="stylesheet" href="css/fondo.css" th:href="@{/css/fondo.css}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contacta</title>
+</head>
+<body>
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorVolunteer"></div>
+<!--TODO cambiar el fondo-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="well well-sm">
+                <form action="#"    th:action="@{/volunteer/contact}"
+                                    th:object="${volunteer}" method="post">
+                    <input  name="3d3" class="form-control" placeholder="dni" type="text" th:field="*{dni}" hidden>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Contacte</label>
+                                <input  name="" class="form-control" placeholder="Persona de contacte" type="text" th:field="*{name}" disabled>
+                            </div>
+
+                            <div class="form-group">
+                                <label> Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                    </span><input type="email" class="form-control"  th:field="*{email}" required="required" disabled />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject"> General </label>
+                                <select id="subject" name="subject" class="form-control" required="required">
+                                    <option value="na" selected="">Elegix un tema:</option>
+                                    <option value="Meues dades">Meues dades</option>
+                                    <option value="product">Disponibilitats</option>
+                                    <option value="suggestions"> Sugeriments</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Missatge</label>
+                                <textarea name="msg" id="msg" class="form-control" rows="9" cols="25" required="required"
+                                          placeholder="Message" th:field="${msg}"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">Enviar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/footPage"></div>
+</body>
+</html>

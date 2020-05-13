@@ -4,6 +4,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy;
 import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
+import es.uji.ei1027.majorsacasa.model.Company;
 import es.uji.ei1027.majorsacasa.model.Disponibility;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
@@ -306,6 +307,41 @@ public class VolunteerController {
             throw new MajorsACasaException(
                     "Error en l'accés a la base de dades", "ErrorAccedintDades");
         }
+
+        return "redirect:main";
+    }
+
+    @RequestMapping(value = "/contact",method=RequestMethod.GET)
+    public String contactWithCas(HttpSession session, Model model) {
+
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (!user.getRol().equals("Volunteer")){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        }
+
+        model.addAttribute("volunteer",volunteerDao.getVolunteer(user.getDni()));
+        model.addAttribute("msg",new String());
+
+        return "volunteer/contact";
+
+    }
+
+    @RequestMapping(value="/contact",method=RequestMethod.POST)
+    public String contactSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
+                                @ModelAttribute("msg") String msg,
+                                BindingResult bindingResult){
+        if (bindingResult.hasErrors())
+            return "volunteer/contact";
+        //todo arreglar o quitar
+        System.out.println("Mensaje enviado por "+volunteer.getName()+": "+msg);
 
         return "redirect:main";
     }
