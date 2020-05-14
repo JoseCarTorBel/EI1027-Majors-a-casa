@@ -13,7 +13,9 @@
 <br>
 <div class="container">
     <P></P>
+    <strong>
     En aquesta pagina se mostra el llistat de totes les solicituds dels voluntaris en el sistema. Pots modificar les seues dades, aceptar o denegar la peticio.
+    </strong>
     <p></p>
     <div class="card bg-light">
         <article class="card-body" style="max-width: 100%;">
@@ -32,6 +34,9 @@
                     <th>Estat</th>
                     <th>Email</th>
                     <th></th>
+                    <th></th>
+                    <th></th>
+
 
                 </tr>
                 </thead>
@@ -51,8 +56,8 @@
                     </td>
                     <td th:text="${volunteer.email}"></td>
                     <td><a role="button" class="btn btn-success"th:href="@{/supervisorVoluntaris/accept/{dniVolunteer}(dniVolunteer=${volunteer.dni})}">Acceptar</a>
-                    <td><a role="button" class="btn btn-danger"th:href="@{/supervisorVoluntaris/deny/{dniVolunteer}(dniVolunteer=${volunteer.dni})}">Denegar</a>
-                    <td><a role="button" class="btn btn-warning"th:href="@{/supervisorVoluntaris/update/{dniVolunteer}(dniVolunteer=${volunteer.dni})}">Modificar</a>
+                    <a role="button" class="btn btn-danger"th:href="@{/supervisorVoluntaris/deny/{dniVolunteer}(dniVolunteer=${volunteer.dni})}">Denegar</a>
+                   <a role="button" class="btn btn-warning"th:href="@{/supervisorVoluntaris/update/{dniVolunteer}(dniVolunteer=${volunteer.dni})}">Modificar</a></td>
 
 
                     </td>
