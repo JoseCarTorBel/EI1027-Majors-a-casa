@@ -1,6 +1,7 @@
 package es.uji.ei1027.majorsacasa.dao;
 
 
+import es.uji.ei1027.majorsacasa.model.Hobbie;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
 import org.apache.catalina.valves.JDBCAccessLogValve;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,5 +138,30 @@ public class VolunteerDao {
 
     }
 
+    /**
+     * Obtiene un listado de hobbies de un voluntatrio
+     * @return List<Hobbie>
+     */
+    public List<Hobbie> getHobbies(String dnivolunteer) {
+        try{
+            return jdbcTemplate.query("SELECT * FROM hobbies  WHERE dni=?",
+                    new HobbieRowMapper(), dnivolunteer);
+        }catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 
+    /**
+     * Obtiene un listado de hobbies de un voluntatrio
+     * @return List<Hobbie>
+     */
+    public void newHobbie(String dnivolunteer,String hobbie) {
+        jdbcTemplate.update("INSERT INTO hobbies VALUES(?,?)",
+                dnivolunteer, hobbie);
+    }
+
+
+    public void removeHobbie(String dnivolunteer,String hobbie){
+        jdbcTemplate.update("DELETE FROM hobbies WHERE dni=? AND hobbie=?",dnivolunteer,hobbie);
+    }
 }

@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+<link rel="stylesheet" href="css/fondo.css" th:href="@{/css/fondo.css}">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nou horari</title>
+
+</head>
+<body>
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorVolunteer"></div>
+
+<div class="container">
+        <div class="card bg-light">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h4 class="card-title mt-3 text-center">Afegir nou hobbie</h4>
+
+                <form action="#" th:action="@{/volunteer/newHobbie}"
+                                 th:object="${hobbie}" method="post">
+
+                    <input  name="" class="form-control" placeholder="DNI / NIF" type="text" th:field="*{dni}" hidden>
+
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input  name="" class="form-control" placeholder="Hobbie" type="text" th:field="*{hobbie}">
+                    </div> <!-- form-group// -->
+
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Nou hobbie </button>
+                    </div> <!-- form-group// -->
+
+
+                </form>
+            </article>
+
+
+    </div>
+    <a href="/" th:href="@{/volunteer/main}" class="btn btn-primary btn-lg">Tornar a la meua pàgina principal</a>
+    </div>
+    <!--container end.//-->
+
+    <div th:replace="fragments/footPage"></div>
+
+</body>
+</html>

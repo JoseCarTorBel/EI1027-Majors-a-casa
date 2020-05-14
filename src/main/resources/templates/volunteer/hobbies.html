@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+<link rel="stylesheet" href="css/fondo.css" th:href="@{/css/fondo.css}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>El meu horari</title>
+
+</head>
+<body>
+
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorVolunteer"></div>
+<br>
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body" style="max-width: 100%;">
+            <h4 class="card-title mt-3 text-center">Els meus hobbies</h4>
+            <a role="button" class="btn btn-success" th:href="@{/volunteer/newHobbie}">Nou hobbie</a>
+            
+            <span th:if="${hobbies.size()>0}">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Hobbie:</th>
+                    <th></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="hobbie: ${hobbies}">
+                    <td th:text="${hobbie.hobbie}"></td>
+                    <td><a role="button" class="btn btn-danger" th:href="@{/volunteer/deleteHobbie/{hobbie}(hobbie=${hobbie.hobbie})}">Esborrar</a></td>
+
+                </tr>
+                </tbody>
+            </table>
+            </span>
+            <span th:unless="${hobbies.size()>0}">No tens ningun hobbie</span>
+
+        </article>
+    </div>
+    <a href="/" th:href="@{/volunteer/main}" class="btn btn-primary btn-lg">Tornar a la meua pàgina principal</a>
+</div>
+<!--container end.//-->
+
+<div th:replace="fragments/footPage"></div>
+
+</body>
+</html>

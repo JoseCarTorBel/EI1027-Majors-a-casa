@@ -4,10 +4,7 @@ package es.uji.ei1027.majorsacasa.controller;
 import ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy;
 import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
-import es.uji.ei1027.majorsacasa.model.Company;
-import es.uji.ei1027.majorsacasa.model.Disponibility;
-import es.uji.ei1027.majorsacasa.model.UserDetails;
-import es.uji.ei1027.majorsacasa.model.Volunteer;
+import es.uji.ei1027.majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
@@ -345,6 +342,86 @@ public class VolunteerController {
         throw  new MajorsACasaException("Missatge enviat correctament","Mensaje ENviado","../"+user.getMainPage());
     }
 
+    /**
+     * Carga la vista de disponibilitys, para ello comprueba si el usuario ha iniciado sesion (obj session), y
+     *  despues si tiene el rol adecuado para acceder a esta pagina, finalmente comprueba si tiene la peticion aceptada
+     *  por el cas, en caso contrario le muestra un mensaje de error y le devuelve al main
+     *
+     */
+    @RequestMapping("/hobbies")
+    public String getHobbiesList(HttpSession session, Model model){
 
+
+
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (!user.getRol().equals("Volunteer")){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+
+        }else{
+            model.addAttribute("hobbies", volunteerDao.getHobbies(user.getDni()));
+
+            return "volunteer/hobbies";
+        }
+
+    }
+
+    @RequestMapping(value="/deleteHobbie/{hobbie}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String removeHobbie(HttpSession session,@PathVariable String hobbie){
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        volunteerDao.removeHobbie(user.getDni(),hobbie);
+        throw  new MajorsACasaException("Hobbie esborrat correctament","Success","../../volunteer/hobbies");
+    }
+
+
+    // LLama a la vista pasandole un objeto disponibility
+    @RequestMapping(value="/newHobbie")
+    public String addHobbie(Model model,HttpSession session){
+
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        if (!user.getRol().equals("Volunteer")){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+        }
+
+        model.addAttribute("hobbie",new Hobbie());
+        return "volunteer/newHobbie";
+    }
+
+    // Una vez le damos al sumbit la vista devuelve el objeto disponibility con todos los atributos
+    @RequestMapping(value="/newHobbie", method=RequestMethod.POST)
+    public String processAddSubmit(@ModelAttribute("hobbie") Hobbie hobbie,
+                                   BindingResult bindingResult,HttpSession session) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (bindingResult.hasErrors()) {
+            return "volunteer/newHobbie";
+        }
+        try {
+            volunteerDao.newHobbie(user.getDni(),hobbie.getHobbie());
+        }catch (DuplicateKeyException dk){
+            throw new MajorsACasaException("Ja tens un hobbie ["+hobbie.getHobbie()+"]","CPduplicada");
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+            throw new MajorsACasaException(
+                    "Error en l'accés a la base de dades", "ErrorAccedintDades");
+        }
+
+        throw  new MajorsACasaException("Hobbie creaat corectament","Success","../"+user.getMainPage());
+    }
 
 }
