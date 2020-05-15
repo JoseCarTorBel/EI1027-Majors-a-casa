@@ -47,9 +47,18 @@ public class ContractDao {
     /**
      * Dar de baja a una empresa, es decir, cambiar la fecha de finalización.
      * @param codContract  Código contrato actual
+     * @return True si se puede dar de baja o false si tiene asignatos request.
      */
-    public void unsubscribeContract(String codContract){
-        jdbcTemplate.update("UPDATE contract SET finaltime=NOW() WHERE codcontract=?",codContract);
+    public boolean unsubscribeContract(String codContract){
+        try {
+            jdbcTemplate.query("   SELECT con.* " +
+                    "               FROM contract as con JOIN request as req ON con.codcontract = req.codcontract " +
+                    "               WHERE req.enddate>NOW() AND con.codContract=?;", new ContractRowMapper(), codContract);
+            return false;
+        }catch (EmptyResultDataAccessException ex){
+            jdbcTemplate.update("UPDATE contract SET finaltime=NOW() WHERE codcontract=?",codContract);
+            return true;
+        }
     }
 
 

@@ -120,7 +120,16 @@ public class CasCompanyController {
 
     @RequestMapping(value="unregisterContract/{codContract}", method = {RequestMethod.GET, RequestMethod.DELETE})
     public String unsubscribeContract(@PathVariable String codContract,Model model){
-        contractDao.unsubscribeContract(codContract);
+        if(!contractDao.unsubscribeContract(codContract)){
+            MajorsACasaException exection = new MajorsACasaException("No pots donar de baixa un contracte que tinga clients asignats",
+                    "Contracte no donat de baixa.");
+
+            List<Company> listCompany = companyDao.getCompanys();
+            model.addAttribute("listCompanys",listCompany);
+
+            exection.setReturnPath("/cascompany/listContracts");
+            throw exection;
+        }
 
         List<Company> listCompany = companyDao.getCompanys();
         model.addAttribute("listCompanys",listCompany);
