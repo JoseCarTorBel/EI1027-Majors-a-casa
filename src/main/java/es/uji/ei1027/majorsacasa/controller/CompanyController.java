@@ -131,7 +131,9 @@ public class CompanyController {
         UserDetails user = (UserDetails) session.getAttribute("user");
 
         List<Contract> contractsPast = companyDao.getPastContracts(user.getDni());
+
         model.addAttribute("contractsPast",contractsPast);
+
 
         Contract contractCurrent = companyDao.getCurrentContract(user.getDni());
         model.addAttribute("contractCurrent",contractCurrent);
