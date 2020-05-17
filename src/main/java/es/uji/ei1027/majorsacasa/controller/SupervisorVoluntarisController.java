@@ -3,6 +3,7 @@ package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
 import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
+import es.uji.ei1027.majorsacasa.model.Company;
 import es.uji.ei1027.majorsacasa.model.Disponibility;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import es.uji.ei1027.majorsacasa.model.Volunteer;
@@ -141,6 +142,33 @@ public class SupervisorVoluntarisController {
 
         volunteerDao.updateVolunteer(volunteer);
         throw  new MajorsACasaException("Voluntari actualitzat correctament","Success","../../supervisorVoluntaris/main");
+    }
+
+    /**
+     * Da la información extendida del voluntari.
+     */
+    @RequestMapping(value="/infoVolunteer/{dni}")
+    public String getInfoCompany(@PathVariable String dni, HttpSession session, Model model){
+
+        if (session.getAttribute("user") == null)
+        {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (!user.getRol().equals("SupervisorVolunatris")){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a CAS supervisor voluntaris  per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        }
+
+        Volunteer volunteer =  volunteerDao.getVolunteer(dni);
+
+        model.addAttribute("volunteer",volunteer);
+        model.addAttribute("hobbies",volunteerDao.getHobbies(dni));
+
+        return "supervisorVoluntaris/infoVolunteer";
     }
 
 

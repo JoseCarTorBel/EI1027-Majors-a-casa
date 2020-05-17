@@ -118,7 +118,7 @@ public class VolunteerDao {
      * @param dni, newState
      */
     public void updateState(String dni, String newState) {
-        System.out.println(dni+"  "+newState);
+
         jdbcTemplate.update("UPDATE volunteer SET state=? WHERE dni=?",newState,dni);
     }
 
@@ -128,7 +128,7 @@ public class VolunteerDao {
      * @param volunteer
      */
     public void updateVolunteer(Volunteer volunteer) {
-        System.out.println(volunteer.toString());
+
         jdbcTemplate.update("UPDATE person SET name=?, secondname=?, phone=?, dateofbirth=?, postaddress=?, email=?, username=?, passwd=? WHERE dni=?",
                 volunteer.getName(),volunteer.getSecondName(),volunteer.getPhone(),volunteer.getDateOfBirth(),
                 volunteer.getPostAddress(),volunteer.getEmail(),volunteer.getUsername(),volunteer.getPasswd(),volunteer.getDni());

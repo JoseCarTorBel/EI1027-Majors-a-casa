@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Informació</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fondo.css" th:href="@{/css/fondo.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorCasVolunteer"></div>
+
+<div class="container">
+    <div class="card bg-light">
+        <div class="card-body" style="max-width: 100%;">
+
+            <div class="row">
+            <div class="col-sm-7">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title"> <span th:text="${volunteer.name}"></span></li></h3>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">DNI</th>
+                                    <td>  <span th:text="${volunteer.dni}"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Cognoms</th>
+                                    <td>  <span th:text="${volunteer.secondName}"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Telèfon</th>
+                                    <td> <span th:text="${volunteer.phone}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Email</th>
+                                    <td> <span th:text="${volunteer.email}"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Direcció</th>
+                                    <td> <span th:text="${volunteer.postAddress}"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Hobbies</h5>
+                        <span th:if="${hobbies.size()>0}">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Hobbie:</th>
+                    <th></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="hobbie: ${hobbies}">
+                    <td th:text="${hobbie.hobbie}"></td>
+
+                </tr>
+                </tbody>
+            </table>
+            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <center>
+                <td><a role="button" class="btn btn-warning"th:href="@{/supervisorVoluntaris/update/{dniVolunteer}(dniVolunteer=${volunteer.dni})}">Modificar</a>
+            </center>
+        </div>
+    </div>
+
+
+
+</div>
+<div th:replace="fragments/footPage"></div>
+
+</body>
+</html>
