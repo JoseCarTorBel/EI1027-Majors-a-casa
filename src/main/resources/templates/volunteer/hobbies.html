@@ -38,7 +38,7 @@
 
 
                 <div class="form-group" style="width:25%">
-                    <button type="submit" class="btn btn-primary btn-block"> Nou hobbie </button>
+                    <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-plus-circle"></i> Nou hobbie </button>
                 </div> <!-- form-group// -->
 
 
@@ -58,7 +58,7 @@
                 <tbody>
                 <tr th:each="hobbie: ${hobbies}">
                     <td th:text="${hobbie.hobbie}"></td>
-                    <td><a role="button" class="btn btn-danger" th:href="@{/volunteer/deleteHobbie/{hobbie}(hobbie=${hobbie.hobbie})}">Esborrar</a></td>
+                    <td><a role="button" class="btn btn-danger" th:href="@{/volunteer/deleteHobbie/{hobbie}(hobbie=${hobbie.hobbie})}"><i class="fas fa-eraser"></i> Esborrar</a></td>
 
                 </tr>
                 </tbody>
