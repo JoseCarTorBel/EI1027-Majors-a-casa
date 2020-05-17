@@ -39,9 +39,7 @@ public class VolunteerController {
     }
 
 
-    //todo ximo CREAR LISTADO CHULI COMO JOSE
     //todo ximo REVISAR ALL Y CORRESPONDER EL SIETAMP Y DISEÑO DE PAGINAS
-    //todo ximo hobbies
 
 
     /**
@@ -366,6 +364,7 @@ public class VolunteerController {
 
 
         }else{
+            model.addAttribute("hobbie",new Hobbie());
             model.addAttribute("hobbies", volunteerDao.getHobbies(user.getDni()));
 
             return "volunteer/hobbies";
@@ -380,27 +379,6 @@ public class VolunteerController {
         throw  new MajorsACasaException("Hobbie esborrat correctament","Success","../../volunteer/hobbies");
     }
 
-
-    // LLama a la vista pasandole un objeto disponibility
-    @RequestMapping(value="/newHobbie")
-    public String addHobbie(Model model,HttpSession session){
-
-        if (session.getAttribute("user") == null)
-        {
-            model.addAttribute("user", new UserDetails());
-            return "login";
-        }
-
-        UserDetails user = (UserDetails) session.getAttribute("user");
-        if (!user.getRol().equals("Volunteer")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
-
-        }
-
-        model.addAttribute("hobbie",new Hobbie());
-        return "volunteer/newHobbie";
-    }
 
     // Una vez le damos al sumbit la vista devuelve el objeto disponibility con todos los atributos
     @RequestMapping(value="/newHobbie", method=RequestMethod.POST)
@@ -421,7 +399,7 @@ public class VolunteerController {
                     "Error en l'accés a la base de dades", "ErrorAccedintDades");
         }
 
-        throw  new MajorsACasaException("Hobbie creaat corectament","Success","../"+user.getMainPage());
+        throw  new MajorsACasaException("Hobbie creaat corectament","Success","../../volunteer/hobbies");
     }
 
 }

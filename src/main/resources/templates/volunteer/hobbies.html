@@ -19,7 +19,32 @@
     <div class="card bg-light">
         <article class="card-body" style="max-width: 100%;">
             <h4 class="card-title mt-3 text-center">Els meus hobbies</h4>
-            <a role="button" class="btn btn-success" th:href="@{/volunteer/newHobbie}">Nou hobbie</a>
+
+
+            <center><div class="card bg-light" style="width:50%">
+            <form action="#" th:action="@{/volunteer/newHobbie}"
+                  th:object="${hobbie}" method="post">
+
+                <input  name="" class="form-control" placeholder="DNI / NIF" type="text" th:field="*{dni}" hidden>
+
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fas fa-gamepad"></i> </span>
+                    </div>
+                    <input  name="" class="form-control" placeholder="Hobbie" type="text" th:field="*{hobbie}">
+
+                </div> <!-- form-group// -->
+
+
+                <div class="form-group" style="width:25%">
+                    <button type="submit" class="btn btn-primary btn-block"> Nou hobbie </button>
+                </div> <!-- form-group// -->
+
+
+            </form>
+            </div>
+            </center>
             
             <span th:if="${hobbies.size()>0}">
             <table class="table table-striped">
