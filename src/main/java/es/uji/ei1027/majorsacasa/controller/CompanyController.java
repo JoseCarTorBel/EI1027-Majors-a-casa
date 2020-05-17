@@ -3,6 +3,7 @@ package es.uji.ei1027.majorsacasa.controller;
 
 import es.uji.ei1027.majorsacasa.dao.CompanyDao;
 import es.uji.ei1027.majorsacasa.model.Company;
+import es.uji.ei1027.majorsacasa.model.Contract;
 import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,10 +115,29 @@ public class CompanyController {
         return "redirect:main";
     }
 
+    /**
+     * Contrato actual y los que ha tenido.
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="/mycontract",method=RequestMethod.GET)
+    public String getMyContracts(HttpSession session, Model model) {
+        String isSession = checkSession(model, session);
+        if (isSession != null) {
+            return isSession;
+        }
 
+        UserDetails user = (UserDetails) session.getAttribute("user");
 
+        List<Contract> contractsPast = companyDao.getPastContracts(user.getDni());
+        model.addAttribute("contractsPast",contractsPast);
 
+        Contract contractCurrent = companyDao.getCurrentContract(user.getDni());
+        model.addAttribute("contractCurrent",contractCurrent);
 
+        return "/company/mycontract";
+    }
 
 
 

@@ -1,6 +1,7 @@
 package es.uji.ei1027.majorsacasa.dao;
 
 import es.uji.ei1027.majorsacasa.model.Company;
+import es.uji.ei1027.majorsacasa.model.Contract;
 import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -73,17 +74,6 @@ public class CompanyDao {
 
     public List<ElderlyPeople> getServicesToDo(String cif){
         try {
-//            return jdbcTemplate.query(
-//                        "SELECT person.*, ep.justification,ep.dnisocialworker " +
-//                            "FROM person JOIN elderlypeople AS ep ON person.dni =ep.dni " +
-//                            "WHERE ep.dni IN" +
-//                            "(  SELECT dnielderlypeople " +
-//                                "FROM request " +
-//                                "WHERE serviceType = (  SELECT service " +
-//                                "                       FROM contract " +
-//                                "                       WHERE cifcompany=?));\n"
-//                    ,new ElderlyPeopleRowMapper(), cif);
-
                 return jdbcTemplate.query(
                         "SELECT person.*, ep.*\n" +
                                 "FROM person     JOIN elderlypeople AS ep ON person.dni =ep.dni\n" +
@@ -106,5 +96,23 @@ public class CompanyDao {
             return new ArrayList<Company>();
         }
     }
+
+    public List<Contract> getPastContracts(String cif){
+        try{
+            return jdbcTemplate.query("SELECT * " +
+                    "                       FROM contract " +
+                    "                       WHERE cifcompany=? AND finaltime<NOW()",new ContractRowMapper(),cif);
+        }catch(EmptyResultDataAccessException e){
+            return new ArrayList<Contract>();
+        }
+    }
+
+    public Contract getCurrentContract(String cif){
+        return jdbcTemplate.queryForObject("SELECT * " +
+                "                       FROM contract " +
+                "                       WHERE cifcompany=? AND finaltime>NOW()",new ContractRowMapper(),cif);
+
+    }
+
 
 }
