@@ -112,7 +112,7 @@ public class CompanyController {
         if (bindingResult.hasErrors())
             return "company/contact";
 
-        return "redirect:main";
+        throw  new MajorsACasaException("En breu es ficarem en contacte.","Success","../company/main");
     }
 
     /**
