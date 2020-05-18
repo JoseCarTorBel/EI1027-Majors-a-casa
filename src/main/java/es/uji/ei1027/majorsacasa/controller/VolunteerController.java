@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -39,8 +40,6 @@ public class VolunteerController {
     }
 
 
-    //todo ximo REVISAR ALL Y CORRESPONDER EL SIETAMP Y DISEÑO DE PAGINAS
-
 
     /**
      * Carga la vista principal de voluntario, para ello comprueba si el usuario ha iniciado sesion (obj session), y
@@ -51,47 +50,41 @@ public class VolunteerController {
     @RequestMapping("/main")
     public String getVolunteerMain(HttpSession session, Model model){
 
-        if (session.getAttribute("user") == null)
-        {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (!user.getRol().equals("Volunteer")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
-
-        }else{
-            Volunteer volunteer = volunteerDao.getVolunteer(user.getDni());
-            if (volunteer.getState()=='A'){
+        Volunteer volunteer = volunteerDao.getVolunteer(user.getDni());
+        if (volunteer.getState()=='A'){
 
 
-                ArrayList<String> directions = (ArrayList<String>) disponibilityDao.getDirectionsAccepted(user.getDni());
-                ArrayList<Disponibility> disponibilities = (ArrayList<Disponibility>) disponibilityDao.getDisponibilitysAccepted(user.getDni());
+            ArrayList<String> directions = (ArrayList<String>) disponibilityDao.getDirectionsAccepted(user.getDni());
+            ArrayList<Disponibility> disponibilities = (ArrayList<Disponibility>) disponibilityDao.getDisponibilitysAccepted(user.getDni());
 
-                int i=0;
-                while(i<disponibilities.size()){
-                    if(disponibilities.get(i).getInitialTime().isAfter(LocalDate.now()) || disponibilities.get(i).getFinalTime().isBefore(LocalDate.now()) ) {
-                        disponibilities.remove(i);
-                        directions.remove(i);
-                    }else{
-                        i++;
-                    }
+            int i=0;
+            while(i<disponibilities.size()){
+                if(disponibilities.get(i).getInitialTime().isAfter(LocalDate.now()) || disponibilities.get(i).getFinalTime().isBefore(LocalDate.now()) ) {
+                    disponibilities.remove(i);
+                    directions.remove(i);
+                }else{
+                    i++;
                 }
-
-
-                model.addAttribute("directions",directions);
-
-                model.addAttribute("disponibilities",disponibilities);
-
-                return "volunteer/main";
-            }else{
-                System.out.println("El voluntario no tiene su peticion activada por el cas");
-                session.invalidate();
-                throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
             }
+
+
+            model.addAttribute("directions",directions);
+
+            model.addAttribute("disponibilities",disponibilities);
+
+            return "volunteer/main";
+        }else{
+            System.out.println("El voluntario no tiene su peticion activada por el cas");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
         }
+
 
     }
 
@@ -106,24 +99,16 @@ public class VolunteerController {
     public String getVolunteerList(HttpSession session, Model model){
 
 
-
-        if (session.getAttribute("user") == null)
-        {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (!user.getRol().equals("Volunteer")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        model.addAttribute("disponibilities", disponibilityDao.getDisponibilitys(user.getDni()));
 
+        return "volunteer/disponibilitys";
 
-        }else{
-            model.addAttribute("disponibilities", disponibilityDao.getDisponibilitys(user.getDni()));
-
-            return "volunteer/disponibilitys";
-        }
 
     }
 
@@ -135,7 +120,9 @@ public class VolunteerController {
      */
     @RequestMapping(value="/deleteDisponibility/{dayOfWeek}", method = {RequestMethod.GET, RequestMethod.DELETE})
     public String removeDispo(HttpSession session,@PathVariable Integer dayOfWeek){
-        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        UserDetails user = checkSession(session);
+
         disponibilityDao.removeDisponibility(dayOfWeek,user.getDni());
         throw  new MajorsACasaException("Disponibilitat esborrada correctament","Success","../../volunteer/disponibilitys");
     }
@@ -148,19 +135,12 @@ public class VolunteerController {
      */
     @RequestMapping(value="/updateDisponibility/{dayOfWeek}", method = {RequestMethod.GET})
     public String updateDisponibility(Model model,HttpSession session,@PathVariable Integer dayOfWeek){
-        if (session.getAttribute("user") == null)
-        {
+
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-
-        UserDetails user = (UserDetails) session.getAttribute("user");
-
-        if (!user.getRol().equals("Volunteer")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
-        }
-
 
         model.addAttribute("disponibility",disponibilityDao.getDisponibility(dayOfWeek,user.getDni()));
 
@@ -171,11 +151,15 @@ public class VolunteerController {
     @RequestMapping(value="/updateDisponibility", method=RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("disponibility") Disponibility disponibility,
-            BindingResult bindingResult) {
+            BindingResult bindingResult,HttpSession session) {
+
+        UserDetails user = checkSession(session);
+
         if (bindingResult.hasErrors())
             return "volunteer/updateDisponibility";
 
         disponibilityDao.updateDisponibility(disponibility);
+
         throw  new MajorsACasaException("Disponibilitat actualiztzada correctament","Success","../volunteer/main");
     }
 
@@ -225,20 +209,11 @@ public class VolunteerController {
     @RequestMapping(value="/update" ,method = RequestMethod.GET)
     public String update(Model model,HttpSession session){
 
-        if (session.getAttribute("user") == null)
-        {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-
-        UserDetails user = (UserDetails) session.getAttribute("user");
-
-        if (!user.getRol().equals("Volunteer")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
-        }
-
-
         model.addAttribute("volunteer",volunteerDao.getVolunteer(user.getDni()));
 
         return "volunteer/update";
@@ -248,7 +223,10 @@ public class VolunteerController {
     @RequestMapping(value="/update", method=RequestMethod.POST)
     public String processUpdateSubmit(
             @ModelAttribute("volunteer") Volunteer volunteer,
-            BindingResult bindingResult) {
+            BindingResult bindingResult,HttpSession session) {
+
+        UserDetails user = checkSession(session);
+
         if (bindingResult.hasErrors())
             return "volunteer/update";
         volunteerDao.updateVolunteer(volunteer);
@@ -266,19 +244,11 @@ public class VolunteerController {
     @RequestMapping(value="/newDisponibility")
     public String addDisponibility(Model model,HttpSession session){
 
-        if (session.getAttribute("user") == null)
-        {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-
-        UserDetails user = (UserDetails) session.getAttribute("user");
-        if (!user.getRol().equals("Volunteer")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
-
-        }
-
         model.addAttribute("disponibility",new Disponibility());
         return "volunteer/newDisponibility";
     }
@@ -287,7 +257,9 @@ public class VolunteerController {
     @RequestMapping(value="/newDisponibility", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("disponibility") Disponibility disponibility,
                                    BindingResult bindingResult,HttpSession session) {
-        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        UserDetails user = checkSession(session);
+
         disponibility.setDniVolunteer(user.getDni());
         if (bindingResult.hasErrors()) {
             return "volunteer/newDisponibility";
@@ -308,19 +280,11 @@ public class VolunteerController {
     @RequestMapping(value = "/contact",method=RequestMethod.GET)
     public String contactWithCas(HttpSession session, Model model) {
 
-        if (session.getAttribute("user") == null)
-        {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-
-        UserDetails user = (UserDetails) session.getAttribute("user");
-
-        if (!user.getRol().equals("Volunteer")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
-        }
-
         model.addAttribute("volunteer",volunteerDao.getVolunteer(user.getDni()));
         model.addAttribute("msg",new String());
 
@@ -332,11 +296,14 @@ public class VolunteerController {
     public String contactSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                 @ModelAttribute("msg") String msg,
                                 BindingResult bindingResult,HttpSession session){
+
+        UserDetails user = checkSession(session);
+
         if (bindingResult.hasErrors())
             return "volunteer/contact";
         //todo arreglar o quitar
+
         System.out.println("Mensaje enviado por "+volunteer.getName()+": "+msg);
-        UserDetails user = (UserDetails) session.getAttribute("user");
         throw  new MajorsACasaException("Missatge enviat correctament","Mensaje ENviado","../"+user.getMainPage());
     }
 
@@ -349,32 +316,24 @@ public class VolunteerController {
     @RequestMapping("/hobbies")
     public String getHobbiesList(HttpSession session, Model model){
 
-
-
-        if (session.getAttribute("user") == null)
-        {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("hobbie",new Hobbie());
+        model.addAttribute("hobbies", volunteerDao.getHobbies(user.getDni()));
 
-        if (!user.getRol().equals("Volunteer")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        return "volunteer/hobbies";
 
-
-        }else{
-            model.addAttribute("hobbie",new Hobbie());
-            model.addAttribute("hobbies", volunteerDao.getHobbies(user.getDni()));
-
-            return "volunteer/hobbies";
-        }
 
     }
 
     @RequestMapping(value="/deleteHobbie/{hobbie}", method = {RequestMethod.GET, RequestMethod.DELETE})
     public String removeHobbie(HttpSession session,@PathVariable String hobbie){
-        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        UserDetails user = checkSession(session);
+
         volunteerDao.removeHobbie(user.getDni(),hobbie);
         throw  new MajorsACasaException("Hobbie esborrat correctament","Success","../../volunteer/hobbies");
     }
@@ -384,7 +343,8 @@ public class VolunteerController {
     @RequestMapping(value="/newHobbie", method=RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("hobbie") Hobbie hobbie,
                                    BindingResult bindingResult,HttpSession session) {
-        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        UserDetails user = checkSession(session);
 
         if (bindingResult.hasErrors()) {
             return "volunteer/newHobbie";
@@ -402,4 +362,33 @@ public class VolunteerController {
         throw  new MajorsACasaException("Hobbie creaat corectament","Success","../../volunteer/hobbies");
     }
 
+
+
+
+    // *************************
+    // Métodos privados ********
+    // *************************
+
+
+    private UserDetails checkSession(HttpSession session){
+
+
+        if(session.getAttribute("user")==null) {
+          return null;
+        }
+
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+
+        if (!user.getRol().equals("Volunteer")) {
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. \n" +
+                    "Has d'haver iniciat sessió com a voluntari per a poder accedir-hi.", "AccesDenied", "../" + user.getMainPage());
+        }
+
+        return user;
+    }
 }
+
+
+
