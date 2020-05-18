@@ -13,12 +13,16 @@
 <div th:replace="fragments/barraSuperiorVolunteer"></div>
 <!--TODO cambiar el fondo-->
 <div class="container">
-    <div class="row">
-        <div class="col-md-8">
+    <div class="card bg-light">
+        <article class="card-body" style="max-width: 100%;">
+            <div class="row">
+                <div class="col-md-12">
+
             <div class="well well-sm">
                 <form action="#"    th:action="@{/volunteer/contact}"
                                     th:object="${volunteer}" method="post">
                     <input  name="3d3" class="form-control" placeholder="dni" type="text" th:field="*{dni}" hidden>
+                    <input  name="" class="form-control" placeholder="Persona de contacte" type="text" th:field="*{name}" hidden>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -48,7 +52,7 @@
                             <div class="form-group">
                                 <label>Missatge</label>
                                 <textarea name="msg" id="msg" class="form-control" rows="9" cols="25" required="required"
-                                          placeholder="Message" th:field="${msg}"></textarea>
+                                          placeholder="Message" ></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -57,9 +61,12 @@
                     </div>
                 </form>
             </div>
-        </div>
+                </div>
+            </div>
+        </article>
     </div>
 </div>
+
 
 
 <div th:replace="fragments/footPage"></div>

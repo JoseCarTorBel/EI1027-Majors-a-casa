@@ -20,68 +20,77 @@
 <br>
 <div class="container">
     <P></P>
-    <strong>
-    Aquest és el teu horari de voluntari, et mostra el temps que que estas prestant actualment,
-    t'indica el dia de la setmana que deus anar, i la data d'inici i fi d'aquest temps que estas prestant,
-    a més l'adreça on has d'acudir.
-    <p></p>
-    Si vols anyadir mes disponibilitats ves click<a href="/volunteer/newDisponibility"> AQUI</a></strong>
-
-    <div class="card bg-light">
 
 
-        <article class="card-body mx-auto" style="max-width: 400px;">
+        <div class="card bg-light">
+                    <p></p>
+            <strong>Aquest és el teu horari de voluntari</strong> et mostra el temps que que estas prestant actualment,
+            t'indica el dia de la setmana que deus anar, l'hora, i la data d'inici i fi d'aquest temps que estas prestant,
+            a més l'adreça on has d'acudir.
+            <p></p>
+            Si vols anyadir mes disponibilitats ves click<a href="/volunteer/newDisponibility"> AQUI</a>
+            <p></p>
+        </div>
 
-            <h4 class="card-title mt-3 text-center">El meu horari</h4>
+        <br>
+        <br>
 
-            <span th:if="${disponibilities.size()>0}">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Dni elderly people</th>
-                    <th>Dia de la setmana</th>
-                    <th>Hora</th>
-                    <th>Data inici</th>
-                    <th>Data fi</th>
-                    <th>Estat</th>
-                    <th>Direcció</th>
-
-
-                </tr>
-                </thead>
-                <tbody>
-                <span th:each="direction : ${directions}">
-                <tr th:each="disponibility: ${disponibilities}">
-                    <td th:text="${disponibility.dniElderlyPeople}"></td>
-                    <td th:switch="${disponibility.dayOfWeek}">
-                        <span th:case="'1'">Dilluns</span>
-                        <span th:case="'2'">Dimarts</span>
-                        <span th:case="'3'">Dimecres</span>
-                        <span th:case="'4'">Dijous</span>
-                        <span th:case="'5'">Divendres</span>
-                        <span th:case="'6'">Dissabte</span>
-                        <span th:case="'7'">Diumenge</span>
-                    </td>
-                    <td th:text="${disponibility.hour}"></td>
-                    <td th:text="${disponibility.initialTime}"></td>
-                    <td th:text="${disponibility.finalTime}"></td>
-                    <td th:switch="${disponibility.state}">
-                        <span th:case="'P'">Pendent</span>
-                        <span th:case="'R'">Rebutjada</span>
-                        <span th:case="'A'">Aceptada</span>
-                    </td>
-                    <td th:text="${direction}"></td>
+        <div class="card bg-light">
 
 
-                    </td>
-                </tr>
+            <article class="card-body mx-auto" style="max-width: 400px;">
+
+                <h4 class="card-title mt-3 text-center">El meu horari</h4>
+
+                <span th:if="${disponibilities.size()>0}">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Dni elderly people</th>
+                        <th>Dia de la setmana</th>
+                        <th>Hora</th>
+                        <th>Data inici</th>
+                        <th>Data fi</th>
+                        <th>Estat</th>
+                        <th>Direcció</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <span th:each="direction : ${directions}">
+                    <tr th:each="disponibility: ${disponibilities}">
+                        <td th:text="${disponibility.dniElderlyPeople}"></td>
+                        <td th:switch="${disponibility.dayOfWeek}">
+                            <span th:case="'1'">Dilluns</span>
+                            <span th:case="'2'">Dimarts</span>
+                            <span th:case="'3'">Dimecres</span>
+                            <span th:case="'4'">Dijous</span>
+                            <span th:case="'5'">Divendres</span>
+                            <span th:case="'6'">Dissabte</span>
+                            <span th:case="'7'">Diumenge</span>
+                        </td>
+                        <td th:text="${disponibility.hour}"></td>
+                        <td th:text="${disponibility.initialTime}"></td>
+                        <td th:text="${disponibility.finalTime}"></td>
+                        <td th:switch="${disponibility.state}">
+                            <span th:case="'P'">Pendent</span>
+                            <span th:case="'R'">Rebutjada</span>
+                            <span th:case="'A'">Aceptada</span>
+                        </td>
+                        <td th:text="${direction}"></td>
+
+
+                        </td>
+                    </tr>
+                    </span>
+                    </tbody>
+                </table>
                 </span>
-                </tbody>
-            </table>
-            </span>
-            <span th:unless="${disponibilities.size()>0}">No tens ningun horari disponible</span>
+                <span th:unless="${disponibilities.size()>0}">No tens ningun horari disponible</span>
 
-        </article>
+            </article>
+        </div>
     </div>
 </div>
 <!--container end.//-->

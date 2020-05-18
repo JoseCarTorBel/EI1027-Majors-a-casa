@@ -286,7 +286,6 @@ public class VolunteerController {
             return "login";
         }
         model.addAttribute("volunteer",volunteerDao.getVolunteer(user.getDni()));
-        model.addAttribute("msg",new String());
 
         return "volunteer/contact";
 
@@ -294,16 +293,15 @@ public class VolunteerController {
 
     @RequestMapping(value="/contact",method=RequestMethod.POST)
     public String contactSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
-                                @ModelAttribute("msg") String msg,
                                 BindingResult bindingResult,HttpSession session){
 
         UserDetails user = checkSession(session);
 
         if (bindingResult.hasErrors())
             return "volunteer/contact";
-        //todo arreglar o quitar
 
-        System.out.println("Mensaje enviado por "+volunteer.getName()+": "+msg);
+
+        System.out.println("Mensaje enviado por "+volunteer.getName());
         throw  new MajorsACasaException("Missatge enviat correctament","Mensaje ENviado","../"+user.getMainPage());
     }
 
