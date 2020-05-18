@@ -21,17 +21,17 @@ CREATE TABLE person(
 	passwd VARCHAR(20),
 
         CONSTRAINT cp_person PRIMARY KEY (dni) ,     -- clau primària
-        CONSTRAINT calt_person UNIQUE  (username)      -- clau primària
+        CONSTRAINT calt_person UNIQUE  (username)      -- clau alternativa
 
 );
 
 CREATE TABLE volunteer (
         dni 	VARCHAR(30),
-	    endDate  DATE,
+	      endDate  DATE,
         state   VARCHAR (1),
 
         CONSTRAINT cp_volunteer PRIMARY KEY (dni),      -- clau primària
- 	    CONSTRAINT ca_volunteer_per FOREIGN KEY (dni) REFERENCES person(dni) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a volunteer
+ 	     CONSTRAINT ca_volunteer_per FOREIGN KEY (dni) REFERENCES person(dni) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a volunteer
 
 );
 
@@ -42,9 +42,6 @@ CREATE TABLE hobbies (
         CONSTRAINT cp_hobbies PRIMARY KEY (dni, hobbie),  -- CP
         CONSTRAINT ca_hobbies_vol FOREIGN KEY (dni) REFERENCES volunteer(dni) ON DELETE CASCADE ON UPDATE CASCADE -- clau aliena a volunteer
 );
-
-
-
 
 
 
