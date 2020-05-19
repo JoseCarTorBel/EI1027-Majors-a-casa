@@ -3,6 +3,10 @@ INSERT INTO socialworker VALUES ('20917765R','SW_Pinto Ibañez','623517255', 'SW
 INSERT INTO socialworker VALUES ('20919929E','SW_Carlos Rodriguez','766542432', 'SW_CarlosRodriguez', 'SW_CarlosRodriguez');
 INSERT INTO socialworker VALUES ('20099920W','SW_Laura Torro','644333123', 'SW_LauraTorro', 'SW_LauraTorro');
 INSERT INTO socialworker VALUES ('19029093W','SW_Marta Lacueva','666291873', 'SW_MartaLacueva', 'SW_MartaLacueva');
+INSERT INTO socialworker VALUES ('87937929S','SW_Maria Rubio','6253532873', 'SW_MariaRubio', 'SW_MariaRubio');
+INSERT INTO socialworker VALUES ('23928409E','SW_Pablo Gracia','632532874', 'SW_PabloGracia', 'SW_PabloGracia');
+INSERT INTO socialworker VALUES ('12398819Q','SW_Laura Martinez','8763647282', 'SW_LauraMartinez', 'SW_LauraMartinez');
+
 
 INSERT INTO person VALUES ('V_Pablo','Sanahuja Leira','20904567S','675678765','1999-02-09','Ronda Vinatea 23 1B, Castellon de la plana, Castellon','al375833@uji.es','v_pablo', 'v_pablo');
 INSERT INTO person VALUES ('V_Juan','Gonzalez Lopez','20764726T','679564357','1998-01-09','Calle sagrada familia S/N , Valencia, Valencia','juanito@yahoo.es','v_juan', 'v_juan');
@@ -21,15 +25,17 @@ INSERT INTO person VALUES ('EP_Cristina','Sanahuja Leira','20917888Y','624378234
 INSERT INTO person VALUES ('EP_Juanlu','Perez Llanos ','34758384E','675432345','1953-10-26','Calle la calle 9 3p3, Valencia, Valencia',null,'EP_Juanlu', 'EP_Juanlu');
 INSERT INTO person VALUES ('EP_Ibai','Etxebarrieta Ybarra ','34567654R','675432345','1953-10-26','Calle la calle 8 2A, Vila-Real, Castellon',null,'EP_Ibai', 'EP_Ibai');
 
-INSERT INTO volunteer VALUES ('20904567S','2023-01-01','A');
+INSERT INTO volunteer VALUES ('20904567S',null,'A');
 INSERT INTO volunteer VALUES ('20764726T','2021-01-01','R');
 INSERT INTO volunteer VALUES ('23457855W','2024-01-01','A');
-INSERT INTO volunteer VALUES ('20998812E','2027-01-01','P');
+INSERT INTO volunteer VALUES ('20998812E','2027-01-01','A');
 INSERT INTO volunteer VALUES ('20912333Y','2021-01-01','A');
 INSERT INTO volunteer VALUES ('20998877E',null,'P');
 INSERT INTO volunteer VALUES ('20112233Y',null,'A');
 
 INSERT INTO hobbies VALUES ('20904567S','Tocar la Trompeta');
+INSERT INTO hobbies VALUES ('20904567S','Jugar al Golf');
+INSERT INTO hobbies VALUES ('20904567S','Bailar');
 INSERT INTO hobbies VALUES ('20904567S','Correr');
 INSERT INTO hobbies VALUES ('20764726T','Nadar');
 INSERT INTO hobbies VALUES ('20764726T','Pasear por la montaña');
@@ -46,15 +52,15 @@ INSERT INTO elderlypeople VALUES ('34758384E','R','No me hace mucha falta',null)
 INSERT INTO elderlypeople VALUES ('34567654R','P','Necesito compañía',null);
 
 INSERT INTO disponibility VALUES ('20904567S','20654491U',1,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','A');
-INSERT INTO disponibility VALUES ('20904567S',null,2,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','P');
-INSERT INTO disponibility VALUES ('20904567S',null,3,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','P');
-INSERT INTO disponibility VALUES ('20904567S',null,5,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','P');
-INSERT INTO disponibility VALUES ('20764726T','20884391O',1,CAST('9:00' AS TIME),'2020-01-02','2020-12-01','A');
-INSERT INTO disponibility VALUES ('23457855W','20884391O',3,CAST('9:00' AS TIME),'2020-01-02','2020-12-01','A');
-INSERT INTO disponibility VALUES ('20904567S','20884391O',4,CAST('9:00' AS TIME),'2020-01-02','2020-12-01','R');
-INSERT INTO disponibility VALUES ('20904567S','20884391O',6,CAST('9:00' AS TIME),'2020-01-02','2020-12-01','P');
-INSERT INTO disponibility VALUES ('23457855W','20119392I',7,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','A');
-INSERT INTO disponibility VALUES ('20998812E','20119290R',4,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','R');
+INSERT INTO disponibility VALUES ('20904567S',null,2,CAST('7:00' AS TIME),'2020-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20904567S',null,3,CAST('3:00' AS TIME),'2020-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20904567S',null,5,CAST('5:00' AS TIME),'2020-01-01','2020-12-01','P');
+INSERT INTO disponibility VALUES ('20764726T','20884391O',1,CAST('1:00' AS TIME),'2020-01-02','2020-12-01','A');
+INSERT INTO disponibility VALUES ('23457855W','20884391O',3,CAST('10:00' AS TIME),'2020-01-02','2020-12-01','A');
+INSERT INTO disponibility VALUES ('20904567S','20884391O',4,CAST('11:00' AS TIME),'2020-01-02','2020-12-01','R');
+INSERT INTO disponibility VALUES ('20904567S','20884391O',6,CAST('11:00' AS TIME),'2020-01-02','2020-12-01','P');
+INSERT INTO disponibility VALUES ('23457855W','20119392I',7,CAST('12:00' AS TIME),'2020-01-01','2020-12-01','A');
+INSERT INTO disponibility VALUES ('20998812E','20119290R',4,CAST('11:00' AS TIME),'2020-01-01','2020-12-01','R');
 INSERT INTO disponibility VALUES ('20998877E',null,4,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','P');
 INSERT INTO disponibility VALUES ('20112233Y',null,1,CAST('9:00' AS TIME),'2019-01-01','2020-12-01','P');
 INSERT INTO disponibility VALUES ('20998877E',null,3,CAST('9:00' AS TIME),'2020-01-01','2020-12-01','P');
