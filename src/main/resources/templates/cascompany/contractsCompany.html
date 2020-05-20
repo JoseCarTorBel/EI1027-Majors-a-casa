@@ -38,6 +38,11 @@
                                     <th scope="row">Data de fi</th>
                                     <td>  <span th:text="${contractCurrent.finalDate}"></span></td>
                                 </tr>
+                                <tr>
+                                    <th scope="row">Preu contractat</th>
+                                    <td>  <span th:text="${contractCurrent.price}">€</span></td>
+                                </tr>
+
                                 </tbody>
                             </table>
 
@@ -70,15 +75,15 @@
                 </div>
             </div>
 
-            <div class="card text-white bg-info mb-6 text-center" style="max-width: 18rem;">
-                <div class="card-header">Preu contractat </div>
-                <div class="card-body">
-                    <h3 class="card-title"> <span th:text="${contractCurrent.price}"></span> </h3>
-                </div>
-            </div>
+<!--            <div class="card text-white bg-info mb-6" style="max-width: 18rem;">-->
+<!--                <div class="card-header">Preu contractat </div>-->
+<!--                <div class="card-body">-->
+<!--                    <h3 class="card-title"> <span th:text="${contractCurrent.price}"></span> </h3>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
-
+    <span th:if="${contract.size()>0}">
     <div class="card bg-light">
         <article class="card-body" style="max-width: 100%;">
             <h4 class="card-title mt-3 text-center">Contractes passats</h4>
@@ -106,6 +111,8 @@
             </table>
         </article>
     </div>
+    </span>
+    <span th:unless="${contract.size()==0}">L'empressa no té més contractes</span>
 </div>
 
 <div th:replace="fragments/footPage"></div>
