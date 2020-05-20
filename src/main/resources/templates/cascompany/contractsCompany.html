@@ -83,7 +83,7 @@
 <!--            </div>-->
         </div>
     </div>
-    <span th:if="${contract.size()>0}">
+    <span th:if="${contractsPast.size()>0}">
     <div class="card bg-light">
         <article class="card-body" style="max-width: 100%;">
             <h4 class="card-title mt-3 text-center">Contractes passats</h4>
@@ -112,7 +112,15 @@
         </article>
     </div>
     </span>
-    <span th:unless="${contract.size()==0}">L'empressa no té més contractes</span>
+    <span th:unless="${contractsPast.size()==0}">
+        <div class="card bg-light">
+        <article class="card-body" style="max-width: 100%;">
+            <h4 class="card-body mt-3 text-center">L'empressa no té contractes passats.</h4>
+        </article>
+        </div>
+
+
+    </span>
 </div>
 
 <div th:replace="fragments/footPage"></div>
