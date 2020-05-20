@@ -23,31 +23,17 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-    <!--                <th>CIF</th>-->
                     <th>Nom empressa</th>
-    <!--                <th>DNI Contacte</th>-->
-    <!--                <th>Contacte</th>-->
-    <!--                <th>Telèfon</th>-->
-    <!--                <th>Email</th>-->
-    <!--                <th>Adreça</th>-->
                     <th>Data d'alta</th>
 
                 </tr>
                 </thead>
                 <tbody>
                     <tr th:each="company:${listCompanys}">
-    <!--                    <td th:text="${company.cif}"></td>-->
                         <td th:text="${company.name}"></td>
-    <!--                    <td th:text="${company.nifContact}"></td>-->
-    <!--                    <td th:text="${company.personalContact}"></td>-->
-    <!--                    <td th:text="${company.phoneContact}"></td>-->
-    <!--                    <td th:text="${company.email}"></td>-->
-    <!--                    <td th:text="${company.postAddress}"></td>-->
                         <td th:text="${company.fechaAlta}"></td>
-    <!--                    <td><a th:href="@{/cascompany/delete/{cif}(cif=${company.cif})}">Esborra</a>-->
-                        <td><a th:href="@{/cascompany/infoCompany/{cif}(cif=${company.cif})}"  class="btn btn-primary"> <i class="fas fa-info-circle"></i> Més informació</a>
-
-
+                        <td><a th:href="@{/cascompany/infoCompany/{cif}(cif=${company.cif})}"  class="btn btn-info"> <i class="fas fa-info-circle"></i> Més informació</a>
+                        <td><a th:href="@{/cascompany/contractsCompany/{cif}(cif=${company.cif})}"  class="btn btn-primary"> <i class="fas fa-file-contract"></i></i> Contractes</a>
                     </tr>
                 </tbody>
             </table>

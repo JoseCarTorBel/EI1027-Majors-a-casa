@@ -1,0 +1,113 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+<link rel="stylesheet" href="css/fondo.css" th:href="@{/css/fondo.css}">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contracte</title>
+</head>
+<body>
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorCasCompany"></div>
+
+<div class="container">
+    <div class="card text-center bg-light">
+        <h2 class="card-title"><span th:text="${company.name}"></span></li></h2>
+        <div class="card-body" style="max-width: 100%;">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title"> NIF: <span th:text="${contractCurrent.cifcompany}"></span></li></h3>
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Servici</th>
+                                    <td>  <span th:text="${contractCurrent.service}"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Data d'inici</th>
+                                    <td>  <span th:text="${contractCurrent.initialDate}"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Data de fi</th>
+                                    <td>  <span th:text="${contractCurrent.finalDate}"></span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Horari i dies contractat</h5>
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Dies de la setmana</th>
+                                    <td>  <span th:text="${contractCurrent.daysOfWeek}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Hora d'inici</th>
+                                    <td> <span th:text="${contractCurrent.hour_initial}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Hora de fi</th>
+                                    <td> <span th:text="${contractCurrent.hour_final}"></span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card text-white bg-info mb-6 text-center" style="max-width: 18rem;">
+                <div class="card-header">Preu contractat </div>
+                <div class="card-body">
+                    <h3 class="card-title"> <span th:text="${contractCurrent.price}"></span> </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card bg-light">
+        <article class="card-body" style="max-width: 100%;">
+            <h4 class="card-title mt-3 text-center">Contractes passats</h4>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Data finalització</th>
+                    <th>Servici</th>
+                    <th>Preu</th>
+                    <th>Dies contractats</th>
+                    <th>Hora d'inici</th>
+                    <th>Hora de finalització</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="contract:${contractsPast}">
+                    <td th:text="${contract.finalDate}"></td>
+                    <td th:text="${contract.service}"></td>
+                    <td th:text="${contract.price}"></td>
+                    <td th:text="${contract.daysOfWeek}"></td>
+                    <td th:text="${contract.hour_initial}"></td>
+                    <td th:text="${contract.hour_final}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </article>
+    </div>
+</div>
+
+<div th:replace="fragments/footPage"></div>
+</body>
+</html>

@@ -327,6 +327,28 @@ public class CasCompanyController {
         return "cascompany/update";
     }
 
+    @RequestMapping(value="/contractsCompany/{cif}")
+    public String getInfoContractCompany(@PathVariable String cif, HttpSession session, Model model) {
+        String isSession = checkSession(model, session);
+        if (isSession != null) {
+            return isSession;
+        }
+
+        Contract currentContract = companyDao.getCurrentContract(cif);
+        List<Contract> pastContract = companyDao.getPastContracts(cif);
+        Company company = companyDao.getCompany(cif);
+
+        model.addAttribute("company",company);
+        model.addAttribute("contractCurrent",currentContract);
+        model.addAttribute("contractsPast",pastContract);
+
+        if(currentContract == null && pastContract.size()==0){
+            throw new MajorsACasaException("Aquesta empressa no té contractes amb la GVA." +
+                    "L'empressa està donada d'alta però no té cap contracte.","NoResults","../list");
+        }
+        return "cascompany/contractsCompany";
+    }
+
 
 
 
