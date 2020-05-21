@@ -71,6 +71,7 @@ INSERT INTO company VALUES ('T46372819','Dra González','45632178F','Sandra Gonz
 INSERT INTO company VALUES ('R36271856','Limpiezas Pedro','14253698A','Pedro Alonso','678543234','pedroalonso@gmail.com','Calle Mozart 1 1B, Castelló de la Plana, Castellon','C_Limiezas','C_Limiezas',NOW());
 INSERT INTO company VALUES ('U68352416','Conchi Limpiezas','25361482A','Concepción García','687935268','conchigarcia@gmail.com','Calle de Arriba 89 P3, Castelló de la Plana, Castellon','C_Irco','C_Irco',NOW());
 INSERT INTO company VALUES ('L84736273','Irco','689543765','María del Mar Álvarez','14578965A','maralvarez@irco.es','Gran Vía 2 P1, Castelló de la Plana, Castellon',null,null,NOW());
+INSERT INTO company VALUES ('12234565G','Mico Ferrandiz','48602841J','Raul Micó','657930556','contratos@micoferrandiz.es','Poligono Altet, Ontinyent','mico','mico',NOW());
 
 
 INSERT INTO contract VALUES ('020200101G34672398','G34672398',0,'2020-01-01','2021-01-01',130,'Dilluns;Dimarts;Dimecres;Dijous;Divendres',CAST('12:00' AS TIME), CAST('14:30' AS TIME));

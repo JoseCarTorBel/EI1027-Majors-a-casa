@@ -60,7 +60,24 @@ public class ContractDao {
             return true;
         }
     }
-
+//
+//    /**
+//     * Dar de baja a una empresa
+//     * @param cif  Código de la empresa
+//     * @return True si se puede dar de baja o false si tiene asignatos request.
+//     */
+//    public boolean unsubscribeContract(String cif){
+//        try {
+//            jdbcTemplate.query("   SELECT * " +
+//                    "               FROM contract as con JOIN request as req ON con.codcontract = req.codcontract " +
+//                    "               WHERE req.enddate>NOW() AND con.codContract=?;", new ContractRowMapper(), cif);
+//            return false;
+//        }catch (EmptyResultDataAccessException ex){
+//            jdbcTemplate.update("UPDATE contract SET finaltime=NOW() WHERE codcontract=?",codContract);
+//            return true;
+//        }
+//    }
+//
 
     /**
      * get a contract

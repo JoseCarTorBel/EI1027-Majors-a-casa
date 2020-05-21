@@ -120,6 +120,7 @@ public class CasCompanyController {
 
     @RequestMapping(value="unregisterContract/{codContract}", method = {RequestMethod.GET, RequestMethod.DELETE})
     public String unsubscribeContract(@PathVariable String codContract,Model model){
+
         if(!contractDao.unsubscribeContract(codContract)){
             MajorsACasaException exection = new MajorsACasaException("No pots donar de baixa un contracte que tinga clients asignats",
                     "Contracte no donat de baixa.");
@@ -136,7 +137,6 @@ public class CasCompanyController {
 
         return "redirect:../listContracts";
     }
-
 
     /**
      *
@@ -296,10 +296,6 @@ public class CasCompanyController {
     }
 
 
-
-
-
-
     @RequestMapping(value = "/update/{cif}",method=RequestMethod.GET)
     public String update(@PathVariable String cif, Model model, HttpSession session){
         String isSession = checkSession(model,session);
@@ -348,6 +344,48 @@ public class CasCompanyController {
         }
         return "cascompany/contractsCompany";
     }
+
+
+    @RequestMapping(value="unregisterContractCompany/{codContract}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String unsubscribeContractCompany(@PathVariable String codContract,Model model){
+
+        if(!contractDao.unsubscribeContract(codContract)){
+            MajorsACasaException exection = new MajorsACasaException("No pots donar de baixa un contracte que tinga clients asignats",
+                    "Contracte no donat de baixa.");
+//
+//            List<Company> listCompany = companyDao.getCompanys();
+//            model.addAttribute("listCompanys",listCompany);
+            Company company = companyDao.getCompanyWithContract(codContract);
+            exection.setReturnPath("/cascompany/contractsCompany/"+company.getCif());
+
+            throw exection;
+        }
+
+        Company company = companyDao.getCompanyWithContract(codContract);
+
+        return "/cascompany/contractsCompany/"+company.getCif();
+    }
+
+//    @RequestMapping(value="delete/{cif}", method = {RequestMethod.GET, RequestMethod.DELETE})
+//    public String deleteCompany(@PathVariable String cif,Model model){
+//
+//        if(!contractDao.unsubscribeContract(codContract)){
+//            MajorsACasaException exection = new MajorsACasaException("No pots donar de baixa un contracte que tinga clients asignats",
+//                    "Contracte no donat de baixa.");
+////
+////            List<Company> listCompany = companyDao.getCompanys();
+////            model.addAttribute("listCompanys",listCompany);
+//            Company company = companyDao.getCompanyWithContract(codContract);
+//            exection.setReturnPath("/cascompany/contractsCompany/"+company.getCif());
+//
+//            throw exection;
+//        }
+//
+//        Company company = companyDao.getCompanyWithContract(codContract);
+//
+//        return "/cascompany/contractsCompany/"+company.getCif();
+//    }
+
 
 
 

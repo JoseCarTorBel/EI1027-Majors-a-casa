@@ -107,11 +107,24 @@ public class CompanyDao {
         }
     }
 
-    public Contract getCurrentContract(String cif){
-        return jdbcTemplate.queryForObject("SELECT * " +
-                "                       FROM contract " +
-                "                       WHERE cifcompany=? AND finaltime>NOW()",new ContractRowMapper(),cif);
+    public Contract getCurrentContract(String cif) {
+        try{
+            return jdbcTemplate.queryForObject("SELECT * " +
+                    "                       FROM contract " +
+                    "                       WHERE cifcompany=? AND finaltime>NOW()", new ContractRowMapper(), cif);
+        }catch (EmptyResultDataAccessException ex){
+            return null;
+        }
 
+
+    }
+
+    public Company getCompanyWithContract(String codcontract){
+        return jdbcTemplate.queryForObject("SELECT company.* " +
+                "                               FROM company " +
+                "                               WHERE cif=( SELECT cifcompany " +
+                "                                           FROM contract " +
+                "                                           WHERE codcontract = ?);\n",new CompanyRowMapper(),codcontract);
     }
 
 
