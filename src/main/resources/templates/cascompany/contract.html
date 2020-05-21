@@ -1,0 +1,86 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+<link rel="stylesheet" href="css/fondo.css" th:href="@{/css/fondo.css}">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contracte</title>
+</head>
+<body>
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorCasCompany"></div>
+
+<div class="container">
+    <div class="card text-center bg-light">
+        <h2 class="card-title"><span th:text="${company.name}"></span></li></h2>
+        <div class="card-body" style="max-width: 100%;">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title"> NIF: <span th:text="${contract.cifcompany}"></span></li></h3>
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Servici</th>
+                                    <td>  <span th:text="${contract.service}"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Data d'inici</th>
+                                    <td>  <span th:text="${contract.initialDate}"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Data de fi</th>
+                                    <td>  <span th:text="${contract.finalDate}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Preu contractat</th>
+                                    <td>  <span th:text="${contract.price}">€</span></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Horari i dies contractat</h5>
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Dies de la setmana</th>
+                                    <td>  <span th:text="${contract.daysOfWeek}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Hora d'inici</th>
+                                    <td> <span th:text="${contract.hour_initial}"></span></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Hora de fi</th>
+                                    <td> <span th:text="${contract.hour_final}"></span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span th:if="${esActual==true}">
+            <div class="card-footer text-muted">
+            <a th:href="@{/cascompany/unregisterContractCompany/{codContract}(codContract=${contract.codContract})}" class="btn btn-danger">Donar de baixa</a>
+            </div>
+        </span>
+    </div>
+</div>
+<div th:replace="fragments/footPage"></div>
+</body>
+</html>

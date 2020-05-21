@@ -20,6 +20,7 @@ import sun.text.resources.en.FormatData_en_IN;
 
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 
@@ -347,8 +348,12 @@ public class CasCompanyController {
 
 
     @RequestMapping(value="unregisterContractCompany/{codContract}", method = {RequestMethod.GET, RequestMethod.DELETE})
-    public String unsubscribeContractCompany(@PathVariable String codContract,Model model){
-
+    public String unsubscribeContractCompany(@PathVariable String codContract,Model model,HttpSession session){
+        String isSession = checkSession(model, session);
+        if (isSession != null) {
+            return isSession;
+        }
+        Contract contract = contractDao.getContract(codContract);
         if(!contractDao.unsubscribeContract(codContract)){
             MajorsACasaException exection = new MajorsACasaException("No pots donar de baixa un contracte que tinga clients asignats",
                     "Contracte no donat de baixa.");
@@ -361,31 +366,42 @@ public class CasCompanyController {
             throw exection;
         }
 
-        Company company = companyDao.getCompanyWithContract(codContract);
+        Contract currentContract = companyDao.getCurrentContract(contract.getCifcompany());
+        List<Contract> pastContract = companyDao.getPastContracts(contract.getCifcompany());
+        Company company = companyDao.getCompany(contract.getCifcompany());
 
-        return "/cascompany/contractsCompany/"+company.getCif();
+        model.addAttribute("company",company);
+        model.addAttribute("contractCurrent",currentContract);
+        model.addAttribute("contractsPast",pastContract);
+
+        if(currentContract == null && pastContract.size()==0){
+            throw new MajorsACasaException("Aquesta empressa no té contractes amb la GVA." +
+                    "L'empressa està donada d'alta però no té cap contracte.","NoResults","../list");
+        }
+        return "cascompany/contractsCompany";
     }
 
-//    @RequestMapping(value="delete/{cif}", method = {RequestMethod.GET, RequestMethod.DELETE})
-//    public String deleteCompany(@PathVariable String cif,Model model){
-//
-//        if(!contractDao.unsubscribeContract(codContract)){
-//            MajorsACasaException exection = new MajorsACasaException("No pots donar de baixa un contracte que tinga clients asignats",
-//                    "Contracte no donat de baixa.");
-////
-////            List<Company> listCompany = companyDao.getCompanys();
-////            model.addAttribute("listCompanys",listCompany);
-//            Company company = companyDao.getCompanyWithContract(codContract);
-//            exection.setReturnPath("/cascompany/contractsCompany/"+company.getCif());
-//
-//            throw exection;
-//        }
-//
-//        Company company = companyDao.getCompanyWithContract(codContract);
-//
-//        return "/cascompany/contractsCompany/"+company.getCif();
-//    }
+    @RequestMapping(value="/contract/{codcontract}")
+    public String getContract(@PathVariable String codcontract, HttpSession session, Model model) {
+        String isSession = checkSession(model, session);
+        if (isSession != null) {
+            return isSession;
+        }
 
+        Contract contract = companyDao.getContract(codcontract);
+        Company company = companyDao.getCompany(contract.getCifcompany());
+
+        if(contract.getFinalDate().isAfter(LocalDate.now())){
+            model.addAttribute("esActual",true);
+        }else{
+            model.addAttribute("esActual",false);
+        }
+
+        model.addAttribute("company",company);
+        model.addAttribute("contract",contract);
+
+        return "cascompany/contract";
+    }
 
 
 

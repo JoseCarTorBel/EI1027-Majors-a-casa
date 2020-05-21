@@ -127,5 +127,10 @@ public class CompanyDao {
                 "                                           WHERE codcontract = ?);\n",new CompanyRowMapper(),codcontract);
     }
 
+    public Contract getContract(String codcontract){
+        return jdbcTemplate.queryForObject("SELECT * FROM contract WHERE codcontract=?;\n",new ContractRowMapper(),codcontract);
+    }
+
+
 
 }

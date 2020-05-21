@@ -51,7 +51,7 @@ public class ContractDao {
      */
     public boolean unsubscribeContract(String codContract){
         try {
-            jdbcTemplate.query("   SELECT con.* " +
+            jdbcTemplate.queryForObject("   SELECT con.* " +
                     "               FROM contract as con JOIN request as req ON con.codcontract = req.codcontract " +
                     "               WHERE req.enddate>NOW() AND con.codContract=?;", new ContractRowMapper(), codContract);
             return false;

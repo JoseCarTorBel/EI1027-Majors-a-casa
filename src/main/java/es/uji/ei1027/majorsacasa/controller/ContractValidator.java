@@ -42,17 +42,17 @@ public class ContractValidator  implements Validator {
             errors.rejectValue("finaltime","Obligatori", "Cal introduir la data de finalització del contracte.");
         }
 
-        if(contract.getPrice().equals("")){
+        if(contract.getPrice()==null){
             errors.rejectValue("price","Obligatori", "S'ha de marcar el preu del contracte.");
         }else if(contract.getPrice()<0){
             errors.rejectValue("price","Obligatori", "El preu no pot ser menor que 0.");
         }
 
-//        if(contract.getHour_initial().equals("") ){
-//            errors.rejectValue("hour_initial","Obligatori", "S'ha d'especificar l'hora d'inici. ");
-//        }
-//        if(contract.getHour_final().equals("") ){
-//            errors.rejectValue("hour_final","Obligatori", "S'ha d'especificar l'hora de final. ");
-//        }
+        if(contract.getHour_initial()==null ){
+            errors.rejectValue("hour_initial","Obligatori", "S'ha d'especificar l'hora d'inici. ");
+        }
+        if(contract.getHour_final()==null ){
+            errors.rejectValue("hour_final","Obligatori", "S'ha d'especificar l'hora de final. ");
+        }
     }
 }
