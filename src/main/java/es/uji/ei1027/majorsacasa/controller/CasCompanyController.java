@@ -353,7 +353,8 @@ public class CasCompanyController {
         if (isSession != null) {
             return isSession;
         }
-        Contract contract = contractDao.getContract(codContract);
+        String cif = contractDao.getContract(codContract).getCifcompany();
+
         if(!contractDao.unsubscribeContract(codContract)){
             MajorsACasaException exection = new MajorsACasaException("No pots donar de baixa un contracte que tinga clients asignats",
                     "Contracte no donat de baixa.");
@@ -366,9 +367,9 @@ public class CasCompanyController {
             throw exection;
         }
 
-        Contract currentContract = companyDao.getCurrentContract(contract.getCifcompany());
-        List<Contract> pastContract = companyDao.getPastContracts(contract.getCifcompany());
-        Company company = companyDao.getCompany(contract.getCifcompany());
+        Contract currentContract = companyDao.getCurrentContract(cif);
+        List<Contract> pastContract = companyDao.getPastContracts(cif);
+        Company company = companyDao.getCompany(cif);
 
         model.addAttribute("company",company);
         model.addAttribute("contractCurrent",currentContract);
