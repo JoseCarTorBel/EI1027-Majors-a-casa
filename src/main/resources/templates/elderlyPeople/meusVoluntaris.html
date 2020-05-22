@@ -23,19 +23,18 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>DNI voluntari</th>
                     <th>Dia de la setmana</th>
                     <th>Hora</th>
                     <th>Data inici</th>
                     <th>Data fi</th>
                     <th>Estat</th>
                     <th></th>
+                    <th></th>
 
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="disponibility: ${disponibilities}">
-                    <td th:text="${disponibility.dniVolunteer}"></td>
                     <td th:switch="${disponibility.dayOfWeek}">
                         <span th:case="'1'">Dilluns</span>
                         <span th:case="'2'">Dimarts</span>
@@ -53,6 +52,7 @@
                         <span th:case="'P'">Pendent</span>
                         <span th:case="'R'">Rebutjada</span>
                     </td>
+                    <td><a th:href="@{/elderlyPeople/viewVolunteerMeu/{dniVolunteer}(dniVolunteer=${disponibility.dniVolunteer} )}"  class="btn btn-info"> <i class="fas fa-info-circle"></i> Més informació</a>
                     <td><a role="button" class="btn btn-danger" th:href="@{/elderlyPeople/deleteDisponibility/{dayOfWeek}/{dniVolunteer}(dayOfWeek=${disponibility.dayOfWeek}, dniVolunteer=${disponibility.dniVolunteer} )}">Cancel·lar</a>
 
                     </td>

@@ -5,6 +5,7 @@ import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
 import es.uji.ei1027.majorsacasa.dao.ElderlyPeopleDao;
 
 import es.uji.ei1027.majorsacasa.dao.RequestDao;
+import es.uji.ei1027.majorsacasa.dao.VolunteerDao;
 import es.uji.ei1027.majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,11 @@ public class ElderlyPeopleController {
     public void setElderlyPeopleDao(ElderlyPeopleDao elderlyPeopleDao){
         this.elderlyPeopleDao=elderlyPeopleDao;
     }
+
+    private VolunteerDao volunteerDao;
+    @Autowired
+    public void setVolunteerDao(VolunteerDao volunteerDao){this.volunteerDao=volunteerDao;}
+
 
 
     // Probar a mostrar la informacion de 1 elderlypeople
@@ -186,6 +192,47 @@ public class ElderlyPeopleController {
         }else{
             model.addAttribute("disponibilities", disponibilityDao.getDisponibilitiesLibres());
             return "elderlyPeople/voluntarisLliures";
+        }
+
+    }
+    @RequestMapping("/viewVolunteerMeu/{dniVolunteer}")
+    public String getVoluntariMeu(HttpSession session, Model model, @PathVariable String dniVolunteer){
+
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (!user.getRol().equals("Elderly")){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+        }else{
+            model.addAttribute("volunteer", volunteerDao.getVolunteer(dniVolunteer) );
+            model.addAttribute("hobbies", volunteerDao.getHobbies(dniVolunteer));
+            return "elderlyPeople/fichaVolunteerMeus";
+        }
+
+    }
+
+    @RequestMapping("/viewVolunteerLliure/{dniVolunteer}")
+    public String getVoluntariLliure(HttpSession session, Model model, @PathVariable String dniVolunteer){
+
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (!user.getRol().equals("Elderly")){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+        }else{
+            model.addAttribute("volunteer", volunteerDao.getVolunteer(dniVolunteer) );
+            model.addAttribute("hobbies", volunteerDao.getHobbies(dniVolunteer));
+            return "elderlyPeople/fichaVolunteerLliure";
         }
 
     }
