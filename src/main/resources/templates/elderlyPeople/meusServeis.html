@@ -29,16 +29,17 @@
                     <th>Hora</th>
                     <th>Preu</th>
                     <th>Estat</th>
-                    <th></th>
+
 
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="request: ${requests}">
+
                     <td th:switch="${request.service}">
-                        <span th:case="0">Menjar a casa</span>
-                        <span th:case="1">Neteja</span>
-                        <span th:case="2">Salut</span>
+                        <span th:case="CATTERING">Menjar a casa</span>
+                        <span th:case="CLEAR">Neteja</span>
+                        <span th:case="HEALTH">Salut</span>
                     </td>
                     <td th:text="${request.initialDate}"></td>
                     <td th:text="${request.endDate}"></td>
@@ -49,11 +50,7 @@
                         <span th:case="'P'">Pendent</span>
                         <span th:case="'R'">Rebutjada</span>
                     </td>
-                    <td th:switch="${request.state}">
-                        <span th:case="'A'"></span>
-                        <span th:case="'P'">Pendent</span>
-                        <span th:case="'R'">Rebutjada</span>
-                    </td>
+
                 </tr>
                 </tbody>
             </table>

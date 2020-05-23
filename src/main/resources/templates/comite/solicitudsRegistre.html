@@ -23,15 +23,12 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Dni</th>
+
                     <th>Nom</th>
                     <th>Cognom</th>
-                    <th>Phone</th>
-                    <th>Fecha nacimiento</th>
-                    <th>Direccion</th>
+                    <th>Data naixement</th>
                     <th>Estado</th>
-                    <th>Justifaction</th>
-
+                    <th></th>
                     <th></th>
                     <th></th>
 
@@ -39,20 +36,17 @@
                 </thead>
                 <tbody>
                 <tr th:each="elderlyPeople: ${personesMajors}">
-                    <td th:text="${elderlyPeople.dni}"></td>
+
                     <td th:text="${elderlyPeople.name}"></td>
                     <td th:text="${elderlyPeople.secondName}"></td>
-                    <td th:text="${elderlyPeople.phone}"></td>
                     <td th:text="${elderlyPeople.dateOfBirth}"></td>
-                    <td th:text="${elderlyPeople.postAddress}"></td>
                     <td th:switch="${elderlyPeople.state}">
                         <span th:case="'A'">Aprovat</span>
                         <span th:case="'P'">Pendent</span>
                         <span th:case="'R'">Rebutjat</span>
                     </td>
-                    <td th:text="${elderlyPeople.justification}"></td>
-                    <td th:text="${elderlyPeople.email}"></td>
-
+                    <td><a th:href="@{/comite/viewSolicitudRegistre/{dniElderly}(dniElderly=${elderlyPeople.dni} )}"  class="btn btn-info"> <i class="fas fa-info-circle"></i> Més informació</a>
+                    </td>
                     <td><a role="button" class="btn btn-success" th:href="@{/comite/acceptarSolicitud/{dni}(dni=${elderlyPeople.dni})}">Acceptar</a>
                     </td>
                     <td><a role="button" class="btn btn-danger" th:href="@{/comite/rebujarSolicitud/{dni}(dni=${elderlyPeople.dni})}">Rebujar</a>

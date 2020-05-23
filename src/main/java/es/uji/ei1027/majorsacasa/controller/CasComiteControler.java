@@ -168,6 +168,27 @@ public class CasComiteControler {
 
     }
 
+    @RequestMapping("/viewSolicitudRegistre/{dniElderlyPeople}")
+    public String getSolicitudRegistre(HttpSession session, Model model, @PathVariable String dniElderlyPeople){
+
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (!user.getRol().equals("Comite")){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a CAS Comite per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+        }else{
+            model.addAttribute("elderly", elderlyPeopleDao.getElderlyPeople(dniElderlyPeople) );
+
+            return "comite/viewSolicitudRegistre";
+        }
+
+    }
+
     @RequestMapping(value="/acceptarSolicitudServici/{codReq}", method=RequestMethod.GET)
     public String editRequest(Model model, @PathVariable String codReq) {
         model.addAttribute("request", requestDao.getRequest(codReq));
