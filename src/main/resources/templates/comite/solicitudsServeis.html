@@ -23,7 +23,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Dni persona major</th>
+
                     <th>Servei</th>
                     <th>Data de inici</th>
                     <th>Data de fi</th>
@@ -31,21 +31,24 @@
                     <th>Preu</th>
                     <th></th>
                     <th></th>
+                    <th></th>
 
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="request: ${requests}">
-                    <td th:text="${request.dniElderlyPeople}"></td>
+
                     <td th:switch="${request.service}">
-                        <span th:case="0">Menjar a casa</span>
-                        <span th:case="1">Neteja</span>
-                        <span th:case="2">Salut</span>
+                        <span th:case="CATTERING">Menjar a casa</span>
+                        <span th:case="CLEAR">Neteja</span>
+                        <span th:case="HEALTH">Salut</span>
                     </td>
                     <td th:text="${request.initialDate}"></td>
                     <td th:text="${request.endDate}"></td>
                     <td th:text="${request.serviceHour}"></td>
                     <td th:text="${request.price +'0 €'}"></td>
+                    <td><a th:href="@{/comite/viewSolicitudServicio/{dniElderly}(dniElderly=${request.dniElderlyPeople} )}"  class="btn btn-info"> <i class="fas fa-info-circle"></i> Més informació</a>
+                    </td>
                     <td><a role="button" class="btn btn-success" th:href="@{/comite/acceptarSolicitudServici/{codReq}(codReq=${request.codRequest})}">Acceptar</a>
                     </td>
                     <td><a role="button" class="btn btn-danger" th:href="@{/comite/rebujarSolicitudServici/{codReq}(codReq=${request.codRequest})}">Rebujar</a>

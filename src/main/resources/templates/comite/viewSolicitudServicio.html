@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" type="text/css" href="/css/elderlyPeople.css" th:href="@{/css/elderlyPeople.css}"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+<link rel="stylesheet" href="css/fondo.css" th:href="@{/css/fondo.css}">
+<head>
+    <meta charset="UTF-8">
+    <title>Informació voluntari</title>
+
+</head>
+<body>
+
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorCas"></div>
+
+<br>
+
+<div class="container">
+    <div class="card bg-light">
+
+
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Sol·licitud de servei</h4>
+            <br>
+            <h5>Informació de la persona major: </h5>
+
+
+            <table class="table table-striped">
+                <tr>
+                    <th>Nom: </th>
+                    <th><span th:text="${elderly.name}"></span></th>
+                </tr>
+                <tr>
+                    <th>Cognoms: </th>
+                    <th><span th:text="${elderly.secondName}"></span></th>
+                </tr>
+                <tr>
+                    <th>Dni: </th>
+                    <th><span th:text="${elderly.dni}"></span></th>
+                </tr>
+                <tr>
+                    <th>Telèfon: </th>
+                    <th><span th:text="${elderly.phone}"></span></th>
+                </tr>
+                <tr>
+                    <th>Data de naixement: </th>
+                    <th><span th:text="${elderly.dateOfBirth}"></span></th>
+                </tr>
+                <tr>
+                    <th>Direcció postal: </th>
+                    <th><span th:text="${elderly.postAddress}"></span></th>
+                </tr>
+                <tr>
+                    <th>Correu electrònic: </th>
+                    <th><span th:text="${elderly.email}"></span></th>
+                </tr>
+                <tr>
+                    <th>Usuari: </th>
+                    <th><span th:text="${elderly.username}"></span></th>
+                </tr>
+                <tr>
+                    <th>Estat: </th>
+                    <th><span th:text="${elderly.state}"></span></th>
+                </tr>
+                <tr>
+                    <th>Justificació: </th>
+                    <th><span th:text="${elderly.justification}"></span></th>
+                </tr>
+
+
+
+            </table>
+
+            <br>
+            <h5>Historial de serveis: </h5>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Servei</th>
+                    <th>Data de inici</th>
+                    <th>Data de fi</th>
+                    <th>Hora</th>
+                    <th>Preu</th>
+                    <th>Estat</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="request: ${requests}">
+
+                    <td th:switch="${request.service}">
+                        <span th:case="CATTERING">Menjar a casa</span>
+                        <span th:case="CLEAR">Neteja</span>
+                        <span th:case="HEALTH">Salut</span>
+                    </td>
+                    <td th:text="${request.initialDate}"></td>
+                    <td th:text="${request.endDate}"></td>
+                    <td th:text="${request.serviceHour}"></td>
+                    <td th:text="${request.price +'0 €'}"></td>
+                    <td th:switch="${request.state}">
+                        <span th:case="'A'">Aprovada</span>
+                        <span th:case="'P'">Pendent</span>
+                        <span th:case="'R'">Rebutjada</span>
+                    </td>
+
+
+
+
+                </tr>
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+        </article>
+    </div>
+    <br>
+    <a href="/" th:href="@{/comite/solicitudsServeis}" class="btn btn-primary btn-lg">Tornar</a>
+</div>
+<!--container end.//-->
+
+
+<div th:replace="fragments/footPage"></div>
+
+</body>
+</html>
