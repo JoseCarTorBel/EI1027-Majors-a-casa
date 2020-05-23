@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="css/fondo.css" th:href="@{/css/fondo.css}">
 <head>
     <meta charset="UTF-8">
-    <title>Solicitud de servei</title>
+    <title>Solicitud de voluntari</title>
 
 </head>
 <body>
@@ -74,41 +74,41 @@
             </table>
 
             <br>
-            <h5>Historial de serveis: </h5>
+            <h5>Historial de voluntaris: </h5>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Servei</th>
-                    <th>Data de inici</th>
-                    <th>Data de fi</th>
+                    <th>Dia de la setmana</th>
                     <th>Hora</th>
-                    <th>Preu</th>
+                    <th>Data inici</th>
+                    <th>Data fi</th>
                     <th>Estat</th>
 
 
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="request: ${requests}">
-
-                    <td th:switch="${request.service}">
-                        <span th:case="CATTERING">Menjar a casa</span>
-                        <span th:case="CLEAR">Neteja</span>
-                        <span th:case="HEALTH">Salut</span>
+                <tr th:each="disponibility: ${disponibilities}">
+                    <td th:switch="${disponibility.dayOfWeek}">
+                        <span th:case="'1'">Dilluns</span>
+                        <span th:case="'2'">Dimarts</span>
+                        <span th:case="'3'">Dimecres</span>
+                        <span th:case="'4'">Dijous</span>
+                        <span th:case="'5'">Divendres</span>
+                        <span th:case="'6'">Dissabte</span>
+                        <span th:case="'7'">Diumenge</span>
                     </td>
-                    <td th:text="${request.initialDate}"></td>
-                    <td th:text="${request.endDate}"></td>
-                    <td th:text="${request.serviceHour}"></td>
-                    <td th:text="${request.price +'0 €'}"></td>
-                    <td th:switch="${request.state}">
+                    <td th:text="${disponibility.hour}"></td>
+                    <td th:text="${disponibility.initialTime}"></td>
+                    <td th:text="${disponibility.finalTime}"></td>
+                    <td th:switch="${disponibility.state}">
                         <span th:case="'A'">Aprovada</span>
                         <span th:case="'P'">Pendent</span>
                         <span th:case="'R'">Rebutjada</span>
                     </td>
 
 
-
-
+                    </td>
                 </tr>
                 </tbody>
             </table>
