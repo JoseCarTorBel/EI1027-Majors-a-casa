@@ -3,6 +3,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" type="text/css" href="/css/elderlyPeople.css" th:href="@{/css/elderlyPeople.css}"/>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+<link rel="stylesheet" href="css/fondo.css" th:href="@{/css/fondo.css}">
 
 <head>
     <meta charset="UTF-8">
@@ -20,13 +21,21 @@
     <div class="card bg-light">
         <article class="card-body" style="max-width: 100%;">
             <h4 class="card-title mt-3 text-center">Ajuda</h4>
+            <form action="#"    th:action="@{/elderlyPeople/help}"
+                  th:object="${elderlyPeople}" method="post">
 
             En el següent espai pot escriure la consulta que desitge realitzar i un responsable de Conselleria es posarà en contacte amb vosté.
+                <br>
+
+                <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                          placeholder="Message"></textarea>
+                <br>
+
+                <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">Enviar</button>
 
 
 
-
-
+            </form>
         </article>
     </div>
 </div>
