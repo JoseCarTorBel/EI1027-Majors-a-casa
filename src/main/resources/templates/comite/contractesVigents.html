@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <title>Contractes vigents</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fondo.css" th:href="@{/css/fondo.css}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div th:replace="fragments/barraImagen"></div>
+<div th:replace="fragments/barraSuperiorCas"></div>
+
+<div class="container">
+    <!--Contratos vigentes-->
+    <div class="card bg-light">
+        <article class="card-body" style="max-width: 100%;">
+            <h4 class="card-title mt-3 text-center">Contractes vigents</h4>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Codi</th>
+                    <th>Data finalització</th>
+                    <th>Servici</th>
+                    <th>Preu</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="contract:${contractVigente}">
+                    <td th:text="${contract.codContract}"></td>
+                    <!--                        <td th:text="${contract.initialDate}"></td>-->
+                    <td th:text="${contract.finalDate}"></td>
+                    <td th:text="${contract.service}"></td>
+                    <td th:text="${contract.price}"></td>
+
+                    <td><a th:href="@{/comite/contract/{codContract}(codContract=${contract.codContract})}" class="btn btn-info"> <i class="fas fa-info-circle"></i> Més informació</a>
+
+
+                </tr>
+                </tbody>
+            </table>
+        </article>
+
+    </div>
+
+
+
+<div th:replace="fragments/footPage"></div>
+</body>
+</html>

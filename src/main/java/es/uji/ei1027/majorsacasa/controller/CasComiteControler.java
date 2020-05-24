@@ -1,12 +1,7 @@
 package es.uji.ei1027.majorsacasa.controller;
 
-import es.uji.ei1027.majorsacasa.dao.DisponibilityDao;
-import es.uji.ei1027.majorsacasa.dao.ElderlyPeopleDao;
-import es.uji.ei1027.majorsacasa.dao.RequestDao;
-import es.uji.ei1027.majorsacasa.model.Disponibility;
-import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
-import es.uji.ei1027.majorsacasa.model.Request;
-import es.uji.ei1027.majorsacasa.model.UserDetails;
+import es.uji.ei1027.majorsacasa.dao.*;
+import es.uji.ei1027.majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +37,14 @@ public class CasComiteControler {
     public void setRequestyDao(RequestDao requestDao){
         this.requestDao=requestDao;
     }
+
+    ContractDao contractDao;
+    @Autowired
+    public void setContractDao(ContractDao contractDao){this.contractDao=contractDao;}
+
+    CompanyDao companyDao;
+    @Autowired
+    public void setCompanyDao(CompanyDao companyDao) {this.companyDao=companyDao;}
 
 
     @RequestMapping("/main")
@@ -211,6 +214,29 @@ public class CasComiteControler {
 
     }
 
+    @RequestMapping(value = "/contractesVigents")
+    public String getListContracts(HttpSession session, Model model){
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (!user.getRol().equals("Comite")){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a CAS Comite per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+        }else {
+
+            List<Contract> contractVigente = contractDao.getListContractVigente();
+
+            model.addAttribute("contractVigente", contractVigente);
+
+
+            return "comite/contractesVigents";
+        }
+    }
+
     @RequestMapping("/viewSolicitudVoluntario/{dniElderlyPeople}")
     public String getSolicitudVoluntario(HttpSession session, Model model, @PathVariable String dniElderlyPeople){
 
@@ -229,6 +255,37 @@ public class CasComiteControler {
             model.addAttribute("disponibilities", disponibilityDao.getDisponibilitiesElderly(dniElderlyPeople));
 
             return "comite/viewSolicitudVoluntario";
+        }
+
+    }
+
+    @RequestMapping(value="/contract/{codcontract}")
+    public String getContract(@PathVariable String codcontract, HttpSession session, Model model) {
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("user", new UserDetails());
+            return "login";
+        }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (!user.getRol().equals("Comite")){
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a CAS Comite per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+        }else {
+
+            Contract contract = companyDao.getContract(codcontract);
+            Company company = companyDao.getCompany(contract.getCifcompany());
+
+            if (contract.getFinalDate().isAfter(LocalDate.now())) {
+                model.addAttribute("esActual", true);
+            } else {
+                model.addAttribute("esActual", false);
+            }
+
+            model.addAttribute("company", company);
+            model.addAttribute("contract", contract);
+
+            return "comite/viewContract";
         }
 
     }
