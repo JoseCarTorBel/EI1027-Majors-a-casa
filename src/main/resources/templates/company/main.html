@@ -2,8 +2,6 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
 <link rel="stylesheet" href="css/fondo.css" th:href="@{/css/fondo.css}">
-
-
 <head>
     <meta charset="UTF-8">
     <title>Inici</title>
@@ -14,22 +12,38 @@
 <div th:replace="fragments/barraSuperiorCompany"></div>
 
 <div class="container">
-
-    <div class="card text-center">
-        <div class="card-header">
-            Servei técnic
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Próximament  tindrà els servicis a fer avuí. </h5>
-            <p class="card-text">Próximament es mostraran tots els serveis que ha de fer avuí amb els clients als que li pertoca</p>
-            <a href="/" class="btn btn-primary">Anar al inici</a>
-        </div>
-        <div class="card-footer text-muted">
-            06/05/2020
-        </div>
+    <div class="card bg-light">
+        <article class="card-body" style="max-width: 100%;">
+            <span th:if="${servicesTodo!=null}">
+            <h4 class="card-title mt-3 text-center">Servicis a prestar avuí</h4>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>DNI</th>
+                    <th>Nom</th>
+                    <th>Cognom</th>
+                    <th>Direcció</th>
+                    <th>Telèfon</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="elderlyPeople:${servicesToDo}">
+                    <td th:text="${elderlyPeople.dni}"></td>
+                    <td th:text="${elderlyPeople.name}"></td>
+                    <td th:text="${elderlyPeople.secondName}"></td>
+                    <td th:text="${elderlyPeople.postAddress}"></td>
+                    <td th:text="${elderlyPeople.phone}"></td>
+                </tr>
+                </tbody>
+            </table>
+            </span>
+            <span th:if="${servicesTodo==null}">
+                 <h4 class="card-title mt-3 text-center">Avuí no hi han servicis per a prestar.</h4>
+                <h6 class="card-body mt-3 text-center">Si creus que hi ha un error fica't en contacte <a th:href="@{/cascompany/contact}">ací</a>.</h6>
+            </span>
+        </article>
     </div>
 </div>
-
 
 <div th:replace="fragments/footPage"></div>
 </body>

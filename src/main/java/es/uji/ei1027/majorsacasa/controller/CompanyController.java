@@ -7,8 +7,6 @@ import es.uji.ei1027.majorsacasa.model.Contract;
 import es.uji.ei1027.majorsacasa.model.ElderlyPeople;
 import es.uji.ei1027.majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Random;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.*;
 
 
 @Controller
@@ -38,11 +37,23 @@ public class CompanyController {
         if(isSession!=null){ return isSession; }
         UserDetails user =  (UserDetails) session.getAttribute("user");
 
-        // TODO La empresa deberá de tener un correo asignado
-        // TODO La empresa no tiene el dni, se supone que es el CIF
         Company company = companyDao.getCompany(user.getDni());
 
-        model.addAttribute("company",company);
+        Contract contractCurrent = companyDao.getCurrentContract(user.getDni());
+
+        String dia = diaSemana(LocalDate.now());
+        String[] dias =  contractCurrent.getDaysOfWeek().trim().split(",");
+        List<ElderlyPeople> servicesToDo=null;
+        for(int i =0; i<dias.length; i++){
+            if(dias[i].equals(dia)){
+                servicesToDo = companyDao.getServicesToDo(user.getDni());
+                break;
+            }
+        }
+
+        model.addAttribute("servicesToDo",servicesToDo);
+
+
         return "company/main";
     }
 
@@ -173,6 +184,31 @@ public class CompanyController {
             throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. " +
                     "Has d'haver iniciat sessió com a Company per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
         }
+    }
+
+
+    private String diaSemana (LocalDate today)
+    {
+        String dia="";
+        DayOfWeek diaSemana = today.getDayOfWeek();
+
+        switch (diaSemana.getValue()){
+            case 1:
+                return "Dilluns";
+            case 2:
+                return "Dimarts";
+            case 3:
+                return "Dimecres";
+            case 4:
+                return "Dijous";
+            case 5:
+                return "Divendres";
+            case 6:
+                return "Dissabte";
+            case 7:
+                return "diumenge";
+        }
+        return "";
     }
 
 
