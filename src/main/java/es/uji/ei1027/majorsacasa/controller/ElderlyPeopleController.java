@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -107,38 +108,42 @@ public class ElderlyPeopleController {
     @RequestMapping("/main")
     public String getElderlyPeopleMain(HttpSession session, Model model){
 
-        if (session.getAttribute("user") == null) {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyPeople elderlyPeople = elderlyPeopleDao.getElderlyPeople(user.getDni());
 
-        if (!user.getRol().equals("Elderly")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a Elderly per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        if (elderlyPeople.getState()=='A'){
+
+            return "elderlyPeople/main";
 
         }else{
-            return "elderlyPeople/main";
+            System.out.println("El CAS no a acceptat la petició d'aquesta persona major");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
         }
 
     }
 
     @RequestMapping("/volunteersManagement")
     public String getElderlyPeopleVolunteersManagement(HttpSession session, Model model){
-
-        if (session.getAttribute("user") == null) {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyPeople elderlyPeople = elderlyPeopleDao.getElderlyPeople(user.getDni());
 
-        if (!user.getRol().equals("Elderly")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        if (elderlyPeople.getState()=='A'){
 
+            return "elderlyPeople/volunteersManagement";
 
         }else{
-            return "elderlyPeople/volunteersManagement";
+            System.out.println("El CAS no a acceptat la petició d'aquesta persona major");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
         }
 
     }
@@ -151,20 +156,22 @@ public class ElderlyPeopleController {
 
     @RequestMapping("/meusVoluntaris")
     public String getMeusVoluntaris(HttpSession session, Model model){
-
-        if (session.getAttribute("user") == null) {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyPeople elderlyPeople = elderlyPeopleDao.getElderlyPeople(user.getDni());
 
-        if (!user.getRol().equals("Elderly")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        if (elderlyPeople.getState()=='A'){
 
-        }else{
             model.addAttribute("disponibilities", disponibilityDao.getDisponibilitiesElderly(user.getDni()));
             return "elderlyPeople/meusVoluntaris";
+
+        }else{
+            System.out.println("El CAS no a acceptat la petició d'aquesta persona major");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
         }
 
     }
@@ -178,106 +185,114 @@ public class ElderlyPeopleController {
 
     @RequestMapping("/voluntarisLliures")
     public String getVoluntarisLliures(HttpSession session, Model model){
-
-        if (session.getAttribute("user") == null) {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyPeople elderlyPeople = elderlyPeopleDao.getElderlyPeople(user.getDni());
 
-        if (!user.getRol().equals("Elderly")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        if (elderlyPeople.getState()=='A'){
 
-        }else{
             model.addAttribute("disponibilities", disponibilityDao.getDisponibilitiesLibres());
             return "elderlyPeople/voluntarisLliures";
+
+        }else{
+            System.out.println("El CAS no a acceptat la petició d'aquesta persona major");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
         }
 
     }
+
     @RequestMapping("/viewVolunteerMeu/{dniVolunteer}")
     public String getVoluntariMeu(HttpSession session, Model model, @PathVariable String dniVolunteer){
-
-        if (session.getAttribute("user") == null) {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyPeople elderlyPeople = elderlyPeopleDao.getElderlyPeople(user.getDni());
 
-        if (!user.getRol().equals("Elderly")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        if (elderlyPeople.getState()=='A'){
 
-        }else{
             model.addAttribute("volunteer", volunteerDao.getVolunteer(dniVolunteer) );
             model.addAttribute("hobbies", volunteerDao.getHobbies(dniVolunteer));
             return "elderlyPeople/fichaVolunteerMeus";
+
+        }else{
+            System.out.println("El CAS no a acceptat la petició d'aquesta persona major");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
         }
 
     }
 
     @RequestMapping("/viewVolunteerLliure/{dniVolunteer}")
     public String getVoluntariLliure(HttpSession session, Model model, @PathVariable String dniVolunteer){
-
-        if (session.getAttribute("user") == null) {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyPeople elderlyPeople = elderlyPeopleDao.getElderlyPeople(user.getDni());
 
-        if (!user.getRol().equals("Elderly")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        if (elderlyPeople.getState()=='A'){
 
-        }else{
             model.addAttribute("volunteer", volunteerDao.getVolunteer(dniVolunteer) );
             model.addAttribute("hobbies", volunteerDao.getHobbies(dniVolunteer));
             return "elderlyPeople/fichaVolunteerLliure";
+
+        }else{
+            System.out.println("El CAS no a acceptat la petició d'aquesta persona major");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
         }
 
     }
 
     @RequestMapping(value="/solicitarDisponibility/{dayOfWeek}/{dniVolunteer}", method = {RequestMethod.GET, RequestMethod.POST})
     public String solicitarDispo(HttpSession session, Model model, @PathVariable Integer dayOfWeek, @PathVariable String dniVolunteer) {
-
-        if (session.getAttribute("user") == null) {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyPeople elderlyPeople = elderlyPeopleDao.getElderlyPeople(user.getDni());
 
-        if (!user.getRol().equals("Elderly")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        if (elderlyPeople.getState()=='A'){
 
-        }else{
             model.addAttribute("disponibilities", disponibilityDao.getDisponibilitiesLibres());
             Disponibility nuevaDisp = disponibilityDao.getDisponibility(dayOfWeek, dniVolunteer);
             nuevaDisp.setState('P');
             nuevaDisp.setDniElderlyPeople(user.getDni());
             disponibilityDao.updateDisponibility(nuevaDisp);
             return "redirect:../../voluntarisLliures";
+
+        }else{
+            System.out.println("El CAS no a acceptat la petició d'aquesta persona major");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
         }
-
-
     }
 
     @RequestMapping("/services")
     public String getElderlyPeopleServices(HttpSession session, Model model){
-
-        if (session.getAttribute("user") == null) {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyPeople elderlyPeople = elderlyPeopleDao.getElderlyPeople(user.getDni());
 
-        if (!user.getRol().equals("Elderly")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        if (elderlyPeople.getState()=='A'){
 
+            return "elderlyPeople/services";
 
         }else{
-            return "elderlyPeople/services";
+            System.out.println("El CAS no a acceptat la petició d'aquesta persona major");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
         }
 
     }
@@ -290,38 +305,37 @@ public class ElderlyPeopleController {
 
     @RequestMapping("/meusServeis")
     public String getMeusServeis(HttpSession session, Model model){
-
-        if (session.getAttribute("user") == null) {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyPeople elderlyPeople = elderlyPeopleDao.getElderlyPeople(user.getDni());
 
-        if (!user.getRol().equals("Elderly")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        if (elderlyPeople.getState()=='A'){
 
-        }else{
             model.addAttribute("requests", requestDao.getRequestsElderly(user.getDni()));
             return "elderlyPeople/meusServeis";
+
+        }else{
+            System.out.println("El CAS no a acceptat la petició d'aquesta persona major");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
         }
 
     }
 
     @RequestMapping("/nousServeis")
     public String getNousServeis(HttpSession session, Model model){
-
-        if (session.getAttribute("user") == null) {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyPeople elderlyPeople = elderlyPeopleDao.getElderlyPeople(user.getDni());
 
-        if (!user.getRol().equals("Elderly")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        if (elderlyPeople.getState()=='A'){
 
-        }else{
             char menjar = 'C';
             char neteja = 'C';
             char salut = 'C';
@@ -377,75 +391,81 @@ public class ElderlyPeopleController {
 
 
             return "elderlyPeople/nousServeis";
+
+        }else{
+            System.out.println("El CAS no a acceptat la petició d'aquesta persona major");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
         }
 
     }
 
     @RequestMapping(value="/solicitarServei/{serviceType}/{price}", method = {RequestMethod.GET, RequestMethod.POST})
     public String solicitarServei(HttpSession session, Model model, @PathVariable Integer serviceType, @PathVariable Integer price) {
-
-        if (session.getAttribute("user") == null) {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyPeople elderlyPeople = elderlyPeopleDao.getElderlyPeople(user.getDni());
 
-        if (!user.getRol().equals("Elderly")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+        if (elderlyPeople.getState()=='A'){
 
-        }else{
             LocalDateTime actual = LocalDateTime.now();
             String codReq = "R" + actual.getYear()%100 + actual.getMonth() + actual.getDayOfMonth() + actual.getHour() + actual.getMinute() + actual.getSecond() + actual.getNano();
             Request nuevaReq = new Request(codReq,'P',ServiceType.getOpcion(serviceType),null,null,false,null,null,price,user.getDni(),null);
             requestDao.addRequest(nuevaReq);
             return "redirect:../../nousServeis";
-        }
 
+        }else{
+            System.out.println("El CAS no a acceptat la petició d'aquesta persona major");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
+        }
 
     }
 
     @RequestMapping("/help")
     public String getElderlyPeopleAjuda(HttpSession session, Model model){
-
-        if (session.getAttribute("user") == null) {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyPeople elderlyPeople = elderlyPeopleDao.getElderlyPeople(user.getDni());
 
-        if (!user.getRol().equals("Elderly")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
-
-
-        }else{
+        if (elderlyPeople.getState()=='A'){
 
             model.addAttribute("mensaje", "");
             return "elderlyPeople/help";
+
+        }else{
+            System.out.println("El CAS no a acceptat la petició d'aquesta persona major");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
         }
 
     }
 
     @RequestMapping(value = "/help",method=RequestMethod.GET)
     public String contactWithCas(HttpSession session, Model model) {
-
-        if (session.getAttribute("user") == null) {
+        UserDetails user = checkSession(session);
+        if (user==null){
             model.addAttribute("user", new UserDetails());
             return "login";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        ElderlyPeople elderlyPeople = elderlyPeopleDao.getElderlyPeople(user.getDni());
 
-        if (!user.getRol().equals("Elderly")){
-            System.out.println("El usuario no puede acceder a esta pagina con este rol");
-            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
-
-
-        }else {
+        if (elderlyPeople.getState()=='A'){
 
             model.addAttribute("elderly", elderlyPeopleDao.getElderlyPeople(user.getDni()));
 
             return "elderlyPeople/help";
+
+        }else{
+            System.out.println("El CAS no a acceptat la petició d'aquesta persona major");
+            session.invalidate();
+            throw  new MajorsACasaException("El CAS committee ha d'haver acceptat la petició de registre abans d'iniciar sessió.","AccesDenied");
         }
 
     }
@@ -457,6 +477,27 @@ public class ElderlyPeopleController {
             return "elderlyPeople/help";
 
         throw  new MajorsACasaException("En breu es ficarem en contacte.","Success","../elderlyPeople/main");
+    }
+
+
+
+    private UserDetails checkSession(HttpSession session){
+
+
+        if(session.getAttribute("user")==null) {
+            return null;
+        }
+
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+
+        if (!user.getRol().equals("Elderly")) {
+            System.out.println("El usuario no puede acceder a esta pagina con este rol");
+            throw  new MajorsACasaException("No tens permisos per accedir a aquesta pàgina. Has d'haver iniciat sessió com a persona major per a poder accedir-hi.","AccesDenied","../"+user.getMainPage());
+
+        }
+
+        return user;
     }
 
 }
